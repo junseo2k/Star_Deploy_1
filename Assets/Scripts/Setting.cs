@@ -1,16 +1,20 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class Setting : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public TextMeshPro VolumeMessage;
+    public TextMeshProUGUI VolumeMessage;
     [SerializeField] private Slider volumeSlider;
     void Start()
     {
         float saved = PlayerPrefs.GetFloat("Volume", 50f); // 초기 음량 설정
         volumeSlider.value = saved;
-        AudioListener.volume = saved / 100f; //슬라이더 value의 범위는 0~100, AudioListener의 범위는 0~1이기 때문에, 100을 나눠줘야 함.      
+        AudioListener.volume = saved / 100f; //슬라이더 value의 범위는 0~100, AudioListener의 범위는 0~1이기 때문에, 100을 나눠줘야 함.
+        Resolution[] resolutions = Screen.resolutions; //지원 해상도 목록 가져오기
+        List<string> options = new List<string>(); // 리스트 선언
+
     }
 
     // Update is called once per frame
@@ -32,7 +36,15 @@ public class Setting : MonoBehaviour
     public void OnChangeSlider()
     {
         int volumeText = Mathf.RoundToInt(volumeSlider.value);//float를 정수로 변환
-        VolumeMessage.text = "volumeText";
+        VolumeMessage.text = $"{volumeText}";
 
+    }
+    public void OnChangeResolution()
+    {
+        
+    }
+    public void OnChangeScreen()
+    {
+        
     }
 }
