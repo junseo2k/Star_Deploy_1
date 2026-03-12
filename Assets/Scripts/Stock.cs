@@ -7,4 +7,6 @@ public class Stock : ScriptableObject
     public int StockBasePrice;
     public string StockDescription;
     public Sprite StockIcon;
+    public string FamilyTag;
+    public string IndustryTag;
 }

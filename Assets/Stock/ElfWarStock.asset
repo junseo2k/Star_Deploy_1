@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
-  m_Name: DwarfStock
+  m_Name: ElfWarStock
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: DwarfStock
   StockBasePrice: 1000
-  StockDescription: dwarf stock. it's high.
+  StockDescription: Elf War stock. it's high.
   StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
+  FamilyTag: Elf
+  IndustryTag: War

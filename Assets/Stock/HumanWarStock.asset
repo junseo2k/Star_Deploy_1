@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
-  m_Name: MagicianStock
+  m_Name: HumanWarStock
   m_EditorClassIdentifier: Assembly-CSharp::Stock
-  StockName: MagicianStock
-  StockBasePrice: 700
-  StockDescription: magician stock. it;s fantastic!
-  StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
+  StockName: DwarfStock
+  StockBasePrice: 1000
+  StockDescription: Human War stock. it's high.
+  StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
+  FamilyTag: Human
+  IndustryTag: War

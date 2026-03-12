@@ -10,6 +10,7 @@ public class StockControl : MonoBehaviour
     public UnityEngine.UI.Image stockImage;
     public TextMeshProUGUI StockPriceText;
     public TextMeshProUGUI ownedAmountText;
+    public GameObject stockItemPrefab;
 
     public int currentPrice;
     public int ownedAmount;
@@ -45,6 +46,19 @@ public class StockControl : MonoBehaviour
             UIManager.instance.UpdateGoldText();
         }
 
+        GameManager.Instance.SaveGame();
+    }
+    public void OnSellClick()
+    {
+        if (ownedAmount <= 0)
+        {
+            UIManager.instance.NoticeGold("You don't have enough stock.");
+            return;
+        }
+        GameManager.Instance.UpdateGold(+currentPrice);
+        ownedAmount--;
+        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
+        UIManager.instance.UpdateGoldText();
         GameManager.Instance.SaveGame();
     }    
 }
