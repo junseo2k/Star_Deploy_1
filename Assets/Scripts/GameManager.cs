@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
                 if (savedstock.stockname == stock.stockinfo.StockName)
                     {
                         stock.ownedAmount = savedstock.ownamount;
-                        stock.currentPrice = savedstock.currentPrice;
+                        stock.stockinfo.StockCurrentPrice = savedstock.currentPrice;
                     }
             }
             

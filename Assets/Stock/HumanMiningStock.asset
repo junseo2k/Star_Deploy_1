@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: HumanMiningStock
   m_EditorClassIdentifier: Assembly-CSharp::Stock
-  StockName: MagicianStock
+  StockName: Human Mining stock
   StockBasePrice: 700
   StockDescription: Human Mining stock. it;s fantastic!
   StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
   FamilyTag: Human
   IndustryTag: Mining
+  StockCurrentPrice: 700

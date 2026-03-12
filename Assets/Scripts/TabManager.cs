@@ -28,6 +28,7 @@ public class TabManager : MonoBehaviour
         HumanPanelText.text = "Human";
         MiningPanelText.text = "Mining";
         WarPanelText.text = "War";
+        
     }
 
     // Update is called once per frame
@@ -40,12 +41,18 @@ public class TabManager : MonoBehaviour
         HideAllPanels();
         DwarfPanel.gameObject.SetActive(true);
         CreateFamilyStock("Dwarf", DwarfPanel);
+        foreach (StockControl stock in DwarfPanel.GetComponentsInChildren<StockControl>())
+        {
+            Debug.Log($"갱신중: {stock.stockinfo.StockName} / {stock.stockinfo.StockCurrentPrice}");
+            stock.UpdatePriceText();
+        }
 
         //드워프 주식 생성
     }
     public void CreateFamilyStock(string tag, Transform panel)
     {
         //주식 정보를 가져옴.
+         Debug.Log($"childCount: {panel.childCount}"); // 몇인지 확인!
         if (panel.childCount > 0) return;
         foreach (Stock stock in allstock)
         {
@@ -54,6 +61,7 @@ public class TabManager : MonoBehaviour
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
+                sc.Initialize();
             }
         }
         
@@ -69,6 +77,7 @@ public class TabManager : MonoBehaviour
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
+                sc.Initialize();
             }
         }
         
@@ -78,6 +87,11 @@ public class TabManager : MonoBehaviour
         HideAllPanels();
         ElfPanel.gameObject.SetActive(true);
         CreateFamilyStock("Elf", ElfPanel);
+        foreach (StockControl stock in ElfPanel.GetComponentsInChildren<StockControl>())
+        {
+            stock.UpdatePriceText();
+        }
+
 
     }
     public void OnDragonTabClick()
@@ -85,24 +99,40 @@ public class TabManager : MonoBehaviour
         HideAllPanels();
         DragonPanel.gameObject.SetActive(true);
         CreateFamilyStock("Dragon", DragonPanel);
+        foreach (StockControl stock in DragonPanel.GetComponentsInChildren<StockControl>())
+        {
+            stock.UpdatePriceText();
+        }
     }
     public void OnHumanTabClick()
     {
         HideAllPanels();
         HumanPanel.gameObject.SetActive(true);
         CreateFamilyStock("Human", HumanPanel);
+        foreach (StockControl stock in HumanPanel.GetComponentsInChildren<StockControl>())
+        {
+            stock.UpdatePriceText();
+        }
     }
     public void OnMiningTabClick()
     {
         HideAllPanels();
         MiningPanel.gameObject.SetActive(true);
         CreateIndustryStock("Mining", MiningPanel);
+        foreach (StockControl stock in MiningPanel.GetComponentsInChildren<StockControl>())
+        {
+            stock.UpdatePriceText();
+        }
     }
     public void OnWarTabClick()
     {
         HideAllPanels();
         WarPanel.gameObject.SetActive(true);
         CreateIndustryStock("War", WarPanel);
+        foreach (StockControl stock in WarPanel.GetComponentsInChildren<StockControl>())
+        {
+            stock.UpdatePriceText();
+        }
     }
     void HideAllPanels()
     {

@@ -215,13 +215,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2484615b121622749b77ddfcbdd6a79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StockControl
-  stockinfo: {fileID: 11400000, guid: 4b16373d9e749f941a3ec63c32a5b84b, type: 2}
+  stockinfo: {fileID: 0}
   StockNameText: {fileID: 7380325107497158561}
   StockDescriptionText: {fileID: 5192442560594049445}
   stockImage: {fileID: 1292509924287155230}
   StockPriceText: {fileID: 2298582474031842080}
   ownedAmountText: {fileID: 890006818012009455}
-  stockItemPrefab: {fileID: 0}
+  stockItemPrefab: {fileID: 2030613550436378564}
   currentPrice: 0
   ownedAmount: 0
 --- !u!1 &2223012762032773772

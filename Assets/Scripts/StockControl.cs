@@ -10,21 +10,19 @@ public class StockControl : MonoBehaviour
     public UnityEngine.UI.Image stockImage;
     public TextMeshProUGUI StockPriceText;
     public TextMeshProUGUI ownedAmountText;
-    public GameObject stockItemPrefab;
-
-    public int currentPrice;
     public int ownedAmount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StockNameText.text = stockinfo.StockName;
-        StockDescriptionText. text = stockinfo.StockDescription;
-        StockPriceText.text = $"{stockinfo.StockBasePrice} gold";
-        stockImage.sprite = stockinfo.StockIcon;
-        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
-        currentPrice = stockinfo.StockBasePrice;
-        UIManager.instance.UpdateGoldText();
         
+    }
+    void OnEnable()
+    {
+        Debug.Log($"OnEnable 호출! {stockinfo?.StockName} / {stockinfo?.StockCurrentPrice}");
+        if (stockinfo != null) // stockinfo가 없을 때 오류 방지
+        {
+            UpdatePriceText();
+        }
     }
 
     // Update is called once per frame
@@ -34,19 +32,23 @@ public class StockControl : MonoBehaviour
     }
     public void OnBuyClick()
     {
-        if (GameManager.Instance.currentgold - currentPrice < 0)
+        if (GameManager.Instance.currentgold - stockinfo.StockCurrentPrice < 0)
         {
             UIManager.instance.NoticeGold("You don't have enough money");
+            return;
         }
-        else
-        {
-            GameManager.Instance.UpdateGold(-currentPrice);
-            ownedAmount++;
-            ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
-            UIManager.instance.UpdateGoldText();
-        }
+    
 
+        GameManager.Instance.UpdateGold(-stockinfo.StockCurrentPrice);
+        ownedAmount++;
+        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
+        UIManager.instance.UpdateGoldText();
         GameManager.Instance.SaveGame();
+    }
+    public void UpdatePriceText()
+    {
+        Debug.Log($"UpdatePriceText 호출! {stockinfo.StockName} / {stockinfo.StockCurrentPrice}");
+        StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
     }
     public void OnSellClick()
     {
@@ -55,10 +57,21 @@ public class StockControl : MonoBehaviour
             UIManager.instance.NoticeGold("You don't have enough stock.");
             return;
         }
-        GameManager.Instance.UpdateGold(+currentPrice);
+        GameManager.Instance.UpdateGold(+stockinfo.StockCurrentPrice);
         ownedAmount--;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         UIManager.instance.UpdateGoldText();
-        GameManager.Instance.SaveGame();
-    }    
+    }
+    public void Initialize()
+    {
+        if (stockinfo.StockCurrentPrice == 0)
+            stockinfo.StockCurrentPrice = stockinfo.StockBasePrice;
+    
+        StockNameText.text = stockinfo.StockName;
+        StockDescriptionText.text = stockinfo.StockDescription;
+        StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
+        stockImage.sprite = stockinfo.StockIcon;
+        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
+        UIManager.instance.UpdateGoldText();
+    }     
 }
