@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; //static은 쉽게 접근하기 위해 사용!
     public int currentgold;
     public int currentDay;
-    public TextMeshProUGUI Ownedgold;
     //게임 전체에서 공유되어야 할 데이터들을 작성
     //그 외에도, 게임 흐름이나 저장/불러오기 등도 여기서 작성
     void Awake()
@@ -19,7 +18,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadGame();
-        Ownedgold.text = $"현재 골드 :{GameManager.Instance.currentgold}";
     }
 
     // Update is called once per frame
@@ -96,6 +94,5 @@ public class GameManager : MonoBehaviour
     public void UpdateGold(int amount)
     {
         currentgold += amount;
-        Ownedgold.text = $"현재 골드 : {currentgold}";
     }
 }

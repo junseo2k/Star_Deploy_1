@@ -22,6 +22,7 @@ public class StockControl : MonoBehaviour
         stockImage.sprite = stockinfo.StockIcon;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         currentPrice = stockinfo.StockBasePrice;
+        UIManager.instance.UpdateGoldText();
         
     }
 
@@ -32,9 +33,18 @@ public class StockControl : MonoBehaviour
     }
     public void OnBuyClick()
     {
-        GameManager.Instance.UpdateGold(-currentPrice);
-        ownedAmount++;
-        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
+        if (GameManager.Instance.currentgold - currentPrice < 0)
+        {
+            UIManager.instance.NoticeGold("You don't have enough money");
+        }
+        else
+        {
+            GameManager.Instance.UpdateGold(-currentPrice);
+            ownedAmount++;
+            ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
+            UIManager.instance.UpdateGoldText();
+        }
+
         GameManager.Instance.SaveGame();
     }    
 }
