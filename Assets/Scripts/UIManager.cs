@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI NoticeText;
-    public TextMeshProUGUI Ownedgold;
+    public TextMeshProUGUI NoticeText; //알림 텍스트
+    public TextMeshProUGUI Ownedgold; //보유 골드 텍스트
     public static UIManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
