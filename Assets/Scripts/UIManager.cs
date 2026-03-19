@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI NoticeText; //알림 텍스트
     public TextMeshProUGUI Ownedgold; //보유 골드 텍스트
+    public TextMeshProUGUI CurrentDay;
     public static UIManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -27,5 +28,9 @@ public class UIManager : MonoBehaviour
     public void NoticeGold(string noticetext)
     {
         NoticeText.text = noticetext;        
+    }
+    public void UpdateDayText()
+    {
+        CurrentDay.text = $"현재 날짜 : {GameManager.Instance.currentDay}";
     }
 }

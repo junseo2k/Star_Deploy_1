@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CaseOccur : MonoBehaviour
 {
-    public Case DwarfEarthQuakeData; //case 타입
+    public Case[] AllCases;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,8 +36,5 @@ public class CaseOccur : MonoBehaviour
         }
         UIManager.instance.NoticeText.text =  caseData.CaseDescription; //어떤 사건이 발생했는지 공지 띄움
     }
-    public void OnDwarfEarthQuakeButton()//드워프 지진 사건.
-    {
-        CaseOccurMethod(DwarfEarthQuakeData);
-    }
+    
 }

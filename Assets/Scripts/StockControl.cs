@@ -74,5 +74,6 @@ public class StockControl : MonoBehaviour
         stockImage.sprite = stockinfo.StockIcon;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         UIManager.instance.UpdateGoldText();
+        UIManager.instance.UpdateDayText();
     }     
 }

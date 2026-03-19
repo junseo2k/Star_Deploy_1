@@ -9,8 +9,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; //static은 쉽게 접근하기 위해 사용!
     public int currentgold; //현재 골드
     public int currentDay; //현재 날짜
+    public CaseOccur caseoccur;
+    public Case OccurCase;
+    public int randonindex;
     //게임 전체에서 공유되어야 할 데이터들을 작성
     //그 외에도, 게임 흐름이나 저장/불러오기 등도 여기서 작성
+
     void Awake() //start보다 먼저 일어남
     {
         Instance = this;// 외부에서의 연결을 위해 자기 자신을 instance에 넣음
@@ -18,6 +22,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         LoadGame(); //게임 로드
+        UIManager.instance.UpdateDayText();
+        UIManager.instance.UpdateGoldText();
     }
 
     // Update is called once per frame
@@ -94,5 +100,13 @@ public class GameManager : MonoBehaviour
     public void UpdateGold(int amount) //주식 구매/판매 시 골드 업데이트 함수
     {
         currentgold += amount;
+    }
+    public void OnNextDayButton() //다음날 버튼.
+    {
+        currentDay += 1;
+        int randonindex = Random.Range(0, caseoccur.AllCases.Length);
+        Case OccurCase = caseoccur.AllCases[randonindex];
+        caseoccur.CaseOccurMethod(OccurCase);
+        UIManager.instance.UpdateDayText();
     }
 }
