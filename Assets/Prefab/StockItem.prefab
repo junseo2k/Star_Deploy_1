@@ -221,9 +221,10 @@ MonoBehaviour:
   stockImage: {fileID: 1292509924287155230}
   StockPriceText: {fileID: 2298582474031842080}
   ownedAmountText: {fileID: 890006818012009455}
-  stockItemPrefab: {fileID: 2030613550436378564}
-  currentPrice: 0
   ownedAmount: 0
+  EntirePanel: {fileID: 0}
+  BuyPanel: {fileID: 0}
+  orderPanel: {fileID: 0}
 --- !u!1 &2223012762032773772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1238,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4320788253666877326}
         m_TargetAssemblyTypeName: StockControl, Assembly-CSharp
-        m_MethodName: OnBuyClick
+        m_MethodName: OnBuyButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

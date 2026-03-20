@@ -11,6 +11,10 @@ public class StockControl : MonoBehaviour
     public TextMeshProUGUI StockPriceText;// 주식 가격 표시 UI
     public TextMeshProUGUI ownedAmountText;// 주식 보유 수량 표시 UI
     public int ownedAmount; //주식 보유 수량
+    public Transform EntirePanel;
+    public Transform BuyPanel;
+    public OrderPanel orderPanel;
+    public int maxmount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,20 +35,13 @@ public class StockControl : MonoBehaviour
     {
         
     }
-    public void OnBuyClick() //구매 버튼. 0원 이하로 떨어지면 구매 막힘
+    public void OnBuyButtonClick() //구매 버튼. 0원 이하로 떨어지면 구매 막힘
     {
-        if (GameManager.Instance.currentgold - stockinfo.StockCurrentPrice < 0)
-        {
-            UIManager.instance.NoticeGold("You don't have enough money");
-            return;
-        }
-    
-
-        GameManager.Instance.UpdateGold(-stockinfo.StockCurrentPrice);
-        ownedAmount++;
-        ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
-        UIManager.instance.UpdateGoldText();
-        GameManager.Instance.SaveGame();
+        EntirePanel.gameObject.SetActive(false);
+        BuyPanel.gameObject.SetActive(true);
+        orderPanel.stockcontrol = this;
+        maxmount = GameManager.Instance.currentgold/stockinfo.StockCurrentPrice;
+        orderPanel.currentText.text = $"Maximum: {maxmount}";
     }
     public void UpdatePriceText() //가격 변동 시 업데이트
     {

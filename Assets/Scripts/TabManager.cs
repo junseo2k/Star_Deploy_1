@@ -17,6 +17,9 @@ public class TabManager : MonoBehaviour
     public TextMeshProUGUI HumanPanelText;
     public TextMeshProUGUI MiningPanelText;
     public TextMeshProUGUI WarPanelText;
+    public OrderPanel orderPanel;
+    public Transform EntirePanel;
+    public Transform buyPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() //패널 탭에 정보 설정. 그 전에 패널을 다 숨기고, 드워프 패널을 처음에 열도록
     {
@@ -53,6 +56,9 @@ public class TabManager : MonoBehaviour
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
+                sc.orderPanel = orderPanel;
+                sc.EntirePanel = EntirePanel;
+                sc.BuyPanel = buyPanel;
                 sc.Initialize();
             }
         }
@@ -69,6 +75,7 @@ public class TabManager : MonoBehaviour
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
+                sc.orderPanel = orderPanel;
                 sc.Initialize();
             }
         }
