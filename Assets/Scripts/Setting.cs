@@ -2,31 +2,31 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+// 게임 설정(음량, 해상도, 화면 모드)을 관리하는 클래스
 public class Setting : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private TextMeshProUGUI VolumeMessage; //외부에서 접근할 이유가 없다면 public보단 이게 나음
-    [SerializeField] private Slider volumeSlider; //음량 키 조절 UI 슬라이더
-    public TMP_Dropdown resolutionDropdown;//해상도 드롭다운
-    public TMP_Dropdown screenModeDropdown;//전체화면/전체 창 화면/창 모드 전환 드롭다운
-    private int modeindex;//화면 모드를 이 값에 따라 조정
-    private List<Resolution> resolutions; //유니티에서 지원하는 해상도들을 이 리스트에 담음
-    public void ApplyOnClick() //적용 버튼 누르면 일어나는 일. 음량 설정, 화면 모드 전환, 해상도 설정
+    [SerializeField] private TextMeshProUGUI VolumeMessage; // 현재 음량 수치를 표시하는 텍스트 (외부 접근 불필요 → SerializeField 사용)
+    [SerializeField] private Slider volumeSlider; // 음량 조절 UI 슬라이더
+    public TMP_Dropdown resolutionDropdown; // 해상도 선택 드롭다운
+    public TMP_Dropdown screenModeDropdown; // 전체화면/전체 창/창 모드 전환 드롭다운
+    private int modeindex; // 현재 선택된 화면 모드 인덱스 (0: 전체화면, 1: 전체 창, 2: 창 모드)
+    private List<Resolution> resolutions; // 유니티에서 지원하는 해상도 목록
+
+    // 적용 버튼 클릭 시 호출 — 음량, 화면 모드, 해상도를 PlayerPrefs에 저장하고 즉시 적용
+    public void ApplyOnClick()
     {
-        //음량 설정
+        // 음량 설정 및 저장 (슬라이더 범위 0~100 → AudioListener 범위 0~1로 변환)
         float applyvolume = volumeSlider.value;
         float applysound = applyvolume / 100f;
         AudioListener.volume = applysound;
-
-
-        //조정된 음량을 PlayerPrefs에 저장
-        PlayerPrefs.SetFloat("Volume", applyvolume);//저장 범위를 0~100으로 통일. 
+        PlayerPrefs.SetFloat("Volume", applyvolume);
         Debug.Log("현재 볼륨 :" + applyvolume);
-    
-        //전체 화면 설정
+
+        // 화면 모드 설정 및 저장
         modeindex = screenModeDropdown.value;
         PlayerPrefs.SetInt("ScreenMode", modeindex);
-        switch(modeindex) //0, 1, 2에 따라 화면 모드 전환
+        switch (modeindex) // 0, 1, 2에 따라 화면 모드 전환
         {
             case 0:
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
@@ -41,33 +41,36 @@ public class Setting : MonoBehaviour
                 Debug.Log("현재 화면 : 창 모드");
                 break;
         }
-        //해상도 설정
+
+        // 해상도 설정 및 저장
         int index = resolutionDropdown.value;
         Resolution selected = resolutions[index];
-        bool fullscreen = modeindex != 2;
+        bool fullscreen = modeindex != 2; // 창 모드가 아닐 경우 fullscreen 처리
         Screen.SetResolution(selected.width, selected.height, fullscreen);
         PlayerPrefs.SetInt("ResW", selected.width);
         PlayerPrefs.SetInt("ResH", selected.height);
-        #if UNITY_EDITOR // 빌드하면 제거되도록 수정
+#if UNITY_EDITOR // 에디터에서만 출력 (빌드 시 제거됨)
         Debug.Log($"선택한 해상도: {selected.width}x{selected.height}");
         Debug.Log($"Screen.width/height: {Screen.width}x{Screen.height}");
         Debug.Log($"currentResolution: {Screen.currentResolution.width}x{Screen.currentResolution.height}");
         Debug.Log("현재 해상도 :" + Screen.width + "x" + Screen.height);
-        #endif
+#endif
 
-        PlayerPrefs.Save(); //변경된 값을 기록함
+        PlayerPrefs.Save(); // 변경된 설정을 디스크에 저장
     }
+
     void Start()
     {
-        //초기 음량 설정
-        float saved = PlayerPrefs.GetFloat("Volume", 50f); 
+        // 저장된 음량 불러와서 슬라이더 및 AudioListener에 반영
+        float saved = PlayerPrefs.GetFloat("Volume", 50f);
         volumeSlider.value = saved;
-        AudioListener.volume = saved / 100f; //슬라이더 value의 범위는 0~100, AudioListener의 범위는 0~1이기 때문에, 100을 나눠줘야 함. //지원 해상도 목록 가져오기
-        //초기 해상도 설정
-        List<string> options = new List<string>(); // 리스트 선언
+        AudioListener.volume = saved / 100f; // 슬라이더 0~100 → AudioListener 0~1 변환
+
+        // 지원 해상도 목록 구성 (주사율만 다른 중복 항목 제거)
+        List<string> options = new List<string>();
         resolutions = new List<Resolution>();
         string last = "";
-        foreach (Resolution res in Screen.resolutions) //해상도 불러온 후 리스트에 목록 추가 (중복 제거)
+        foreach (Resolution res in Screen.resolutions)
         {
             string entry = res.width + "x" + res.height;
             if (entry == last) continue; // 주사율만 다른 중복 해상도 건너뜀
@@ -75,20 +78,24 @@ public class Setting : MonoBehaviour
             options.Add(entry);
             last = entry;
         }
-        resolutionDropdown.ClearOptions(); //기존 옵션이 남아있으면 중복으로 쌓이기 때문에 먼저 비워줌
+        resolutionDropdown.ClearOptions(); // 기존 옵션 제거 후 새 목록 추가 (중복 방지)
         resolutionDropdown.AddOptions(options);
-        //초기 전체 화면 설정
+
+        // 저장된 화면 모드 불러와서 드롭다운에 반영
         modeindex = PlayerPrefs.GetInt("ScreenMode", 1);
         screenModeDropdown.value = modeindex;
-        screenModeDropdown.RefreshShownValue(); //지금 value에 맞는 텍스트로 화면 갱신
-        int w = PlayerPrefs.GetInt("ResW", Screen.width); // 저장했던 해상도 불러오기
+        screenModeDropdown.RefreshShownValue(); // 현재 value에 맞는 텍스트로 UI 갱신
+
+        // 저장된 해상도 불러와서 실제 해상도와 드롭다운에 반영
+        int w = PlayerPrefs.GetInt("ResW", Screen.width);
         int h = PlayerPrefs.GetInt("ResH", Screen.height);
-        bool fullscreen = modeindex != 2; // 창모드면 false
+        bool fullscreen = modeindex != 2; // 창 모드면 false
         Screen.SetResolution(w, h, fullscreen);
-        // 저장된 해상도와 일치하는 값을 드롭다운에 표시
+
+        // 저장된 해상도와 일치하는 항목을 드롭다운에서 선택 상태로 설정
         for (int i = 0; i < resolutions.Count; i++)
         {
-            if (resolutions[i].width == w && resolutions[i].height == h) //그리고
+            if (resolutions[i].width == w && resolutions[i].height == h)
             {
                 resolutionDropdown.value = i;
                 break;
@@ -97,17 +104,15 @@ public class Setting : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnChangeSlider()//슬라이더의 값 표시
+    // 슬라이더 값이 변경될 때 호출 — 현재 음량 수치를 정수로 변환하여 텍스트에 표시
+    public void OnChangeSlider()
     {
-        int volumeText = Mathf.RoundToInt(volumeSlider.value);//float를 정수로 변환
+        int volumeText = Mathf.RoundToInt(volumeSlider.value); // float → 정수 변환
         VolumeMessage.text = $"{volumeText}";
-
     }
-
 }

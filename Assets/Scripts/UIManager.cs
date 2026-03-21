@@ -1,34 +1,43 @@
 using TMPro;
 using UnityEngine;
 
+// UI 전반을 관리하는 싱글톤 클래스 — 공지 텍스트, 골드, 날짜 등 화면 표시를 담당
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI NoticeText; //알림 텍스트
-    public TextMeshProUGUI Ownedgold; //보유 골드 텍스트
-    public TextMeshProUGUI CurrentDay;
-    public static UIManager instance;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public TextMeshProUGUI NoticeText;  // 사건 발생·거래 결과 등을 표시하는 공지 텍스트
+    public TextMeshProUGUI Ownedgold;  // 현재 보유 골드를 표시하는 텍스트
+    public TextMeshProUGUI CurrentDay; // 현재 날짜를 표시하는 텍스트
+
+    public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
+
+    // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    // GameManager의 현재 골드 값을 읽어 골드 텍스트 갱신
     public void UpdateGoldText()
     {
         Ownedgold.text = $"현재 골드 : {GameManager.Instance.currentgold}";
     }
+
+    // 전달받은 문자열을 공지 텍스트에 표시 (거래 실패 등 알림에 사용)
     public void NoticeGold(string noticetext)
     {
-        NoticeText.text = noticetext;        
+        NoticeText.text = noticetext;
     }
+
+    // GameManager의 현재 날짜 값을 읽어 날짜 텍스트 갱신
     public void UpdateDayText()
     {
         CurrentDay.text = $"현재 날짜 : {GameManager.Instance.currentDay}";

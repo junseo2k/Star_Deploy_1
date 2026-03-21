@@ -225,6 +225,7 @@ MonoBehaviour:
   EntirePanel: {fileID: 0}
   BuyPanel: {fileID: 0}
   orderPanel: {fileID: 0}
+  maxmount: 0
 --- !u!1 &2223012762032773772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1372,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4320788253666877326}
         m_TargetAssemblyTypeName: StockControl, Assembly-CSharp
-        m_MethodName: OnSellClick
+        m_MethodName: OnSellButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

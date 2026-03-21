@@ -3,60 +3,65 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
+// 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public static GameManager Instance; //static은 쉽게 접근하기 위해 사용!
-    public int currentgold; //현재 골드
-    public int currentDay; //현재 날짜
-    public CaseOccur caseoccur;
-    public Case OccurCase;
-    public int randonindex;
-    //게임 전체에서 공유되어야 할 데이터들을 작성
-    //그 외에도, 게임 흐름이나 저장/불러오기 등도 여기서 작성
+    public static GameManager Instance; // 어디서든 GameManager에 접근하기 위한 싱글톤 인스턴스
+    public int currentgold;  // 현재 보유 골드
+    public int currentDay;   // 현재 게임 날짜
+    public CaseOccur caseoccur; // 사건 발생 처리 컴포넌트 참조
+    public Case OccurCase;      // 이번 날짜에 발생한 사건 (참고용)
+    public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
 
-    void Awake() //start보다 먼저 일어남
+    // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
+    void Awake()
     {
-        Instance = this;// 외부에서의 연결을 위해 자기 자신을 instance에 넣음
+        Instance = this; // 외부에서 GameManager.Instance로 접근 가능하도록 자신을 등록
     }
+
     void Start()
     {
-        LoadGame(); //게임 로드
+        LoadGame(); // 저장된 게임 데이터 불러오기
         UIManager.instance.UpdateDayText();
         UIManager.instance.UpdateGoldText();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
-    [System.Serializable] //json에 저장 시 필요함. 즉 저장할 데이터들을 class로 묶음
+
+    // JSON 저장을 위한 주식 데이터 구조체
+    [System.Serializable]
     public class StockSaveData
-    //주식 관련 데이터
     {
-        public string stockname;
-        public int currentPrice;
-        public int ownamount;
+        public string stockname;  // 주식 이름 (식별 키)
+        public int currentPrice;  // 저장 시점의 주식 가격
+        public int ownamount;     // 보유 수량
     }
+
+    // JSON 저장을 위한 게임 전체 데이터 구조체
     [System.Serializable]
     public class GameSaveData
-    //골드, 날짜 등 게임 전체 데이터
     {
-        public int currentgold;
-        public int currentday;
-        public List<StockSaveData> OwnStocks; //보유 주식
+        public int currentgold;           // 보유 골드
+        public int currentday;            // 현재 날짜
+        public List<StockSaveData> OwnStocks; // 보유 중인 주식 목록
     }
-    public void SaveGame() //게임 진행 상황을 json 파일에 저장
+
+    // 현재 게임 상태를 JSON 파일로 저장
+    public void SaveGame()
     {
-        GameSaveData data = new GameSaveData(); //저장할 데이터 생성
+        GameSaveData data = new GameSaveData();
         data.currentgold = currentgold;
         data.currentday = currentDay;
         data.OwnStocks = new List<StockSaveData>();
-        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None); //주식들 검색
+
+        // 씬의 모든 StockControl을 검색하여 보유 수량이 있는 주식만 저장 목록에 추가
+        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
         foreach (StockControl stock in allStocks)
         {
-            if (stock.ownedAmount > 0) //보유한 주식이 있다면 주식 데이터를 위에서 설정한 클래스에 맞춘 후 저장할 데이터에 넣음
+            if (stock.ownedAmount > 0)
             {
                 StockSaveData stockdata = new StockSaveData();
                 stockdata.stockname = stock.stockinfo.StockName;
@@ -65,48 +70,56 @@ public class GameManager : MonoBehaviour
                 data.OwnStocks.Add(stockdata);
             }
         }
-        
+
+        // GameSaveData를 JSON 문자열로 변환 후 파일에 저장
         string json = JsonUtility.ToJson(data);
-        string path = Application.persistentDataPath + "/save.json"; //유니티가 정해준 저장 폴더에 json 파일 저장
-        File.WriteAllText(path, json); //json으로 변환 후 저장
+        string path = Application.persistentDataPath + "/save.json"; // 유니티 지정 저장 경로
+        File.WriteAllText(path, json);
     }
-    void LoadGame() //게임 로드
+
+    // JSON 파일에서 게임 데이터를 불러와 복원
+    void LoadGame()
     {
         string path = Application.persistentDataPath + "/save.json";
-        if (File.Exists(path)) //저장한 json 파일이 있다면
+        if (File.Exists(path)) // 저장 파일이 있을 경우 불러오기
         {
-            string json = File.ReadAllText(path);//파일을 문자열로 변환
+            string json = File.ReadAllText(path); // JSON 파일을 문자열로 읽기
             GameSaveData data = JsonUtility.FromJson<GameSaveData>(json);
-            currentgold = data.currentgold;//값을 따로 업데이트
+            currentgold = data.currentgold;
             currentDay = data.currentday;
+
+            // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
-            foreach (StockSaveData savedstock in data.OwnStocks) //주식 정보도 업데이트
+            foreach (StockSaveData savedstock in data.OwnStocks)
             {
                 foreach (StockControl stock in allStocks)
-                if (savedstock.stockname == stock.stockinfo.StockName)
+                    if (savedstock.stockname == stock.stockinfo.StockName)
                     {
                         stock.ownedAmount = savedstock.ownamount;
                         stock.stockinfo.StockCurrentPrice = savedstock.currentPrice;
                     }
             }
-            
         }
-        else //저장된 파일 없을 때 기본값 설정
+        else // 저장 파일이 없으면 기본값으로 시작
         {
-            currentgold = 10000;  // 시작 골드
+            currentgold = 10000; // 시작 골드
             currentDay = 1;
         }
     }
-    public void UpdateGold(int amount) //주식 구매/판매 시 골드 업데이트 함수
+
+    // 주식 구매/판매 시 골드 증감 처리 (구매 시 음수, 판매 시 양수 전달)
+    public void UpdateGold(int amount)
     {
         currentgold += amount;
     }
-    public void OnNextDayButton() //다음날 버튼.
+
+    // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신
+    public void OnNextDayButton()
     {
         currentDay += 1;
-        int randonindex = Random.Range(0, caseoccur.AllCases.Length);
+        int randonindex = Random.Range(0, caseoccur.AllCases.Length); // 랜덤 사건 선택
         Case OccurCase = caseoccur.AllCases[randonindex];
-        caseoccur.CaseOccurMethod(OccurCase);
+        caseoccur.CaseOccurMethod(OccurCase); // 사건 효과 적용
         UIManager.instance.UpdateDayText();
     }
 }

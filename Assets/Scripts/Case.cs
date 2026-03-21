@@ -1,10 +1,11 @@
 using UnityEngine;
 
+// 사건 정보를 담는 ScriptableObject — 인스펙터에서 각 사건 데이터를 에셋으로 생성·관리
 [CreateAssetMenu(fileName = "Case", menuName = "Scriptable Objects/Case")]
-public class Case : ScriptableObject//사건 정보 모음
+public class Case : ScriptableObject
 {
-    public string CaseName; //사건 이름
-    public string CaseDescription;//사건 묘사
-    public Stock[] affectedCase;//변동 주식 모음.
-    public int[] ChangePrice;// 변동 가격 모음
+    public string CaseName;        // 사건 이름
+    public string CaseDescription; // 사건 발생 시 공지될 설명 텍스트
+    public Stock[] affectedCase;   // 이 사건으로 가격이 변동되는 주식 목록
+    public int[] ChangePrice;      // affectedCase의 각 주식에 적용할 가격 변동량 (인덱스 1:1 대응)
 }

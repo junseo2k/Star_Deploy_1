@@ -1,40 +1,49 @@
 using UnityEngine;
 
+// 사건 발생 처리를 담당하는 클래스 — 사건에 따른 주식 가격 변동과 UI 공지를 처리
 public class CaseOccur : MonoBehaviour
 {
-    public Case[] AllCases;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Case[] AllCases; // 게임에 등록된 모든 사건 목록 (GameManager에서 랜덤 선택에 사용)
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void CaseOccurMethod(Case caseData)//사건 발생 시 
+
+    // 사건 발생 시 호출 — 해당 사건의 영향을 받는 주식 가격을 변동하고 UI를 갱신
+    public void CaseOccurMethod(Case caseData)
     {
-        StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);//씬 전체에서 검색해 이 스크립트가 붙은 컴포넌트들을 모두 찾음
-        for (int i = 0; i < caseData.affectedCase.Length; i++) //케이스마다 반복
+        // 씬 전체에서 StockControl 컴포넌트가 붙은 모든 오브젝트를 검색 (비활성화 포함)
+        StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        for (int i = 0; i < caseData.affectedCase.Length; i++) // 사건마다 영향 주식 반복 처리
         {
-            caseData.affectedCase[i].StockCurrentPrice += caseData.ChangePrice[i];//가격 변동 적용
-            if (caseData.affectedCase[i].StockCurrentPrice < 1) //주식 가격이 1 아래로 안가게!
-        {
-            caseData.affectedCase[i].StockCurrentPrice = 1;
-        }
+            // 주식 가격에 변동량 적용
+            caseData.affectedCase[i].StockCurrentPrice += caseData.ChangePrice[i];
+
+            // 주식 가격이 1 미만으로 내려가지 않도록 하한선 설정
+            if (caseData.affectedCase[i].StockCurrentPrice < 1)
+            {
+                caseData.affectedCase[i].StockCurrentPrice = 1;
+            }
+
+            // 변경된 주식에 해당하는 StockControl UI 텍스트를 갱신
             foreach (StockControl stock in allstocks)
             {
                 Debug.Log($"비교중: {stock.stockinfo?.StockName} / {caseData.affectedCase[i]?.StockName}");
-                if (stock.stockinfo.StockName == caseData.affectedCase[i].StockName) //가격 변동을 UI에 업데이트
+                if (stock.stockinfo.StockName == caseData.affectedCase[i].StockName)
                 {
                     stock.UpdatePriceText();
-                  
                 }
             }
         }
-        UIManager.instance.NoticeText.text =  caseData.CaseDescription; //어떤 사건이 발생했는지 공지 띄움
+
+        // 사건 설명을 공지 텍스트에 표시
+        UIManager.instance.NoticeText.text = caseData.CaseDescription;
     }
-    
 }

@@ -1,27 +1,37 @@
 using TMPro;
 using UnityEngine;
 
+// 주식 탭 UI를 관리하는 클래스 — 종족/산업 탭 전환 및 주식 아이템 프리팹 생성을 담당
 public class TabManager : MonoBehaviour
 {
-    public GameObject StockItemPrefab;//프리팹 오브젝트 제어
-    public Stock[] allstock;
-    public Transform DwarfPanel; //각 주식 분류에 따른 패널.
+    public GameObject StockItemPrefab; // 주식 아이템을 표시할 프리팹
+
+    public Stock[] allstock; // 게임에 등록된 모든 주식 데이터
+
+    // 종족별 패널 (각 탭에 해당하는 주식 목록을 담는 부모 Transform)
+    public Transform DwarfPanel;
     public Transform ElfPanel;
     public Transform DragonPanel;
     public Transform HumanPanel;
+
+    // 산업별 패널
     public Transform MiningPanel;
     public Transform WarPanel;
-    public TextMeshProUGUI DwarfPanelText; //탭 버튼 텍스트
+
+    // 탭 버튼에 표시되는 텍스트
+    public TextMeshProUGUI DwarfPanelText;
     public TextMeshProUGUI ElfPanelText;
     public TextMeshProUGUI DragonPanelText;
     public TextMeshProUGUI HumanPanelText;
     public TextMeshProUGUI MiningPanelText;
     public TextMeshProUGUI WarPanelText;
-    public OrderPanel orderPanel;
-    public Transform EntirePanel;
-    public Transform buyPanel;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() //패널 탭에 정보 설정. 그 전에 패널을 다 숨기고, 드워프 패널을 처음에 열도록
+
+    public OrderPanel orderPanel;   // 구매/판매 확인 패널 참조
+    public Transform EntirePanel;   // 전체 주식 목록 패널
+    public Transform buyPanel;      // 구매/판매 입력 패널
+
+    // 모든 패널을 숨긴 뒤 드워프 탭을 기본으로 열고, 각 탭 버튼 텍스트 초기화
+    void Start()
     {
         HideAllPanels();
         OnDwarfClickTab();
@@ -31,27 +41,30 @@ public class TabManager : MonoBehaviour
         HumanPanelText.text = "Human";
         MiningPanelText.text = "Mining";
         WarPanelText.text = "War";
-        
     }
 
-    // Update is called once per frame
+    // 매 프레임 호출 (현재 사용 없음)
     void Update()
     {
-        
+
     }
+
+    // 드워프 탭 버튼 클릭 시 드워프 패널 활성화
     public void OnDwarfClickTab()
     {
         OnFamilyTabClick("Dwarf", DwarfPanel);
-
     }
-    public void CreateFamilyStock(string tag, Transform panel) //종족 주식 생성 함수.
+
+    // 종족(FamilyTag) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
+    // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
+    public void CreateFamilyStock(string tag, Transform panel)
     {
-        //주식 정보를 가져옴.
-         Debug.Log($"childCount: {panel.childCount}"); // 몇인지 확인!
-        if (panel.childCount > 0) return; //주식이 이미 생성된 패널이면 함수 종료
+        Debug.Log($"childCount: {panel.childCount}");
+        if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
+
         foreach (Stock stock in allstock)
         {
-            if (stock.FamilyTag == tag)//태그가 같으면 그 패널에 분류하도록 설정
+            if (stock.FamilyTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
             {
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
@@ -62,15 +75,17 @@ public class TabManager : MonoBehaviour
                 sc.Initialize();
             }
         }
-        
     }
-    public void CreateIndustryStock(string tag, Transform panel) //산업 주식 생성 함수
+
+    // 산업(IndustryTag) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
+    // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
+    public void CreateIndustryStock(string tag, Transform panel)
     {
-        //주식 정보를 가져옴.
-        if (panel.childCount > 0) return;
+        if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
+
         foreach (Stock stock in allstock)
         {
-            if (stock.IndustryTag == tag) //태그가 같으면 그 패널에 분류하도록 설정
+            if (stock.IndustryTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
             {
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
@@ -79,29 +94,40 @@ public class TabManager : MonoBehaviour
                 sc.Initialize();
             }
         }
-        
     }
-    public void OnElfTabClick() //탭 클릭 시 패널이 나타나도록 설정
+
+    // 엘프 탭 버튼 클릭 시 엘프 패널 활성화
+    public void OnElfTabClick()
     {
         OnFamilyTabClick("Elf", ElfPanel);
     }
+
+    // 드래곤 탭 버튼 클릭 시 드래곤 패널 활성화
     public void OnDragonTabClick()
     {
         OnFamilyTabClick("Dragon", DragonPanel);
     }
+
+    // 휴먼 탭 버튼 클릭 시 휴먼 패널 활성화
     public void OnHumanTabClick()
     {
         OnFamilyTabClick("Human", HumanPanel);
     }
+
+    // 채굴 탭 버튼 클릭 시 채굴 패널 활성화
     public void OnMiningTabClick()
     {
         OnIndustryTabClick("Mining", MiningPanel);
     }
+
+    // 전쟁 탭 버튼 클릭 시 전쟁 패널 활성화
     public void OnWarTabClick()
     {
         OnIndustryTabClick("War", WarPanel);
     }
-    void HideAllPanels() //모든 탭 숨기기.
+
+    // 모든 종족/산업 패널을 비활성화
+    void HideAllPanels()
     {
         DwarfPanel.gameObject.SetActive(false);
         ElfPanel.gameObject.SetActive(false);
@@ -110,6 +136,8 @@ public class TabManager : MonoBehaviour
         MiningPanel.gameObject.SetActive(false);
         WarPanel.gameObject.SetActive(false);
     }
+
+    // 종족 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
     public void OnFamilyTabClick(string classification, Transform panel)
     {
         HideAllPanels();
@@ -120,6 +148,8 @@ public class TabManager : MonoBehaviour
             stock.UpdatePriceText();
         }
     }
+
+    // 산업 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
     public void OnIndustryTabClick(string classification, Transform panel)
     {
         HideAllPanels();
@@ -131,4 +161,3 @@ public class TabManager : MonoBehaviour
         }
     }
 }
-//패널이 켜지면, 그 패널의 주식들을 나타내도록 함.
