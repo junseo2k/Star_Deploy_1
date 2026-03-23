@@ -83,7 +83,7 @@ public class StockControl : MonoBehaviour
             stockinfo.StockCurrentPrice = stockinfo.StockBasePrice;
 
         StockNameText.text = stockinfo.StockName;
-        StockDescriptionText.text = stockinfo.StockDescription;
+        StockDescriptionText.text = stockinfo.StockDetailDescription;
         StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
         stockImage.sprite = stockinfo.StockIcon;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";

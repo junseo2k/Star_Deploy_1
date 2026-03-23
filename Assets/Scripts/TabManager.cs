@@ -59,7 +59,6 @@ public class TabManager : MonoBehaviour
     // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
     public void CreateFamilyStock(string tag, Transform panel)
     {
-        Debug.Log($"childCount: {panel.childCount}");
         if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
 
         foreach (Stock stock in allstock)
