@@ -83,11 +83,16 @@ public class StockControl : MonoBehaviour
             stockinfo.StockCurrentPrice = stockinfo.StockBasePrice;
 
         StockNameText.text = stockinfo.StockName;
-        StockDescriptionText.text = stockinfo.StockDetailDescription;
+        StockDescriptionText.text = stockinfo.StockDescription;
         StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
         stockImage.sprite = stockinfo.StockIcon;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         UIManager.instance.UpdateGoldText();
         UIManager.instance.UpdateDayText();
+    }
+    // 주식 아이콘 이미지 클릭 시 호출 — 상세 정보 패널 열기 등에 사용 예정
+    public void OnImageClick()
+    {
+
     }
 }

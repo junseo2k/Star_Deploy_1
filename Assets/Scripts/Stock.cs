@@ -12,15 +12,16 @@ public class Stock : ScriptableObject
     }
     public string StockName;        // 주식 이름
     public int StockBasePrice;      // 변동 전 최초 기준 가격
-    public string StockDetailDescription; // 주식 설명
+    public string StockDescription; // 주식 설명
+    public string StockDetailDescription; // 상세 패널에 표시되는 기업 상세 설명
     public Sprite StockIcon;        // 주식 아이콘 이미지
     public string FamilyTag;        // 주식 분류 태그 — 종족 (예: Dwarf, Elf, Dragon, Human)
     public string IndustryTag;      // 주식 분류 태그 — 산업 (예: Mining, War)
     public int StockCurrentPrice;   // 사건 등으로 변동된 현재 주식 가격
-    public string Service;
-    public int revenue;
-    public int OperatingProfit;
-    public int marketCap;
-    public int TotalShare;
-    public string[] RecentIssue;
+    public string Service;          // 기업이 제공하는 서비스 또는 사업 영역
+    public int revenue;             // 기업 매출액
+    public int OperatingProfit;     // 기업 영업이익
+    public int marketCap;           // 시가총액
+    public int TotalShare;          // 발행 주식 총 수량
+    public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
 }
