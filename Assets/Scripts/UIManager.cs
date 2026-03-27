@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI NoticeText;  // 사건 발생·거래 결과 등을 표시하는 공지 텍스트
     public TextMeshProUGUI Ownedgold;  // 현재 보유 골드를 표시하는 텍스트
     public TextMeshProUGUI CurrentDay; // 현재 날짜를 표시하는 텍스트
+    public DetailPanel detailpanel;
 
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
 
@@ -41,5 +42,12 @@ public class UIManager : MonoBehaviour
     public void UpdateDayText()
     {
         CurrentDay.text = $"현재 날짜 : {GameManager.Instance.currentDay}";
+    }
+    // StockControl은 프리팹이라 여러 개 존재해서 DetailPanel을 직접 참조하기 번거로움
+    // UIManager 싱글톤을 중간 전달자로 활용해 코드 한 줄로 접근
+    public void ShowDetail(Stock stock)
+    {
+        detailpanel.ShowDetail(stock);
+        detailpanel.gameObject.SetActive(true);
     }
 }

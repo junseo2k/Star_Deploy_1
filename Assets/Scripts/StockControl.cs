@@ -93,6 +93,6 @@ public class StockControl : MonoBehaviour
     // 주식 아이콘 이미지 클릭 시 호출 — 상세 정보 패널 열기 등에 사용 예정
     public void OnImageClick()
     {
-
+        UIManager.instance.ShowDetail(stockinfo);
     }
 }

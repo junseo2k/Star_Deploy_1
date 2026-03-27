@@ -8,4 +8,5 @@ public class Case : ScriptableObject
     public string CaseDescription; // 사건 발생 시 공지될 설명 텍스트
     public Stock[] affectedCase;   // 이 사건으로 가격이 변동되는 주식 목록
     public int[] ChangePrice;      // affectedCase의 각 주식에 적용할 가격 변동량 (인덱스 1:1 대응)
+    public Sprite CaseImage;
 }

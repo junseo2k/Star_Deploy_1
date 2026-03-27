@@ -15,7 +15,16 @@ MonoBehaviour:
   StockName: Dwarf War stock
   StockBasePrice: 1000
   StockDescription: Dwarf War stock. it's high.
+  StockDetailDescription: Dwarf War stock. it's affected by War.
   StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
   FamilyTag: Dwarf
   IndustryTag: War
   StockCurrentPrice: 200
+  revenue: 300
+  OperatingProfit: 400
+  marketCap: 200
+  TotalShare: 10
+  RecentIssue: []
+  products:
+  - productName: Axe
+    productIcon: {fileID: -3657533622552464033, guid: e6d5ba8e7e1a2244da9e11106930deef, type: 3}

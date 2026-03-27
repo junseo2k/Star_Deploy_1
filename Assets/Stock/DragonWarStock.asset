@@ -15,7 +15,16 @@ MonoBehaviour:
   StockName: Dragon War stock
   StockBasePrice: 1000
   StockDescription: Dragon War stock. it's high.
+  StockDetailDescription: Dragon War stock. it's affected by War.
   StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
   FamilyTag: Dragon
   IndustryTag: War
   StockCurrentPrice: 1000
+  revenue: 120
+  OperatingProfit: 120
+  marketCap: 120
+  TotalShare: 50
+  RecentIssue: []
+  products:
+  - productName: Knife
+    productIcon: {fileID: -8396873618524449951, guid: f0c0023273395d941b8905bc09c91ef8, type: 3}

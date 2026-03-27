@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 // 사건 발생 처리를 담당하는 클래스 — 사건에 따른 주식 가격 변동과 UI 공지를 처리
 public class CaseOccur : MonoBehaviour
 {
     public Case[] AllCases; // 게임에 등록된 모든 사건 목록 (GameManager에서 랜덤 선택에 사용)
-
+      
     void Start()
     {
 
@@ -25,6 +27,7 @@ public class CaseOccur : MonoBehaviour
         {
             // 주식 가격에 변동량 적용
             caseData.affectedCase[i].StockCurrentPrice += caseData.ChangePrice[i];
+            caseData.affectedCase[i].runtimeIssues.Add(caseData);
 
             // 주식 가격이 1 미만으로 내려가지 않도록 하한선 설정
             if (caseData.affectedCase[i].StockCurrentPrice < 1)
@@ -39,9 +42,14 @@ public class CaseOccur : MonoBehaviour
                 if (stock.stockinfo.StockName == caseData.affectedCase[i].StockName)
                 {
                     stock.UpdatePriceText();
+                    
                 }
             }
+            
         }
+        
+        
+        
 
         // 사건 설명을 공지 텍스트에 표시
         UIManager.instance.NoticeText.text = caseData.CaseDescription;

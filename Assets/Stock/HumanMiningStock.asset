@@ -15,7 +15,16 @@ MonoBehaviour:
   StockName: Human Mining stock
   StockBasePrice: 700
   StockDescription: Human Mining stock. it;s fantastic!
+  StockDetailDescription: Human Mining stock. it's affected by Mining.
   StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
   FamilyTag: Human
   IndustryTag: Mining
   StockCurrentPrice: 700
+  revenue: 70
+  OperatingProfit: 130
+  marketCap: 120
+  TotalShare: 80
+  RecentIssue: []
+  products:
+  - productName: Iron
+    productIcon: {fileID: -8790366475050015188, guid: 82f98d5ee685c8747926334519e56ec3, type: 3}

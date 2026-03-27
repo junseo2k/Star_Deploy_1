@@ -15,7 +15,16 @@ MonoBehaviour:
   StockName: Dwarf Mining stock
   StockBasePrice: 1000
   StockDescription: Dwarf Mining stock. it's high.
+  StockDetailDescription: Dwarf Mining stock. it's affected by Mining.
   StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Mining
   StockCurrentPrice: 700
+  revenue: 150
+  OperatingProfit: 150
+  marketCap: 150
+  TotalShare: 80
+  RecentIssue: []
+  products:
+  - productName: Gold
+    productIcon: {fileID: -7191414121876537124, guid: 89f84d9610c3f3945b146eec01125964, type: 3}
