@@ -85,6 +85,10 @@ public class DetailPanel : MonoBehaviour
         ServicePanel.gameObject.SetActive(true);
         ImportantPanel.gameObject.SetActive(false);
         RecentIssuePanel.gameObject.SetActive(false);
+        foreach (Transform child in ServicePanel)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (Stock.ProductInfo product in currentstock.products)
         {
             GameObject ServicePrefab = Instantiate(StockWithImagePrefab, ServicePanel);
