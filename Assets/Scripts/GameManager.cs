@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public CaseOccur caseoccur; // 사건 발생 처리 컴포넌트 참조
     public Case OccurCase;      // 이번 날짜에 발생한 사건 (참고용)
     public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
+    public TabManager tabmanager;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -119,6 +120,10 @@ public class GameManager : MonoBehaviour
         currentDay += 1;
         int randonindex = Random.Range(0, caseoccur.AllCases.Length); // 랜덤 사건 선택
         Case OccurCase = caseoccur.AllCases[randonindex];
+        for (int i = 0; i < tabmanager.allstock.Length; i++)
+        {
+            tabmanager.allstock[i].StockChangePrice = 0;
+        }
         caseoccur.CaseOccurMethod(OccurCase); // 사건 효과 적용
         UIManager.instance.UpdateDayText();
     }

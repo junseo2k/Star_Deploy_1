@@ -16,10 +16,10 @@ MonoBehaviour:
   StockBasePrice: 1000
   StockDescription: Human War stock. it's high.
   StockDetailDescription: Human War stock. it's affected by War.
-  StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
+  StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
   FamilyTag: Human
   IndustryTag: War
-  StockCurrentPrice: 1000
+  StockCurrentPrice: 500
   revenue: 800
   OperatingProfit: 700
   marketCap: 300

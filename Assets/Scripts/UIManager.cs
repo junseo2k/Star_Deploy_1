@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI Ownedgold;  // 현재 보유 골드를 표시하는 텍스트
     public TextMeshProUGUI CurrentDay; // 현재 날짜를 표시하는 텍스트
     public DetailPanel detailpanel;
+    public Transform EntirePanel;
 
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
 
@@ -47,7 +48,9 @@ public class UIManager : MonoBehaviour
     // UIManager 싱글톤을 중간 전달자로 활용해 코드 한 줄로 접근
     public void ShowDetail(Stock stock)
     {
+        EntirePanel.gameObject.SetActive(false);
         detailpanel.ShowDetail(stock);
         detailpanel.gameObject.SetActive(true);
     }
+    
 }

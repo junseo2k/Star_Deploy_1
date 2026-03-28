@@ -39,35 +39,6 @@ public class StockControl : MonoBehaviour
 
     }
 
-    // 구매 버튼 클릭 시 호출
-    // 전체 패널을 숨기고 구매 입력 패널을 열며, OrderPanel에 이 주식 정보와 구매 모드를 전달
-    public void OnBuyButtonClick()
-    {
-        EntirePanel.gameObject.SetActive(false);
-        BuyPanel.gameObject.SetActive(true);
-        orderPanel.stockcontrol = this;
-        maxmount = GameManager.Instance.currentgold / stockinfo.StockCurrentPrice; // 최대 구매 가능 수량 계산
-        orderPanel.currentText.text = $"Maximum: {maxmount}";
-        orderPanel.PurchaseText.text = $"OwnedStock : 1, \n {stockinfo.StockCurrentPrice} gold.";
-        orderPanel.OwnedNum = ownedAmount;
-        orderPanel.isBuyMode = true; // 구매 모드로 설정
-    }
-
-    // 판매 버튼 클릭 시 호출
-    // 전체 패널을 숨기고 판매 입력 패널을 열며, OrderPanel에 이 주식 정보와 판매 모드를 전달
-    public void OnSellButtonClick()
-    {
-        EntirePanel.gameObject.SetActive(false);
-        BuyPanel.gameObject.SetActive(true);
-        orderPanel.stockcontrol = this;
-        maxmount = ownedAmount; // 최대 판매 가능 수량 = 보유 수량
-        orderPanel.currentText.text = $"Maximum: {maxmount}";
-        orderPanel.StockNum = 1;
-        orderPanel.PurchaseText.text = $"OwnedStock : {orderPanel.StockNum}, \n {stockinfo.StockCurrentPrice} gold.";
-        orderPanel.OwnedNum = ownedAmount;
-        orderPanel.isBuyMode = false; // 판매 모드로 설정
-    }
-
     // 주식 가격이 변동되었을 때 가격 텍스트를 최신 값으로 갱신
     public void UpdatePriceText()
     {

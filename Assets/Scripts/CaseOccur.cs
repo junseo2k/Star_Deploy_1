@@ -6,6 +6,7 @@ using UnityEngine;
 public class CaseOccur : MonoBehaviour
 {
     public Case[] AllCases; // 게임에 등록된 모든 사건 목록 (GameManager에서 랜덤 선택에 사용)
+    public DetailPanel detailpanel;
       
     void Start()
     {
@@ -26,9 +27,10 @@ public class CaseOccur : MonoBehaviour
         for (int i = 0; i < caseData.affectedCase.Length; i++) // 사건마다 영향 주식 반복 처리
         {
             // 주식 가격에 변동량 적용
-            caseData.affectedCase[i].StockCurrentPrice += caseData.ChangePrice[i];
+            
+            caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(caseData.affectedCase[i].StockCurrentPrice * (1 + caseData.ChangePrice[i]/100f));
             caseData.affectedCase[i].runtimeIssues.Add(caseData);
-
+            caseData.affectedCase[i].StockChangePrice = caseData.ChangePrice[i];
             // 주식 가격이 1 미만으로 내려가지 않도록 하한선 설정
             if (caseData.affectedCase[i].StockCurrentPrice < 1)
             {

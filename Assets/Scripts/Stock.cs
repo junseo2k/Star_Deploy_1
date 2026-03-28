@@ -28,4 +28,5 @@ public class Stock : ScriptableObject
     public ProductInfo[] products;
     [System.NonSerialized] // 저장 안 되는 런타임 전용
     public List<Case> runtimeIssues = new List<Case>();
+    public float StockChangePrice;
 }

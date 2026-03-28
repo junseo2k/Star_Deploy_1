@@ -33,6 +33,10 @@ public class TabManager : MonoBehaviour
     // 모든 패널을 숨긴 뒤 드워프 탭을 기본으로 열고, 각 탭 버튼 텍스트 초기화
     void Start()
     {
+        foreach (Stock stock in allstock)
+        {
+            stock.runtimeIssues.Clear();
+        }
         HideAllPanels();
         OnDwarfClickTab();
         DwarfPanelText.text = "dwarf";
@@ -90,6 +94,8 @@ public class TabManager : MonoBehaviour
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
                 sc.orderPanel = orderPanel;
+                sc.EntirePanel = EntirePanel;
+                sc.BuyPanel = buyPanel;
                 sc.Initialize();
             }
         }

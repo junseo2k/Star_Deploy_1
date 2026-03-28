@@ -2,6 +2,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 // 주식 상세 정보 패널을 관리하는 클래스
 // 기본 정보·서비스·중요 지표·최근 이슈 탭 전환과 주식 데이터 표시를 담당
@@ -24,6 +25,12 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI TotalSharePrice;   // 총 발행 주식 수 표시 텍스트
     public CaseOccur caseoccur;               // 전체 사건 목록 접근용 (이슈 탭 표시에 사용)
     public Stock currentstock;               // 현재 상세 패널에 표시 중인 주식 데이터
+    public Transform EntirePanel;
+    public Transform DetailwithPanel;
+    public int maxmount;
+    public Transform BuyPanel;
+    public OrderPanel orderPanel; 
+
 
 
     void Start()
@@ -41,6 +48,7 @@ public class DetailPanel : MonoBehaviour
     {
         currentstock = stock;
         StockName.text = stock.StockName;
+        StockImage.sprite = stock.StockIcon;
         StockPrice.text = stock.StockCurrentPrice.ToString();
         StockDescription.text = stock.StockDescription;
         StockDetailDescription.text = stock.StockDetailDescription;
@@ -48,6 +56,8 @@ public class DetailPanel : MonoBehaviour
         ProfitPrice.text = $"{stock.OperatingProfit} G";
         MarketCapPrice.text = $"{stock.marketCap} G";
         TotalSharePrice.text = $"{stock.TotalShare} stock";
+        StockChangePrice.text = stock.StockChangePrice.ToString();
+        
     }
 
     // 모든 탭 패널을 비활성화 (탭 전환 전 초기화에 사용)
@@ -100,18 +110,91 @@ public class DetailPanel : MonoBehaviour
     // 전체 사건 목록을 순회하며 현재 주식에 영향을 주는 사건을 찾아 이미지+설명 프리팹으로 표시
     public void OnIssueClick()
     {
+        foreach (Transform child in RecentIssuePanel)
+        {
+            Destroy(child.gameObject);
+        }
         DetailInfoPanel.gameObject.SetActive(false);
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(false);
         RecentIssuePanel.gameObject.SetActive(true);
-        foreach (Case c in currentstock.runtimeIssues)
+        int count = currentstock.runtimeIssues.Count;
+        if (count < 2)
         {
-            GameObject RecentIssue = Instantiate(StockWithImagePrefab, RecentIssuePanel);
-            Image Icon = RecentIssue.GetComponentInChildren<Image>();
-            Icon.sprite = c.CaseImage;
-            TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-            IssueText.text = c.CaseDescription;    
+            foreach(Case c in currentstock.runtimeIssues)
+            {
+                GameObject RecentIssue = Instantiate(StockWithImagePrefab, RecentIssuePanel);
+                Image Icon = RecentIssue.GetComponentInChildren<Image>();
+                Icon.sprite = c.CaseImage;
+                TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
+                IssueText.text = c.CaseDescription; 
+            }
+        }
+        else
+        {
+           List<Case> recentTwo = currentstock.runtimeIssues.GetRange(count - 2, 2);
+           foreach (Case c in recentTwo)
+            {
+                GameObject RecentIssue = Instantiate(StockWithImagePrefab, RecentIssuePanel);
+                Image Icon = RecentIssue.GetComponentInChildren<Image>();
+                Icon.sprite = c.CaseImage;
+                TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
+                IssueText.text = c.CaseDescription;    
+            } 
         }
     }
+    public void OnExitButton()
+    {
+        foreach (Transform child in ServicePanel)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in RecentIssuePanel)
+        {
+            Destroy(child.gameObject);
+        }
+        DetailwithPanel.gameObject.SetActive(false);
+        EntirePanel.gameObject.SetActive(true);
+    }
+    public void OnBuyButtonClick()
+    {
+        DetailwithPanel.gameObject.SetActive(false);
+        BuyPanel.gameObject.SetActive(true);
+        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (StockControl sc in allStocks)
+        {
+            if (sc.stockinfo.StockName == currentstock.StockName)
+            {
+                orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
+                orderPanel.OwnedNum = sc.ownedAmount; // ← 여기서 가져오기!
+                break;
+            }
+        }
+        maxmount = GameManager.Instance.currentgold / currentstock.StockCurrentPrice; // 최대 구매 가능 수량 계산
+        orderPanel.currentText.text = $"Maximum: {maxmount}";
+        orderPanel.PurchaseText.text = $"OwnedStock : 1, \n {currentstock.StockCurrentPrice} gold.";
+        orderPanel.isBuyMode = true; // 구매 모드로 설정
+    }
+    public void OnSellButtonClick()
+    {
+        DetailwithPanel.gameObject.SetActive(false);
+        BuyPanel.gameObject.SetActive(true);
+        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (StockControl sc in allStocks)
+        {
+            if (sc.stockinfo.StockName == currentstock.StockName)
+            {
+                orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
+                orderPanel.OwnedNum = sc.ownedAmount; // ← 여기서 가져오기!
+                maxmount = sc.ownedAmount;
+                break;
+            }
+        }
+        orderPanel.currentText.text = $"Maximum: {maxmount}";
+        orderPanel.StockNum = 1;
+        orderPanel.PurchaseText.text = $"OwnedStock : {orderPanel.StockNum}, \n {currentstock.StockCurrentPrice} gold.";
+        orderPanel.isBuyMode = false; // 판매 모드로 설정
+    }
+
 
 }

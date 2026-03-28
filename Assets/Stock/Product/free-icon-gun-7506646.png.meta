@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 82f98d5ee685c8747926334519e56ec3
+guid: c01d717a231ed964eb8da2b089401754
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8790366475050015188
-    second: free-icon-steel-5672176_0
+      213: 8481669387183862408
+    second: free-icon-gun-7506646_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: free-icon-steel-5672176_0
+      name: free-icon-gun-7506646_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 15
-        width: 482
-        height: 482
+        x: 0
+        y: 58
+        width: 512
+        height: 396
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c262429a348520680800000000000000
-      internalID: -8790366475050015188
+      spriteID: 882366dae51f4b570800000000000000
+      internalID: 8481669387183862408
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      free-icon-steel-5672176_0: -8790366475050015188
+      free-icon-gun-7506646_0: 8481669387183862408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

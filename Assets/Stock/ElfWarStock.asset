@@ -16,10 +16,10 @@ MonoBehaviour:
   StockBasePrice: 1000
   StockDescription: Elf War stock. it's high.
   StockDetailDescription: Elf War stock. it's affected by War.
-  StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
+  StockIcon: {fileID: -1828756534907276837, guid: c19eeb3274abfad4ebcf8e2b6683cce9, type: 3}
   FamilyTag: Elf
   IndustryTag: War
-  StockCurrentPrice: 1000
+  StockCurrentPrice: 700
   revenue: 90
   OperatingProfit: 300
   marketCap: 200
