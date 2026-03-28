@@ -25,11 +25,11 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI TotalSharePrice;   // 총 발행 주식 수 표시 텍스트
     public CaseOccur caseoccur;               // 전체 사건 목록 접근용 (이슈 탭 표시에 사용)
     public Stock currentstock;               // 현재 상세 패널에 표시 중인 주식 데이터
-    public Transform EntirePanel;
-    public Transform DetailwithPanel;
-    public int maxmount;
-    public Transform BuyPanel;
-    public OrderPanel orderPanel; 
+    public Transform EntirePanel;            // 전체 주식 목록 패널 (상세 패널 닫을 때 복귀 대상)
+    public Transform DetailwithPanel;        // 상세 패널 전체 루트 (구매/판매 패널 전환 시 비활성화)
+    public int maxmount;                     // 구매 또는 판매 가능한 최대 수량
+    public Transform BuyPanel;              // 구매/판매 입력 패널 (구매·판매 버튼 클릭 시 활성화)
+    public OrderPanel orderPanel;           // 구매/판매 수량 확인 패널 참조
 
 
 
@@ -147,6 +147,7 @@ public class DetailPanel : MonoBehaviour
             } 
         }
     }
+    // 닫기 버튼 클릭 시 서비스·이슈 프리팹 정리 후 상세 패널 닫고 전체 목록 패널로 복귀
     public void OnExitButton()
     {
         foreach (Transform child in ServicePanel)
@@ -160,6 +161,8 @@ public class DetailPanel : MonoBehaviour
         DetailwithPanel.gameObject.SetActive(false);
         EntirePanel.gameObject.SetActive(true);
     }
+    // 구매 버튼 클릭 시 상세 패널 닫고 구매 패널 열기
+    // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 구매 수량 계산
     public void OnBuyButtonClick()
     {
         DetailwithPanel.gameObject.SetActive(false);
@@ -179,6 +182,8 @@ public class DetailPanel : MonoBehaviour
         orderPanel.PurchaseText.text = $"OwnedStock : 1, \n {currentstock.StockCurrentPrice} gold.";
         orderPanel.isBuyMode = true; // 구매 모드로 설정
     }
+    // 판매 버튼 클릭 시 상세 패널 닫고 판매 패널 열기
+    // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 판매 수량(보유량) 계산
     public void OnSellButtonClick()
     {
         DetailwithPanel.gameObject.SetActive(false);

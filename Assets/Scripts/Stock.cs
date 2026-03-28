@@ -6,11 +6,12 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Stock", menuName = "Scriptable Objects/Stock")]
 public class Stock : ScriptableObject
 {
+    // 기업이 제공하는 서비스/상품 정보를 담는 구조체 (상세 패널 서비스 탭에 표시)
     [System.Serializable]
     public struct ProductInfo
     {
-        public string productName;
-        public Sprite productIcon;
+        public string productName; // 서비스/상품 이름
+        public Sprite productIcon; // 서비스/상품 아이콘 이미지
     }
     public string StockName;        // 주식 이름
     public int StockBasePrice;      // 변동 전 최초 기준 가격
@@ -25,8 +26,8 @@ public class Stock : ScriptableObject
     public int marketCap;           // 시가총액
     public int TotalShare;          // 발행 주식 총 수량
     public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
-    public ProductInfo[] products;
+    public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
     [System.NonSerialized] // 저장 안 되는 런타임 전용
     public List<Case> runtimeIssues = new List<Case>();
-    public float StockChangePrice;
+    public float StockChangePrice;          // 가장 최근 사건으로 인한 가격 변동률 (%)
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CaseOccur : MonoBehaviour
 {
     public Case[] AllCases; // 게임에 등록된 모든 사건 목록 (GameManager에서 랜덤 선택에 사용)
-    public DetailPanel detailpanel;
+    public DetailPanel detailpanel; // 상세 패널 참조 (사건 발생 시 이슈 탭 갱신에 활용)
       
     void Start()
     {

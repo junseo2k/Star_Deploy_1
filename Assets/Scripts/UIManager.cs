@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI NoticeText;  // 사건 발생·거래 결과 등을 표시하는 공지 텍스트
     public TextMeshProUGUI Ownedgold;  // 현재 보유 골드를 표시하는 텍스트
     public TextMeshProUGUI CurrentDay; // 현재 날짜를 표시하는 텍스트
-    public DetailPanel detailpanel;
-    public Transform EntirePanel;
+    public DetailPanel detailpanel; // 주식 상세 패널 참조 (ShowDetail 호출에 사용)
+    public Transform EntirePanel;   // 전체 주식 목록 패널 (상세 패널 열릴 때 비활성화 대상)
 
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
 
