@@ -28,3 +28,4 @@ MonoBehaviour:
   products:
   - productName: Iron
     productIcon: {fileID: -8790366475050015188, guid: 82f98d5ee685c8747926334519e56ec3, type: 3}
+  StockChangePrice: 0

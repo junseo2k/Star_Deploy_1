@@ -28,3 +28,4 @@ MonoBehaviour:
   products:
   - productName: Elemental
     productIcon: {fileID: -7020919996354309393, guid: c66500dbf3073d8479ff025c66fdc2ee, type: 3}
+  StockChangePrice: 0

@@ -9,8 +9,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI CurrentDay; // 현재 날짜를 표시하는 텍스트
     public DetailPanel detailpanel; // 주식 상세 패널 참조 (ShowDetail 호출에 사용)
     public Transform EntirePanel;   // 전체 주식 목록 패널 (상세 패널 열릴 때 비활성화 대상)
+    public Transform newspanel;
 
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
+    [SerializeField] private NewsPanel newsPanelScript;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -51,6 +53,12 @@ public class UIManager : MonoBehaviour
         EntirePanel.gameObject.SetActive(false);
         detailpanel.ShowDetail(stock);
         detailpanel.gameObject.SetActive(true);
+    }
+    public void OpenNewsPanel()
+    {
+        EntirePanel.gameObject.SetActive(false);
+        newspanel.gameObject.SetActive(true);
+        newsPanelScript.BigNewsClick();
     }
     
 }

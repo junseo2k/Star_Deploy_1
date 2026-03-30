@@ -28,3 +28,4 @@ MonoBehaviour:
   products:
   - productName: Knife
     productIcon: {fileID: -8396873618524449951, guid: f0c0023273395d941b8905bc09c91ef8, type: 3}
+  StockChangePrice: 0

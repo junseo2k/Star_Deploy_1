@@ -19,7 +19,7 @@ MonoBehaviour:
   StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
   FamilyTag: Human
   IndustryTag: War
-  StockCurrentPrice: 500
+  StockCurrentPrice: 1000
   revenue: 800
   OperatingProfit: 700
   marketCap: 300
@@ -28,3 +28,4 @@ MonoBehaviour:
   products:
   - productName: Gun
     productIcon: {fileID: 8481669387183862408, guid: c01d717a231ed964eb8da2b089401754, type: 3}
+  StockChangePrice: 0

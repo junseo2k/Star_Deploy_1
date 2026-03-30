@@ -17,7 +17,6 @@ public class DetailPanel : MonoBehaviour
     public Transform DetailInfoPanel;         // 기본 정보 탭 패널
     public Transform ServicePanel;            // 서비스 탭 패널
     public Transform ImportantPanel;          // 중요 지표 탭 패널
-    public Transform RecentIssuePanel;        // 최근 이슈 탭 패널
     public TextMeshProUGUI StockDetailDescription; // 기업 상세 설명 표시 텍스트
     public TextMeshProUGUI revenuePrice;      // 매출액 표시 텍스트
     public TextMeshProUGUI ProfitPrice;       // 영업이익 표시 텍스트
@@ -66,7 +65,6 @@ public class DetailPanel : MonoBehaviour
         DetailInfoPanel.gameObject.SetActive(false);
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(false);
-        RecentIssuePanel.gameObject.SetActive(false);
     }
 
     // 기본 정보 탭 버튼 클릭 시 기본 정보 패널만 활성화
@@ -75,7 +73,6 @@ public class DetailPanel : MonoBehaviour
         DetailInfoPanel.gameObject.SetActive(true);
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(false);
-        RecentIssuePanel.gameObject.SetActive(false);
     }
 
     // 서비스 탭 버튼 클릭 시 서비스 패널만 활성화
@@ -84,7 +81,6 @@ public class DetailPanel : MonoBehaviour
         DetailInfoPanel.gameObject.SetActive(false);
         ServicePanel.gameObject.SetActive(true);
         ImportantPanel.gameObject.SetActive(false);
-        RecentIssuePanel.gameObject.SetActive(false);
         foreach (Transform child in ServicePanel)
         {
             Destroy(child.gameObject);
@@ -107,54 +103,11 @@ public class DetailPanel : MonoBehaviour
         DetailInfoPanel.gameObject.SetActive(false);
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(true);
-        RecentIssuePanel.gameObject.SetActive(false);
-    }
-
-    // 최근 이슈 탭 버튼 클릭 시 최근 이슈 패널만 활성화
-    // 전체 사건 목록을 순회하며 현재 주식에 영향을 주는 사건을 찾아 이미지+설명 프리팹으로 표시
-    public void OnIssueClick()
-    {
-        foreach (Transform child in RecentIssuePanel)
-        {
-            Destroy(child.gameObject);
-        }
-        DetailInfoPanel.gameObject.SetActive(false);
-        ServicePanel.gameObject.SetActive(false);
-        ImportantPanel.gameObject.SetActive(false);
-        RecentIssuePanel.gameObject.SetActive(true);
-        int count = currentstock.runtimeIssues.Count;
-        if (count < 2)
-        {
-            foreach(Case c in currentstock.runtimeIssues)
-            {
-                GameObject RecentIssue = Instantiate(StockWithImagePrefab, RecentIssuePanel);
-                Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                Icon.sprite = c.CaseImage;
-                TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                IssueText.text = c.CaseDescription; 
-            }
-        }
-        else
-        {
-           List<Case> recentTwo = currentstock.runtimeIssues.GetRange(count - 2, 2);
-           foreach (Case c in recentTwo)
-            {
-                GameObject RecentIssue = Instantiate(StockWithImagePrefab, RecentIssuePanel);
-                Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                Icon.sprite = c.CaseImage;
-                TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                IssueText.text = c.CaseDescription;    
-            } 
-        }
     }
     // 닫기 버튼 클릭 시 서비스·이슈 프리팹 정리 후 상세 패널 닫고 전체 목록 패널로 복귀
     public void OnExitButton()
     {
         foreach (Transform child in ServicePanel)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (Transform child in RecentIssuePanel)
         {
             Destroy(child.gameObject);
         }
