@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
     public TabManager tabmanager;
     public List<Case> recentIssues;
+    public List<ActiveCase> activeNewsList = new List<ActiveCase>();
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -121,11 +122,27 @@ public class GameManager : MonoBehaviour
         currentDay += 1;
         int randomindex = Random.Range(0, caseoccur.AllCases.Length); // 랜덤 사건 선택
         Case OccurCase = caseoccur.AllCases[randomindex];
-        for (int i = 0; i < tabmanager.allstock.Length; i++)
+        for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
             tabmanager.allstock[i].StockChangePrice = 0;
         }
-        caseoccur.CaseOccurMethod(OccurCase); // 사건 효과 적용
+        ActiveCase newActive = new ActiveCase();
+        newActive.caseData = OccurCase;        // Case를 ActiveCase 안에 담기
+        newActive.Rday = OccurCase.lastingDay;         
+        newActive.currentDay = 0;
+        activeNewsList.Add(newActive);
+        foreach (ActiveCase active in activeNewsList)
+        {
+            float rate = active.caseData.lowPercent[active.currentDay];
+            for (int i = 0; i < active.caseData.affectedCase.Length; i++)
+            {
+                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] * rate));                
+            }
+            // 이 rate로 가격 변동 계산
+        }
+        newActive.currentDay++;
+        newActive.Rday--;
+        activeNewsList.RemoveAll(active => active.Rday <= 0); 
         recentIssues.Add(OccurCase);
         UIManager.instance.UpdateDayText();
     }

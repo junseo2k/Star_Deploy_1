@@ -10,4 +10,6 @@ public class Case : ScriptableObject
     public int[] ChangePrice;      // affectedCase의 각 주식에 적용할 가격 변동량 (인덱스 1:1 대응)
     public Sprite CaseImage;
     public bool isBigNews;
+    public int lastingDay;
+    public float[] lowPercent;
 }
