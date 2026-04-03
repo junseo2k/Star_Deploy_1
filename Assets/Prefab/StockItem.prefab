@@ -82,7 +82,6 @@ MonoBehaviour:
   StockNameText: {fileID: 7380325107497158561}
   StockDescriptionText: {fileID: 5192442560594049445}
   stockImage: {fileID: 1292509924287155230}
-  StockPriceText: {fileID: 0}
   ownedAmountText: {fileID: 890006818012009455}
   ownedAmount: 0
   EntirePanel: {fileID: 0}
@@ -313,8 +312,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
