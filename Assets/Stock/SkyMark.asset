@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
+  m_Name: SkyMark
+  m_EditorClassIdentifier: Assembly-CSharp::Stock
+  StockName: SkyMark
+  StockBasePrice: 300
+  StockDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4. \uB300\uB959
+    \uB0B4 \uD56D\uACF5\uACFC \uC9C0\uC0C1 \uBB3C\uB958\uB97C \uBCF5\uD569\uC73C\uB85C
+    \uC6B4\uC601\uD55C\uB2E4. "
+  StockDetailDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4.
+    \uB300\uB959 \uB0B4 \uD56D\uACF5\uACFC \uC9C0\uC0C1 \uBB3C\uB958\uB97C \uBCF5\uD569\uC73C\uB85C
+    \uC6B4\uC601\uD55C\uB2E4. \uC708\uB4DC\uC2DC\uC5B4 \uAE30\uC220\uC744 \uC751\uC6A9\uD55C
+    \uBB3C\uB958 \uC2DC\uC2A4\uD15C\uC744 \uAC1C\uBC1C \uC911\uC774\uB77C \uC131\uC7A5\uC774
+    \uAE30\uB300\uB41C\uB2E4. \uB300\uB959 \uC804\uC5ED\uC5D0 \uBB3C\uB958 \uD5C8\uBE0C
+    12\uAC1C\uB97C \uC6B4\uC601 \uC911."
+  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  FamilyTag: Human
+  IndustryTag: Coopang
+  StockCurrentPrice: 300
+  revenue: 100
+  OperatingProfit: 100
+  marketCap: 100
+  TotalShare: 30
+  RecentIssue: []
+  products:
+  - productName: Diamond
+    productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
+  StockChangePrice: 0
+  volatilityType: 1

@@ -10,7 +10,6 @@ public class StockControl : MonoBehaviour
     public TextMeshProUGUI StockNameText;         // 주식 이름 표시 UI
     public TextMeshProUGUI StockDescriptionText;  // 주식 설명 표시 UI
     public UnityEngine.UI.Image stockImage;       // 주식 아이콘 이미지 표시 UI
-    public TextMeshProUGUI StockPriceText;        // 주식 현재 가격 표시 UI
     public TextMeshProUGUI ownedAmountText;       // 보유 수량 표시 UI
     public int ownedAmount;                       // 현재 보유 수량
     public Transform EntirePanel;  // 전체 주식 목록 패널 (구매/판매 후 복귀 대상)
@@ -41,7 +40,12 @@ public class StockControl : MonoBehaviour
     // 주식 가격이 변동되었을 때 가격 텍스트를 최신 값으로 갱신
     public void UpdatePriceText()
     {
-        StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
+   
+        if (UIManager.instance.detailpanel.currentstock == stockinfo)
+        {
+            UIManager.instance.detailpanel.StockPrice.text =
+                $"{stockinfo.StockCurrentPrice} gold";
+        }
     }
 
     // 프리팹 생성 직후 호출 — 주식 이름, 설명, 가격, 이미지, 보유 수량 등 UI 초기값 설정
@@ -50,10 +54,8 @@ public class StockControl : MonoBehaviour
         // 현재 가격이 0이면 기준 가격으로 초기화 (첫 실행 시)
         if (stockinfo.StockCurrentPrice == 0)
             stockinfo.StockCurrentPrice = stockinfo.StockBasePrice;
-
         StockNameText.text = stockinfo.StockName;
         StockDescriptionText.text = stockinfo.StockDescription;
-        StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
         stockImage.sprite = stockinfo.StockIcon;
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         UIManager.instance.UpdateGoldText();

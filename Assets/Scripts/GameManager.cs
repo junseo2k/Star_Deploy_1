@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 using NUnit.Framework;
+using UnityEditor.ShaderGraph;
 
 // 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
 public class GameManager : MonoBehaviour
@@ -159,7 +160,24 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
+            float range = 2f;
             tabmanager.allstock[i].StockChangePrice = 0;
+            switch(tabmanager.allstock[i].volatilityType)
+            {
+                case Stock.VolatilityType.Stable:
+                    range = 2f; break;
+                case Stock.VolatilityType.Normal:
+                    range = 3f; break;
+                case Stock.VolatilityType.Volatile:
+                    range = 5f; break;
+            }
+            float Randomchange = Random.Range(-range, range);
+            tabmanager.allstock[i].StockCurrentPrice = Mathf.RoundToInt(tabmanager.allstock[i].StockCurrentPrice * (1 + Randomchange / 100f));
+
+            if (tabmanager.allstock[i].StockCurrentPrice < 1)
+            {
+                tabmanager.allstock[i].StockCurrentPrice = 1;
+            }
         }
         StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (ActiveCase active in activeNewsList)
@@ -171,7 +189,7 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < active.caseData.affectedCase.Length; i++)
             {
                 int priceBefore = active.caseData.affectedCase[i].StockCurrentPrice; // 변동 전 가격 저장
-                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] / 100f * rate));                
+                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] / 100f * rate));
                 if (active.caseData.affectedCase[i].StockCurrentPrice < 1)
                 {
                     active.caseData.affectedCase[i].StockCurrentPrice = 1;

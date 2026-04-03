@@ -30,4 +30,12 @@ public class Stock : ScriptableObject
     [System.NonSerialized] // 저장 안 되는 런타임 전용
     public List<Case> runtimeIssues = new List<Case>();
     public float StockChangePrice;          // 가장 최근 사건으로 인한 가격 변동률 (%)
+    public enum VolatilityType
+    {
+        Stable,   // 안정형: -2% ~ +2%
+        Normal,   // 보통형: -3% ~ +3%
+        Volatile  // 고변동형: -5% ~ +5%
+    }
+
+    public VolatilityType volatilityType; // 각 주식마다 설정
 }

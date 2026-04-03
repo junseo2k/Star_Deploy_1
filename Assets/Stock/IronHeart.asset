@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
+  m_Name: IronHeart
+  m_EditorClassIdentifier: Assembly-CSharp::Stock
+  StockName: IronHeart
+  StockBasePrice: 300
+  StockDescription: "\uB300\uB959 \uC7AC\uACC4 \uC11C\uC5F4 3\uC704. 200\uB144 \uC5ED\uC0AC\uB97C
+    \uAC00\uC9C4 \uCCA0\uAC15\xB7\uBC29\uC0B0 \uBCF5\uD569 \uB300\uAE30\uC5C5\uC774\uB2E4. "
+  StockDetailDescription: "\uB300\uB959 \uC7AC\uACC4 \uC11C\uC5F4 3\uC704. 200\uB144
+    \uC5ED\uC0AC\uB97C \uAC00\uC9C4 \uCCA0\uAC15\xB7\uBC29\uC0B0 \uBCF5\uD569 \uB300\uAE30\uC5C5\uC774\uB2E4.
+    \uC804\uD22C \uC7A5\uBE44, \uBC29\uC5B4\uAD6C, \uACF5\uC131 \uBCD1\uAE30 \uAE30\uC220\uC5D0\uC11C
+    \uB3C5\uBCF4\uC801\uC774\uB2E4. \uB9C8\uB178\uC0AC\uC640\uC758 \uAC08\uB4F1\uC73C\uB85C
+    \uBC29\uC0B0 \uC218\uCD9C\uC5D0 \uCC28\uC9C8\uC774 \uC0DD\uACBC\uACE0, \uC624\uD06C\uC758
+    \uC800\uAC00 \uACF5\uC138\uB85C \uD558\uC704 \uC2DC\uC7A5\uC774 \uC7A0\uC2DD\uB2F9\uD558\uB294
+    \uC911."
+  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  FamilyTag: Dwarf
+  IndustryTag: Army
+  StockCurrentPrice: 300
+  revenue: 100
+  OperatingProfit: 100
+  marketCap: 100
+  TotalShare: 30
+  RecentIssue: []
+  products:
+  - productName: Diamond
+    productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
+  StockChangePrice: 0
+  volatilityType: 1

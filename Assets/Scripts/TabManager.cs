@@ -13,18 +13,36 @@ public class TabManager : MonoBehaviour
     public Transform ElfPanel;
     public Transform DragonPanel;
     public Transform HumanPanel;
+    public Transform OrcPanel;
 
     // 산업별 패널
     public Transform MiningPanel;
-    public Transform WarPanel;
+    public Transform BankPanel;
+    public Transform ArmyPanel;
+    public Transform FoodPanel;
+    public Transform MagicPanel;
+    public Transform ClinicPanel;
+    public Transform CoopangPanel;
+    public Transform ConstructPanel;
+    public Transform LuxuryPanel;
+    public Transform GamePanel;
 
     // 탭 버튼에 표시되는 텍스트
     public TextMeshProUGUI DwarfPanelText;
     public TextMeshProUGUI ElfPanelText;
     public TextMeshProUGUI DragonPanelText;
     public TextMeshProUGUI HumanPanelText;
+    public TextMeshProUGUI OrcPanelText;
     public TextMeshProUGUI MiningPanelText;
-    public TextMeshProUGUI WarPanelText;
+    public TextMeshProUGUI BankPanelText;
+    public TextMeshProUGUI ArmyPanelText;
+    public TextMeshProUGUI FoodPanelText;
+    public TextMeshProUGUI MagicPanelText;
+    public TextMeshProUGUI ClinicPanelText;
+    public TextMeshProUGUI CoopangPanelText;
+    public TextMeshProUGUI ConstructPanelText;
+    public TextMeshProUGUI LuxuryPanelText;
+    public TextMeshProUGUI GamePanelText;
 
     public OrderPanel orderPanel;   // 구매/판매 확인 패널 참조
     public Transform EntirePanel;   // 전체 주식 목록 패널
@@ -43,8 +61,17 @@ public class TabManager : MonoBehaviour
         ElfPanelText.text = "Elf";
         DragonPanelText.text = "Dragon";
         HumanPanelText.text = "Human";
+        OrcPanelText.text = "Orc";
         MiningPanelText.text = "Mining";
-        WarPanelText.text = "War";
+        BankPanelText.text = "Bank";
+        ArmyPanelText.text = "Army";
+        FoodPanelText.text = "Food";   
+        MagicPanelText.text = "Magic";
+        ClinicPanelText.text = "Clinic";
+        CoopangPanelText.text = "Coopang";
+        ConstructPanelText.text = "Construct";
+        LuxuryPanelText.text = "Luxury";
+        GamePanelText.text = "Game";
     }
 
     // 매 프레임 호출 (현재 사용 없음)
@@ -106,11 +133,47 @@ public class TabManager : MonoBehaviour
     {
         OnFamilyTabClick("Elf", ElfPanel);
     }
+    public void OnOrcTabClick()
+    {
+        OnFamilyTabClick("Orc", OrcPanel);
+    }
+    public void OnBankTabClick()
+    {
+        OnIndustryTabClick("Bank", BankPanel);
+    }
+    public void OnFoodTabClick()
+    {
+        OnIndustryTabClick("Food", FoodPanel);
+    }
+    public void OnMagicTabClick()
+    {
+        OnIndustryTabClick("Magic", MagicPanel);
+    }
+    public void OnClinicTabClick()
+    {
+        OnIndustryTabClick("Clinic", ClinicPanel);
+    }
+    public void OnCoopangTabClick()
+    {
+        OnIndustryTabClick("Coopang", CoopangPanel);
+    }
+    public void OnConstructTabClick()
+    {
+        OnIndustryTabClick("Construct", ConstructPanel);
+    }
+    public void OnLuxuryTabClick()
+    {
+        OnIndustryTabClick("Luxury", LuxuryPanel);
+    }
+    public void OnGameTabClick()
+    {
+        OnIndustryTabClick("Game", GamePanel);
+    }
 
     // 드래곤 탭 버튼 클릭 시 드래곤 패널 활성화
     public void OnDragonTabClick()
     {
-        OnFamilyTabClick("Dragon", DragonPanel);
+        OnFamilyTabClick("Dragonia", DragonPanel);
     }
 
     // 휴먼 탭 버튼 클릭 시 휴먼 패널 활성화
@@ -126,9 +189,9 @@ public class TabManager : MonoBehaviour
     }
 
     // 전쟁 탭 버튼 클릭 시 전쟁 패널 활성화
-    public void OnWarTabClick()
+    public void OnArmyTabClick()
     {
-        OnIndustryTabClick("War", WarPanel);
+        OnIndustryTabClick("Army", ArmyPanel);
     }
 
     // 모든 종족/산업 패널을 비활성화
@@ -138,8 +201,17 @@ public class TabManager : MonoBehaviour
         ElfPanel.gameObject.SetActive(false);
         DragonPanel.gameObject.SetActive(false);
         HumanPanel.gameObject.SetActive(false);
+        OrcPanel.gameObject.SetActive(false);
         MiningPanel.gameObject.SetActive(false);
-        WarPanel.gameObject.SetActive(false);
+        BankPanel.gameObject.SetActive(false);
+        ArmyPanel.gameObject.SetActive(false);
+        FoodPanel.gameObject.SetActive(false);
+        MagicPanel.gameObject.SetActive(false);
+        ClinicPanel.gameObject.SetActive(false);
+        CoopangPanel.gameObject.SetActive(false);
+        ConstructPanel.gameObject.SetActive(false);
+        LuxuryPanel.gameObject.SetActive(false);
+        GamePanel.gameObject.SetActive(false);
     }
 
     // 종족 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신

@@ -28,7 +28,7 @@ public class NewsPanel : MonoBehaviour
             Destroy(child.gameObject);
         }
         IssuePanel.gameObject.SetActive(true);
-        int count = GameManager.Instance.recentIssues.Count;
+        int count = GameManager.Instance.activeNewsList.Count;
         if (count < 4)
         {
             foreach(ActiveCase active in GameManager.Instance.activeNewsList)
