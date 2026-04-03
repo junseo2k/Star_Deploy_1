@@ -21,3 +21,9 @@ MonoBehaviour:
   ChangePrice: fbffffffecfffffff6ffffff
   CaseImage: {fileID: 3443241483365386850, guid: 275dde582d5955a47b9696efc5d4e6e8, type: 3}
   isBigNews: 1
+  lastingDay: 4
+  lowPercent:
+  - 1
+  - 0.6
+  - 0.35
+  - 0.2

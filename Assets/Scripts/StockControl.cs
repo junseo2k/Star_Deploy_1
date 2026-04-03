@@ -27,7 +27,6 @@ public class StockControl : MonoBehaviour
     // 탭이 닫혀 있는 동안 가격이 변동되었을 경우, 탭을 다시 열면 최신 가격을 표시하기 위해 사용
     void OnEnable()
     {
-        Debug.Log($"OnEnable 호출! {stockinfo?.StockName} / {stockinfo?.StockCurrentPrice}");
         if (stockinfo != null) // stockinfo가 아직 할당되지 않은 경우 오류 방지
         {
             UpdatePriceText();
@@ -42,7 +41,6 @@ public class StockControl : MonoBehaviour
     // 주식 가격이 변동되었을 때 가격 텍스트를 최신 값으로 갱신
     public void UpdatePriceText()
     {
-        Debug.Log($"UpdatePriceText 호출! {stockinfo.StockName} / {stockinfo.StockCurrentPrice}");
         StockPriceText.text = $"{stockinfo.StockCurrentPrice} gold";
     }
 

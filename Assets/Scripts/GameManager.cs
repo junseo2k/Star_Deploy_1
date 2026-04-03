@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using NUnit.Framework;
 
 // 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
 public class GameManager : MonoBehaviour
@@ -9,12 +10,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; // 어디서든 GameManager에 접근하기 위한 싱글톤 인스턴스
     public int currentgold;  // 현재 보유 골드
     public int currentDay;   // 현재 게임 날짜
-    public CaseOccur caseoccur; // 사건 발생 처리 컴포넌트 참조
-    public Case OccurCase;      // 이번 날짜에 발생한 사건 (참고용)
+    public Case[] AllCases; // 사건 발생 처리 컴포넌트 참조
     public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
     public TabManager tabmanager;
     public List<Case> recentIssues;
     public List<ActiveCase> activeNewsList = new List<ActiveCase>();
+    public int randomindex;
+    public List<Case> smallCases = new List<Case>();
+    public List<Case> BigCases = new List<Case>();
+    public int BigNewsCool;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -27,6 +31,17 @@ public class GameManager : MonoBehaviour
         LoadGame(); // 저장된 게임 데이터 불러오기
         UIManager.instance.UpdateDayText();
         UIManager.instance.UpdateGoldText();
+        foreach (Case c in AllCases)
+        {
+            if (c.isBigNews == true)
+            {
+                BigCases.Add(c);
+            }
+            else
+            {
+                smallCases.Add(c);
+            }    
+        }
     }
 
     void Update()
@@ -116,34 +131,83 @@ public class GameManager : MonoBehaviour
         currentgold += amount;
     }
 
-    // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신
+    // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신. 감쇠는 매일 발생하므로 이곳에 계산식을 둠.
     public void OnNextDayButton()
     {
         currentDay += 1;
-        int randomindex = Random.Range(0, caseoccur.AllCases.Length); // 랜덤 사건 선택
-        Case OccurCase = caseoccur.AllCases[randomindex];
+        int smallnewscount = Random.Range(0, 4);
+        for (int i = 0; i < smallnewscount; i++)
+        {
+            int RandomSmall = Random.Range(0, smallCases.Count);
+            Case picked = smallCases[RandomSmall];
+            if (activeNewsList.Exists(active => active.caseData == picked)) continue;
+            AddActiveNews(picked);
+        }
+        if (Random.Range(0, 100) < 30)
+        {
+            int RandomBig = Random.Range(0, BigCases.Count);
+            Case picked = BigCases[RandomBig];
+            if (!activeNewsList.Exists(active => active.caseData == picked))
+            {
+                AddActiveNews(picked);
+                BigNewsCool = 3;
+            }
+            if (BigNewsCool > 0)
+            {
+                BigNewsCool--;
+            }
+        }
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
             tabmanager.allstock[i].StockChangePrice = 0;
         }
-        ActiveCase newActive = new ActiveCase();
-        newActive.caseData = OccurCase;        // Case를 ActiveCase 안에 담기
-        newActive.Rday = OccurCase.lastingDay;         
-        newActive.currentDay = 0;
-        activeNewsList.Add(newActive);
+        StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (ActiveCase active in activeNewsList)
         {
-            float rate = active.caseData.lowPercent[active.currentDay];
+            
+            float rate = active.currentDay < active.caseData.lowPercent.Length 
+            ? active.caseData.lowPercent[active.currentDay] 
+            : 0f;
             for (int i = 0; i < active.caseData.affectedCase.Length; i++)
             {
-                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] * rate));                
+                int priceBefore = active.caseData.affectedCase[i].StockCurrentPrice; // 변동 전 가격 저장
+                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] / 100f * rate));                
+                if (active.caseData.affectedCase[i].StockCurrentPrice < 1)
+                {
+                    active.caseData.affectedCase[i].StockCurrentPrice = 1;
+                }
+                 Debug.Log($"[{active.caseData.CaseName}] " +
+                        $"{active.caseData.affectedCase[i].StockName} | " +
+                        $"변동 전: {priceBefore} | " +
+                        $"변동률: {active.caseData.ChangePrice[i]}% | " +
+                        $"감쇠율: {rate} | " +
+                        $"변동 후: {active.caseData.affectedCase[i].StockCurrentPrice}");
+
+                // 변경된 주식에 해당하는 StockControl UI 텍스트를 갱신
+                foreach (StockControl stock in allstocks)
+                {
+                    if (stock.stockinfo.StockName == active.caseData.affectedCase[i].StockName)
+                    {
+                        stock.UpdatePriceText();
+                    
+                    }
+                }
             }
-            // 이 rate로 가격 변동 계산
+            active.currentDay++;  // 모든 active에 적용
+            active.Rday--;//
+            UIManager.instance.NoticeText.text = active.caseData.CaseDescription;
         }
-        newActive.currentDay++;
-        newActive.Rday--;
         activeNewsList.RemoveAll(active => active.Rday <= 0); 
-        recentIssues.Add(OccurCase);
         UIManager.instance.UpdateDayText();
+    }
+    public void AddActiveNews(Case casedata)
+    {
+        Debug.Log($"뉴스 추가: {casedata.CaseName}");
+        ActiveCase newActive = new ActiveCase();
+        newActive.caseData = casedata;
+        newActive.Rday = casedata.lastingDay;
+        newActive.currentDay = 0;
+        activeNewsList.Add(newActive);
+        recentIssues.Add(casedata);
     }
 }

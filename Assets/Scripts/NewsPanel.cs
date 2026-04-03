@@ -31,30 +31,30 @@ public class NewsPanel : MonoBehaviour
         int count = GameManager.Instance.recentIssues.Count;
         if (count < 4)
         {
-            foreach(Case c in GameManager.Instance.recentIssues)
+            foreach(ActiveCase active in GameManager.Instance.activeNewsList)
             {
-                if (c.isBigNews == false)
+                if (active.caseData.isBigNews == false)
                 {
-                    GameObject RecentIssue = Instantiate(StockWithImagePrefab, IssuePanel);
-                    Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = c.CaseImage;
-                    TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = c.CaseDescription; 
+                    GameObject ActiveIssue = Instantiate(StockWithImagePrefab, IssuePanel);
+                    Image Icon = ActiveIssue.GetComponentInChildren<Image>();
+                    Icon.sprite = active.caseData.CaseImage;
+                    TextMeshProUGUI IssueText = ActiveIssue.GetComponentInChildren<TextMeshProUGUI>();
+                    IssueText.text = $"{active.caseData.CaseDescription} + 남은 시간 : {active.Rday}"; 
                 }
             }
         }
         else
         {
-           List<Case> recentTwo = GameManager.Instance.recentIssues.GetRange(count - 4, 4);
-           foreach (Case c in recentTwo)
+           List<ActiveCase> recentTwo = GameManager.Instance.activeNewsList.GetRange(count - 4, 4);
+           foreach (ActiveCase c in recentTwo)
             {
-                if (c.isBigNews == false)
+                if (c.caseData.isBigNews == false)
                 {
                     GameObject RecentIssue = Instantiate(StockWithImagePrefab, IssuePanel);
                     Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = c.CaseImage;
+                    Icon.sprite = c.caseData.CaseImage;
                     TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = c.CaseDescription; 
+                    IssueText.text = c.caseData.CaseDescription; 
                 }  
             } 
         }

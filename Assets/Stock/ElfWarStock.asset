@@ -19,7 +19,7 @@ MonoBehaviour:
   StockIcon: {fileID: -1828756534907276837, guid: c19eeb3274abfad4ebcf8e2b6683cce9, type: 3}
   FamilyTag: Elf
   IndustryTag: War
-  StockCurrentPrice: 1000
+  StockCurrentPrice: 1195
   revenue: 90
   OperatingProfit: 300
   marketCap: 200

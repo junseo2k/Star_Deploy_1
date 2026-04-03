@@ -19,7 +19,7 @@ MonoBehaviour:
   StockIcon: {fileID: 2363981564016319736, guid: 90be1ea9a740c7b4c9f9cccbca2cda09, type: 3}
   FamilyTag: Human
   IndustryTag: War
-  StockCurrentPrice: 1000
+  StockCurrentPrice: 1443
   revenue: 800
   OperatingProfit: 700
   marketCap: 300

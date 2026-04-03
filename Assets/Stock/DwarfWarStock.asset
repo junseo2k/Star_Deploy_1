@@ -19,7 +19,7 @@ MonoBehaviour:
   StockIcon: {fileID: -4572992706245708000, guid: 9ebb5cb96bfb165448e7931afad19951, type: 3}
   FamilyTag: Dwarf
   IndustryTag: War
-  StockCurrentPrice: 1000
+  StockCurrentPrice: 687
   revenue: 500
   OperatingProfit: 400
   marketCap: 200

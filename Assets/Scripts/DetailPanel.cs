@@ -21,8 +21,7 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI revenuePrice;      // 매출액 표시 텍스트
     public TextMeshProUGUI ProfitPrice;       // 영업이익 표시 텍스트
     public TextMeshProUGUI MarketCapPrice;    // 시가총액 표시 텍스트
-    public TextMeshProUGUI TotalSharePrice;   // 총 발행 주식 수 표시 텍스트
-    public CaseOccur caseoccur;               // 전체 사건 목록 접근용 (이슈 탭 표시에 사용)
+    public TextMeshProUGUI TotalSharePrice;   // 총 발행 주식 수 표시 텍스트               
     public Stock currentstock;               // 현재 상세 패널에 표시 중인 주식 데이터
     public Transform EntirePanel;            // 전체 주식 목록 패널 (상세 패널 닫을 때 복귀 대상)
     public Transform DetailwithPanel;        // 상세 패널 전체 루트 (구매/판매 패널 전환 시 비활성화)
