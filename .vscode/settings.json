@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Star_Deploy_1.slnx"
+    "dotnet.defaultSolution": "Star_Deploy_1.slnx",
+    "dotnet.preferCSharpExtension": true
 }
