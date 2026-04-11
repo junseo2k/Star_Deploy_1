@@ -12,4 +12,15 @@ public class Case : ScriptableObject
     public bool isBigNews;
     public int lastingDay;
     public float[] lowPercent;
+    public enum NewsType
+    {
+        SmallIndustryNews,
+        SmallCompanyNews,
+        SmallVibeNews,
+        BigTriggerNews,
+        BigRandomNews
+    }
+    public NewsType newsType;
+    public string triggerKey;
+    public int triggervalue;
 }

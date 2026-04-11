@@ -4,6 +4,7 @@ using TMPro;
 using System.IO;
 using NUnit.Framework;
 using UnityEditor.ShaderGraph;
+using Unity.VisualScripting;
 
 // 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
 public class GameManager : MonoBehaviour
@@ -17,9 +18,18 @@ public class GameManager : MonoBehaviour
     public List<Case> recentIssues;
     public List<ActiveCase> activeNewsList = new List<ActiveCase>();
     public int randomindex;
-    public List<Case> smallCases = new List<Case>();
-    public List<Case> BigCases = new List<Case>();
-    public int BigNewsCool;
+    public List<Case> SmallNewsCases = new List<Case>();
+    public List<Case> SmallVibeCases = new List<Case>();
+    public List<Case> BigRandomCases = new List<Case>();
+    public List<Case> BigTriggerCases = new List<Case>();
+    public int triggerWar;
+    public int triggerPeace;
+    public int triggerRevolt;
+    public int triggerTrade;
+    public int triggerFestival;
+    public int triggerDispute;
+    public int triggerRevolution;
+    public int triggerInnovation;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -34,14 +44,23 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateGoldText();
         foreach (Case c in AllCases)
         {
-            if (c.isBigNews == true)
+           switch(c.newsType)
             {
-                BigCases.Add(c);
+                case Case.NewsType.SmallIndustryNews:
+                case Case.NewsType.SmallCompanyNews:// 하나의 리스트에 같이 넣기
+                SmallNewsCases.Add(c);
+                break;
+                case Case.NewsType.SmallVibeNews:
+                SmallVibeCases.Add(c);
+                break;
+                case Case.NewsType.BigRandomNews:
+                BigRandomCases.Add(c);
+                break;
+                case Case.NewsType.BigTriggerNews:
+                BigTriggerCases.Add(c);
+                break;
+
             }
-            else
-            {
-                smallCases.Add(c);
-            }    
         }
     }
 
@@ -58,7 +77,6 @@ public class GameManager : MonoBehaviour
         public int currentPrice;  // 저장 시점의 주식 가격
         public int ownamount;     // 보유 수량
     }
-
     // JSON 저장을 위한 게임 전체 데이터 구조체
     [System.Serializable]
     public class GameSaveData
@@ -139,25 +157,183 @@ public class GameManager : MonoBehaviour
         int smallnewscount = Random.Range(0, 4);
         for (int i = 0; i < smallnewscount; i++)
         {
-            int RandomSmall = Random.Range(0, smallCases.Count);
-            Case picked = smallCases[RandomSmall];
+            int RandomSmall = Random.Range(0, SmallNewsCases.Count);
+            Case picked = SmallNewsCases[RandomSmall];
             if (activeNewsList.Exists(active => active.caseData == picked)) continue;
+            if (!string.IsNullOrEmpty(picked.triggerKey))
+            {
+                switch(picked.triggerKey)
+                {
+                    case "전쟁":
+                    triggerWar += picked.triggervalue;
+                    break;
+                    case "평화":
+                    triggerPeace += picked.triggervalue;
+                    break;
+                    case "반란":
+                    triggerRevolt += picked.triggervalue;
+                    break;
+                    case "무역":
+                    triggerTrade += picked.triggervalue;
+                    break;
+                    case "축제":
+                    triggerFestival += picked.triggervalue;
+                    break;
+                    case "분쟁":
+                    triggerDispute += picked.triggervalue;
+                    break;
+                    case "혁명":
+                    triggerRevolution += picked.triggervalue;
+                    break;
+                    case "혁신":
+                    triggerInnovation += picked.triggervalue;
+                    break;
+                }
+            }
             AddActiveNews(picked);
         }
-        if (Random.Range(0, 100) < 30)
+        int smallvibecount = Random.Range(0, 2);
+        for (int i = 0; i < smallvibecount; i++)
         {
-            int RandomBig = Random.Range(0, BigCases.Count);
-            Case picked = BigCases[RandomBig];
+            int RandomvibeSmall = Random.Range(0, SmallVibeCases.Count);
+            Case Vibepicked = SmallVibeCases[RandomvibeSmall];
+            if (activeNewsList.Exists(active => active.caseData == Vibepicked)) continue;
+            switch(Vibepicked.triggerKey)
+            {
+                case "전쟁":
+                triggerWar += Vibepicked.triggervalue;
+                break;
+                case "평화":
+                triggerPeace += Vibepicked.triggervalue;
+                break;
+                case "반란":
+                triggerRevolt += Vibepicked.triggervalue;
+                break;
+                case "무역":
+                triggerTrade += Vibepicked.triggervalue;
+                break;
+                case "축제":
+                triggerFestival += Vibepicked.triggervalue;
+                break;
+                case "분쟁":
+                triggerDispute += Vibepicked.triggervalue;
+                break;
+                case "혁명":
+                triggerRevolution += Vibepicked.triggervalue;
+                break;
+                case "혁신":
+                triggerInnovation += Vibepicked.triggervalue;
+                break;
+            }            
+        }
+
+        if (Random.Range(0, 100) <= 1)
+        {
+            int RandomBig = Random.Range(0, BigRandomCases.Count);
+            Case picked = BigRandomCases[RandomBig];
             if (!activeNewsList.Exists(active => active.caseData == picked))
             {
-                AddActiveNews(picked);
-                BigNewsCool = 3;
-            }
-            if (BigNewsCool > 0)
+                AddActiveNews(picked);            
+            }    
+        }
+        //대형 뉴스 출력. triggerKey >= 100인 것들
+        if (triggerWar >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
             {
-                BigNewsCool--;
+                if (c.triggerKey == "전쟁")
+                {
+                    AddActiveNews(c);
+                    triggerWar = 0;
+                    break;
+                }
             }
         }
+        if (triggerPeace >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "평화")
+                {
+                    AddActiveNews(c);
+                    triggerPeace = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerRevolt >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "반란")
+                {
+                    AddActiveNews(c);
+                    triggerRevolt = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerTrade >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "무역")
+                {
+                    AddActiveNews(c);
+                    triggerTrade = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerFestival >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "축제")
+                {
+                    AddActiveNews(c);
+                    triggerFestival = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerDispute >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "분쟁")
+                {
+                    AddActiveNews(c);
+                    triggerDispute = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerRevolution >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "혁명")
+                {
+                    AddActiveNews(c);
+                    triggerRevolution = 0;
+                    break;
+                }
+            }
+        }
+        if (triggerInnovation >= 100)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == "혁신")
+                {
+                    AddActiveNews(c);
+                    triggerInnovation = 0;
+                    break;
+                }
+            }
+        }
+
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
             float range = 2f;
