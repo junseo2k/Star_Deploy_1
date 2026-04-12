@@ -133,38 +133,55 @@ public class TabManager : MonoBehaviour
     {
         OnFamilyTabClick("Elf", ElfPanel);
     }
+    // 오크 탭 버튼 클릭 시 오크 패널 활성화
     public void OnOrcTabClick()
     {
         OnFamilyTabClick("Orc", OrcPanel);
     }
+
+    // 은행 탭 버튼 클릭 시 은행 패널 활성화
     public void OnBankTabClick()
     {
         OnIndustryTabClick("Bank", BankPanel);
     }
+
+    // 식품 탭 버튼 클릭 시 식품 패널 활성화
     public void OnFoodTabClick()
     {
         OnIndustryTabClick("Food", FoodPanel);
     }
+
+    // 마법 탭 버튼 클릭 시 마법 패널 활성화
     public void OnMagicTabClick()
     {
         OnIndustryTabClick("Magic", MagicPanel);
     }
+
+    // 의료 탭 버튼 클릭 시 의료 패널 활성화
     public void OnClinicTabClick()
     {
         OnIndustryTabClick("Clinic", ClinicPanel);
     }
+
+    // 유통 탭 버튼 클릭 시 유통 패널 활성화
     public void OnCoopangTabClick()
     {
         OnIndustryTabClick("Coopang", CoopangPanel);
     }
+
+    // 건설 탭 버튼 클릭 시 건설 패널 활성화
     public void OnConstructTabClick()
     {
         OnIndustryTabClick("Construct", ConstructPanel);
     }
+
+    // 명품 탭 버튼 클릭 시 명품 패널 활성화
     public void OnLuxuryTabClick()
     {
         OnIndustryTabClick("Luxury", LuxuryPanel);
     }
+
+    // 게임 탭 버튼 클릭 시 게임 패널 활성화
     public void OnGameTabClick()
     {
         OnIndustryTabClick("Game", GamePanel);
