@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
         EntirePanel.gameObject.SetActive(false);
         detailpanel.ShowDetail(stock);
         detailpanel.gameObject.SetActive(true);
+        
     }
     public void OpenNewsPanel()
     {

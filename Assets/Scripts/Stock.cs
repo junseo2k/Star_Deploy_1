@@ -20,7 +20,6 @@ public class Stock : ScriptableObject
     public Sprite StockIcon;        // 주식 아이콘 이미지
     public string FamilyTag;        // 주식 분류 태그 — 종족 (예: Dwarf, Elf, Dragon, Human)
     public string IndustryTag;      // 주식 분류 태그 — 산업 (예: Mining, War)
-    public int StockCurrentPrice;   // 사건 등으로 변동된 현재 주식 가격
     public int revenue;             // 기업 매출액
     public int OperatingProfit;     // 기업 영업이익
     public int marketCap;           // 시가총액
@@ -29,7 +28,6 @@ public class Stock : ScriptableObject
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
     [System.NonSerialized] // 저장 안 되는 런타임 전용
     public List<Case> runtimeIssues = new List<Case>();
-    public float StockChangePrice;          // 가장 최근 사건으로 인한 가격 변동률 (%)
     public enum VolatilityType
     {
         Stable,   // 안정형: -2% ~ +2%
@@ -38,4 +36,11 @@ public class Stock : ScriptableObject
     }
 
     public VolatilityType volatilityType; // 각 주식마다 설정
+    public string nation;
+    [System.NonSerialized]
+    public int StockCurrentPrice;
+    [System.NonSerialized]
+    public int StockPreviousPrice;
+    [System.NonSerialized]
+    public float StockChangePrice;
 }

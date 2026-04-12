@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         LoadGame(); // 저장된 게임 데이터 불러오기
         UIManager.instance.UpdateDayText();
         UIManager.instance.UpdateGoldText();
+        Debug.Log(Application.persistentDataPath);
         foreach (Case c in AllCases)
         {
            switch(c.newsType)
@@ -61,6 +62,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             }
+        }
+         foreach (Stock stock in tabmanager.allstock)
+        {
+            stock.StockCurrentPrice = stock.StockBasePrice;
+            stock.StockPreviousPrice = stock.StockBasePrice;
         }
     }
 
@@ -133,7 +139,6 @@ public class GameManager : MonoBehaviour
                     if (savedstock.stockname == stock.stockinfo.StockName)
                     {
                         stock.ownedAmount = savedstock.ownamount;
-                        stock.stockinfo.StockCurrentPrice = savedstock.currentPrice;
                     }
             }
         }
@@ -224,7 +229,8 @@ public class GameManager : MonoBehaviour
                 case "혁신":
                 triggerInnovation += Vibepicked.triggervalue;
                 break;
-            }            
+            }
+            AddActiveNews(Vibepicked);            
         }
 
         if (Random.Range(0, 100) <= 1)
@@ -338,6 +344,7 @@ public class GameManager : MonoBehaviour
         {
             float range = 2f;
             tabmanager.allstock[i].StockChangePrice = 0;
+            tabmanager.allstock[i].StockPreviousPrice = tabmanager.allstock[i].StockCurrentPrice;
             switch(tabmanager.allstock[i].volatilityType)
             {
                 case Stock.VolatilityType.Stable:
@@ -357,39 +364,97 @@ public class GameManager : MonoBehaviour
         }
         StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (ActiveCase active in activeNewsList)
-        {
-            
-            float rate = active.currentDay < active.caseData.lowPercent.Length 
-            ? active.caseData.lowPercent[active.currentDay] 
-            : 0f;
-            for (int i = 0; i < active.caseData.affectedCase.Length; i++)
-            {
-                int priceBefore = active.caseData.affectedCase[i].StockCurrentPrice; // 변동 전 가격 저장
-                active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(active.caseData.affectedCase[i].StockCurrentPrice * (1 + active.caseData.ChangePrice[i] / 100f * rate));
-                if (active.caseData.affectedCase[i].StockCurrentPrice < 1)
-                {
-                    active.caseData.affectedCase[i].StockCurrentPrice = 1;
-                }
-                 Debug.Log($"[{active.caseData.CaseName}] " +
-                        $"{active.caseData.affectedCase[i].StockName} | " +
-                        $"변동 전: {priceBefore} | " +
-                        $"변동률: {active.caseData.ChangePrice[i]}% | " +
-                        $"감쇠율: {rate} | " +
-                        $"변동 후: {active.caseData.affectedCase[i].StockCurrentPrice}");
+{
+    float rate = active.currentDay < active.caseData.lowPercent.Length
+        ? active.caseData.lowPercent[active.currentDay]
+        : 0f;
 
-                // 변경된 주식에 해당하는 StockControl UI 텍스트를 갱신
-                foreach (StockControl stock in allstocks)
+    // 대형 트리거 뉴스 — 산업군 기반으로 처리
+    if ((active.caseData.newsType == Case.NewsType.BigTriggerNews
+        || active.caseData.newsType == Case.NewsType.BigRandomNews)
+        && active.caseData.industryRates != null
+        && active.caseData.industryRates.Length > 0)
+
+    {
+        foreach (Stock stock in tabmanager.allstock)
+        {
+            // 이 주식의 산업군에 맞는 변동률 찾기
+            Case.IndustryRate matchedRate = default;
+            bool found = false;
+            foreach (Case.IndustryRate ir in active.caseData.industryRates)
+            {
+                if (ir.industryTag == stock.IndustryTag)
                 {
-                    if (stock.stockinfo.StockName == active.caseData.affectedCase[i].StockName)
-                    {
-                        stock.UpdatePriceText();
-                    
-                    }
+                    matchedRate = ir;
+                    found = true;
+                    break;
                 }
             }
-            active.currentDay++;  // 모든 active에 적용
-            active.Rday--;//
-            UIManager.instance.NoticeText.text = active.caseData.CaseDescription;
+            if (!found) continue;
+
+            // 당사국 여부 확인
+            bool isInvolved = active.involvedNations.Contains(stock.nation);
+
+            int minRate = isInvolved ? matchedRate.changePriceMin : matchedRate.changePriceMinNon;
+            int maxRate = isInvolved ? matchedRate.changePriceMax : matchedRate.changePriceMaxNon;
+
+            stock.StockCurrentPrice = Mathf.RoundToInt(
+                stock.StockCurrentPrice * (1 + Random.Range(minRate, maxRate + 1) / 100f * rate));
+
+            if (stock.StockCurrentPrice < 1) stock.StockCurrentPrice = 1;
+
+            Debug.Log($"[{active.caseData.CaseName}] {stock.StockName} | " +
+                $"산업군: {stock.IndustryTag} | 당사국: {isInvolved} | " +
+                $"변동 전: {stock.StockPreviousPrice} | 변동 후: {stock.StockCurrentPrice}");
+        }
+    }
+    else
+    {
+        // 소형 뉴스 또는 BigRandomNews — 기존 방식
+        for (int i = 0; i < active.caseData.affectedCase.Length; i++)
+        {
+
+            active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(
+                active.caseData.affectedCase[i].StockCurrentPrice *
+                (1 + Random.Range(active.caseData.ChangePriceMin[i],
+                active.caseData.ChangePriceMax[i] + 1) / 100f * rate));
+
+            if (active.caseData.affectedCase[i].StockCurrentPrice < 1)
+                active.caseData.affectedCase[i].StockCurrentPrice = 1;
+
+            foreach (Stock s in tabmanager.allstock)
+            {
+                if (s.StockName == active.caseData.affectedCase[i].StockName)
+                {
+                    Debug.Log($"같은 오브젝트? : {ReferenceEquals(s, active.caseData.affectedCase[i])}");
+                    break;
+                }
+            }   
+            Debug.Log($"[{active.caseData.CaseName}] " +
+                $"{active.caseData.affectedCase[i].StockName} | " +
+                $"변동 전: {active.caseData.affectedCase[i].StockPreviousPrice} | 감쇠율: {rate} | " +
+                $"변동 후: {active.caseData.affectedCase[i].StockCurrentPrice}");
+
+            foreach (StockControl stock in allstocks)
+            {
+                if (stock.stockinfo.StockName == active.caseData.affectedCase[i].StockName)
+                    stock.UpdatePriceText();
+            }
+        }
+    }
+
+    // UI 갱신 — 대형 뉴스는 모든 StockControl 갱신
+    if (active.caseData.newsType == Case.NewsType.BigTriggerNews
+    || active.caseData.newsType == Case.NewsType.BigRandomNews)
+    {
+        foreach (StockControl sc in allstocks)
+            sc.UpdatePriceText();
+    }
+
+    active.currentDay++;
+    active.Rday--;
+    UIManager.instance.NoticeText.text = active.displayDescription;
+
         }
         activeNewsList.RemoveAll(active => active.Rday <= 0); 
         UIManager.instance.UpdateDayText();
@@ -401,6 +466,32 @@ public class GameManager : MonoBehaviour
         newActive.caseData = casedata;
         newActive.Rday = casedata.lastingDay;
         newActive.currentDay = 0;
+        if (casedata.nationPairs != null && casedata.nationPairs.Length > 0)
+        {
+            int randomIndex = Random.Range(0, casedata.nationPairs.Length);
+            string picked = casedata.nationPairs[randomIndex];
+
+            if (picked.Contains(",")) // 접경국 쌍 ("마노사,알브레이")
+            {
+                string[] nations = picked.Split(',');
+                newActive.displayDescription = casedata.CaseDescription
+                    .Replace("[A국]", nations[0])
+                    .Replace("[B국]", nations[1]);
+                newActive.involvedNations.Add(nations[0]);
+                newActive.involvedNations.Add(nations[1]);
+            }
+            else // 단일 국가 ("마노사")
+            {
+                newActive.displayDescription = casedata.CaseDescription
+                    .Replace("[국가]", picked);
+                newActive.involvedNations.Add(picked);
+            }
+        }
+        else
+        {
+            newActive.displayDescription = casedata.CaseDescription;
+        }
+
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);
     }

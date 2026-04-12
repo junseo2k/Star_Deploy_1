@@ -33,13 +33,15 @@ public class NewsPanel : MonoBehaviour
         {
             foreach(ActiveCase active in GameManager.Instance.activeNewsList)
             {
-                if (active.caseData.isBigNews == false)
+                if (active.caseData.newsType == Case.NewsType.SmallIndustryNews
+                    || active.caseData.newsType == Case.NewsType.SmallCompanyNews
+                    || active.caseData.newsType == Case.NewsType.SmallVibeNews)
                 {
                     GameObject ActiveIssue = Instantiate(StockWithImagePrefab, IssuePanel);
                     Image Icon = ActiveIssue.GetComponentInChildren<Image>();
                     Icon.sprite = active.caseData.CaseImage;
                     TextMeshProUGUI IssueText = ActiveIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = $"{active.caseData.CaseDescription} + 남은 시간 : {active.Rday}"; 
+                    IssueText.text = $"{active.displayDescription} 남은 시간 : {active.Rday}";
                 }
             }
         }
@@ -48,13 +50,15 @@ public class NewsPanel : MonoBehaviour
            List<ActiveCase> recentTwo = GameManager.Instance.activeNewsList.GetRange(count - 4, 4);
            foreach (ActiveCase c in recentTwo)
             {
-                if (c.caseData.isBigNews == false)
+                if (c.caseData.newsType == Case.NewsType.SmallIndustryNews
+                    || c.caseData.newsType == Case.NewsType.SmallCompanyNews
+                    || c.caseData.newsType == Case.NewsType.SmallVibeNews)
                 {
                     GameObject RecentIssue = Instantiate(StockWithImagePrefab, IssuePanel);
                     Image Icon = RecentIssue.GetComponentInChildren<Image>();
                     Icon.sprite = c.caseData.CaseImage;
                     TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = c.caseData.CaseDescription; 
+                    IssueText.text = $"{c.displayDescription} 남은 시간 : {c.Rday}";
                 }  
             } 
         }
@@ -75,18 +79,19 @@ public class NewsPanel : MonoBehaviour
             Destroy(child.gameObject);
         }
         BigNewsPanel.gameObject.SetActive(true);
-        int count = GameManager.Instance.recentIssues.Count;
+        int count = GameManager.Instance.activeNewsList.Count;
         if (count == 0) return;
-        List<Case> recentOne = GameManager.Instance.recentIssues.GetRange(count - 1, 1);
-            foreach(Case c in recentOne)
+        List<ActiveCase> recentOne = GameManager.Instance.activeNewsList.GetRange(count - 1, 1);
+        foreach(ActiveCase c in recentOne)
             {
-                if (c.isBigNews == true)
+                if (c.caseData.newsType == Case.NewsType.BigRandomNews
+                    || c.caseData.newsType == Case.NewsType.BigTriggerNews)
                 {
                     GameObject RecentIssue = Instantiate(StockWithImagePrefab, BigNewsPanel);
                     Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = c.CaseImage;
+                    Icon.sprite = c.caseData.CaseImage;
                     TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = c.CaseDescription; 
+                    IssueText.text = c.displayDescription;
                 }
             }
     }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ea6c6a0ac481c4eb739ebc759417ec, type: 3}
+  m_Name: "\uC5D0\uBC84\uADF8\uB9B0 \uC870\uC81C\uC0AC\uC740\uD1F4"
+  m_EditorClassIdentifier: Assembly-CSharp::Case
+  CaseName: "\uC5D0\uBC84\uADF8\uB9B0 \uC870\uC81C\uC0AC\uC740\uD1F4"
+  CaseDescription: "\uC5D0\uBC84\uADF8\uB9B0 \uC5D0\uC13C\uC2A4\uC758 \uC219\uB828
+    \uC870\uC81C\uC0AC\uB4E4\uC774 \uACE0\uB839\uC73C\uB85C \uB300\uAC70 \uC740\uD1F4\uD558\uBA74\uC11C
+    \uC0DD\uC0B0 \uC18D\uB3C4\uAC00 \uD06C\uAC8C \uB5A8\uC5B4\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  affectedCase:
+  - {fileID: 11400000, guid: 3cd511062aeee3347864a02a45d92c34, type: 2}
+  ChangePriceMin: fbffffff
+  ChangePriceMax: feffffff
+  CaseImage: {fileID: 0}
+  isBigNews: 0
+  lastingDay: 2
+  lowPercent:
+  - 1
+  - 0.4
+  newsType: 1
+  triggerKey: 
+  triggervalue: 0
+  nationPairs: []
+  ChangePriceMinNon: 
+  ChangePriceMaxNon: 
+  industryRates: []

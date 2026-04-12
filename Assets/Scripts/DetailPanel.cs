@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.Analytics;
 
 // 주식 상세 정보 패널을 관리하는 클래스
 // 기본 정보·서비스·중요 지표·최근 이슈 탭 전환과 주식 데이터 표시를 담당
@@ -38,7 +39,7 @@ public class DetailPanel : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 
     // 주식 데이터를 받아 상세 패널 UI 텍스트를 갱신
@@ -54,7 +55,16 @@ public class DetailPanel : MonoBehaviour
         ProfitPrice.text = $"{stock.OperatingProfit} G";
         MarketCapPrice.text = $"{stock.marketCap} G";
         TotalSharePrice.text = $"{stock.TotalShare} stock";
-        StockChangePrice.text = stock.StockChangePrice.ToString();
+        int change = Mathf.RoundToInt((((float)stock.StockCurrentPrice-stock.StockPreviousPrice)/(float)stock.StockPreviousPrice)*100);
+        if (change > 0)
+        {
+            StockChangePrice.text = $"+{change}%";
+        }
+        
+        else
+        {
+            StockChangePrice.text = $"{change}%";
+        }
         
     }
 

@@ -52,8 +52,6 @@ public class StockControl : MonoBehaviour
     public void Initialize()
     {
         // 현재 가격이 0이면 기준 가격으로 초기화 (첫 실행 시)
-        if (stockinfo.StockCurrentPrice == 0)
-            stockinfo.StockCurrentPrice = stockinfo.StockBasePrice;
         StockNameText.text = stockinfo.StockName;
         StockDescriptionText.text = stockinfo.StockDescription;
         stockImage.sprite = stockinfo.StockIcon;

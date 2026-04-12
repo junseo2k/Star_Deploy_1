@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ea6c6a0ac481c4eb739ebc759417ec, type: 3}
+  m_Name: "\uC885\uC871 \uAC04 \uB300\uADDC\uBAA8 \uBD84\uC7C1"
+  m_EditorClassIdentifier: Assembly-CSharp::Case
+  CaseName: "\uC885\uC871 \uAC04 \uB300\uADDC\uBAA8 \uBD84\uC7C1"
+  CaseDescription: "\uC885\uC871 \uAC04 \uB300\uADDC\uBAA8 \uBD84\uC7C1\uC774 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!
+    \uC0AC\uD68C \uBD88\uC548\uC774 \uCEE4\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  affectedCase: []
+  ChangePriceMin: 
+  ChangePriceMax: 
+  CaseImage: {fileID: 0}
+  isBigNews: 0
+  lastingDay: 5
+  lowPercent:
+  - 1
+  - 0.55
+  - 0.3
+  - 0.15
+  - 0.05
+  newsType: 3
+  triggerKey: "\uBD84\uC7C1"
+  triggervalue: 0
+  nationPairs:
+  - "\uC778\uAC04"
+  ChangePriceMinNon: 
+  ChangePriceMaxNon: 
+  industryRates:
+  - industryTag: Army
+    changePriceMin: 8
+    changePriceMax: 15
+    changePriceMinNon: 2
+    changePriceMaxNon: 5
+  - industryTag: Clinic
+    changePriceMin: 2
+    changePriceMax: 5
+    changePriceMinNon: 1
+    changePriceMaxNon: 2
+  - industryTag: Coopang
+    changePriceMin: -15
+    changePriceMax: -8
+    changePriceMinNon: -5
+    changePriceMaxNon: -2
+  - industryTag: Food
+    changePriceMin: 0
+    changePriceMax: 0
+    changePriceMinNon: 0
+    changePriceMaxNon: 0
+  - industryTag: Bank
+    changePriceMin: -10
+    changePriceMax: -5
+    changePriceMinNon: -3
+    changePriceMaxNon: -1
+  - industryTag: Luxury
+    changePriceMin: -10
+    changePriceMax: -5
+    changePriceMinNon: -3
+    changePriceMaxNon: -1
+  - industryTag: Game
+    changePriceMin: 0
+    changePriceMax: 0
+    changePriceMinNon: 0
+    changePriceMaxNon: 0
+  - industryTag: Construct
+    changePriceMin: 0
+    changePriceMax: 0
+    changePriceMinNon: 0
+    changePriceMaxNon: 0
+  - industryTag: Magic
+    changePriceMin: 0
+    changePriceMax: 0
+    changePriceMinNon: 0
+    changePriceMaxNon: 0
+  - industryTag: Mining
+    changePriceMin: 0
+    changePriceMax: 0
+    changePriceMinNon: 0
+    changePriceMaxNon: 0

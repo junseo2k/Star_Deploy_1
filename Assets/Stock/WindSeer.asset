@@ -40,3 +40,4 @@ MonoBehaviour:
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
   StockChangePrice: 0
   volatilityType: 1
+  nation: "\uC5D8\uD504"
