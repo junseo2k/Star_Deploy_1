@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public DetailPanel detailpanel; // 주식 상세 패널 참조 (ShowDetail 호출에 사용)
     public Transform EntirePanel;   // 전체 주식 목록 패널 (상세 패널 열릴 때 비활성화 대상)
     public Transform newspanel;
+    public Transform portfolioPanel;       // 포트폴리오 패널 루트 오브젝트
+    public PortfolioPanel portfolioPanelScript; // 포트폴리오 패널 스크립트 참조
 
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
     [SerializeField] private NewsPanel newsPanelScript;
@@ -60,6 +62,14 @@ public class UIManager : MonoBehaviour
         EntirePanel.gameObject.SetActive(false);
         newspanel.gameObject.SetActive(true);
         newsPanelScript.BigNewsClick();
+    }
+
+    // 포트폴리오 버튼 클릭 시 호출 — 전체 목록 패널 숨기고 포트폴리오 패널 열기
+    public void OpenPortfolioPanel()
+    {
+        EntirePanel.gameObject.SetActive(false);
+        portfolioPanel.gameObject.SetActive(true);
+        portfolioPanelScript.Open();
     }
     
 }

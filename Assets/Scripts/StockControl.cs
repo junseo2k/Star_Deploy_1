@@ -16,6 +16,7 @@ public class StockControl : MonoBehaviour
     public Transform BuyPanel;     // 구매/판매 입력 패널
     public OrderPanel orderPanel;  // 구매/판매 확인 패널 참조
     public int maxmount;           // 구매 또는 판매 가능한 최대 수량
+    public float avgPurchasePrice; // 평균 매수 단가 (포트폴리오 손익 계산에 사용)
 
     void Start()
     {

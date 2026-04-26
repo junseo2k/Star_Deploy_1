@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int triggerDispute;
     public int triggerRevolution;
     public int triggerInnovation;
+    public int lowGoldStreak; // 골드가 1000 이하로 지속된 연속 턴 수
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -79,9 +80,10 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class StockSaveData
     {
-        public string stockname;  // 주식 이름 (식별 키)
-        public int currentPrice;  // 저장 시점의 주식 가격
-        public int ownamount;     // 보유 수량
+        public string stockname;       // 주식 이름 (식별 키)
+        public int currentPrice;       // 저장 시점의 주식 가격
+        public int ownamount;          // 보유 수량
+        public float avgPurchasePrice; // 평균 매수 단가
     }
     // JSON 저장을 위한 게임 전체 데이터 구조체
     [System.Serializable]
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
                 stockdata.stockname = stock.stockinfo.StockName;
                 stockdata.currentPrice = stock.stockinfo.StockBasePrice;
                 stockdata.ownamount = stock.ownedAmount;
+                stockdata.avgPurchasePrice = stock.avgPurchasePrice;
                 data.OwnStocks.Add(stockdata);
             }
         }
@@ -139,6 +142,7 @@ public class GameManager : MonoBehaviour
                     if (savedstock.stockname == stock.stockinfo.StockName)
                     {
                         stock.ownedAmount = savedstock.ownamount;
+                        stock.avgPurchasePrice = savedstock.avgPurchasePrice;
                     }
             }
         }
@@ -456,8 +460,20 @@ public class GameManager : MonoBehaviour
     UIManager.instance.NoticeText.text = active.displayDescription;
 
         }
-        activeNewsList.RemoveAll(active => active.Rday <= 0); 
+        activeNewsList.RemoveAll(active => active.Rday <= 0);
         UIManager.instance.UpdateDayText();
+
+        // 골드 1000 이하 연속 5턴 지속 시 게임 오버
+        if (currentgold <= 1000)
+        {
+            lowGoldStreak++;
+            if (lowGoldStreak >= 5)
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
+        else
+        {
+            lowGoldStreak = 0;
+        }
     }
     public void AddActiveNews(Case casedata)
     {

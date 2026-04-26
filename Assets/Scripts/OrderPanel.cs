@@ -82,8 +82,12 @@ public class OrderPanel : MonoBehaviour
                 NoticeText.text = "You don't have enough money";
                 return;
             }
-            GameManager.Instance.UpdateGold(-stockcontrol.stockinfo.StockCurrentPrice * StockNum);
+            // 평균 매수 단가 갱신: (기존 평균 × 기존 수량 + 이번 매수 금액) / 매수 후 총 수량
+            float totalCost = stockcontrol.avgPurchasePrice * stockcontrol.ownedAmount
+                            + stockcontrol.stockinfo.StockCurrentPrice * StockNum;
             stockcontrol.ownedAmount += StockNum;
+            stockcontrol.avgPurchasePrice = totalCost / stockcontrol.ownedAmount;
+            GameManager.Instance.UpdateGold(-stockcontrol.stockinfo.StockCurrentPrice * StockNum);
         }
         else
         {
