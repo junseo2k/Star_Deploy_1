@@ -237,111 +237,38 @@ public class GameManager : MonoBehaviour
             AddActiveNews(Vibepicked);            
         }
 
+        bool bigNewsFired = false;
         if (Random.Range(0, 100) <= 1)
         {
             int RandomBig = Random.Range(0, BigRandomCases.Count);
             Case picked = BigRandomCases[RandomBig];
             if (!activeNewsList.Exists(active => active.caseData == picked))
             {
-                AddActiveNews(picked);            
-            }    
-        }
-        //대형 뉴스 출력. triggerKey >= 100인 것들
-        if (triggerWar >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "전쟁")
-                {
-                    AddActiveNews(c);
-                    triggerWar = 0;
-                    break;
-                }
+                AddActiveNews(picked);
+                bigNewsFired = true;
             }
         }
-        if (triggerPeace >= 100)
+        //게이지 자연 감소
+        triggerWar        = Mathf.Max(0, triggerWar        - 5);
+        triggerPeace      = Mathf.Max(0, triggerPeace      - 5);
+        triggerRevolt     = Mathf.Max(0, triggerRevolt     - 5);
+        triggerTrade      = Mathf.Max(0, triggerTrade      - 5);
+        triggerFestival   = Mathf.Max(0, triggerFestival   - 5);
+        triggerDispute    = Mathf.Max(0, triggerDispute    - 5);
+        triggerRevolution = Mathf.Max(0, triggerRevolution - 5);
+        triggerInnovation = Mathf.Max(0, triggerInnovation - 5);
+
+        //대형 뉴스 출력. 구간별 확률로 발생 (31~60: 5%, 61~80: 15%, 81~100: 30%)
+        if (!bigNewsFired)
         {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "평화")
-                {
-                    AddActiveNews(c);
-                    triggerPeace = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerRevolt >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "반란")
-                {
-                    AddActiveNews(c);
-                    triggerRevolt = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerTrade >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "무역")
-                {
-                    AddActiveNews(c);
-                    triggerTrade = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerFestival >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "축제")
-                {
-                    AddActiveNews(c);
-                    triggerFestival = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerDispute >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "분쟁")
-                {
-                    AddActiveNews(c);
-                    triggerDispute = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerRevolution >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "혁명")
-                {
-                    AddActiveNews(c);
-                    triggerRevolution = 0;
-                    break;
-                }
-            }
-        }
-        if (triggerInnovation >= 100)
-        {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == "혁신")
-                {
-                    AddActiveNews(c);
-                    triggerInnovation = 0;
-                    break;
-                }
-            }
+            TryFireBigTrigger(ref triggerWar, "전쟁", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerPeace, "평화", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerRevolt, "반란", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerTrade, "무역", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerFestival, "축제", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerDispute, "분쟁", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerRevolution, "혁명", ref bigNewsFired);
+            TryFireBigTrigger(ref triggerInnovation, "혁신", ref bigNewsFired);
         }
 
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
@@ -475,6 +402,30 @@ public class GameManager : MonoBehaviour
             lowGoldStreak = 0;
         }
     }
+    private void TryFireBigTrigger(ref int triggerValue, string key, ref bool fired)
+    {
+        if (fired) return;
+
+        int chance = 0;
+        if (triggerValue >= 81) chance = 30;
+        else if (triggerValue >= 61) chance = 15;
+        else if (triggerValue >= 31) chance = 5;
+
+        if (chance > 0 && Random.Range(0, 100) < chance)
+        {
+            foreach (Case c in BigTriggerCases)
+            {
+                if (c.triggerKey == key)
+                {
+                    AddActiveNews(c);
+                    triggerValue = 0;
+                    fired = true;
+                    break;
+                }
+            }
+        }
+    }
+
     public void AddActiveNews(Case casedata)
     {
         Debug.Log($"뉴스 추가: {casedata.CaseName}");
