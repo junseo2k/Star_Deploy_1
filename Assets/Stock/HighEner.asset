@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HighEner
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: HighEner
-  StockBasePrice: 300
+  StockBasePrice: 230
   StockDescription: "200\uB144 \uC804\uD1B5\uC758 \uB4DC\uC6CC\uD504 \uB9E5\uC8FC.
     \uB300\uB959 \uC804\uC5ED\uC5D0 \uC720\uD1B5\uB41C\uB2E4."
   StockDetailDescription: "200\uB144 \uC804\uD1B5\uC758 \uB4DC\uC6CC\uD504 \uB9E5\uC8FC.
@@ -24,7 +24,6 @@ MonoBehaviour:
   StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Game
-  StockCurrentPrice: 300
   revenue: 100
   OperatingProfit: 100
   marketCap: 100
@@ -33,6 +32,5 @@ MonoBehaviour:
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
-  StockChangePrice: 0
   volatilityType: 1
   nation: "\uB4DC\uC6CC\uD504"

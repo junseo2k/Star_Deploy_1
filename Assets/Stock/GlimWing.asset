@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlimWing
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GlimWing
-  StockBasePrice: 300
+  StockBasePrice: 175
   StockDescription: "\uB4DC\uB798\uACE4 \uAE08\uACFC \uBCF4\uC11D\uC73C\uB85C \uACE0\uAE09
     \uC7A5\uC2E0\uAD6C\uB97C \uB9CC\uB4E0\uB2E4. \uADC0\uC871\uACFC \uBD80\uC720\uCE35
     \uB9DE\uCDA4 \uC11C\uBE44\uC2A4\uAC00 \uD2B9\uC9D5. "
@@ -26,7 +26,6 @@ MonoBehaviour:
   StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
   FamilyTag: Dragonia
   IndustryTag: Luxury
-  StockCurrentPrice: 300
   revenue: 100
   OperatingProfit: 100
   marketCap: 100
@@ -35,6 +34,5 @@ MonoBehaviour:
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
-  StockChangePrice: 0
   volatilityType: 1
   nation: "\uB4DC\uB798\uACE0\uB2C8\uC544"

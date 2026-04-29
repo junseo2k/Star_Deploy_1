@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alchemia
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Alchemia
-  StockBasePrice: 300
+  StockBasePrice: 170
   StockDescription: "\uB9C8\uB178\uC0AC \uB300\uB959 \uCD5C\uB300 \uADDC\uBAA8\uC758
     \uB300\uC911 \uC57D\uC81C \uC0DD\uC0B0\uC0AC."
   StockDetailDescription: "\uB9C8\uB178\uC0AC \uB300\uB959 \uCD5C\uB300 \uADDC\uBAA8\uC758
@@ -27,7 +27,6 @@ MonoBehaviour:
   StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
   FamilyTag: Human
   IndustryTag: Clinic
-  StockCurrentPrice: 300
   revenue: 100
   OperatingProfit: 100
   marketCap: 100
@@ -36,6 +35,5 @@ MonoBehaviour:
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
-  StockChangePrice: 0
   volatilityType: 1
   nation: "\uC778\uAC04"

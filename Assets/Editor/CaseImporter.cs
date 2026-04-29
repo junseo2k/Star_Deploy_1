@@ -45,8 +45,6 @@ public class CaseImporter : EditorWindow
 
             newCase.ChangePriceMin = ParseIntArray(cols[3]);
             newCase.ChangePriceMax = ParseIntArray(cols[4]);
-            newCase.ChangePriceMinNon = ParseIntArray(cols[5]);
-            newCase.ChangePriceMaxNon = ParseIntArray(cols[6]);
             newCase.lastingDay = int.TryParse(cols[7].Trim(), out int lasting) ? lasting : 1;
             newCase.lowPercent = ParseFloatArray(cols[8]);
 

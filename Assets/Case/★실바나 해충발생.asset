@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: "\u2605\uC2E4\uBC14\uB098 \uD574\uCDA9\uBC1C\uC0DD"
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\u2605\uC2E4\uBC14\uB098 \uD574\uCDA9\uBC1C\uC0DD"
-  CaseDescription: "\uC2E4\uBC14\uB098 \uB18D\uC6D0 \uC778\uADFC\uC5D0\uC11C \uD574\uCDA9\uC774
-    \uB300\uB7C9 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4. \uB9C8\uBC95 \uB18D\uC0B0\uBB3C\uC5D0\uB3C4
-    \uD53C\uD574\uAC00 \uC6B0\uB824\uB429\uB2C8\uB2E4."
+  CaseDescription: "\uC2E4\uBC14\uB098 \uADFC\uCC98\uC5D0 \uD574\uCDA9\uC774 \uB5BC\uB85C
+    \uBAB0\uB824\uB4E4\uC5C8\uC2B5\uB2C8\uB2E4. \uB9C8\uBC95 \uC791\uBB3C\uAE4C\uC9C0
+    \uC704\uD5D8\uD569\uB2C8\uB2E4. \uC5D0\uBC84\uADF8\uB9B0\uB3C4 \uCD08\uBE44\uC0C1\uC785\uB2C8\uB2E4."
   affectedCase:
   - {fileID: 11400000, guid: 9c8de02b605ea094f9a080f6ddb438fd, type: 2}
   ChangePriceMin: f6ffffff
   ChangePriceMax: fbffffff
+  chainEffects:
+  - stock: {fileID: 11400000, guid: 3cd511062aeee3347864a02a45d92c34, type: 2}
+    priceMin: -3
+    priceMax: -1
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 2
   lowPercent:
   - 1
   - 0.4
   newsType: 1
-  triggerKey: 
-  triggervalue: 0
+  foreshadowCases: []
   nationPairs: []
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates: []

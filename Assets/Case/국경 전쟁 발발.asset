@@ -20,7 +20,6 @@ MonoBehaviour:
   ChangePriceMax: 
   chainEffects: []
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 5
   lowPercent:
   - 1
@@ -42,8 +41,6 @@ MonoBehaviour:
   - "\uC5D8\uD504,\uB4DC\uB798\uACE0\uB2C8\uC544"
   - "\uB4DC\uC6CC\uD504,\uC624\uD06C"
   - "\uB4DC\uB798\uACE0\uB2C8\uC544,\uC624\uD06C"
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates:
   - industryTag: Army
     changePriceMin: 12

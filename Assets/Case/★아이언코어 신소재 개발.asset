@@ -20,16 +20,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02742c54f0d0adf468f1072f580b1105, type: 2}
   ChangePriceMin: 08000000
   ChangePriceMax: 0f000000
+  chainEffects:
+  - stock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
+    priceMin: 2
+    priceMax: 4
+  - stock: {fileID: 11400000, guid: 93dc4ecd1dcc2754d9be528e1a9f137b, type: 2}
+    priceMin: -3
+    priceMax: -1
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 2
   lowPercent:
   - 1
   - 0.4
   newsType: 1
-  triggerKey: 
-  triggervalue: 0
+  foreshadowCases: []
   nationPairs: []
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates: []

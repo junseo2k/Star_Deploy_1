@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int scheduledBigNewsVibeDay = -1;
     public int scheduledBigNewsCaseIndex = -1;
     public int scheduledForeshadowIndex = -1;
+    public string scheduledNationPair = "";
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
         public int scheduledBigNewsVibeDay;
         public int scheduledBigNewsCaseIndex;
         public int scheduledForeshadowIndex;
+        public string scheduledNationPair;
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
         data.scheduledBigNewsVibeDay = scheduledBigNewsVibeDay;
         data.scheduledBigNewsCaseIndex = scheduledBigNewsCaseIndex;
         data.scheduledForeshadowIndex = scheduledForeshadowIndex;
+        data.scheduledNationPair = scheduledNationPair;
 
         string json = JsonUtility.ToJson(data);
         string path = Application.persistentDataPath + "/save.json";
@@ -137,6 +140,7 @@ public class GameManager : MonoBehaviour
             scheduledBigNewsVibeDay = data.scheduledBigNewsVibeDay;
             scheduledBigNewsCaseIndex = data.scheduledBigNewsCaseIndex;
             scheduledForeshadowIndex = data.scheduledForeshadowIndex;
+            scheduledNationPair = data.scheduledNationPair ?? "";
 
             // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -191,7 +195,7 @@ public class GameManager : MonoBehaviour
             {
                 Case foreshadow = foreshadows[scheduledForeshadowIndex];
                 if (foreshadow != null && !activeNewsList.Exists(a => a.caseData == foreshadow))
-                    AddActiveNews(foreshadow);
+                    AddActiveNews(foreshadow, scheduledNationPair);
             }
         }
 
@@ -203,7 +207,7 @@ public class GameManager : MonoBehaviour
                 Case picked = BigTriggerCases[scheduledBigNewsCaseIndex];
                 if (!activeNewsList.Exists(active => active.caseData == picked))
                 {
-                    AddActiveNews(picked);
+                    AddActiveNews(picked, scheduledNationPair);
                     lastBigNewsDay = currentDay;
                 }
             }
@@ -338,7 +342,15 @@ public class GameManager : MonoBehaviour
         if (BigTriggerCases.Count == 0) return;
         scheduledBigNewsCaseIndex = Random.Range(0, BigTriggerCases.Count);
         scheduledBigNewsDay = currentDay + Random.Range(30, 51);
-        Case[] foreshadows = BigTriggerCases[scheduledBigNewsCaseIndex].foreshadowCases;
+        Case bigCase = BigTriggerCases[scheduledBigNewsCaseIndex];
+
+        // 대형 뉴스의 국가 쌍을 미리 결정 — 전조 뉴스와 공유
+        if (bigCase.nationPairs != null && bigCase.nationPairs.Length > 0)
+            scheduledNationPair = bigCase.nationPairs[Random.Range(0, bigCase.nationPairs.Length)];
+        else
+            scheduledNationPair = "";
+
+        Case[] foreshadows = bigCase.foreshadowCases;
         Case foreshadow = null;
         if (foreshadows != null && foreshadows.Length > 0)
         {
@@ -353,7 +365,7 @@ public class GameManager : MonoBehaviour
         scheduledBigNewsVibeDay = scheduledBigNewsDay - offset;
     }
 
-    public void AddActiveNews(Case casedata)
+    public void AddActiveNews(Case casedata, string forcedNationPair = null)
     {
         Debug.Log($"뉴스 추가: {casedata.CaseName}");
         ActiveCase newActive = new ActiveCase();
@@ -362,8 +374,9 @@ public class GameManager : MonoBehaviour
         newActive.currentDay = 0;
         if (casedata.nationPairs != null && casedata.nationPairs.Length > 0)
         {
-            int randomIndex = Random.Range(0, casedata.nationPairs.Length);
-            string picked = casedata.nationPairs[randomIndex];
+            string picked = (!string.IsNullOrEmpty(forcedNationPair))
+                ? forcedNationPair
+                : casedata.nationPairs[Random.Range(0, casedata.nationPairs.Length)];
 
             if (picked.Contains(",")) // 접경국 쌍 ("마노사,알브레이")
             {

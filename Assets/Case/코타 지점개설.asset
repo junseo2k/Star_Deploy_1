@@ -17,18 +17,15 @@ MonoBehaviour:
     \uC2E0\uADDC \uC9C0\uC810 5\uACF3\uC744 \uB3D9\uC2DC\uC5D0 \uAC1C\uC124\uD588\uC2B5\uB2C8\uB2E4."
   affectedCase:
   - {fileID: 11400000, guid: d7e3b653916ca224e80ed860a4d37dfc, type: 2}
-  ChangePriceMin: 05000000
-  ChangePriceMax: 0a000000
+  ChangePriceMin: 08000000
+  ChangePriceMax: 0f000000
+  chainEffects: []
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 2
   lowPercent:
   - 1
   - 0.4
   newsType: 1
-  triggerKey: 
-  triggervalue: 0
+  foreshadowCases: []
   nationPairs: []
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates: []

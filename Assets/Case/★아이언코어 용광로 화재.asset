@@ -18,18 +18,21 @@ MonoBehaviour:
     \uC0DD\uC0B0 \uCC28\uC9C8\uC774 \uBD88\uAC00\uD53C\uD569\uB2C8\uB2E4."
   affectedCase:
   - {fileID: 11400000, guid: 02742c54f0d0adf468f1072f580b1105, type: 2}
-  ChangePriceMin: ecffffff
-  ChangePriceMax: f4ffffff
+  ChangePriceMin: f1ffffff
+  ChangePriceMax: f8ffffff
+  chainEffects:
+  - stock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
+    priceMin: -4
+    priceMax: -2
+  - stock: {fileID: 11400000, guid: 93dc4ecd1dcc2754d9be528e1a9f137b, type: 2}
+    priceMin: 1
+    priceMax: 3
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 2
   lowPercent:
   - 1
   - 0.4
   newsType: 1
-  triggerKey: 
-  triggervalue: 0
+  foreshadowCases: []
   nationPairs: []
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates: []

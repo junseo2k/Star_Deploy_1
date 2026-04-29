@@ -18,7 +18,6 @@ public class Case : ScriptableObject
     }
     public ChainEffect[] chainEffects; // 연쇄 효과 목록 — 뉴스 2일차에 발동
     public Sprite CaseImage;
-    public bool isBigNews;          // 대형 뉴스 여부 (UI 표시 방식 분기에 사용)
     public int lastingDay;          // 사건이 지속되는 날 수 (ActiveCase.Rday 초기값으로 사용)
     public float[] lowPercent;      // 날짜별 가격 변동 감쇠율 배열 (0일차: lowPercent[0], 1일차: lowPercent[1] …)
     public enum NewsType
@@ -31,8 +30,6 @@ public class Case : ScriptableObject
     public NewsType newsType;
     public Case[] foreshadowCases; // BigTriggerNews 전용 — 발생 전 전조 뉴스 후보 목록 (랜덤 1개 선택)
     public string[] nationPairs; // 접경국 쌍 ("마노사,알브레이" 형태)
-    public int[] ChangePriceMinNon;  // 비당사국 최소 변동률
-    public int[] ChangePriceMaxNon;
     [System.Serializable]
     public struct IndustryRate
     {
