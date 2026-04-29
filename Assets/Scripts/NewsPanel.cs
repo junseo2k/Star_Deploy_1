@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class NewsPanel : MonoBehaviour
 {
     public Transform BigNewsPanel;        // 대형 뉴스(BigRandom/BigTrigger) 표시 패널
-    public Transform IssuePanel;          // 진행 중인 소형 이슈 목록 표시 패널
+    public Transform IssueScroll;          // 진행 중인 소형 이슈 목록 표시 패널
     public GameObject StockWithImagePrefab; // 이미지+텍스트 조합 UI 프리팹 (뉴스 항목 생성에 사용)
     public Transform EntirePanel;         // 전체 주식 목록 패널 (뉴스 패널 닫을 때 복귀 대상)
     public Transform newspanel;           // 이 뉴스 패널 루트 오브젝트 (닫기 버튼 클릭 시 비활성화)
@@ -26,9 +26,9 @@ public class NewsPanel : MonoBehaviour
     // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 최대 3개 표시
     public void OnIssueClick()
     {
-        foreach (Transform child in IssuePanel)
+        foreach (Transform child in IssueScroll)
             Destroy(child.gameObject);
-        IssuePanel.gameObject.SetActive(true);
+        IssueScroll.gameObject.SetActive(true);
 
         var smallNews = new List<ActiveCase>();
         foreach (ActiveCase active in GameManager.Instance.activeNewsList)
@@ -43,7 +43,7 @@ public class NewsPanel : MonoBehaviour
         for (int i = start; i < smallNews.Count; i++)
         {
             ActiveCase active = smallNews[i];
-            GameObject item = Instantiate(StockWithImagePrefab, IssuePanel);
+            GameObject item = Instantiate(StockWithImagePrefab, IssueScroll);
             item.GetComponentInChildren<Image>().sprite = active.caseData.CaseImage;
             item.GetComponentInChildren<TextMeshProUGUI>().text =
                 $"{active.displayDescription} 남은 시간 : {active.Rday}";
@@ -62,7 +62,7 @@ public class NewsPanel : MonoBehaviour
     {
         newspanel.gameObject.SetActive(false);
         EntirePanel.gameObject.SetActive(true);
-        foreach (Transform child in IssuePanel) // 기존 이슈 항목 정리
+        foreach (Transform child in IssueScroll) // 기존 이슈 항목 정리
         {
             Destroy(child.gameObject);
         }
@@ -84,8 +84,7 @@ public class NewsPanel : MonoBehaviour
         for (int i = list.Count - 1; i >= 0; i--)
         {
             Case.NewsType t = list[i].caseData.newsType;
-            if (t == Case.NewsType.BigTriggerNews
-                || t == Case.NewsType.ForeshadowNews)
+            if (t == Case.NewsType.BigTriggerNews)
             {
                 bigNews = list[i];
                 break;

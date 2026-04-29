@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: "\uD601\uBA85 \uC804\uC870 1"
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\uD601\uBA85 \uC804\uC870 1"
-  CaseDescription: "[A\uAD6D] \uAD6D\uACBD \uCD08\uC18C\uC5D0\uC11C [B\uAD6D] \uC815\uCC30\uBCD1\uACFC
-    \uCE7C\uC744 \uB9DE\uB314\uB2E4\uB294 \uC18C\uBB38\uC774 \uB3CC\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  CaseDescription: "[\uAD6D\uAC00] \uAC70\uB9AC\uC5D0\uC11C \"\uBA39\uACE0\uC0B4\uAE30
+    \uD798\uB4E4\uB2E4\"\uB294 \uBCFC\uBA58\uC18C\uB9AC\uAC00 \uC810\uC810 \uCEE4\uC9C0\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4."
   affectedCase: []
   ChangePriceMin: 
   ChangePriceMax: 
@@ -23,10 +24,11 @@ MonoBehaviour:
   isBigNews: 0
   lastingDay: 3
   lowPercent: []
-  newsType: 4
+  newsType: 3
   foreshadowCases: []
   nationPairs:
-  - "\uC624\uD06C, \uB4DC\uC6CC\uD504"
+  - "\uC624\uD06C"
+  - "\uB4DC\uC6CC\uD504"
   ChangePriceMinNon: 
   ChangePriceMaxNon: 
   industryRates: []

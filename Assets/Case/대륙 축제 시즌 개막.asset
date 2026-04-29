@@ -18,6 +18,7 @@ MonoBehaviour:
   affectedCase: []
   ChangePriceMin: 
   ChangePriceMax: 
+  chainEffects: []
   CaseImage: {fileID: 0}
   isBigNews: 0
   lastingDay: 3
@@ -26,8 +27,12 @@ MonoBehaviour:
   - 0.55
   - 0.25
   newsType: 2
-  triggerKey: "\uCD95\uC81C"
-  triggervalue: 0
+  foreshadowCases:
+  - {fileID: 11400000, guid: 498c7180e5a6f644893b590499de1468, type: 2}
+  - {fileID: 11400000, guid: 561cb823a68ee504c92d649c9c07c482, type: 2}
+  - {fileID: 11400000, guid: 7b0f055c468a9864295e4ec0ebcf2a7b, type: 2}
+  - {fileID: 11400000, guid: fe7454237a6459040baa10772a7aba05, type: 2}
+  - {fileID: 11400000, guid: b47b595520a64dc4694a13b7ddab99db, type: 2}
   nationPairs:
   - "\uC778\uAC04, \uB4DC\uC6CC\uD504, \uB4DC\uB798\uACE0\uB2C8\uC544, \uC5D8\uD504,
     \uC624\uD06C"

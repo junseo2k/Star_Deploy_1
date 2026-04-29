@@ -28,7 +28,12 @@ MonoBehaviour:
   - 0.3
   - 0.15
   newsType: 2
-  foreshadowCases: []
+  foreshadowCases:
+  - {fileID: 11400000, guid: ea7ce21fba292e7438ee656afa673bd4, type: 2}
+  - {fileID: 11400000, guid: 43aa756d93ddb8045bf562b2d81c6b2c, type: 2}
+  - {fileID: 11400000, guid: ac094da3c3cd2c14bbac92d7de5afe0b, type: 2}
+  - {fileID: 11400000, guid: 48c4f29f4a270154da9e744fa204d484, type: 2}
+  - {fileID: 11400000, guid: 36c57088d29f0a64883ddc7f8f4aaa38, type: 2}
   nationPairs:
   - "\uC778\uAC04, \uB4DC\uC6CC\uD504"
   ChangePriceMinNon: 

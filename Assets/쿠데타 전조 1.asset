@@ -24,10 +24,11 @@ MonoBehaviour:
   isBigNews: 0
   lastingDay: 3
   lowPercent: []
-  newsType: 4
+  newsType: 3
   foreshadowCases: []
   nationPairs:
-  - "\uC778\uAC04, \uB4DC\uC6CC\uD504"
+  - "\uC778\uAC04"
+  - "\uB4DC\uC6CC\uD504"
   ChangePriceMinNon: 
   ChangePriceMaxNon: 
   industryRates: []

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: "\uCD95\uC81C \uC804\uC870 1"
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\uCD95\uC81C \uC804\uC870 1"
-  CaseDescription: "[A\uAD6D] \uAD6D\uACBD \uCD08\uC18C\uC5D0\uC11C [B\uAD6D] \uC815\uCC30\uBCD1\uACFC
-    \uCE7C\uC744 \uB9DE\uB314\uB2E4\uB294 \uC18C\uBB38\uC774 \uB3CC\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  CaseDescription: "\uC5EC\uAE30\uC800\uAE30\uC11C \uC791\uC740 \uCD95\uC81C\uB4E4\uC774
+    \uC5F4\uB9AC\uAE30 \uC2DC\uC791\uD588\uC2B5\uB2C8\uB2E4. \uD765\uACA8\uC6B4 \uBC14\uB78C\uC774
+    \uBD88\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
   affectedCase: []
   ChangePriceMin: 
   ChangePriceMax: 
@@ -23,7 +24,7 @@ MonoBehaviour:
   isBigNews: 0
   lastingDay: 3
   lowPercent: []
-  newsType: 4
+  newsType: 3
   foreshadowCases: []
   nationPairs:
   - "\uC778\uAC04, \uB4DC\uC6CC\uD504, \uB4DC\uB798\uACE0\uB2C8\uC544, \uC5D8\uD504,
