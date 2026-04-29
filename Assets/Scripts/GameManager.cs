@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
-using NUnit.Framework;
-using UnityEditor.ShaderGraph;
 using Unity.VisualScripting;
 
 // 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
@@ -19,18 +17,13 @@ public class GameManager : MonoBehaviour
     public List<ActiveCase> activeNewsList = new List<ActiveCase>();
     public int randomindex;
     public List<Case> SmallNewsCases = new List<Case>();
-    public List<Case> SmallVibeCases = new List<Case>();
-    public List<Case> BigRandomCases = new List<Case>();
     public List<Case> BigTriggerCases = new List<Case>();
-    public int triggerWar;
-    public int triggerPeace;
-    public int triggerRevolt;
-    public int triggerTrade;
-    public int triggerFestival;
-    public int triggerDispute;
-    public int triggerRevolution;
-    public int triggerInnovation;
-    public int lowGoldStreak; // 골드가 1000 이하로 지속된 연속 턴 수
+    public int lowGoldStreak;
+    public int lastBigNewsDay = -1;
+    public int scheduledBigNewsDay = -1;
+    public int scheduledBigNewsVibeDay = -1;
+    public int scheduledBigNewsCaseIndex = -1;
+    public int scheduledForeshadowIndex = -1;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -52,23 +45,19 @@ public class GameManager : MonoBehaviour
                 case Case.NewsType.SmallCompanyNews:// 하나의 리스트에 같이 넣기
                 SmallNewsCases.Add(c);
                 break;
-                case Case.NewsType.SmallVibeNews:
-                SmallVibeCases.Add(c);
-                break;
-                case Case.NewsType.BigRandomNews:
-                BigRandomCases.Add(c);
-                break;
                 case Case.NewsType.BigTriggerNews:
                 BigTriggerCases.Add(c);
                 break;
-
             }
         }
-         foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in tabmanager.allstock)
         {
             stock.StockCurrentPrice = stock.StockBasePrice;
             stock.StockPreviousPrice = stock.StockBasePrice;
         }
+
+        if (scheduledBigNewsDay <= currentDay)
+            ScheduleNextBigNews();
     }
 
     void Update()
@@ -89,9 +78,14 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class GameSaveData
     {
-        public int currentgold;           // 보유 골드
-        public int currentday;            // 현재 날짜
-        public List<StockSaveData> OwnStocks; // 보유 중인 주식 목록
+        public int currentgold;
+        public int currentday;
+        public List<StockSaveData> OwnStocks;
+        public int lastBigNewsDay;
+        public int scheduledBigNewsDay;
+        public int scheduledBigNewsVibeDay;
+        public int scheduledBigNewsCaseIndex;
+        public int scheduledForeshadowIndex;
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
@@ -117,9 +111,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // GameSaveData를 JSON 문자열로 변환 후 파일에 저장
+        data.lastBigNewsDay = lastBigNewsDay;
+        data.scheduledBigNewsDay = scheduledBigNewsDay;
+        data.scheduledBigNewsVibeDay = scheduledBigNewsVibeDay;
+        data.scheduledBigNewsCaseIndex = scheduledBigNewsCaseIndex;
+        data.scheduledForeshadowIndex = scheduledForeshadowIndex;
+
         string json = JsonUtility.ToJson(data);
-        string path = Application.persistentDataPath + "/save.json"; // 유니티 지정 저장 경로
+        string path = Application.persistentDataPath + "/save.json";
         File.WriteAllText(path, json);
     }
 
@@ -133,6 +132,11 @@ public class GameManager : MonoBehaviour
             GameSaveData data = JsonUtility.FromJson<GameSaveData>(json);
             currentgold = data.currentgold;
             currentDay = data.currentday;
+            lastBigNewsDay = data.lastBigNewsDay;
+            scheduledBigNewsDay = data.scheduledBigNewsDay;
+            scheduledBigNewsVibeDay = data.scheduledBigNewsVibeDay;
+            scheduledBigNewsCaseIndex = data.scheduledBigNewsCaseIndex;
+            scheduledForeshadowIndex = data.scheduledForeshadowIndex;
 
             // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -162,113 +166,48 @@ public class GameManager : MonoBehaviour
     // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신. 감쇠는 매일 발생하므로 이곳에 계산식을 둠.
     public void OnNextDayButton()
     {
+        foreach (ActiveCase active in activeNewsList)
+        {
+            active.Rday--;
+            active.currentDay++;    
+        }
         currentDay += 1;
-        int smallnewscount = Random.Range(0, 4);
+        int smallnewscount = SmallNewsCases.Count > 0 ? Random.Range(0, 4) : 0;
         for (int i = 0; i < smallnewscount; i++)
         {
             int RandomSmall = Random.Range(0, SmallNewsCases.Count);
             Case picked = SmallNewsCases[RandomSmall];
             if (activeNewsList.Exists(active => active.caseData == picked)) continue;
-            if (!string.IsNullOrEmpty(picked.triggerKey))
-            {
-                switch(picked.triggerKey)
-                {
-                    case "전쟁":
-                    triggerWar += picked.triggervalue;
-                    break;
-                    case "평화":
-                    triggerPeace += picked.triggervalue;
-                    break;
-                    case "반란":
-                    triggerRevolt += picked.triggervalue;
-                    break;
-                    case "무역":
-                    triggerTrade += picked.triggervalue;
-                    break;
-                    case "축제":
-                    triggerFestival += picked.triggervalue;
-                    break;
-                    case "분쟁":
-                    triggerDispute += picked.triggervalue;
-                    break;
-                    case "혁명":
-                    triggerRevolution += picked.triggervalue;
-                    break;
-                    case "혁신":
-                    triggerInnovation += picked.triggervalue;
-                    break;
-                }
-            }
             AddActiveNews(picked);
         }
-        int smallvibecount = Random.Range(0, 2);
-        for (int i = 0; i < smallvibecount; i++)
+        // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전
+        if (currentDay == scheduledBigNewsVibeDay
+            && scheduledBigNewsCaseIndex >= 0
+            && scheduledBigNewsCaseIndex < BigTriggerCases.Count)
         {
-            int RandomvibeSmall = Random.Range(0, SmallVibeCases.Count);
-            Case Vibepicked = SmallVibeCases[RandomvibeSmall];
-            if (activeNewsList.Exists(active => active.caseData == Vibepicked)) continue;
-            switch(Vibepicked.triggerKey)
+            Case[] foreshadows = BigTriggerCases[scheduledBigNewsCaseIndex].foreshadowCases;
+            if (foreshadows != null && foreshadows.Length > 0
+                && scheduledForeshadowIndex >= 0 && scheduledForeshadowIndex < foreshadows.Length)
             {
-                case "전쟁":
-                triggerWar += Vibepicked.triggervalue;
-                break;
-                case "평화":
-                triggerPeace += Vibepicked.triggervalue;
-                break;
-                case "반란":
-                triggerRevolt += Vibepicked.triggervalue;
-                break;
-                case "무역":
-                triggerTrade += Vibepicked.triggervalue;
-                break;
-                case "축제":
-                triggerFestival += Vibepicked.triggervalue;
-                break;
-                case "분쟁":
-                triggerDispute += Vibepicked.triggervalue;
-                break;
-                case "혁명":
-                triggerRevolution += Vibepicked.triggervalue;
-                break;
-                case "혁신":
-                triggerInnovation += Vibepicked.triggervalue;
-                break;
-            }
-            AddActiveNews(Vibepicked);            
-        }
-
-        bool bigNewsFired = false;
-        if (Random.Range(0, 100) <= 1)
-        {
-            int RandomBig = Random.Range(0, BigRandomCases.Count);
-            Case picked = BigRandomCases[RandomBig];
-            if (!activeNewsList.Exists(active => active.caseData == picked))
-            {
-                AddActiveNews(picked);
-                bigNewsFired = true;
+                Case foreshadow = foreshadows[scheduledForeshadowIndex];
+                if (foreshadow != null && !activeNewsList.Exists(a => a.caseData == foreshadow))
+                    AddActiveNews(foreshadow);
             }
         }
-        //게이지 자연 감소
-        triggerWar        = Mathf.Max(0, triggerWar        - 5);
-        triggerPeace      = Mathf.Max(0, triggerPeace      - 5);
-        triggerRevolt     = Mathf.Max(0, triggerRevolt     - 5);
-        triggerTrade      = Mathf.Max(0, triggerTrade      - 5);
-        triggerFestival   = Mathf.Max(0, triggerFestival   - 5);
-        triggerDispute    = Mathf.Max(0, triggerDispute    - 5);
-        triggerRevolution = Mathf.Max(0, triggerRevolution - 5);
-        triggerInnovation = Mathf.Max(0, triggerInnovation - 5);
 
-        //대형 뉴스 출력. 구간별 확률로 발생 (31~60: 5%, 61~80: 15%, 81~100: 30%)
-        if (!bigNewsFired)
+        // 예약된 대형 뉴스 발생
+        if (scheduledBigNewsDay > 0 && currentDay >= scheduledBigNewsDay)
         {
-            TryFireBigTrigger(ref triggerWar, "전쟁", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerPeace, "평화", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerRevolt, "반란", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerTrade, "무역", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerFestival, "축제", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerDispute, "분쟁", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerRevolution, "혁명", ref bigNewsFired);
-            TryFireBigTrigger(ref triggerInnovation, "혁신", ref bigNewsFired);
+            if (scheduledBigNewsCaseIndex >= 0 && scheduledBigNewsCaseIndex < BigTriggerCases.Count)
+            {
+                Case picked = BigTriggerCases[scheduledBigNewsCaseIndex];
+                if (!activeNewsList.Exists(active => active.caseData == picked))
+                {
+                    AddActiveNews(picked);
+                    lastBigNewsDay = currentDay;
+                }
+            }
+            ScheduleNextBigNews();
         }
 
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
@@ -279,11 +218,11 @@ public class GameManager : MonoBehaviour
             switch(tabmanager.allstock[i].volatilityType)
             {
                 case Stock.VolatilityType.Stable:
-                    range = 2f; break;
+                    range = 1.5f; break;
                 case Stock.VolatilityType.Normal:
-                    range = 3f; break;
+                    range = 2.5f; break;
                 case Stock.VolatilityType.Volatile:
-                    range = 5f; break;
+                    range = 4f; break;
             }
             float Randomchange = Random.Range(-range, range);
             tabmanager.allstock[i].StockCurrentPrice = Mathf.RoundToInt(tabmanager.allstock[i].StockCurrentPrice * (1 + Randomchange / 100f));
@@ -300,9 +239,7 @@ public class GameManager : MonoBehaviour
         ? active.caseData.lowPercent[active.currentDay]
         : 0f;
 
-    // 대형 트리거 뉴스 — 산업군 기반으로 처리
-    if ((active.caseData.newsType == Case.NewsType.BigTriggerNews
-        || active.caseData.newsType == Case.NewsType.BigRandomNews)
+    if (active.caseData.newsType == Case.NewsType.BigTriggerNews
         && active.caseData.industryRates != null
         && active.caseData.industryRates.Length > 0)
 
@@ -341,49 +278,43 @@ public class GameManager : MonoBehaviour
     }
     else
     {
-        // 소형 뉴스 또는 BigRandomNews — 기존 방식
+        // 소형 뉴스 — 주 효과
         for (int i = 0; i < active.caseData.affectedCase.Length; i++)
         {
-
-            active.caseData.affectedCase[i].StockCurrentPrice = Mathf.RoundToInt(
-                active.caseData.affectedCase[i].StockCurrentPrice *
+            Stock affected = active.caseData.affectedCase[i];
+            affected.StockCurrentPrice = Mathf.RoundToInt(
+                affected.StockCurrentPrice *
                 (1 + Random.Range(active.caseData.ChangePriceMin[i],
                 active.caseData.ChangePriceMax[i] + 1) / 100f * rate));
+            if (affected.StockCurrentPrice < 1) affected.StockCurrentPrice = 1;
+            Debug.Log($"[{active.caseData.CaseName}] {affected.StockName} | " +
+                $"변동 전: {affected.StockPreviousPrice} | 감쇠율: {rate} | 변동 후: {affected.StockCurrentPrice}");
+            foreach (StockControl sc in allstocks)
+                if (sc.stockinfo.StockName == affected.StockName) sc.UpdatePriceText();
+        }
 
-            if (active.caseData.affectedCase[i].StockCurrentPrice < 1)
-                active.caseData.affectedCase[i].StockCurrentPrice = 1;
-
-            foreach (Stock s in tabmanager.allstock)
+        // 연쇄 효과 — 뉴스 2일차에만 실행
+        if (active.currentDay == 1 && active.caseData.chainEffects != null)
+        {
+            foreach (Case.ChainEffect effect in active.caseData.chainEffects)
             {
-                if (s.StockName == active.caseData.affectedCase[i].StockName)
-                {
-                    Debug.Log($"같은 오브젝트? : {ReferenceEquals(s, active.caseData.affectedCase[i])}");
-                    break;
-                }
-            }   
-            Debug.Log($"[{active.caseData.CaseName}] " +
-                $"{active.caseData.affectedCase[i].StockName} | " +
-                $"변동 전: {active.caseData.affectedCase[i].StockPreviousPrice} | 감쇠율: {rate} | " +
-                $"변동 후: {active.caseData.affectedCase[i].StockCurrentPrice}");
-
-            foreach (StockControl stock in allstocks)
-            {
-                if (stock.stockinfo.StockName == active.caseData.affectedCase[i].StockName)
-                    stock.UpdatePriceText();
+                if (effect.stock == null) continue;
+                effect.stock.StockCurrentPrice = Mathf.RoundToInt(
+                    effect.stock.StockCurrentPrice *
+                    (1 + Random.Range((float)effect.priceMin, effect.priceMax) / 100f * rate));
+                if (effect.stock.StockCurrentPrice < 1) effect.stock.StockCurrentPrice = 1;
+                foreach (StockControl sc in allstocks)
+                    if (sc.stockinfo.StockName == effect.stock.StockName) sc.UpdatePriceText();
             }
         }
     }
 
-    // UI 갱신 — 대형 뉴스는 모든 StockControl 갱신
-    if (active.caseData.newsType == Case.NewsType.BigTriggerNews
-    || active.caseData.newsType == Case.NewsType.BigRandomNews)
+    if (active.caseData.newsType == Case.NewsType.BigTriggerNews)
     {
         foreach (StockControl sc in allstocks)
             sc.UpdatePriceText();
     }
 
-    active.currentDay++;
-    active.Rday--;
     UIManager.instance.NoticeText.text = active.displayDescription;
 
         }
@@ -402,28 +333,24 @@ public class GameManager : MonoBehaviour
             lowGoldStreak = 0;
         }
     }
-    private void TryFireBigTrigger(ref int triggerValue, string key, ref bool fired)
+    void ScheduleNextBigNews()
     {
-        if (fired) return;
-
-        int chance = 0;
-        if (triggerValue >= 81) chance = 30;
-        else if (triggerValue >= 61) chance = 15;
-        else if (triggerValue >= 31) chance = 5;
-
-        if (chance > 0 && Random.Range(0, 100) < chance)
+        if (BigTriggerCases.Count == 0) return;
+        scheduledBigNewsCaseIndex = Random.Range(0, BigTriggerCases.Count);
+        scheduledBigNewsDay = currentDay + Random.Range(30, 51);
+        Case[] foreshadows = BigTriggerCases[scheduledBigNewsCaseIndex].foreshadowCases;
+        Case foreshadow = null;
+        if (foreshadows != null && foreshadows.Length > 0)
         {
-            foreach (Case c in BigTriggerCases)
-            {
-                if (c.triggerKey == key)
-                {
-                    AddActiveNews(c);
-                    triggerValue = 0;
-                    fired = true;
-                    break;
-                }
-            }
+            scheduledForeshadowIndex = Random.Range(0, foreshadows.Length);
+            foreshadow = foreshadows[scheduledForeshadowIndex];
         }
+        else
+        {
+            scheduledForeshadowIndex = -1;
+        }
+        int offset = (foreshadow != null && foreshadow.lastingDay > 0) ? foreshadow.lastingDay : 2;
+        scheduledBigNewsVibeDay = scheduledBigNewsDay - offset;
     }
 
     public void AddActiveNews(Case casedata)

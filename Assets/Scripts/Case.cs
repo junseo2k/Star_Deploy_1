@@ -9,6 +9,14 @@ public class Case : ScriptableObject
     public Stock[] affectedCase;   // 이 사건으로 가격이 변동되는 주식 목록
     public int[] ChangePriceMin;      // affectedCase의 각 주식에 적용할 가격 변동량 (인덱스 1:1 대응)
     public int[] ChangePriceMax;
+    [System.Serializable]
+    public struct ChainEffect
+    {
+        public Stock stock;
+        public int priceMin;
+        public int priceMax;
+    }
+    public ChainEffect[] chainEffects; // 연쇄 효과 목록 — 뉴스 2일차에 발동
     public Sprite CaseImage;
     public bool isBigNews;          // 대형 뉴스 여부 (UI 표시 방식 분기에 사용)
     public int lastingDay;          // 사건이 지속되는 날 수 (ActiveCase.Rday 초기값으로 사용)
@@ -17,13 +25,11 @@ public class Case : ScriptableObject
     {
         SmallIndustryNews,  // 소형 산업 뉴스 — 특정 산업 주식에 영향
         SmallCompanyNews,   // 소형 기업 뉴스 — 특정 기업 주식에 영향
-        SmallVibeNews,      // 소형 분위기 뉴스 — 트리거 수치 누적용
-        BigTriggerNews,     // 대형 트리거 뉴스 — triggerKey 누적치가 100 이상일 때 발동
-        BigRandomNews       // 대형 랜덤 뉴스 — 일정 확률로 무작위 발생
+        BigTriggerNews,     // 대형 뉴스 — 30~50턴 주기 예약 또는 triggerKey 누적 발동
+        ForeshadowNews      // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전 자동 표시
     }
-    public NewsType newsType;       // 이 사건의 뉴스 분류 (처리 방식·목록 분류에 사용)
-    public string triggerKey;       // 트리거 키워드 (예: "전쟁", "평화") — 누적 수치 증감 및 BigTriggerNews 발동 조건
-    public int triggervalue;        // 이 사건 발생 시 해당 triggerKey 수치에 더해지는 값
+    public NewsType newsType;
+    public Case[] foreshadowCases; // BigTriggerNews 전용 — 발생 전 전조 뉴스 후보 목록 (랜덤 1개 선택)
     public string[] nationPairs; // 접경국 쌍 ("마노사,알브레이" 형태)
     public int[] ChangePriceMinNon;  // 비당사국 최소 변동률
     public int[] ChangePriceMaxNon;

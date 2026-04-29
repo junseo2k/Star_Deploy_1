@@ -18,6 +18,7 @@ MonoBehaviour:
   affectedCase: []
   ChangePriceMin: 
   ChangePriceMax: 
+  chainEffects: []
   CaseImage: {fileID: 0}
   isBigNews: 0
   lastingDay: 4
@@ -26,9 +27,8 @@ MonoBehaviour:
   - 0.55
   - 0.3
   - 0.15
-  newsType: 3
-  triggerKey: "\uBC18\uB780"
-  triggervalue: 0
+  newsType: 2
+  foreshadowCases: []
   nationPairs:
   - "\uC778\uAC04, \uB4DC\uC6CC\uD504"
   ChangePriceMinNon: 

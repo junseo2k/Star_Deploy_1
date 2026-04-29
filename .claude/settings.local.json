@@ -6,7 +6,14 @@
       "mcp__UnityMCP__find_gameobjects",
       "mcp__UnityMCP__manage_scene",
       "mcp__UnityMCP__manage_scriptable_object",
-      "mcp__UnityMCP__debug_request_context"
+      "mcp__UnityMCP__debug_request_context",
+      "Bash(python -c ' *)",
+      "Bash(xargs -I{} head -30 \"{}\")",
+      "Bash(git -C \"C:/Users/이준서/Documents/GitHub/Star_Deploy_1\" diff --name-only HEAD -- \"Assets/Case/\")",
+      "Bash(xargs grep *)",
+      "Bash(sed 's/.*guid: //')",
+      "Bash(sed 's/,.*//')",
+      "Bash(python3 *)"
     ]
   }
 }

@@ -27,7 +27,8 @@ MonoBehaviour:
   - 0.3
   - 0.15
   - 0.05
-  newsType: 3
+  newsType: 2
+  foreshadowCase: {fileID: 11400000, guid: f406af4d93c7f1d4ca8328ade5f8a88b, type: 2}
   triggerKey: "\uC804\uC7C1"
   triggervalue: 0
   nationPairs:

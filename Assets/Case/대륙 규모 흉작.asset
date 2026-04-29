@@ -27,7 +27,7 @@ MonoBehaviour:
   - 0.3
   - 0.15
   - 0.05
-  newsType: 4
+  newsType: 3
   triggerKey: 
   triggervalue: 0
   nationPairs: []

@@ -163,7 +163,7 @@ public class DetailPanel : MonoBehaviour
         }
         orderPanel.currentText.text = $"Maximum: {maxmount}";
         orderPanel.StockNum = 1;
-        orderPanel.PurchaseText.text = $"OwnedStock : {orderPanel.StockNum}, \n {currentstock.StockCurrentPrice} gold.";
+        orderPanel.PurchaseText.text = $"OwnedStock : {orderPanel.StockNum = 1}, \n {currentstock.StockCurrentPrice} gold.";
         orderPanel.isBuyMode = false; // 판매 모드로 설정
     }
 

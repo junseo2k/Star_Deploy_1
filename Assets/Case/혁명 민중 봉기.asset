@@ -26,7 +26,7 @@ MonoBehaviour:
   - 0.55
   - 0.3
   - 0.15
-  newsType: 3
+  newsType: 2
   triggerKey: "\uD601\uBA85"
   triggervalue: 0
   nationPairs:

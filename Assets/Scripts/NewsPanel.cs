@@ -23,50 +23,37 @@ public class NewsPanel : MonoBehaviour
 
     }
 
-    // 이슈 탭 버튼 클릭 시 호출 — 현재 진행 중인 소형 뉴스 목록을 IssuePanel에 표시
-    // 활성 사건이 4개 미만이면 전체 표시, 4개 이상이면 최근 4개만 표시
+    // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 최대 3개 표시
     public void OnIssueClick()
     {
-        foreach (Transform child in IssuePanel) // 이전에 생성된 이슈 항목 제거
-        {
+        foreach (Transform child in IssuePanel)
             Destroy(child.gameObject);
-        }
         IssuePanel.gameObject.SetActive(true);
-        int count = GameManager.Instance.activeNewsList.Count;
-        if (count < 4) // 활성 사건이 4개 미만이면 전체 표시
+
+        var smallNews = new List<ActiveCase>();
+        foreach (ActiveCase active in GameManager.Instance.activeNewsList)
         {
-            foreach(ActiveCase active in GameManager.Instance.activeNewsList)
-            {
-                // 소형 뉴스 타입만 이슈 패널에 표시 (대형 뉴스는 BigNewsPanel에서 표시)
-                if (active.caseData.newsType == Case.NewsType.SmallIndustryNews
-                    || active.caseData.newsType == Case.NewsType.SmallCompanyNews
-                    || active.caseData.newsType == Case.NewsType.SmallVibeNews)
-                {
-                    GameObject ActiveIssue = Instantiate(StockWithImagePrefab, IssuePanel);
-                    Image Icon = ActiveIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = active.caseData.CaseImage;
-                    TextMeshProUGUI IssueText = ActiveIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = $"{active.displayDescription} 남은 시간 : {active.Rday}";
-                }
-            }
+            if (active.caseData.newsType == Case.NewsType.SmallIndustryNews
+                || active.caseData.newsType == Case.NewsType.SmallCompanyNews
+                || active.caseData.newsType == Case.NewsType.ForeshadowNews)
+                smallNews.Add(active);
         }
-        else // 활성 사건이 4개 이상이면 최근 4개만 표시
+
+        int start = 0;
+        for (int i = start; i < smallNews.Count; i++)
         {
-           List<ActiveCase> recentTwo = GameManager.Instance.activeNewsList.GetRange(count - 4, 4);
-           foreach (ActiveCase c in recentTwo)
-            {
-                if (c.caseData.newsType == Case.NewsType.SmallIndustryNews
-                    || c.caseData.newsType == Case.NewsType.SmallCompanyNews
-                    || c.caseData.newsType == Case.NewsType.SmallVibeNews)
-                {
-                    GameObject RecentIssue = Instantiate(StockWithImagePrefab, IssuePanel);
-                    Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = c.caseData.CaseImage;
-                    TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = $"{c.displayDescription} 남은 시간 : {c.Rday}";
-                }
-            }
+            ActiveCase active = smallNews[i];
+            GameObject item = Instantiate(StockWithImagePrefab, IssuePanel);
+            item.GetComponentInChildren<Image>().sprite = active.caseData.CaseImage;
+            item.GetComponentInChildren<TextMeshProUGUI>().text =
+                $"{active.displayDescription} 남은 시간 : {active.Rday}";
         }
+        Debug.Log($"전체 뉴스 수: {GameManager.Instance.activeNewsList.Count}");
+
+        foreach (var active in GameManager.Instance.activeNewsList)
+            {
+                Debug.Log($"타입: {active.caseData.newsType}"); 
+            }
     }
 
     // 닫기 버튼 클릭 시 뉴스 패널 닫고 전체 주식 목록 패널로 복귀
@@ -81,31 +68,35 @@ public class NewsPanel : MonoBehaviour
         }
     }
 
-    // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 활성 사건 중 대형 뉴스(BigRandom/BigTrigger)를 표시
+    // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 대형/전조 뉴스를 표시
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출
     public void BigNewsClick()
     {
-        foreach (Transform child in BigNewsPanel) // 이전에 생성된 대형 뉴스 항목 제거
-        {
+        foreach (Transform child in BigNewsPanel)
             Destroy(child.gameObject);
-        }
+
         BigNewsPanel.gameObject.SetActive(true);
-        int count = GameManager.Instance.activeNewsList.Count;
-        if (count == 0) return; // 활성 사건이 없으면 표시 없이 종료
-        List<ActiveCase> recentOne = GameManager.Instance.activeNewsList.GetRange(count - 1, 1); // 가장 최근 사건 1개
-        foreach(ActiveCase c in recentOne)
+
+        // 뒤에서부터 탐색해 가장 최근 대형/전조 뉴스를 찾음
+        // (같은 턴에 소형 뉴스가 뒤에 추가되어도 대형 뉴스를 놓치지 않음)
+        ActiveCase bigNews = null;
+        var list = GameManager.Instance.activeNewsList;
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            Case.NewsType t = list[i].caseData.newsType;
+            if (t == Case.NewsType.BigTriggerNews
+                || t == Case.NewsType.ForeshadowNews)
             {
-                // 대형 뉴스 타입만 BigNewsPanel에 표시
-                if (c.caseData.newsType == Case.NewsType.BigRandomNews
-                    || c.caseData.newsType == Case.NewsType.BigTriggerNews)
-                {
-                    GameObject RecentIssue = Instantiate(StockWithImagePrefab, BigNewsPanel);
-                    Image Icon = RecentIssue.GetComponentInChildren<Image>();
-                    Icon.sprite = c.caseData.CaseImage;
-                    TextMeshProUGUI IssueText = RecentIssue.GetComponentInChildren<TextMeshProUGUI>();
-                    IssueText.text = c.displayDescription;
-                }
+                bigNews = list[i];
+                break;
             }
+        }
+
+        if (bigNews == null) return;
+
+        GameObject item = Instantiate(StockWithImagePrefab, BigNewsPanel);
+        item.GetComponentInChildren<Image>().sprite = bigNews.caseData.CaseImage;
+        item.GetComponentInChildren<TextMeshProUGUI>().text = bigNews.displayDescription;
     }
 
 }

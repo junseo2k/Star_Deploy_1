@@ -55,8 +55,6 @@ public class CaseImporter : EditorWindow
             else
                 Debug.LogWarning($"[{caseName}] newsType 파싱 실패: {cols[9]}");
 
-            newCase.triggerKey = cols[10].Trim();
-            newCase.triggervalue = int.TryParse(cols[11].Trim(), out int triggerVal) ? triggerVal : 0;
 
             // nationPairs
             string nationPairsRaw = cols[12].Trim();
