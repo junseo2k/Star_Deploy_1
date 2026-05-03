@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ea6c6a0ac481c4eb739ebc759417ec, type: 3}
-  m_Name: "\u2605\uBE14\uB808\uC774\uC988\uB9C8\uC778 \uBD95\uAD34\uC0AC\uACE0"
+  m_Name: "\u2605\uBE14\uB808\uC774\uC988\uB9C8\uC778 \uB9C8\uB098\uC11D\uBC1C\uACAC"
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\u2605\uBE14\uB808\uC774\uC988\uB9C8\uC778 \uB9C8\uB098\uC11D\uBC1C\uACAC"
   CaseDescription: "\uBE14\uB808\uC774\uC988\uB9C8\uC778 \uAE4A\uC740 \uACF3\uC5D0\uC11C

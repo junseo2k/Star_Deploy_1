@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 using Unity.VisualScripting;
+using System.Text;
 
 // 게임 전체 흐름을 관리하는 싱글톤 클래스 — 골드·날짜·사건 처리·저장/불러오기를 담당
 public class GameManager : MonoBehaviour
@@ -156,7 +157,7 @@ public class GameManager : MonoBehaviour
         }
         else // 저장 파일이 없으면 기본값으로 시작
         {
-            currentgold = 10000; // 시작 골드
+            currentgold = 5000; // 시작 골드
             currentDay = 1;
         }
     }
@@ -165,6 +166,60 @@ public class GameManager : MonoBehaviour
     public void UpdateGold(int amount)
     {
         currentgold += amount;
+    }
+    void SaveStockDataToCSV()
+    {
+        string path = Application.persistentDataPath + "/stock_history.csv";
+
+        if (!File.Exists(path))
+        {
+        // isAffectedByNews 컬럼 추가
+            string header = "day,stockName,currentPrice,previousPrice,priceChangePct,isAffectedByNews\n";
+            File.WriteAllText(path, header);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        foreach (Stock stock in tabmanager.allstock)
+        {
+            // 이 주식이 오늘 뉴스에 직접 영향받았는지 확인
+           bool isAffected = activeNewsList.Exists(active =>
+            {
+                // ① 소형 뉴스 직접 영향 (지속 기간 포함 ✅)
+                if (active.caseData.affectedCase != null &&
+                    System.Array.Exists(active.caseData.affectedCase, s => s == stock))
+                    return true;
+
+                // ② 연쇄 효과
+                if (active.caseData.chainEffects != null &&
+                    System.Array.Exists(active.caseData.chainEffects, e => e.stock == stock))
+                    return true;
+
+                // ③ 대형 뉴스 산업군 영향
+                if (active.caseData.newsType == Case.NewsType.BigTriggerNews &&
+                    active.caseData.industryRates != null &&
+                    System.Array.Exists(active.caseData.industryRates, ir => ir.industryTag == stock.IndustryTag))
+                    return true;
+
+                return false;
+            });
+
+        // 가격 변동률 계산
+            float changePct = stock.StockPreviousPrice > 0
+                ? (float)(stock.StockCurrentPrice - stock.StockPreviousPrice)
+                  / stock.StockPreviousPrice * 100f
+                : 0f;
+
+            sb.AppendLine(
+                $"{currentDay}," +
+                $"{stock.StockName}," +
+                $"{stock.StockCurrentPrice}," +
+                $"{stock.StockPreviousPrice}," +
+                $"{changePct:F2}," +
+                $"{(isAffected ? 1 : 0)}"
+            );
+        }
+
+        File.AppendAllText(path, sb.ToString());
     }
 
     // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신. 감쇠는 매일 발생하므로 이곳에 계산식을 둠.
@@ -318,11 +373,25 @@ public class GameManager : MonoBehaviour
         foreach (StockControl sc in allstocks)
             sc.UpdatePriceText();
     }
+    
 
     UIManager.instance.NoticeText.text = active.displayDescription;
 
         }
         activeNewsList.RemoveAll(active => active.Rday <= 0);
+        NPCInvestor[] npcs = FindObjectsByType<NPCInvestor>(FindObjectsSortMode.None);
+        foreach (NPCInvestor npc in npcs)
+        {
+            foreach (Stock stock in tabmanager.allstock)
+            {
+            bool isAffected = activeNewsList.Exists(active =>
+                active.caseData.affectedCase != null &&
+                System.Array.Exists(active.caseData.affectedCase, s => s == stock));
+
+            npc.OnDayPassed(stock, stock.StockChangePrice, isAffected ? 1f : 0f);
+            }
+            npc.DecideAfterAllPredictions(); // ← 여기 추가
+        }
         UIManager.instance.UpdateDayText();
 
         // 골드 1000 이하 연속 5턴 지속 시 게임 오버
@@ -336,6 +405,16 @@ public class GameManager : MonoBehaviour
         {
             lowGoldStreak = 0;
         }
+        SaveStockDataToCSV();
+    }
+    // 데이터 생성용 임시 함수 — 나중에 삭제
+    public void AutoSimulate(int days)
+    {
+        for (int i = 0; i < days; i++)
+        {
+            OnNextDayButton();
+        }
+        Debug.Log($"{days}일 시뮬레이션 완료! CSV 확인하세요.");
     }
     void ScheduleNextBigNews()
     {
@@ -401,5 +480,6 @@ public class GameManager : MonoBehaviour
 
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);
+        // GameManager.cs 아무 곳에 추가
     }
 }
