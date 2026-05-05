@@ -3,9 +3,11 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
+// CSV 파일에서 Case ScriptableObject 에셋을 일괄 생성하는 에디터 유틸리티 (Tools > Import Cases from CSV)
 public class CaseImporter : EditorWindow
 {
     [MenuItem("Tools/Import Cases from CSV")]
+    // CSV를 파싱하여 각 행을 Case 에셋으로 변환하고 Assets/Case/ 폴더에 저장
     public static void ImportCases()
     {
         string csvPath = EditorUtility.OpenFilePanel("CSV 파일 선택", "", "csv");
@@ -13,16 +15,16 @@ public class CaseImporter : EditorWindow
 
         string[] lines = File.ReadAllLines(csvPath, System.Text.Encoding.UTF8);
 
-        for (int i = 1; i < lines.Length; i++)
+        for (int i = 1; i < lines.Length; i++) // 1행부터 시작 (0행은 헤더)
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
             string[] cols = SplitCSVLine(lines[i]);
-            if (cols.Length < 13) continue;
+            if (cols.Length < 13) continue; // 필수 컬럼 수 미달 시 스킵
 
             string caseName = cols[0].Trim();
             if (string.IsNullOrEmpty(caseName)) continue;
-            if (caseName.StartsWith("---")) continue;
+            if (caseName.StartsWith("---")) continue; // 구분자 행 스킵
 
             Case newCase = ScriptableObject.CreateInstance<Case>();
             newCase.CaseName = caseName;
@@ -54,7 +56,7 @@ public class CaseImporter : EditorWindow
                 Debug.LogWarning($"[{caseName}] newsType 파싱 실패: {cols[9]}");
 
 
-            // nationPairs
+            // nationPairs — '|' 구분자로 분리된 국가 쌍 목록
             string nationPairsRaw = cols[12].Trim();
             if (!string.IsNullOrEmpty(nationPairsRaw))
             {
@@ -77,6 +79,7 @@ public class CaseImporter : EditorWindow
                 List<Case.IndustryRate> rateList = new List<Case.IndustryRate>();
                 foreach (string ratePart in rateParts)
                 {
+                    // 형식: "산업태그:최소:최대:최소(비당사):최대(비당사)"
                     string[] rateVals = ratePart.Trim().Split(':');
                     if (rateVals.Length < 5) continue;
                     Case.IndustryRate rate = new Case.IndustryRate();
@@ -104,6 +107,7 @@ public class CaseImporter : EditorWindow
         Debug.Log("CSV 임포트 완료!");
     }
 
+    // CSV 한 줄을 쉼표로 분리 — 큰따옴표 안의 쉼표는 무시
     static string[] SplitCSVLine(string line)
     {
         List<string> result = new List<string>();
@@ -119,6 +123,7 @@ public class CaseImporter : EditorWindow
         return result.ToArray();
     }
 
+    // 쉼표로 구분된 정수 문자열을 int 배열로 변환
     static int[] ParseIntArray(string raw)
     {
         if (string.IsNullOrWhiteSpace(raw)) return new int[0];
@@ -130,6 +135,7 @@ public class CaseImporter : EditorWindow
         return result.ToArray();
     }
 
+    // 쉼표로 구분된 실수 문자열을 float 배열로 변환
     static float[] ParseFloatArray(string raw)
     {
         if (string.IsNullOrWhiteSpace(raw)) return new float[0];
@@ -141,6 +147,7 @@ public class CaseImporter : EditorWindow
         return result.ToArray();
     }
 
+    // 쉼표로 구분된 문자열을 string 배열로 분리
     static string[] SplitArray(string raw)
     {
         if (string.IsNullOrWhiteSpace(raw)) return new string[0];

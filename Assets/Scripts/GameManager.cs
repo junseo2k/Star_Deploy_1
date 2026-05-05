@@ -13,19 +13,19 @@ public class GameManager : MonoBehaviour
     public int currentDay;   // 현재 게임 날짜
     public Case[] AllCases; // 사건 발생 처리 컴포넌트 참조
     public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
-    public TabManager tabmanager;
-    public List<Case> recentIssues;
-    public List<ActiveCase> activeNewsList = new List<ActiveCase>();
-    public int randomindex;
-    public List<Case> SmallNewsCases = new List<Case>();
-    public List<Case> BigTriggerCases = new List<Case>();
-    public int lowGoldStreak;
-    public int lastBigNewsDay = -1;
-    public int scheduledBigNewsDay = -1;
-    public int scheduledBigNewsVibeDay = -1;
-    public int scheduledBigNewsCaseIndex = -1;
-    public int scheduledForeshadowIndex = -1;
-    public string scheduledNationPair = "";
+    public TabManager tabmanager;                                    // 모든 주식 목록(allstock)에 접근하기 위한 참조
+    public List<Case> recentIssues;                                  // 최근 발생한 사건 이력
+    public List<ActiveCase> activeNewsList = new List<ActiveCase>(); // 현재 진행 중인 활성 뉴스 목록
+    public int randomindex;                                          // (미사용) 랜덤 인덱스 임시 저장용
+    public List<Case> SmallNewsCases = new List<Case>();             // SmallIndustryNews·SmallCompanyNews 타입 케이스 목록
+    public List<Case> BigTriggerCases = new List<Case>();            // BigTriggerNews 타입 케이스 목록
+    public int lowGoldStreak;                                        // 골드 1000 이하 연속 턴 수 (5턴 도달 시 게임 오버)
+    public int lastBigNewsDay = -1;                                  // 마지막 대형 뉴스가 실제로 발생한 날짜
+    public int scheduledBigNewsDay = -1;                             // 예약된 대형 뉴스 발생 날짜
+    public int scheduledBigNewsVibeDay = -1;                         // 전조 뉴스 발생 날짜 (대형 뉴스 며칠 전)
+    public int scheduledBigNewsCaseIndex = -1;                       // 예약된 대형 뉴스의 케이스 인덱스
+    public int scheduledForeshadowIndex = -1;                        // 예약된 전조 뉴스의 인덱스
+    public string scheduledNationPair = "";                          // 대형 뉴스에 사용할 국가 쌍 (전조 뉴스와 공유)
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         Instance = this; // 외부에서 GameManager.Instance로 접근 가능하도록 자신을 등록
     }
 
+    // AllCases를 타입별로 분류하고, 주식 가격을 기본값으로 초기화한 뒤 대형 뉴스 스케줄을 설정
     void Start()
     {
         LoadGame(); // 저장된 게임 데이터 불러오기
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
             stock.StockPreviousPrice = stock.StockBasePrice;
         }
 
-        if (scheduledBigNewsDay <= currentDay)
+        if (scheduledBigNewsDay <= currentDay) // 저장 데이터에 유효한 스케줄이 없으면 새로 예약
             ScheduleNextBigNews();
     }
 
@@ -167,6 +168,7 @@ public class GameManager : MonoBehaviour
     {
         currentgold += amount;
     }
+    // 하루가 끝날 때 모든 주식의 가격·변동률·뉴스 영향 여부를 CSV에 누적 기록 (ML 학습 데이터용)
     void SaveStockDataToCSV()
     {
         string path = Application.persistentDataPath + "/stock_history.csv";
@@ -231,7 +233,7 @@ public class GameManager : MonoBehaviour
             active.currentDay++;    
         }
         currentDay += 1;
-        int smallnewscount = SmallNewsCases.Count > 0 ? Random.Range(0, 4) : 0;
+        int smallnewscount = SmallNewsCases.Count > 0 ? Random.Range(0, 4) : 0; // 하루에 소형 뉴스 0~3개 랜덤 발생
         for (int i = 0; i < smallnewscount; i++)
         {
             int RandomSmall = Random.Range(0, SmallNewsCases.Count);
@@ -293,31 +295,31 @@ public class GameManager : MonoBehaviour
         }
         StockControl[] allstocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (ActiveCase active in activeNewsList)
-{
-    float rate = active.currentDay < active.caseData.lowPercent.Length
-        ? active.caseData.lowPercent[active.currentDay]
-        : 0f;
-
-    if (active.caseData.newsType == Case.NewsType.BigTriggerNews
-        && active.caseData.industryRates != null
-        && active.caseData.industryRates.Length > 0)
-
-    {
-        foreach (Stock stock in tabmanager.allstock)
         {
-            // 이 주식의 산업군에 맞는 변동률 찾기
-            Case.IndustryRate matchedRate = default;
-            bool found = false;
-            foreach (Case.IndustryRate ir in active.caseData.industryRates)
+            float rate = active.currentDay < active.caseData.lowPercent.Length
+                ? active.caseData.lowPercent[active.currentDay]
+                : 0f;
+
+            if (active.caseData.newsType == Case.NewsType.BigTriggerNews
+                && active.caseData.industryRates != null
+                && active.caseData.industryRates.Length > 0)
+
             {
-                if (ir.industryTag == stock.IndustryTag)
+                foreach (Stock stock in tabmanager.allstock)
                 {
-                    matchedRate = ir;
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) continue;
+                    // 이 주식의 산업군에 맞는 변동률 찾기
+                    Case.IndustryRate matchedRate = default;
+                    bool found = false;
+                    foreach (Case.IndustryRate ir in active.caseData.industryRates)
+                    {
+                        if (ir.industryTag == stock.IndustryTag)
+                        {
+                            matchedRate = ir;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) continue;
 
             // 당사국 여부 확인
             bool isInvolved = active.involvedNations.Contains(stock.nation);
@@ -378,19 +380,20 @@ public class GameManager : MonoBehaviour
     UIManager.instance.NoticeText.text = active.displayDescription;
 
         }
-        activeNewsList.RemoveAll(active => active.Rday <= 0);
+        activeNewsList.RemoveAll(active => active.Rday <= 0); // 지속일이 끝난 뉴스 제거
+        // 씬의 모든 NPC에게 오늘 주식 데이터를 전달한 뒤 매매 결정 실행
         NPCInvestor[] npcs = FindObjectsByType<NPCInvestor>(FindObjectsSortMode.None);
         foreach (NPCInvestor npc in npcs)
         {
             foreach (Stock stock in tabmanager.allstock)
             {
-            bool isAffected = activeNewsList.Exists(active =>
-                active.caseData.affectedCase != null &&
-                System.Array.Exists(active.caseData.affectedCase, s => s == stock));
+                bool isAffected = activeNewsList.Exists(active =>
+                    active.caseData.affectedCase != null &&
+                    System.Array.Exists(active.caseData.affectedCase, s => s == stock));
 
-            npc.OnDayPassed(stock, stock.StockChangePrice, isAffected ? 1f : 0f);
+                npc.OnDayPassed(stock, stock.StockChangePrice, isAffected ? 1f : 0f);
             }
-            npc.DecideAfterAllPredictions(); // ← 여기 추가
+            npc.DecideAfterAllPredictions();
         }
         UIManager.instance.UpdateDayText();
 
@@ -416,6 +419,7 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log($"{days}일 시뮬레이션 완료! CSV 확인하세요.");
     }
+    // 다음 대형 뉴스 발생 날짜·케이스·국가 쌍·전조 뉴스를 무작위로 예약
     void ScheduleNextBigNews()
     {
         if (BigTriggerCases.Count == 0) return;
@@ -444,6 +448,7 @@ public class GameManager : MonoBehaviour
         scheduledBigNewsVibeDay = scheduledBigNewsDay - offset;
     }
 
+    // 케이스를 활성 뉴스로 등록 — 국가 쌍을 플레이스홀더에 치환하고 관련 국가 목록을 초기화
     public void AddActiveNews(Case casedata, string forcedNationPair = null)
     {
         Debug.Log($"뉴스 추가: {casedata.CaseName}");
@@ -480,6 +485,5 @@ public class GameManager : MonoBehaviour
 
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);
-        // GameManager.cs 아무 곳에 추가
     }
 }

@@ -13,7 +13,9 @@
       "Bash(xargs grep *)",
       "Bash(sed 's/.*guid: //')",
       "Bash(sed 's/,.*//')",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(Get-ChildItem -Recurse -Directory)",
+      "Bash(Select-Object FullName)"
     ]
   }
 }
