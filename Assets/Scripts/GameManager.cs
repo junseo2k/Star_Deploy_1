@@ -53,12 +53,6 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-        foreach (Stock stock in tabmanager.allstock)
-        {
-            stock.StockCurrentPrice = stock.StockBasePrice;
-            stock.StockPreviousPrice = stock.StockBasePrice;
-        }
-
         if (scheduledBigNewsDay <= currentDay) // 저장 데이터에 유효한 스케줄이 없으면 새로 예약
             ScheduleNextBigNews();
     }
@@ -108,7 +102,7 @@ public class GameManager : MonoBehaviour
             {
                 StockSaveData stockdata = new StockSaveData();
                 stockdata.stockname = stock.stockinfo.StockName;
-                stockdata.currentPrice = stock.stockinfo.StockBasePrice;
+                stockdata.currentPrice = stock.stockinfo.StockCurrentPrice;
                 stockdata.ownamount = stock.ownedAmount;
                 stockdata.avgPurchasePrice = stock.avgPurchasePrice;
                 data.OwnStocks.Add(stockdata);
@@ -158,6 +152,11 @@ public class GameManager : MonoBehaviour
         }
         else // 저장 파일이 없으면 기본값으로 시작
         {
+            foreach (Stock stock in tabmanager.allstock)
+            {
+                stock.StockCurrentPrice = stock.StockBasePrice;
+                stock.StockPreviousPrice = stock.StockBasePrice;
+            }
             currentgold = 5000; // 시작 골드
             currentDay = 1;
         }

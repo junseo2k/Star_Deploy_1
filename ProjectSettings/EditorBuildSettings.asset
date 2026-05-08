@@ -20,9 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 02f11e425f57bb94293100a92bd780e5
-  - enabled: 0
-    path: Assets/Scenes/StockInformation.unity
-    guid: a12e4e11a9c6ee3479995967853042c5
+  - enabled: 1
+    path: Assets/Scenes/StoryConversation.unity
+    guid: cb5eba5179d80aa45986be794dcf8ad1
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
