@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour
         detailpanel.gameObject.SetActive(true);
         
     }
+    // 뉴스 버튼 클릭 시 호출 — 전체 목록 패널 숨기고 뉴스 패널 열기 및 대형 뉴스 표시
     public void OpenNewsPanel()
     {
         EntirePanel.gameObject.SetActive(false);

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 // 대형 뉴스(BigNewsPanel)와 진행 중인 소형 이슈(IssuePanel) 표시를 담당
 public class NewsPanel : MonoBehaviour
 {
-    public Transform BigNewsPanel;        // 대형 뉴스(BigRandom/BigTrigger) 표시 패널
+    public Transform BigNewsPanel;        // 대형 뉴스(BigTriggerNews 타입) 표시 패널
     public Transform IssueScroll;          // 진행 중인 소형 이슈 목록 표시 패널
     public GameObject StockWithImagePrefab; // 이미지+텍스트 조합 UI 프리팹 (뉴스 항목 생성에 사용)
     public Transform EntirePanel;         // 전체 주식 목록 패널 (뉴스 패널 닫을 때 복귀 대상)
@@ -23,7 +23,7 @@ public class NewsPanel : MonoBehaviour
 
     }
 
-    // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 최대 3개 표시
+    // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 모두 표시
     public void OnIssueClick()
     {
         foreach (Transform child in IssueScroll)
@@ -68,7 +68,7 @@ public class NewsPanel : MonoBehaviour
         }
     }
 
-    // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 대형/전조 뉴스를 표시
+    // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 BigTriggerNews 타입 뉴스를 표시
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출
     public void BigNewsClick()
     {
@@ -77,7 +77,7 @@ public class NewsPanel : MonoBehaviour
 
         BigNewsPanel.gameObject.SetActive(true);
 
-        // 뒤에서부터 탐색해 가장 최근 대형/전조 뉴스를 찾음
+        // 뒤에서부터 탐색해 가장 최근 BigTriggerNews를 찾음
         // (같은 턴에 소형 뉴스가 뒤에 추가되어도 대형 뉴스를 놓치지 않음)
         ActiveCase bigNews = null;
         var list = GameManager.Instance.activeNewsList;

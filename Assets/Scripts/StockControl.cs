@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 개별 주식 아이템 UI를 제어하는 클래스
-// 주식 정보 표시, 구매/판매 버튼 처리, 가격 갱신을 담당
+// 주식 정보 표시, 상세 패널 전환, 가격 갱신을 담당
 public class StockControl : MonoBehaviour
 {
     public Stock stockinfo;                       // 이 아이템이 표시하는 주식 데이터 (ScriptableObject)
@@ -38,7 +38,7 @@ public class StockControl : MonoBehaviour
 
     }
 
-    // 주식 가격이 변동되었을 때 가격 텍스트를 최신 값으로 갱신
+    // 상세 패널이 이 주식을 표시 중일 때 상세 패널의 가격 텍스트를 최신 값으로 갱신
     public void UpdatePriceText()
     {
    
@@ -49,10 +49,9 @@ public class StockControl : MonoBehaviour
         }
     }
 
-    // 프리팹 생성 직후 호출 — 주식 이름, 설명, 가격, 이미지, 보유 수량 등 UI 초기값 설정
+    // 프리팹 생성 직후 호출 — 주식 이름, 설명, 이미지, 보유 수량 등 UI 초기값 설정
     public void Initialize()
     {
-        // 현재 가격이 0이면 기준 가격으로 초기화 (첫 실행 시)
         StockNameText.text = stockinfo.StockName;
         StockDescriptionText.text = stockinfo.StockDescription;
         stockImage.sprite = stockinfo.StockIcon;
@@ -60,7 +59,7 @@ public class StockControl : MonoBehaviour
         UIManager.instance.UpdateGoldText();
         UIManager.instance.UpdateDayText();
     }
-    // 주식 아이콘 이미지 클릭 시 호출 — 상세 정보 패널 열기 등에 사용 예정
+    // 주식 아이콘 이미지 클릭 시 호출 — 상세 정보 패널 열기
     public void OnImageClick()
     {
         UIManager.instance.ShowDetail(stockinfo);

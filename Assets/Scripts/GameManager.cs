@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; // 어디서든 GameManager에 접근하기 위한 싱글톤 인스턴스
     public int currentgold;  // 현재 보유 골드
     public int currentDay;   // 현재 게임 날짜
-    public Case[] AllCases; // 사건 발생 처리 컴포넌트 참조
+    public Case[] AllCases; // 게임에 등록된 모든 사건(Case ScriptableObject) 배열
     public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
     public TabManager tabmanager;                                    // 모든 주식 목록(allstock)에 접근하기 위한 참조
     public List<Case> recentIssues;                                  // 최근 발생한 사건 이력
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         Instance = this; // 외부에서 GameManager.Instance로 접근 가능하도록 자신을 등록
     }
 
-    // AllCases를 타입별로 분류하고, 주식 가격을 기본값으로 초기화한 뒤 대형 뉴스 스케줄을 설정
+    // 저장 데이터 로드 → UI 갱신 → AllCases를 타입별로 분류 → 대형 뉴스 스케줄 설정
     void Start()
     {
         LoadGame(); // 저장된 게임 데이터 불러오기

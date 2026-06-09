@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.Analytics;
 
 // 주식 상세 정보 패널을 관리하는 클래스
-// 기본 정보·서비스·중요 지표·최근 이슈 탭 전환과 주식 데이터 표시를 담당
+// 기본 정보·서비스·중요 지표 탭 전환과 주식 데이터 표시를 담당
 public class DetailPanel : MonoBehaviour
 {
     public GameObject StockWithImagePrefab;   // 이미지 포함 주식 아이템 프리팹
     public Image StockImage;                 // 주식 아이콘 이미지
     public TextMeshProUGUI StockName;         // 주식 이름 표시 텍스트
     public TextMeshProUGUI StockPrice;        // 현재 주식 가격 표시 텍스트
-    public TextMeshProUGUI StockChangePrice;  // 이전 가격 대비 변동량 표시 텍스트 (비교 함수 필요)
+    public TextMeshProUGUI StockChangePrice;  // 이전 가격 대비 변동률(%) 표시 텍스트
     public TextMeshProUGUI StockDescription;  // 주식 요약 설명 표시 텍스트
     public Transform DetailInfoPanel;         // 기본 정보 탭 패널
     public Transform ServicePanel;            // 서비스 탭 패널
@@ -113,7 +113,7 @@ public class DetailPanel : MonoBehaviour
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(true);
     }
-    // 닫기 버튼 클릭 시 서비스·이슈 프리팹 정리 후 상세 패널 닫고 전체 목록 패널로 복귀
+    // 닫기 버튼 클릭 시 서비스 프리팹 정리 후 상세 패널 닫고 전체 목록 패널로 복귀
     public void OnExitButton()
     {
         foreach (Transform child in ServicePanel)

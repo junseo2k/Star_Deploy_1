@@ -7,14 +7,14 @@ public class Case : ScriptableObject
     public string CaseName;        // 사건 이름
     public string CaseDescription; // 사건 발생 시 공지될 설명 텍스트
     public Stock[] affectedCase;   // 이 사건으로 가격이 변동되는 주식 목록
-    public int[] ChangePriceMin;      // affectedCase의 각 주식에 적용할 가격 변동량 (인덱스 1:1 대응)
+    public int[] ChangePriceMin;      // affectedCase의 각 주식에 적용할 가격 변동률(%) 최솟값 (인덱스 1:1 대응)
     public int[] ChangePriceMax;
     [System.Serializable]
     public struct ChainEffect
     {
-        public Stock stock;
-        public int priceMin;
-        public int priceMax;
+        public Stock stock;   // 연쇄 효과를 받는 주식
+        public int priceMin;  // 연쇄 효과 최소 변동률 (%)
+        public int priceMax;  // 연쇄 효과 최대 변동률 (%)
     }
     public ChainEffect[] chainEffects; // 연쇄 효과 목록 — 뉴스 2일차에 발동
     public Sprite CaseImage;
@@ -24,7 +24,7 @@ public class Case : ScriptableObject
     {
         SmallIndustryNews,  // 소형 산업 뉴스 — 특정 산업 주식에 영향
         SmallCompanyNews,   // 소형 기업 뉴스 — 특정 기업 주식에 영향
-        BigTriggerNews,     // 대형 뉴스 — 30~50턴 주기 예약 또는 triggerKey 누적 발동
+        BigTriggerNews,     // 대형 뉴스 — 30~50턴 주기로 무작위 예약
         ForeshadowNews      // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전 자동 표시
     }
     public NewsType newsType;
@@ -39,5 +39,5 @@ public class Case : ScriptableObject
         public int changePriceMinNon;   // 비당사국 최소 변동률
         public int changePriceMaxNon;   // 비당사국 최대 변동률
     }
-    public IndustryRate[] industryRates;
+    public IndustryRate[] industryRates; // 대형 뉴스 전용 — 산업별 당사국/비당사국 변동률 설정 목록
 }
