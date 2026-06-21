@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public int scheduledBigNewsCaseIndex = -1;                       // 예약된 대형 뉴스의 케이스 인덱스
     public int scheduledForeshadowIndex = -1;                        // 예약된 전조 뉴스의 인덱스
     public string scheduledNationPair = "";                          // 대형 뉴스에 사용할 국가 쌍 (전조 뉴스와 공유)
+    public int smallNewsTimer = 0;
+    public int loanAmount = 0; // 현재 대출금
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
         public int scheduledBigNewsCaseIndex;
         public int scheduledForeshadowIndex;
         public string scheduledNationPair;
+        public int smallNewsTimer;
+        public int loanAmount;
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
@@ -93,6 +97,8 @@ public class GameManager : MonoBehaviour
         data.currentgold = currentgold;
         data.currentday = currentDay;
         data.OwnStocks = new List<StockSaveData>();
+        data.smallNewsTimer = smallNewsTimer;
+        data.loanAmount = loanAmount;
 
         // 씬의 모든 StockControl을 검색하여 보유 수량이 있는 주식만 저장 목록에 추가
         StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -137,6 +143,8 @@ public class GameManager : MonoBehaviour
             scheduledBigNewsCaseIndex = data.scheduledBigNewsCaseIndex;
             scheduledForeshadowIndex = data.scheduledForeshadowIndex;
             scheduledNationPair = data.scheduledNationPair ?? "";
+            smallNewsTimer = data.smallNewsTimer;
+            loanAmount = data.loanAmount;
 
             // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -222,6 +230,37 @@ public class GameManager : MonoBehaviour
 
         File.AppendAllText(path, sb.ToString());
     }
+    // 대출 실행 — 자산의 50%까지만 가능
+    public bool TakeLoan(int amount)
+    {
+        int maxLoan = currentgold / 2;
+        if (amount > maxLoan)
+        {
+            Debug.Log("대출 한도 초과");
+            return false;
+        }
+        loanAmount += amount;
+        currentgold += amount;
+        UIManager.instance.UpdateGoldText();
+        SaveGame();
+        return true;
+    }
+
+// 상환 — 보유 골드보다 많이 상환 불가
+    public bool RepayLoan(int amount)
+    {
+        if (amount > currentgold)
+        {
+            Debug.Log("골드 부족");
+            return false;
+        }
+        if (amount > loanAmount) amount = loanAmount; // 대출금 초과 상환 방지
+        loanAmount -= amount;
+        currentgold -= amount;
+        UIManager.instance.UpdateGoldText();
+        SaveGame();
+        return true;
+}
 
     // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신. 감쇠는 매일 발생하므로 이곳에 계산식을 둠.
     public void OnNextDayButton()
@@ -232,13 +271,23 @@ public class GameManager : MonoBehaviour
             active.currentDay++;    
         }
         currentDay += 1;
-        int smallnewscount = SmallNewsCases.Count > 0 ? Random.Range(0, 4) : 0; // 하루에 소형 뉴스 0~3개 랜덤 발생
-        for (int i = 0; i < smallnewscount; i++)
+        // 대출 이자 시스템
+        if (loanAmount > 0)
+        {
+            int interest = Mathf.CeilToInt(loanAmount * 0.01f); // 턴당 1%
+            currentgold -= interest;
+            UIManager.instance.UpdateGoldText(); 
+            Debug.Log($"이자 {interest}G 차감. 남은 대출금: {loanAmount}G");
+        }
+        
+        smallNewsTimer++;
+        if (SmallNewsCases.Count > 0 && smallNewsTimer >= Random.Range(3, 6))
         {
             int RandomSmall = Random.Range(0, SmallNewsCases.Count);
             Case picked = SmallNewsCases[RandomSmall];
-            if (activeNewsList.Exists(active => active.caseData == picked)) continue;
-            AddActiveNews(picked);
+            if (!activeNewsList.Exists(active => active.caseData == picked))
+                AddActiveNews(picked);
+            smallNewsTimer = 0;
         }
         // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전
         if (currentDay == scheduledBigNewsVibeDay
@@ -406,6 +455,12 @@ public class GameManager : MonoBehaviour
         else
         {
             lowGoldStreak = 0;
+        }
+        // 기존 lowGoldStreak 체크 아래에 추가
+        if (loanAmount > 0 && currentgold < loanAmount)
+        {
+            // 골드가 대출금보다 적으면 상환 불가 → 게임 오버
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
         SaveStockDataToCSV();
     }

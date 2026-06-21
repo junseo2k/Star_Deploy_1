@@ -12,7 +12,8 @@ public class UIManager : MonoBehaviour
     public Transform newspanel;
     public Transform portfolioPanel;       // 포트폴리오 패널 루트 오브젝트
     public PortfolioPanel portfolioPanelScript; // 포트폴리오 패널 스크립트 참조
-
+    public Transform loanPanel;           // 대출 패널 루트
+    public LoanPanel loanPanelScript;     // 대출 패널 스크립트 참조
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
     [SerializeField] private NewsPanel newsPanelScript;
 
@@ -71,6 +72,11 @@ public class UIManager : MonoBehaviour
         EntirePanel.gameObject.SetActive(false);
         portfolioPanel.gameObject.SetActive(true);
         portfolioPanelScript.Open();
+    }
+    public void OpenLoanPanel()
+    {
+        EntirePanel.gameObject.SetActive(false);
+        loanPanel.gameObject.SetActive(true);
     }
     
 }
