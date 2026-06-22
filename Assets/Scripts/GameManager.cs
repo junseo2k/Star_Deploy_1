@@ -91,6 +91,12 @@ public class GameManager : MonoBehaviour
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
+    // 선택된 슬롯 번호 기반으로 저장 경로 반환
+    string GetSavePath()
+    {
+        int slot = PlayerPrefs.GetInt("SelectedSlot", 1);
+        return Application.persistentDataPath + $"/save{slot}.json";
+    }
     public void SaveGame()
     {
         GameSaveData data = new GameSaveData();
@@ -123,14 +129,14 @@ public class GameManager : MonoBehaviour
         data.scheduledNationPair = scheduledNationPair;
 
         string json = JsonUtility.ToJson(data);
-        string path = Application.persistentDataPath + "/save.json";
+        string path = GetSavePath();
         File.WriteAllText(path, json);
     }
 
     // JSON 파일에서 게임 데이터를 불러와 복원
     void LoadGame()
     {
-        string path = Application.persistentDataPath + "/save.json";
+        string path = GetSavePath();
         if (File.Exists(path)) // 저장 파일이 있을 경우 불러오기
         {
             string json = File.ReadAllText(path); // JSON 파일을 문자열로 읽기

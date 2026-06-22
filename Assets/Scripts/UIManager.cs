@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 // UI 전반을 관리하는 싱글톤 클래스 — 공지 텍스트, 골드, 날짜 등 화면 표시를 담당
 public class UIManager : MonoBehaviour
 {
@@ -77,6 +77,11 @@ public class UIManager : MonoBehaviour
     {
         EntirePanel.gameObject.SetActive(false);
         loanPanel.gameObject.SetActive(true);
+    }
+    // 세이브로드 씬으로 이동
+    public void OnSaveLoadClick()
+    {
+        SceneManager.LoadScene("SaveLoad");
     }
     
 }
