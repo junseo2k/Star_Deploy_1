@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
     // 시작 버튼 클릭 시 세이브/로드 씬으로 이동
     public void OnClickStart()
     {
+        PlayerPrefs.SetInt("FromMainMenu", 1); // 메인 메뉴에서 왔음을 표시
+        PlayerPrefs.Save();
         SceneManager.LoadScene("SaveLoad");
     }
 

@@ -104,7 +104,7 @@ public class OrderPanel : MonoBehaviour
         // 보유 수량 UI 갱신 및 골드 UI 갱신
         stockcontrol.ownedAmountText.text = $"현재 보유 수량: {stockcontrol.ownedAmount}";
         UIManager.instance.UpdateGoldText();
-        GameManager.Instance.SaveGame(); // 거래 완료 후 즉시 저장
+
 
         // 구매/판매 패널 닫고 전체 주식 목록 패널로 복귀
         BuyPanel.gameObject.SetActive(false);

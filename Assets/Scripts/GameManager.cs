@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         public int currentgold;
         public int currentday;
         public List<StockSaveData> OwnStocks;
+        public int currentPrice;
         public int lastBigNewsDay;
         public int scheduledBigNewsDay;
         public int scheduledBigNewsVibeDay;
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
+    // 선택된 슬롯 번호 기반으로 저장 경로 반환
     // 선택된 슬롯 번호 기반으로 저장 경로 반환
     string GetSavePath()
     {
@@ -108,17 +110,27 @@ public class GameManager : MonoBehaviour
 
         // 씬의 모든 StockControl을 검색하여 보유 수량이 있는 주식만 저장 목록에 추가
         StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
-        foreach (StockControl stock in allStocks)
+        // 기존: 보유 수량 > 0인 주식만 저장
+        // 변경: 모든 주식 저장
+        foreach (Stock stock in tabmanager.allstock)
         {
-            if (stock.ownedAmount > 0)
+            StockSaveData stockdata = new StockSaveData();
+            stockdata.stockname = stock.StockName;
+            stockdata.currentPrice = stock.StockCurrentPrice;
+            stockdata.ownamount = 0;
+            stockdata.avgPurchasePrice = 0;
+
+            // 보유 중인 주식이면 수량/평균가 추가
+            foreach (StockControl sc in allStocks)
             {
-                StockSaveData stockdata = new StockSaveData();
-                stockdata.stockname = stock.stockinfo.StockName;
-                stockdata.currentPrice = stock.stockinfo.StockCurrentPrice;
-                stockdata.ownamount = stock.ownedAmount;
-                stockdata.avgPurchasePrice = stock.avgPurchasePrice;
-                data.OwnStocks.Add(stockdata);
+                if (sc.stockinfo.StockName == stock.StockName)
+                {
+                    stockdata.ownamount = sc.ownedAmount;
+                    stockdata.avgPurchasePrice = sc.avgPurchasePrice;
+                    break;
+                }
             }
+            data.OwnStocks.Add(stockdata);
         }
 
         data.lastBigNewsDay = lastBigNewsDay;
@@ -156,12 +168,22 @@ public class GameManager : MonoBehaviour
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
             foreach (StockSaveData savedstock in data.OwnStocks)
             {
-                foreach (StockControl stock in allStocks)
-                    if (savedstock.stockname == stock.stockinfo.StockName)
+                foreach (Stock stock in tabmanager.allstock)
+                {
+                    if (savedstock.stockname == stock.StockName)
                     {
-                        stock.ownedAmount = savedstock.ownamount;
-                        stock.avgPurchasePrice = savedstock.avgPurchasePrice;
+                        stock.StockCurrentPrice = savedstock.currentPrice;
+                        stock.StockPreviousPrice = savedstock.currentPrice;
                     }
+                }
+                foreach (StockControl sc in allStocks)
+                {
+                    if (savedstock.stockname == sc.stockinfo.StockName)
+                    {
+                        sc.ownedAmount = savedstock.ownamount;
+                        sc.avgPurchasePrice = savedstock.avgPurchasePrice;
+                    }
+                }
             }
         }
         else // 저장 파일이 없으면 기본값으로 시작

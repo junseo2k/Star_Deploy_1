@@ -81,6 +81,8 @@ public class UIManager : MonoBehaviour
     // 세이브로드 씬으로 이동
     public void OnSaveLoadClick()
     {
+        PlayerPrefs.SetInt("FromMainMenu", 0); // 인게임에서 왔음을 표시
+        PlayerPrefs.Save();
         SceneManager.LoadScene("SaveLoad");
     }
     
