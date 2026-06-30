@@ -28,6 +28,18 @@ public class GameManager : MonoBehaviour
     public string scheduledNationPair = "";                          // 대형 뉴스에 사용할 국가 쌍 (전조 뉴스와 공유)
     public int smallNewsTimer = 0;
     public int loanAmount = 0; // 현재 대출금
+    [Header("시대 시스템")]
+    public Era[] allEras;              // 전체 시대 목록 (Inspector에 등록)
+    public Era currentEra;             // 현재 진행 중인 시대 (없으면 null)
+    public int eraEndDay = -1;         // 현재 시대 종료 날짜
+    public int nextEraStartDay = 20;   // 다음 시대 시작 가능 날짜 (최초 20턴)
+    public int eraHintShownDay = -1;   // 힌트 뉴스를 보여준 날짜 (중복 출력 방지)
+
+    private const int ERA_FIRST_START_DAY = 20; // 시대 시스템 최초 발생 가능 날짜
+    private const int ERA_DURATION = 15;        // 시대 지속 턴 수
+    private const int ERA_COOLDOWN = 5;         // 시대 종료 후 휴지기 턴 수
+    private const int ERA_HINT_DAYS_BEFORE = 2; // 힌트 뉴스를 며칠 전에 보여줄지
+    private Era pendingEra; // 힌트 뉴스로 예고된, 아직 시작 안 한 시대
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -89,6 +101,11 @@ public class GameManager : MonoBehaviour
         public string scheduledNationPair;
         public int smallNewsTimer;
         public int loanAmount;
+        public int eraEndDay;
+        public int nextEraStartDay;
+        public int eraHintShownDay;
+        public string currentEraName;  // ScriptableObject는 직렬화 안 되니 이름으로 저장
+        public string pendingEraName;
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
@@ -107,6 +124,11 @@ public class GameManager : MonoBehaviour
         data.OwnStocks = new List<StockSaveData>();
         data.smallNewsTimer = smallNewsTimer;
         data.loanAmount = loanAmount;
+        data.eraEndDay = eraEndDay;
+        data.nextEraStartDay = nextEraStartDay;
+        data.eraHintShownDay = eraHintShownDay;
+        data.currentEraName = currentEra != null ? currentEra.eraName : "";
+        data.pendingEraName = pendingEra != null ? pendingEra.eraName : "";
 
         // 씬의 모든 StockControl을 검색하여 보유 수량이 있는 주식만 저장 목록에 추가
         StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -163,6 +185,11 @@ public class GameManager : MonoBehaviour
             scheduledNationPair = data.scheduledNationPair ?? "";
             smallNewsTimer = data.smallNewsTimer;
             loanAmount = data.loanAmount;
+            eraEndDay = data.eraEndDay;
+            nextEraStartDay = data.nextEraStartDay > 0 ? data.nextEraStartDay : ERA_FIRST_START_DAY;
+            eraHintShownDay = data.eraHintShownDay;
+            currentEra = System.Array.Find(allEras, e => e.eraName == data.currentEraName);
+            pendingEra = System.Array.Find(allEras, e => e.eraName == data.pendingEraName);
 
             // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -346,6 +373,49 @@ public class GameManager : MonoBehaviour
             }
             ScheduleNextBigNews();
         }
+        // 힌트 뉴스 — 시대 시작 며칠 전에 미리 보여줌
+if (currentEra == null
+    && nextEraStartDay >= ERA_FIRST_START_DAY
+    && currentDay == nextEraStartDay - ERA_HINT_DAYS_BEFORE
+    && eraHintShownDay != currentDay)
+{
+    eraHintShownDay = currentDay;
+    // 다음 시대를 미리 결정해서 힌트로 보여줌 (랜덤은 여기서 한 번만 뽑고 고정)
+    pendingEra = allEras[Random.Range(0, allEras.Length)];
+    if (pendingEra.hintNews != null)
+        AddActiveNews(pendingEra.hintNews);
+}
+
+// 시대 시작
+if (currentEra == null && currentDay >= nextEraStartDay)
+{
+    currentEra = pendingEra != null ? pendingEra : allEras[Random.Range(0, allEras.Length)];
+    pendingEra = null;
+    eraEndDay = currentDay + ERA_DURATION;
+    UIManager.instance.NoticeText.text = $"[새로운 시대] {currentEra.eraName} 시작! {currentEra.eraDescription}";
+}
+
+// 시대 종료
+if (currentEra != null && currentDay >= eraEndDay)
+{
+    UIManager.instance.NoticeText.text = $"{currentEra.eraName}이(가) 막을 내렸습니다.";
+    currentEra = null;
+    nextEraStartDay = currentDay + ERA_COOLDOWN;
+}
+
+// 시대 효과 적용 — 기존 가격 변동 루프(tabmanager.allstock 순회하는 부분) 안에 끼워 넣기
+if (currentEra != null)
+{
+    foreach (Stock stock in tabmanager.allstock)
+    {
+        if (System.Array.Exists(currentEra.boostedIndustries, t => t == stock.IndustryTag))
+            stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 + currentEra.boostedRate / 100f));
+        else if (System.Array.Exists(currentEra.weakenedIndustries, t => t == stock.IndustryTag))
+            stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 - currentEra.weakenedRate / 100f));
+
+        if (stock.StockCurrentPrice < 1) stock.StockCurrentPrice = 1;
+    }
+}
 
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
