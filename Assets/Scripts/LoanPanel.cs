@@ -8,7 +8,6 @@ public class LoanPanel : MonoBehaviour
     public TextMeshProUGUI maxLoanText;      // 최대 대출 가능 금액 표시
     public TextMeshProUGUI inputAmountText;  // 현재 입력 금액 표시
     public TextMeshProUGUI noticeText;       // 오류/안내 메시지 표시
-    public Transform EntirePanel;            // 닫기 버튼 클릭 시 복귀 대상
     public Transform loanPanel;              // 이 패널 루트 오브젝트
     public TextMeshProUGUI interestText; // 턴당 이자 표시
 
@@ -106,7 +105,6 @@ public class LoanPanel : MonoBehaviour
     // 닫기 버튼 클릭
     public void OnCloseClick()
     {
-        loanPanel.gameObject.SetActive(false);
-        EntirePanel.gameObject.SetActive(true);
+        UIManager.instance.ReturnToEntire(loanPanel.gameObject);
     }
 }

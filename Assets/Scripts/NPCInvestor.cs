@@ -28,7 +28,6 @@ public class NPCInvestor : MonoBehaviour
 
     private Worker worker;                                                               // 모델 추론 실행기
     private const int WINDOW_SIZE = 10;                                                  // 예측에 사용하는 과거 데이터 윈도우 크기 (일)
-    private Queue<float[]> priceHistory = new Queue<float[]>();                          // (미사용) 단일 주식 가격 이력
     private List<(Stock stock, float prediction)> dailyPredictions = new List<(Stock, float)>(); // 이번 턴에 수집한 주식별 예측값
 
     // 모델 로드 및 추론 워커 초기화

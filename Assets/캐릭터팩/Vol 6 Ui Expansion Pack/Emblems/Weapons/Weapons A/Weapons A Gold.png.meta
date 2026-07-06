@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: c3842a155a9de5b45b8b04af63fafff8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3196279854988655904
+    second: Weapons A Gold_0
+  - first:
+      213: -5470005974794050132
+    second: Weapons A Gold_1
+  - first:
+      213: -5519067920992605407
+    second: Weapons A Gold_2
+  - first:
+      213: 6755167265468802952
+    second: Weapons A Gold_3
+  - first:
+      213: -7086198775442242512
+    second: Weapons A Gold_4
+  - first:
+      213: 5582857454537596622
+    second: Weapons A Gold_5
+  - first:
+      213: 2155805881145153778
+    second: Weapons A Gold_6
+  - first:
+      213: 8886031225901635887
+    second: Weapons A Gold_7
+  - first:
+      213: -6047520821892992388
+    second: Weapons A Gold_8
+  - first:
+      213: 5608217982253926526
+    second: Weapons A Gold_9
+  - first:
+      213: -2387200348949771960
+    second: Weapons A Gold_10
+  - first:
+      213: 5722464893027495226
+    second: Weapons A Gold_11
+  - first:
+      213: -8352499518963812947
+    second: Weapons A Gold_12
+  - first:
+      213: 670355356775972857
+    second: Weapons A Gold_13
+  - first:
+      213: 5384988646418287436
+    second: Weapons A Gold_14
+  - first:
+      213: -8888980298891593299
+    second: Weapons A Gold_15
+  - first:
+      213: 5332288680485090960
+    second: Weapons A Gold_16
+  - first:
+      213: 3597116655571190121
+    second: Weapons A Gold_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Weapons A Gold_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 326
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02df55fe7977b5c20800000000000000
+      internalID: 3196279854988655904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 326
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca5e2291c82a614b0800000000000000
+      internalID: -5470005974794050132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 326
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12b6bf597f45863b0800000000000000
+      internalID: -5519067920992605407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 263
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8876d9866dc2fbd50800000000000000
+      internalID: 6755167265468802952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 262
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03405fd02c3c8ad90800000000000000
+      internalID: -7086198775442242512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_5
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 262
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eceda51964b4a7d40800000000000000
+      internalID: 5582857454537596622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 198
+        width: 59
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f8da56e606faed10800000000000000
+      internalID: 2155805881145153778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_7
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 198
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2955ead156815b70800000000000000
+      internalID: 8886031225901635887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_8
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 198
+        width: 55
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c723a478ad3e21ca0800000000000000
+      internalID: -6047520821892992388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 132
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78043f8a8464dd40800000000000000
+      internalID: 5608217982253926526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_10
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 132
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84909293ee5feded0800000000000000
+      internalID: -2387200348949771960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_11
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 132
+        width: 58
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d2c8450874a6f40800000000000000
+      internalID: 5722464893027495226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da57a81e0f5f51c80800000000000000
+      internalID: -8352499518963812947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 68
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff79e135a49d4900800000000000000
+      internalID: 670355356775972857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_14
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 67
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4b064d94a25bba40800000000000000
+      internalID: 5384988646418287436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 3
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9fe15938ff3a480800000000000000
+      internalID: -8888980298891593299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 3
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0967620ad48100a40800000000000000
+      internalID: 5332288680485090960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Gold_17
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 2
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96146f63a868be130800000000000000
+      internalID: 3597116655571190121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Weapons A Gold_0: 3196279854988655904
+      Weapons A Gold_1: -5470005974794050132
+      Weapons A Gold_10: -2387200348949771960
+      Weapons A Gold_11: 5722464893027495226
+      Weapons A Gold_12: -8352499518963812947
+      Weapons A Gold_13: 670355356775972857
+      Weapons A Gold_14: 5384988646418287436
+      Weapons A Gold_15: -8888980298891593299
+      Weapons A Gold_16: 5332288680485090960
+      Weapons A Gold_17: 3597116655571190121
+      Weapons A Gold_2: -5519067920992605407
+      Weapons A Gold_3: 6755167265468802952
+      Weapons A Gold_4: -7086198775442242512
+      Weapons A Gold_5: 5582857454537596622
+      Weapons A Gold_6: 2155805881145153778
+      Weapons A Gold_7: 8886031225901635887
+      Weapons A Gold_8: -6047520821892992388
+      Weapons A Gold_9: 5608217982253926526
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

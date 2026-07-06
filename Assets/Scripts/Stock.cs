@@ -43,4 +43,9 @@ public class Stock : ScriptableObject
     public int StockPreviousPrice;    // 하루 전 주식 가격 (변동률 계산 기준)
     [System.NonSerialized]
     public float StockChangePrice;    // 이번 턴 가격 변동률 (NPC 학습 데이터 입력에 사용)
+
+    // 전일 대비 가격 변동률(%) — 전일 가격이 0 이하면 0 반환 (0으로 나누기 방지)
+    public float ChangePercent => StockPreviousPrice > 0
+        ? (float)(StockCurrentPrice - StockPreviousPrice) / StockPreviousPrice * 100f
+        : 0f;
 }

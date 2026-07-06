@@ -6,7 +6,6 @@ using UnityEngine.UI;
 // 보유 주식 목록, 총 평가금액, 평균 매수가 대비 손익률을 표시
 public class PortfolioPanel : MonoBehaviour
 {
-    public Transform EntirePanel;       // 전체 주식 목록 패널 (닫기 버튼 클릭 시 복귀 대상)
     public Transform portfolioPanel;    // 이 포트폴리오 패널 루트 오브젝트
     public Transform contentParent;     // 주식 항목 프리팹이 생성될 스크롤뷰 Content
     public GameObject rowPrefab;        // StockWithImagePrefab —TextMeshProUGUI 조합 프리팹
@@ -71,7 +70,6 @@ public class PortfolioPanel : MonoBehaviour
     // 닫기 버튼 클릭 시 포트폴리오 패널 닫고 전체 주식 목록 패널로 복귀
     public void OnCloseClick()
     {
-        portfolioPanel.gameObject.SetActive(false);
-        EntirePanel.gameObject.SetActive(true);
+        UIManager.instance.ReturnToEntire(portfolioPanel.gameObject);
     }
 }

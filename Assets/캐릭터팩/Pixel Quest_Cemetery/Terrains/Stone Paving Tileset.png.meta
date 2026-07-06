@@ -1,0 +1,3809 @@
+fileFormatVersion: 2
+guid: f51af3da0172d2344895ce4d4c825d2e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3167259446053963475
+    second: Stone Paving Tileset_0
+  - first:
+      213: 803629084715031502
+    second: Stone Paving Tileset_1
+  - first:
+      213: -403690210832258632
+    second: Stone Paving Tileset_2
+  - first:
+      213: -4644659556363114758
+    second: Stone Paving Tileset_3
+  - first:
+      213: -6162905781302255945
+    second: Stone Paving Tileset_4
+  - first:
+      213: -3309336384906684
+    second: Stone Paving Tileset_5
+  - first:
+      213: 7257852882414620604
+    second: Stone Paving Tileset_6
+  - first:
+      213: 9084136692347340470
+    second: Stone Paving Tileset_7
+  - first:
+      213: -660574597013264543
+    second: Stone Paving Tileset_8
+  - first:
+      213: 5225971131074995361
+    second: Stone Paving Tileset_9
+  - first:
+      213: -9195425709253856053
+    second: Stone Paving Tileset_10
+  - first:
+      213: -9167849055731776040
+    second: Stone Paving Tileset_11
+  - first:
+      213: 5754582650452219669
+    second: Stone Paving Tileset_12
+  - first:
+      213: -7840943520592640247
+    second: Stone Paving Tileset_13
+  - first:
+      213: 4166938975061131531
+    second: Stone Paving Tileset_14
+  - first:
+      213: -5368575801151681165
+    second: Stone Paving Tileset_15
+  - first:
+      213: 5088572063288482922
+    second: Stone Paving Tileset_16
+  - first:
+      213: -5175926278583913281
+    second: Stone Paving Tileset_17
+  - first:
+      213: 7279993624959580614
+    second: Stone Paving Tileset_18
+  - first:
+      213: -4636298418491341179
+    second: Stone Paving Tileset_19
+  - first:
+      213: -3043038827814722896
+    second: Stone Paving Tileset_20
+  - first:
+      213: 4350733101985604945
+    second: Stone Paving Tileset_21
+  - first:
+      213: 4109781491593322191
+    second: Stone Paving Tileset_22
+  - first:
+      213: -515673557322907989
+    second: Stone Paving Tileset_23
+  - first:
+      213: 6811066630293434473
+    second: Stone Paving Tileset_24
+  - first:
+      213: 2785111068164217756
+    second: Stone Paving Tileset_25
+  - first:
+      213: 3640034693466040148
+    second: Stone Paving Tileset_26
+  - first:
+      213: 5564041951924005375
+    second: Stone Paving Tileset_27
+  - first:
+      213: -3928720726472513179
+    second: Stone Paving Tileset_28
+  - first:
+      213: -9180435291451348978
+    second: Stone Paving Tileset_29
+  - first:
+      213: -8536937166359620114
+    second: Stone Paving Tileset_30
+  - first:
+      213: -6416056695980159313
+    second: Stone Paving Tileset_31
+  - first:
+      213: -541799979070031609
+    second: Stone Paving Tileset_32
+  - first:
+      213: -357070144343832085
+    second: Stone Paving Tileset_33
+  - first:
+      213: -6274650324519053296
+    second: Stone Paving Tileset_34
+  - first:
+      213: -2839793456757379735
+    second: Stone Paving Tileset_35
+  - first:
+      213: 6929860132439223195
+    second: Stone Paving Tileset_36
+  - first:
+      213: -1157332411266269
+    second: Stone Paving Tileset_37
+  - first:
+      213: -7022209999151321302
+    second: Stone Paving Tileset_38
+  - first:
+      213: 4745478854783329255
+    second: Stone Paving Tileset_39
+  - first:
+      213: -5292226708129397099
+    second: Stone Paving Tileset_40
+  - first:
+      213: -1671995204697752987
+    second: Stone Paving Tileset_41
+  - first:
+      213: 2385051646106149501
+    second: Stone Paving Tileset_42
+  - first:
+      213: -1030678170136957992
+    second: Stone Paving Tileset_43
+  - first:
+      213: 7624138928630753364
+    second: Stone Paving Tileset_44
+  - first:
+      213: -7130656896603037067
+    second: Stone Paving Tileset_45
+  - first:
+      213: 6526245330650913827
+    second: Stone Paving Tileset_46
+  - first:
+      213: -2927494114947052934
+    second: Stone Paving Tileset_47
+  - first:
+      213: 2841069445273163080
+    second: Stone Paving Tileset_48
+  - first:
+      213: 269114985216879034
+    second: Stone Paving Tileset_49
+  - first:
+      213: -7060512700161999262
+    second: Stone Paving Tileset_50
+  - first:
+      213: -2160562921297260561
+    second: Stone Paving Tileset_51
+  - first:
+      213: 5465554761702840073
+    second: Stone Paving Tileset_52
+  - first:
+      213: -8684575835776485428
+    second: Stone Paving Tileset_53
+  - first:
+      213: -7663703583031375369
+    second: Stone Paving Tileset_54
+  - first:
+      213: -6376286540812283103
+    second: Stone Paving Tileset_55
+  - first:
+      213: 7008448709157180027
+    second: Stone Paving Tileset_56
+  - first:
+      213: -5885329478970216478
+    second: Stone Paving Tileset_57
+  - first:
+      213: 7360647551598181150
+    second: Stone Paving Tileset_58
+  - first:
+      213: -6641432436810379680
+    second: Stone Paving Tileset_59
+  - first:
+      213: 8284573605164523356
+    second: Stone Paving Tileset_60
+  - first:
+      213: -8191616334200431946
+    second: Stone Paving Tileset_61
+  - first:
+      213: -6614956721893100298
+    second: Stone Paving Tileset_62
+  - first:
+      213: 8791190098562962993
+    second: Stone Paving Tileset_63
+  - first:
+      213: 2748997333822994948
+    second: Stone Paving Tileset_64
+  - first:
+      213: 3625450440581462326
+    second: Stone Paving Tileset_65
+  - first:
+      213: 6077927996482597628
+    second: Stone Paving Tileset_66
+  - first:
+      213: -4262272375584173503
+    second: Stone Paving Tileset_67
+  - first:
+      213: 6257610928046101465
+    second: Stone Paving Tileset_68
+  - first:
+      213: 8849096258521457317
+    second: Stone Paving Tileset_69
+  - first:
+      213: -3098263568656963810
+    second: Stone Paving Tileset_70
+  - first:
+      213: -822078738478994815
+    second: Stone Paving Tileset_71
+  - first:
+      213: 8936576793391038034
+    second: Stone Paving Tileset_72
+  - first:
+      213: -4347631640885656800
+    second: Stone Paving Tileset_73
+  - first:
+      213: -8763215432299347589
+    second: Stone Paving Tileset_74
+  - first:
+      213: -6846485967045625232
+    second: Stone Paving Tileset_75
+  - first:
+      213: -4690826785520397839
+    second: Stone Paving Tileset_76
+  - first:
+      213: 3983754020716920096
+    second: Stone Paving Tileset_77
+  - first:
+      213: 2774745005883680947
+    second: Stone Paving Tileset_78
+  - first:
+      213: -9147766151619449331
+    second: Stone Paving Tileset_79
+  - first:
+      213: 7806553634033385050
+    second: Stone Paving Tileset_80
+  - first:
+      213: -2633684269423295782
+    second: Stone Paving Tileset_81
+  - first:
+      213: -515009324566196853
+    second: Stone Paving Tileset_82
+  - first:
+      213: 7045518005286899559
+    second: Stone Paving Tileset_83
+  - first:
+      213: 2189769865622462987
+    second: Stone Paving Tileset_84
+  - first:
+      213: -1905050892352389756
+    second: Stone Paving Tileset_85
+  - first:
+      213: -955505645707949359
+    second: Stone Paving Tileset_86
+  - first:
+      213: -4373726100667677271
+    second: Stone Paving Tileset_87
+  - first:
+      213: -4402913955114780900
+    second: Stone Paving Tileset_88
+  - first:
+      213: 1456351533941326778
+    second: Stone Paving Tileset_89
+  - first:
+      213: -4600905150216885183
+    second: Stone Paving Tileset_90
+  - first:
+      213: 3223939419718344287
+    second: Stone Paving Tileset_91
+  - first:
+      213: -4670950588764265261
+    second: Stone Paving Tileset_92
+  - first:
+      213: -5662169668681357000
+    second: Stone Paving Tileset_93
+  - first:
+      213: -8733337066762528839
+    second: Stone Paving Tileset_94
+  - first:
+      213: 1473897074921816537
+    second: Stone Paving Tileset_95
+  - first:
+      213: -7944560084885323270
+    second: Stone Paving Tileset_96
+  - first:
+      213: -5108364890423303090
+    second: Stone Paving Tileset_97
+  - first:
+      213: -7911927714951518253
+    second: Stone Paving Tileset_98
+  - first:
+      213: -4868288534894543994
+    second: Stone Paving Tileset_99
+  - first:
+      213: 449437712971208321
+    second: Stone Paving Tileset_100
+  - first:
+      213: -7304406208498104973
+    second: Stone Paving Tileset_101
+  - first:
+      213: -4145481021595592395
+    second: Stone Paving Tileset_102
+  - first:
+      213: -2329584630493792702
+    second: Stone Paving Tileset_103
+  - first:
+      213: 3031258618308123551
+    second: Stone Paving Tileset_104
+  - first:
+      213: -7978538230092846688
+    second: Stone Paving Tileset_105
+  - first:
+      213: -9036335609013263630
+    second: Stone Paving Tileset_106
+  - first:
+      213: 57506325420555005
+    second: Stone Paving Tileset_107
+  - first:
+      213: -2758704340290444296
+    second: Stone Paving Tileset_108
+  - first:
+      213: 6534923533151364333
+    second: Stone Paving Tileset_109
+  - first:
+      213: 3740099269910031257
+    second: Stone Paving Tileset_110
+  - first:
+      213: -7410134494489402922
+    second: Stone Paving Tileset_111
+  - first:
+      213: 4687573867412900770
+    second: Stone Paving Tileset_112
+  - first:
+      213: -7082023274082242328
+    second: Stone Paving Tileset_113
+  - first:
+      213: -3993608707455449644
+    second: Stone Paving Tileset_114
+  - first:
+      213: -5194875881090354133
+    second: Stone Paving Tileset_115
+  - first:
+      213: -4980627495403047702
+    second: Stone Paving Tileset_116
+  - first:
+      213: -6698544263363932683
+    second: Stone Paving Tileset_117
+  - first:
+      213: 2103600619224361785
+    second: Stone Paving Tileset_118
+  - first:
+      213: -1640741997960316145
+    second: Stone Paving Tileset_119
+  - first:
+      213: -2821750757964283771
+    second: Stone Paving Tileset_120
+  - first:
+      213: 4316368538965992389
+    second: Stone Paving Tileset_121
+  - first:
+      213: 5376340751775553237
+    second: Stone Paving Tileset_122
+  - first:
+      213: -4359167187709176439
+    second: Stone Paving Tileset_123
+  - first:
+      213: -5976944996898156217
+    second: Stone Paving Tileset_124
+  - first:
+      213: 1406682427908431397
+    second: Stone Paving Tileset_125
+  - first:
+      213: -8573045226548994653
+    second: Stone Paving Tileset_126
+  - first:
+      213: -6990586859356578341
+    second: Stone Paving Tileset_127
+  - first:
+      213: 2787235153245684475
+    second: Stone Paving Tileset_128
+  - first:
+      213: -2873814300417815314
+    second: Stone Paving Tileset_129
+  - first:
+      213: 2447180504384758680
+    second: Stone Paving Tileset_130
+  - first:
+      213: -7271740021593583001
+    second: Stone Paving Tileset_131
+  - first:
+      213: 6295306261689915449
+    second: Stone Paving Tileset_132
+  - first:
+      213: 6841462913640611695
+    second: Stone Paving Tileset_133
+  - first:
+      213: 4872928547340283900
+    second: Stone Paving Tileset_134
+  - first:
+      213: 6162487779254477505
+    second: Stone Paving Tileset_135
+  - first:
+      213: -8871178315379943299
+    second: Stone Paving Tileset_136
+  - first:
+      213: -5477471358030595289
+    second: Stone Paving Tileset_137
+  - first:
+      213: -4687328954445243955
+    second: Stone Paving Tileset_138
+  - first:
+      213: 8204019963145573888
+    second: Stone Paving Tileset_139
+  - first:
+      213: 9070544833276944672
+    second: Stone Paving Tileset_140
+  - first:
+      213: 4579611050761934390
+    second: Stone Paving Tileset_141
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stone Paving Tileset_0
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 248
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d60c817fad54fb20800000000000000
+      internalID: 3167259446053963475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 248
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecb9c9d0560172b00800000000000000
+      internalID: 803629084715031502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 248
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b96a0064edc56af0800000000000000
+      internalID: -403690210832258632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_3
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 248
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af66a50fdbada8fb0800000000000000
+      internalID: -4644659556363114758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_4
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 240
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7be174928d5f87aa0800000000000000
+      internalID: -6162905781302255945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 245
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ad5541d2e34fff0800000000000000
+      internalID: -3309336384906684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_6
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 250
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf4e582eb219b460800000000000000
+      internalID: 7257852882414620604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_7
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b6847e1136511e70800000000000000
+      internalID: 9084136692347340470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 224
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 167a06567ea25d6f0800000000000000
+      internalID: -660574597013264543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 240
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4eb2a2e01668840800000000000000
+      internalID: 5225971131074995361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_10
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 224
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4fd617909436080800000000000000
+      internalID: -9195425709253856053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_11
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 240
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d505be6bd145c080800000000000000
+      internalID: -9167849055731776040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_12
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 224
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51794d67e626cdf40800000000000000
+      internalID: 5754582650452219669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_13
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 240
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 907cc2f396f5f2390800000000000000
+      internalID: -7840943520592640247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_14
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 224
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b01cf31abe0f3d930800000000000000
+      internalID: 4166938975061131531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 240
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37d8896b0ccfe75b0800000000000000
+      internalID: -5368575801151681165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_16
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 224
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c5946c45d3e9640800000000000000
+      internalID: 5088572063288482922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_17
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 224
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4756d097a6b28b0800000000000000
+      internalID: -5175926278583913281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_18
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c9f2de71abb70560800000000000000
+      internalID: 7279993624959580614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_19
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5864e1d072f88afb0800000000000000
+      internalID: -4636298418491341179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_20
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 224
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2e16e0f44f4c5d0800000000000000
+      internalID: -3043038827814722896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_21
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 155a26084b8e06c30800000000000000
+      internalID: 4350733101985604945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_22
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fce15e6fd70e80930800000000000000
+      internalID: 4109781491593322191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_23
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baeb4bbb1a5f7d8f0800000000000000
+      internalID: -515673557322907989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_24
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96038208305c58e50800000000000000
+      internalID: 6811066630293434473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_25
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9bdfe5a2c3b6a620800000000000000
+      internalID: 2785111068164217756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_26
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 457242a9440048230800000000000000
+      internalID: 3640034693466040148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_27
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff92dcbfca2773d40800000000000000
+      internalID: 5564041951924005375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_28
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56924e480516a79c0800000000000000
+      internalID: -3928720726472513179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_29
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0825911eba889080800000000000000
+      internalID: -9180435291451348978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_30
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee51e49b0e4b68980800000000000000
+      internalID: -8536937166359620114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_31
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fae0651cd6695f6a0800000000000000
+      internalID: -6416056695980159313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_32
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70977342ac32b78f0800000000000000
+      internalID: -541799979070031609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_33
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be90d76789e6b0bf0800000000000000
+      internalID: -357070144343832085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_34
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018904d36c6fbe8a0800000000000000
+      internalID: -6274650324519053296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_35
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 240
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d6f7e95e60798d0800000000000000
+      internalID: -2839793456757379735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_36
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 232
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9b6e21131fcb2060800000000000000
+      internalID: 6929860132439223195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_37
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 240
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32b4dbc8963ebfff0800000000000000
+      internalID: -1157332411266269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_38
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 234
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2fa36606391c8e90800000000000000
+      internalID: -7022209999151321302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_39
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 208
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3ec7430e35bd140800000000000000
+      internalID: 4745478854783329255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_40
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596cc1f29db3e86b0800000000000000
+      internalID: -5292226708129397099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_41
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a75dd4831ebc8e0800000000000000
+      internalID: -1671995204697752987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_42
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d722e19e5d7691120800000000000000
+      internalID: 2385051646106149501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_43
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dbac3f3aab42b1f0800000000000000
+      internalID: -1030678170136957992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_44
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 458634f06f16ec960800000000000000
+      internalID: 7624138928630753364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_45
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 208
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57269c61551da0d90800000000000000
+      internalID: -7130656896603037067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_46
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32cdf7afc81e19a50800000000000000
+      internalID: 6526245330650913827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_47
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 224
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ac88cec937f57d0800000000000000
+      internalID: -2927494114947052934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_48
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 224
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84519bb9b918d6720800000000000000
+      internalID: 2841069445273163080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_49
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab9269937a61cb300800000000000000
+      internalID: 269114985216879034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_50
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26eb5be7b15040e90800000000000000
+      internalID: -7060512700161999262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_51
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 224
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef423168732402e0800000000000000
+      internalID: -2160562921297260561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_52
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 224
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9071eb7191d89db40800000000000000
+      internalID: 5465554761702840073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_53
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 208
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7f99b4a403a7780800000000000000
+      internalID: -8684575835776485428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_54
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 224
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f9c68df13e05a590800000000000000
+      internalID: -7663703583031375369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_55
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 218
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12397c49c21e287a0800000000000000
+      internalID: -6376286540812283103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_56
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 192
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b72dbd7f7f2034160800000000000000
+      internalID: 7008448709157180027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_57
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef68db450c135ea0800000000000000
+      internalID: -5885329478970216478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_58
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1bbbd523f5462660800000000000000
+      internalID: 7360647551598181150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_59
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e0924f264e4d3a0800000000000000
+      internalID: -6641432436810379680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_60
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f9863ecc7b8f270800000000000000
+      internalID: 8284573605164523356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_61
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba12b75858815e80800000000000000
+      internalID: -8191616334200431946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_62
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 192
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4baf2b8e3f234a0800000000000000
+      internalID: -6614956721893100298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_63
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 136d6c121d4900a70800000000000000
+      internalID: 8791190098562962993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_64
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40af303a286662620800000000000000
+      internalID: 2748997333822994948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_65
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63934ad97ff205230800000000000000
+      internalID: 3625450440581462326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_66
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 192
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf23fb08f43295450800000000000000
+      internalID: 6077927996482597628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_67
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 192
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142585d5bdd59d4c0800000000000000
+      internalID: -4262272375584173503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_68
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 202
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d35acc1cff77d650800000000000000
+      internalID: 6257610928046101465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_69
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 208
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a2e860a92e4eca70800000000000000
+      internalID: 8849096258521457317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_70
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 176
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17eaa913b1c005d0800000000000000
+      internalID: -3098263568656963810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_71
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 176
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18aee8f2eb36794f0800000000000000
+      internalID: -822078738478994815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_72
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 176
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e721ede39150c70800000000000000
+      internalID: 8936576793391038034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_73
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 176
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02303ceae0c1aa3c0800000000000000
+      internalID: -4347631640885656800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_74
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 176
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b71839b6efdc26680800000000000000
+      internalID: -8763215432299347589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_75
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 176
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a7c8689456cf0a0800000000000000
+      internalID: -6846485967045625232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_76
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 176
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f15b2244e5d6eeb0800000000000000
+      internalID: -4690826785520397839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_77
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 176
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02dbd5dcc23294730800000000000000
+      internalID: 3983754020716920096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_78
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 184
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b86cf1b1efd18620800000000000000
+      internalID: 2774745005883680947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_79
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 184
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e616ce62b9c0180800000000000000
+      internalID: -9147766151619449331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_80
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 176
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e38945b23765c60800000000000000
+      internalID: 7806553634033385050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_81
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 176
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad28d7e5c16437bd0800000000000000
+      internalID: -2633684269423295782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_82
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 184
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8dc7397fb15ad8f0800000000000000
+      internalID: -515009324566196853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_83
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 184
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f8ebb0c45b6c160800000000000000
+      internalID: 7045518005286899559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_84
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 176
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0228444710a36e10800000000000000
+      internalID: 2189769865622462987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_85
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 183
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d7b4a8e46ef85e0800000000000000
+      internalID: -1905050892352389756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_86
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 160
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1da82be7dac5db2f0800000000000000
+      internalID: -955505645707949359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_87
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 160
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a549d0d8476d43c0800000000000000
+      internalID: -4373726100667677271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_88
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 160
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c17f5c0e515b5e2c0800000000000000
+      internalID: -4402913955114780900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_89
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 160
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab30ba80100063410800000000000000
+      internalID: 1456351533941326778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_90
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 160
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14cae0c742d4620c0800000000000000
+      internalID: -4600905150216885183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_91
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 168
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ed0b132dbbdbc20800000000000000
+      internalID: 3223939419718344287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_92
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 168
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d4ed41ff237d2fb0800000000000000
+      internalID: -4670950588764265261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_93
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 168
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839a1409faeeb61b0800000000000000
+      internalID: -5662169668681357000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_94
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 168
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b71edf7534fcc680800000000000000
+      internalID: -8733337066762528839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_95
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 170
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1c332a495547410800000000000000
+      internalID: 1473897074921816537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_96
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 160
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1c9a3e1b04fb190800000000000000
+      internalID: -7944560084885323270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_97
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 176
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e44ed3b82317b19b0800000000000000
+      internalID: -5108364890423303090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_98
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 160
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d72fb599af233290800000000000000
+      internalID: -7911927714951518253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_99
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 151
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68bf08dee5d507cb0800000000000000
+      internalID: -4868288534894543994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_100
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 144
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186105ef739bc3600800000000000000
+      internalID: 449437712971208321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_101
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 144
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3750057f04981aa90800000000000000
+      internalID: -7304406208498104973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_102
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 144
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 539dbac79fa4876c0800000000000000
+      internalID: -4145481021595592395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_103
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 144
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24635390f17abafd0800000000000000
+      internalID: -2329584630493792702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_104
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 144
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9bd89e27a1311a20800000000000000
+      internalID: 3031258618308123551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_105
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 160
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9217870c9864190800000000000000
+      internalID: -7978538230092846688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_106
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 151
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f22d81e3ac789280800000000000000
+      internalID: -9036335609013263630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_107
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 160
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfab703c2bd4cc000800000000000000
+      internalID: 57506325420555005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_108
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 144
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3e8acc40d17b9d0800000000000000
+      internalID: -2758704340290444296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_109
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 160
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4e3d37456b0ba50800000000000000
+      internalID: 6534923533151364333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_110
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 144
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99b6fa7587087e330800000000000000
+      internalID: 3740099269910031257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_111
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 160
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d1271610f9e92990800000000000000
+      internalID: -7410134494489402922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_112
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 144
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2abcc89b89b9d0140800000000000000
+      internalID: 4687573867412900770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_113
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 160
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e07749ba5997bd90800000000000000
+      internalID: -7082023274082242328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_114
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 144
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d506342a0ad398c0800000000000000
+      internalID: -3993608707455449644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_115
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 160
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b247d57e8e718e7b0800000000000000
+      internalID: -5194875881090354133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_116
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 153
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae435f17ea141eab0800000000000000
+      internalID: -4980627495403047702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_117
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 144
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fd46fd9b7df903a0800000000000000
+      internalID: -6698544263363932683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_118
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 144
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93be82a2e9d713d10800000000000000
+      internalID: 2103600619224361785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_119
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 144
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0bb28b88d9ea39e0800000000000000
+      internalID: -1640741997960316145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_120
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 144
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58089dac2a027d8d0800000000000000
+      internalID: -2821750757964283771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_121
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 144
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c36dbc2152d6eb30800000000000000
+      internalID: 4316368538965992389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_122
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 147
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6d90dbd699c9a40800000000000000
+      internalID: 5376340751775553237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_123
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9855e04e9802183c0800000000000000
+      internalID: -4359167187709176439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_124
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 136
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74156d94130ad0da0800000000000000
+      internalID: -5976944996898156217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_125
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 136
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e144b173a858310800000000000000
+      internalID: 1406682427908431397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_126
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 136
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad5034d9cc660980800000000000000
+      internalID: -8573045226548994653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_127
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 137
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdd99840a427cfe90800000000000000
+      internalID: -6990586859356578341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_128
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf2c0beba9f3ea620800000000000000
+      internalID: 2787235153245684475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_129
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec8821be192e18d0800000000000000
+      internalID: -2873814300417815314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_130
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8936d19f3b126f120800000000000000
+      internalID: 2447180504384758680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_131
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 128
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7625ce94af6951b90800000000000000
+      internalID: -7271740021593583001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_132
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 128
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938d158e0bb6d5750800000000000000
+      internalID: 6295306261689915449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_133
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6fbe87b542c1fe50800000000000000
+      internalID: 6841462913640611695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_134
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cffe31822be10a340800000000000000
+      internalID: 4872928547340283900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_135
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 128
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c226272cfd858550800000000000000
+      internalID: 6162487779254477505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_136
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 128
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7851acd25e33e480800000000000000
+      internalID: -8871178315379943299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_137
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 136
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72bb53d12dc1cf3b0800000000000000
+      internalID: -5477471358030595289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_138
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 136
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc953e4862343feb0800000000000000
+      internalID: -4687328954445243955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_139
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 0
+        width: 81
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 006518190b88ad170800000000000000
+      internalID: 8204019963145573888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_140
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 128
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0212ab2d77c01ed70800000000000000
+      internalID: 9070544833276944672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stone Paving Tileset_141
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 6
+        width: 103
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6365e12acfb0e8f30800000000000000
+      internalID: 4579611050761934390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Stone Paving Tileset_0: 3167259446053963475
+      Stone Paving Tileset_1: 803629084715031502
+      Stone Paving Tileset_10: -9195425709253856053
+      Stone Paving Tileset_100: 449437712971208321
+      Stone Paving Tileset_101: -7304406208498104973
+      Stone Paving Tileset_102: -4145481021595592395
+      Stone Paving Tileset_103: -2329584630493792702
+      Stone Paving Tileset_104: 3031258618308123551
+      Stone Paving Tileset_105: -7978538230092846688
+      Stone Paving Tileset_106: -9036335609013263630
+      Stone Paving Tileset_107: 57506325420555005
+      Stone Paving Tileset_108: -2758704340290444296
+      Stone Paving Tileset_109: 6534923533151364333
+      Stone Paving Tileset_11: -9167849055731776040
+      Stone Paving Tileset_110: 3740099269910031257
+      Stone Paving Tileset_111: -7410134494489402922
+      Stone Paving Tileset_112: 4687573867412900770
+      Stone Paving Tileset_113: -7082023274082242328
+      Stone Paving Tileset_114: -3993608707455449644
+      Stone Paving Tileset_115: -5194875881090354133
+      Stone Paving Tileset_116: -4980627495403047702
+      Stone Paving Tileset_117: -6698544263363932683
+      Stone Paving Tileset_118: 2103600619224361785
+      Stone Paving Tileset_119: -1640741997960316145
+      Stone Paving Tileset_12: 5754582650452219669
+      Stone Paving Tileset_120: -2821750757964283771
+      Stone Paving Tileset_121: 4316368538965992389
+      Stone Paving Tileset_122: 5376340751775553237
+      Stone Paving Tileset_123: -4359167187709176439
+      Stone Paving Tileset_124: -5976944996898156217
+      Stone Paving Tileset_125: 1406682427908431397
+      Stone Paving Tileset_126: -8573045226548994653
+      Stone Paving Tileset_127: -6990586859356578341
+      Stone Paving Tileset_128: 2787235153245684475
+      Stone Paving Tileset_129: -2873814300417815314
+      Stone Paving Tileset_13: -7840943520592640247
+      Stone Paving Tileset_130: 2447180504384758680
+      Stone Paving Tileset_131: -7271740021593583001
+      Stone Paving Tileset_132: 6295306261689915449
+      Stone Paving Tileset_133: 6841462913640611695
+      Stone Paving Tileset_134: 4872928547340283900
+      Stone Paving Tileset_135: 6162487779254477505
+      Stone Paving Tileset_136: -8871178315379943299
+      Stone Paving Tileset_137: -5477471358030595289
+      Stone Paving Tileset_138: -4687328954445243955
+      Stone Paving Tileset_139: 8204019963145573888
+      Stone Paving Tileset_14: 4166938975061131531
+      Stone Paving Tileset_140: 9070544833276944672
+      Stone Paving Tileset_141: 4579611050761934390
+      Stone Paving Tileset_15: -5368575801151681165
+      Stone Paving Tileset_16: 5088572063288482922
+      Stone Paving Tileset_17: -5175926278583913281
+      Stone Paving Tileset_18: 7279993624959580614
+      Stone Paving Tileset_19: -4636298418491341179
+      Stone Paving Tileset_2: -403690210832258632
+      Stone Paving Tileset_20: -3043038827814722896
+      Stone Paving Tileset_21: 4350733101985604945
+      Stone Paving Tileset_22: 4109781491593322191
+      Stone Paving Tileset_23: -515673557322907989
+      Stone Paving Tileset_24: 6811066630293434473
+      Stone Paving Tileset_25: 2785111068164217756
+      Stone Paving Tileset_26: 3640034693466040148
+      Stone Paving Tileset_27: 5564041951924005375
+      Stone Paving Tileset_28: -3928720726472513179
+      Stone Paving Tileset_29: -9180435291451348978
+      Stone Paving Tileset_3: -4644659556363114758
+      Stone Paving Tileset_30: -8536937166359620114
+      Stone Paving Tileset_31: -6416056695980159313
+      Stone Paving Tileset_32: -541799979070031609
+      Stone Paving Tileset_33: -357070144343832085
+      Stone Paving Tileset_34: -6274650324519053296
+      Stone Paving Tileset_35: -2839793456757379735
+      Stone Paving Tileset_36: 6929860132439223195
+      Stone Paving Tileset_37: -1157332411266269
+      Stone Paving Tileset_38: -7022209999151321302
+      Stone Paving Tileset_39: 4745478854783329255
+      Stone Paving Tileset_4: -6162905781302255945
+      Stone Paving Tileset_40: -5292226708129397099
+      Stone Paving Tileset_41: -1671995204697752987
+      Stone Paving Tileset_42: 2385051646106149501
+      Stone Paving Tileset_43: -1030678170136957992
+      Stone Paving Tileset_44: 7624138928630753364
+      Stone Paving Tileset_45: -7130656896603037067
+      Stone Paving Tileset_46: 6526245330650913827
+      Stone Paving Tileset_47: -2927494114947052934
+      Stone Paving Tileset_48: 2841069445273163080
+      Stone Paving Tileset_49: 269114985216879034
+      Stone Paving Tileset_5: -3309336384906684
+      Stone Paving Tileset_50: -7060512700161999262
+      Stone Paving Tileset_51: -2160562921297260561
+      Stone Paving Tileset_52: 5465554761702840073
+      Stone Paving Tileset_53: -8684575835776485428
+      Stone Paving Tileset_54: -7663703583031375369
+      Stone Paving Tileset_55: -6376286540812283103
+      Stone Paving Tileset_56: 7008448709157180027
+      Stone Paving Tileset_57: -5885329478970216478
+      Stone Paving Tileset_58: 7360647551598181150
+      Stone Paving Tileset_59: -6641432436810379680
+      Stone Paving Tileset_6: 7257852882414620604
+      Stone Paving Tileset_60: 8284573605164523356
+      Stone Paving Tileset_61: -8191616334200431946
+      Stone Paving Tileset_62: -6614956721893100298
+      Stone Paving Tileset_63: 8791190098562962993
+      Stone Paving Tileset_64: 2748997333822994948
+      Stone Paving Tileset_65: 3625450440581462326
+      Stone Paving Tileset_66: 6077927996482597628
+      Stone Paving Tileset_67: -4262272375584173503
+      Stone Paving Tileset_68: 6257610928046101465
+      Stone Paving Tileset_69: 8849096258521457317
+      Stone Paving Tileset_7: 9084136692347340470
+      Stone Paving Tileset_70: -3098263568656963810
+      Stone Paving Tileset_71: -822078738478994815
+      Stone Paving Tileset_72: 8936576793391038034
+      Stone Paving Tileset_73: -4347631640885656800
+      Stone Paving Tileset_74: -8763215432299347589
+      Stone Paving Tileset_75: -6846485967045625232
+      Stone Paving Tileset_76: -4690826785520397839
+      Stone Paving Tileset_77: 3983754020716920096
+      Stone Paving Tileset_78: 2774745005883680947
+      Stone Paving Tileset_79: -9147766151619449331
+      Stone Paving Tileset_8: -660574597013264543
+      Stone Paving Tileset_80: 7806553634033385050
+      Stone Paving Tileset_81: -2633684269423295782
+      Stone Paving Tileset_82: -515009324566196853
+      Stone Paving Tileset_83: 7045518005286899559
+      Stone Paving Tileset_84: 2189769865622462987
+      Stone Paving Tileset_85: -1905050892352389756
+      Stone Paving Tileset_86: -955505645707949359
+      Stone Paving Tileset_87: -4373726100667677271
+      Stone Paving Tileset_88: -4402913955114780900
+      Stone Paving Tileset_89: 1456351533941326778
+      Stone Paving Tileset_9: 5225971131074995361
+      Stone Paving Tileset_90: -4600905150216885183
+      Stone Paving Tileset_91: 3223939419718344287
+      Stone Paving Tileset_92: -4670950588764265261
+      Stone Paving Tileset_93: -5662169668681357000
+      Stone Paving Tileset_94: -8733337066762528839
+      Stone Paving Tileset_95: 1473897074921816537
+      Stone Paving Tileset_96: -7944560084885323270
+      Stone Paving Tileset_97: -5108364890423303090
+      Stone Paving Tileset_98: -7911927714951518253
+      Stone Paving Tileset_99: -4868288534894543994
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 1319968afccc0114aa0f4a92e9d25442
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2948135657121352153
+    second: Clan Marks Gold_0
+  - first:
+      213: -5121648208492132926
+    second: Clan Marks Gold_1
+  - first:
+      213: -1414784382782489752
+    second: Clan Marks Gold_2
+  - first:
+      213: -4732510706332780357
+    second: Clan Marks Gold_3
+  - first:
+      213: -5854729636547279280
+    second: Clan Marks Gold_4
+  - first:
+      213: 1369305779776809059
+    second: Clan Marks Gold_5
+  - first:
+      213: 7480633299285646168
+    second: Clan Marks Gold_6
+  - first:
+      213: -7618097066820614980
+    second: Clan Marks Gold_7
+  - first:
+      213: 3975807715697289569
+    second: Clan Marks Gold_8
+  - first:
+      213: -8234048341857604845
+    second: Clan Marks Gold_9
+  - first:
+      213: -8789026718764940686
+    second: Clan Marks Gold_10
+  - first:
+      213: 949480783988550003
+    second: Clan Marks Gold_11
+  - first:
+      213: 8688188096845665750
+    second: Clan Marks Gold_12
+  - first:
+      213: 6307326217680699584
+    second: Clan Marks Gold_13
+  - first:
+      213: -1096840525924010395
+    second: Clan Marks Gold_14
+  - first:
+      213: -4760529230908448657
+    second: Clan Marks Gold_15
+  - first:
+      213: 2158260335121677683
+    second: Clan Marks Gold_16
+  - first:
+      213: 1980556442835711948
+    second: Clan Marks Gold_17
+  - first:
+      213: 4621651316995380502
+    second: Clan Marks Gold_18
+  - first:
+      213: -1518034528809277528
+    second: Clan Marks Gold_19
+  - first:
+      213: 7559219038321287266
+    second: Clan Marks Gold_20
+  - first:
+      213: -4070590722926686471
+    second: Clan Marks Gold_21
+  - first:
+      213: 4269554042679384646
+    second: Clan Marks Gold_22
+  - first:
+      213: -591209232908488950
+    second: Clan Marks Gold_23
+  - first:
+      213: 4434480865894114546
+    second: Clan Marks Gold_24
+  - first:
+      213: -8139270275778592583
+    second: Clan Marks Gold_25
+  - first:
+      213: -829696729540490732
+    second: Clan Marks Gold_26
+  - first:
+      213: 433021398558973353
+    second: Clan Marks Gold_27
+  - first:
+      213: 5751272471994726307
+    second: Clan Marks Gold_28
+  - first:
+      213: -8405137149669916251
+    second: Clan Marks Gold_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Clan Marks Gold_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 262
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d98160a2c1e9e820800000000000000
+      internalID: 2948135657121352153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 262
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c58f4c07104ce8b0800000000000000
+      internalID: -5121648208492132926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 267
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86bba76891dad5ce0800000000000000
+      internalID: -1414784382782489752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 262
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb83d45269eb25eb0800000000000000
+      internalID: -4732510706332780357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 267
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056c5ad4a62dfbea0800000000000000
+      internalID: -5854729636547279280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 267
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3686c701a50c00310800000000000000
+      internalID: 1369305779776809059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b11e20a5c80d760800000000000000
+      internalID: 7480633299285646168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_7
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb446b38415174690800000000000000
+      internalID: -7618097066820614980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_8
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169e46d7d08ec2730800000000000000
+      internalID: 3975807715697289569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_9
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 204
+        width: 58
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31bee20b8a8cabd80800000000000000
+      internalID: -8234048341857604845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_10
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 204
+        width: 56
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 272499af3ca170680800000000000000
+      internalID: -8789026718764940686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_11
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 204
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37962b21ebb3d2d00800000000000000
+      internalID: 949480783988550003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 137
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d55346ca05a29870800000000000000
+      internalID: 8688188096845665750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 137
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0cd5ff6cf188750800000000000000
+      internalID: 6307326217680699584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_14
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 137
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566fb0d5a5d37c0f0800000000000000
+      internalID: -1096840525924010395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_15
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 137
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60a6d803e33fedb0800000000000000
+      internalID: -4760529230908448657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_16
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 137
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37d3ebff65ea3fd10800000000000000
+      internalID: 2158260335121677683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_17
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 137
+        width: 44
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc775d067995c7b10800000000000000
+      internalID: 1980556442835711948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 71
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 615d931e267632040800000000000000
+      internalID: 4621651316995380502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 75
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a7ab8193abdeeae0800000000000000
+      internalID: -1518034528809277528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_20
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 71
+        width: 50
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260a2863aadb7e860800000000000000
+      internalID: 7559219038321287266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_21
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 75
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fe44fded4b5287c0800000000000000
+      internalID: -4070590722926686471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_22
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 75
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64adc3fd7c0804b30800000000000000
+      internalID: 4269554042679384646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_23
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 77
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0fee84c55a9bc7f0800000000000000
+      internalID: -591209232908488950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_24
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 50
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4a2e64ad07a8d30800000000000000
+      internalID: 4434480865894114546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_25
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 10
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b04251dec08b0f80800000000000000
+      internalID: -8139270275778592583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_26
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 10
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a8f6c68335c74f0800000000000000
+      internalID: -829696729540490732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_27
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 10
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad1041faa6620600800000000000000
+      internalID: 433021398558973353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_28
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 10
+        width: 46
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a77abb77df90df40800000000000000
+      internalID: 5751272471994726307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks Gold_29
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 10
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a14c717b44fa5b80800000000000000
+      internalID: -8405137149669916251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Clan Marks Gold_0: 2948135657121352153
+      Clan Marks Gold_1: -5121648208492132926
+      Clan Marks Gold_10: -8789026718764940686
+      Clan Marks Gold_11: 949480783988550003
+      Clan Marks Gold_12: 8688188096845665750
+      Clan Marks Gold_13: 6307326217680699584
+      Clan Marks Gold_14: -1096840525924010395
+      Clan Marks Gold_15: -4760529230908448657
+      Clan Marks Gold_16: 2158260335121677683
+      Clan Marks Gold_17: 1980556442835711948
+      Clan Marks Gold_18: 4621651316995380502
+      Clan Marks Gold_19: -1518034528809277528
+      Clan Marks Gold_2: -1414784382782489752
+      Clan Marks Gold_20: 7559219038321287266
+      Clan Marks Gold_21: -4070590722926686471
+      Clan Marks Gold_22: 4269554042679384646
+      Clan Marks Gold_23: -591209232908488950
+      Clan Marks Gold_24: 4434480865894114546
+      Clan Marks Gold_25: -8139270275778592583
+      Clan Marks Gold_26: -829696729540490732
+      Clan Marks Gold_27: 433021398558973353
+      Clan Marks Gold_28: 5751272471994726307
+      Clan Marks Gold_29: -8405137149669916251
+      Clan Marks Gold_3: -4732510706332780357
+      Clan Marks Gold_4: -5854729636547279280
+      Clan Marks Gold_5: 1369305779776809059
+      Clan Marks Gold_6: 7480633299285646168
+      Clan Marks Gold_7: -7618097066820614980
+      Clan Marks Gold_8: 3975807715697289569
+      Clan Marks Gold_9: -8234048341857604845
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

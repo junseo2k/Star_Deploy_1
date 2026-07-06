@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 76b79a9827768af41af1f322058b43f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9064713197220265787
+    second: Clan Marks_0
+  - first:
+      213: -1342388046848431835
+    second: Clan Marks_1
+  - first:
+      213: -305881717419543507
+    second: Clan Marks_2
+  - first:
+      213: -730944971131733540
+    second: Clan Marks_3
+  - first:
+      213: -2607167035460506347
+    second: Clan Marks_4
+  - first:
+      213: 4076154358254837143
+    second: Clan Marks_5
+  - first:
+      213: -2142744800822369082
+    second: Clan Marks_6
+  - first:
+      213: -1490473704781488507
+    second: Clan Marks_7
+  - first:
+      213: 3624289295253847590
+    second: Clan Marks_8
+  - first:
+      213: 8831803146438308696
+    second: Clan Marks_9
+  - first:
+      213: 3906311847645417094
+    second: Clan Marks_10
+  - first:
+      213: 3217191644667927233
+    second: Clan Marks_11
+  - first:
+      213: 2658555911996700722
+    second: Clan Marks_12
+  - first:
+      213: -5833045147555866325
+    second: Clan Marks_13
+  - first:
+      213: -6905011349011816756
+    second: Clan Marks_14
+  - first:
+      213: -7503276103860358327
+    second: Clan Marks_15
+  - first:
+      213: -5319544574507242979
+    second: Clan Marks_16
+  - first:
+      213: -7797818454322803502
+    second: Clan Marks_17
+  - first:
+      213: -7063767564208618794
+    second: Clan Marks_18
+  - first:
+      213: 2717044377749159041
+    second: Clan Marks_19
+  - first:
+      213: 5850728276689102676
+    second: Clan Marks_20
+  - first:
+      213: -5478804572780125923
+    second: Clan Marks_21
+  - first:
+      213: 4853487948482630583
+    second: Clan Marks_22
+  - first:
+      213: -2931866362984178693
+    second: Clan Marks_23
+  - first:
+      213: 8242161797387855766
+    second: Clan Marks_24
+  - first:
+      213: -7176743175282803846
+    second: Clan Marks_25
+  - first:
+      213: -934961098099347850
+    second: Clan Marks_26
+  - first:
+      213: -684420513101311569
+    second: Clan Marks_27
+  - first:
+      213: 2339792271608201974
+    second: Clan Marks_28
+  - first:
+      213: 8641324838362820590
+    second: Clan Marks_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Clan Marks_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 262
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3ffb1f30a45ccd70800000000000000
+      internalID: 9064713197220265787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 262
+        width: 58
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5296ed40f21ee5de0800000000000000
+      internalID: -1342388046848431835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 267
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d24fbe9d23a41cbf0800000000000000
+      internalID: -305881717419543507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 262
+        width: 48
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd9b555eb692bd5f0800000000000000
+      internalID: -730944971131733540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 267
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51da445056b71dbd0800000000000000
+      internalID: -2607167035460506347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 267
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d907ddac8619830800000000000000
+      internalID: 4076154358254837143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c4eaa6d4f07342e0800000000000000
+      internalID: -2142744800822369082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_7
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e5077ff06c05be0800000000000000
+      internalID: -1490473704781488507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_8
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 204
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e3bd669ef0c4230800000000000000
+      internalID: 3624289295253847590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_9
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 204
+        width: 58
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853f1a53b2ed09a70800000000000000
+      internalID: 8831803146438308696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_10
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 204
+        width: 56
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68e0ecccde1063630800000000000000
+      internalID: 3906311847645417094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_11
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 204
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca59c261c2c5ac20800000000000000
+      internalID: 3217191644667927233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 137
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238f31e248615e420800000000000000
+      internalID: 2658555911996700722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 137
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29dd15d75cdc0fa0800000000000000
+      internalID: -5833045147555866325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_14
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 137
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce1c1c23c87c20a0800000000000000
+      internalID: -6905011349011816756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_15
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 137
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943f9b933220fd790800000000000000
+      internalID: -7503276103860358327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_16
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 137
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1aa3a5c46e2d26b0800000000000000
+      internalID: -5319544574507242979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_17
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 137
+        width: 44
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc8a1f2e6598c390800000000000000
+      internalID: -7797818454322803502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 71
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d24b6763d478fd90800000000000000
+      internalID: -7063767564208618794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 75
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18cf5be4771e4b520800000000000000
+      internalID: 2717044377749159041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_20
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 71
+        width: 50
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45723618e56f13150800000000000000
+      internalID: 5850728276689102676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_21
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 75
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11a7add44067f3b0800000000000000
+      internalID: -5478804572780125923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_22
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 75
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b352f2039d0b5340800000000000000
+      internalID: 4853487948482630583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_23
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 77
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb5969931bef47d0800000000000000
+      internalID: -2931866362984178693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_24
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 50
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69729926c7a026270800000000000000
+      internalID: 8242161797387855766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_25
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 10
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b3f092b16176c90800000000000000
+      internalID: -7176743175282803846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_26
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 10
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67eaafcb5d95603f0800000000000000
+      internalID: -934961098099347850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_27
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 10
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa11b976b237086f0800000000000000
+      internalID: -684420513101311569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_28
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 10
+        width: 46
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f2496d9cac987020800000000000000
+      internalID: 2339792271608201974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clan Marks_29
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 10
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef206328272ce770800000000000000
+      internalID: 8641324838362820590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Clan Marks_0: 9064713197220265787
+      Clan Marks_1: -1342388046848431835
+      Clan Marks_10: 3906311847645417094
+      Clan Marks_11: 3217191644667927233
+      Clan Marks_12: 2658555911996700722
+      Clan Marks_13: -5833045147555866325
+      Clan Marks_14: -6905011349011816756
+      Clan Marks_15: -7503276103860358327
+      Clan Marks_16: -5319544574507242979
+      Clan Marks_17: -7797818454322803502
+      Clan Marks_18: -7063767564208618794
+      Clan Marks_19: 2717044377749159041
+      Clan Marks_2: -305881717419543507
+      Clan Marks_20: 5850728276689102676
+      Clan Marks_21: -5478804572780125923
+      Clan Marks_22: 4853487948482630583
+      Clan Marks_23: -2931866362984178693
+      Clan Marks_24: 8242161797387855766
+      Clan Marks_25: -7176743175282803846
+      Clan Marks_26: -934961098099347850
+      Clan Marks_27: -684420513101311569
+      Clan Marks_28: 2339792271608201974
+      Clan Marks_29: 8641324838362820590
+      Clan Marks_3: -730944971131733540
+      Clan Marks_4: -2607167035460506347
+      Clan Marks_5: 4076154358254837143
+      Clan Marks_6: -2142744800822369082
+      Clan Marks_7: -1490473704781488507
+      Clan Marks_8: 3624289295253847590
+      Clan Marks_9: 8831803146438308696
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

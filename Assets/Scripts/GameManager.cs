@@ -12,11 +12,9 @@ public class GameManager : MonoBehaviour
     public int currentgold;  // 현재 보유 골드
     public int currentDay;   // 현재 게임 날짜
     public Case[] AllCases; // 게임에 등록된 모든 사건(Case ScriptableObject) 배열
-    public int randonindex;     // 랜덤으로 선택된 사건 인덱스 (참고용)
     public TabManager tabmanager;                                    // 모든 주식 목록(allstock)에 접근하기 위한 참조
     public List<Case> recentIssues;                                  // 최근 발생한 사건 이력
     public List<ActiveCase> activeNewsList = new List<ActiveCase>(); // 현재 진행 중인 활성 뉴스 목록
-    public int randomindex;                                          // (미사용) 랜덤 인덱스 임시 저장용
     public List<Case> SmallNewsCases = new List<Case>();             // SmallIndustryNews·SmallCompanyNews 타입 케이스 목록
     public List<Case> BigTriggerCases = new List<Case>();            // BigTriggerNews 타입 케이스 목록
     public int lowGoldStreak;                                        // 골드 1000 이하 연속 턴 수 (5턴 도달 시 게임 오버)
@@ -268,10 +266,7 @@ public class GameManager : MonoBehaviour
             });
 
         // 가격 변동률 계산
-            float changePct = stock.StockPreviousPrice > 0
-                ? (float)(stock.StockCurrentPrice - stock.StockPreviousPrice)
-                  / stock.StockPreviousPrice * 100f
-                : 0f;
+            float changePct = stock.ChangePercent;
 
             sb.AppendLine(
                 $"{currentDay}," +

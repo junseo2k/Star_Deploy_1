@@ -24,10 +24,8 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI MarketCapPrice;    // 시가총액 표시 텍스트
     public TextMeshProUGUI TotalSharePrice;   // 총 발행 주식 수 표시 텍스트               
     public Stock currentstock;               // 현재 상세 패널에 표시 중인 주식 데이터
-    public Transform EntirePanel;            // 전체 주식 목록 패널 (상세 패널 닫을 때 복귀 대상)
     public Transform DetailwithPanel;        // 상세 패널 전체 루트 (구매/판매 패널 전환 시 비활성화)
     public int maxmount;                     // 구매 또는 판매 가능한 최대 수량
-    public Transform BuyPanel;              // 구매/판매 입력 패널 (구매·판매 버튼 클릭 시 활성화)
     public OrderPanel orderPanel;           // 구매/판매 수량 확인 패널 참조
 
 
@@ -55,7 +53,7 @@ public class DetailPanel : MonoBehaviour
         ProfitPrice.text = $"{stock.OperatingProfit} G";
         MarketCapPrice.text = $"{stock.marketCap} G";
         TotalSharePrice.text = $"{stock.TotalShare} stock";
-        int change = Mathf.RoundToInt((((float)stock.StockCurrentPrice-stock.StockPreviousPrice)/(float)stock.StockPreviousPrice)*100);
+        int change = Mathf.RoundToInt(stock.ChangePercent);
         if (change > 0)
         {
             StockChangePrice.text = $"+{change}%";
@@ -120,25 +118,17 @@ public class DetailPanel : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        DetailwithPanel.gameObject.SetActive(false);
-        EntirePanel.gameObject.SetActive(true);
+        UIManager.instance.ReturnToEntire(DetailwithPanel.gameObject);
     }
     // 구매 버튼 클릭 시 상세 패널 닫고 구매 패널 열기
     // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 구매 수량 계산
     public void OnBuyButtonClick()
     {
         DetailwithPanel.gameObject.SetActive(false);
-        BuyPanel.gameObject.SetActive(true);
-        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        foreach (StockControl sc in allStocks)
-        {
-            if (sc.stockinfo.StockName == currentstock.StockName)
-            {
-                orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
-                orderPanel.OwnedNum = sc.ownedAmount; // ← 여기서 가져오기!
-                break;
-            }
-        }
+        UIManager.instance.buyPanel.gameObject.SetActive(true);
+        StockControl sc = StockControl.Find(currentstock);
+        if (sc != null)
+            orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
         maxmount = GameManager.Instance.currentgold / currentstock.StockCurrentPrice; // 최대 구매 가능 수량 계산
         orderPanel.currentText.text = $"Maximum: {maxmount}";
         orderPanel.PurchaseText.text = $"OwnedStock : 1, \n {currentstock.StockCurrentPrice} gold.";
@@ -149,17 +139,12 @@ public class DetailPanel : MonoBehaviour
     public void OnSellButtonClick()
     {
         DetailwithPanel.gameObject.SetActive(false);
-        BuyPanel.gameObject.SetActive(true);
-        StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        foreach (StockControl sc in allStocks)
+        UIManager.instance.buyPanel.gameObject.SetActive(true);
+        StockControl sc = StockControl.Find(currentstock);
+        if (sc != null)
         {
-            if (sc.stockinfo.StockName == currentstock.StockName)
-            {
-                orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
-                orderPanel.OwnedNum = sc.ownedAmount; // ← 여기서 가져오기!
-                maxmount = sc.ownedAmount;
-                break;
-            }
+            orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
+            maxmount = sc.ownedAmount;
         }
         orderPanel.currentText.text = $"Maximum: {maxmount}";
         orderPanel.StockNum = 1;

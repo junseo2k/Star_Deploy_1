@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 8056f46c6c8af064aaa1c36df727dac6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5602455573241426308
+    second: Helmets Silver_0
+  - first:
+      213: -1593885461142913694
+    second: Helmets Silver_1
+  - first:
+      213: -2579553987753468812
+    second: Helmets Silver_2
+  - first:
+      213: -846131379609677440
+    second: Helmets Silver_3
+  - first:
+      213: 1702779281051659950
+    second: Helmets Silver_4
+  - first:
+      213: 6502612911848272187
+    second: Helmets Silver_5
+  - first:
+      213: -4255248016193160269
+    second: Helmets Silver_6
+  - first:
+      213: 8748124606676746835
+    second: Helmets Silver_7
+  - first:
+      213: 4217454759441190064
+    second: Helmets Silver_8
+  - first:
+      213: -282279179754645114
+    second: Helmets Silver_9
+  - first:
+      213: -3965166323732530358
+    second: Helmets Silver_10
+  - first:
+      213: 2041063021455619610
+    second: Helmets Silver_11
+  - first:
+      213: -750086929265052140
+    second: Helmets Silver_12
+  - first:
+      213: 6148716857962804258
+    second: Helmets Silver_13
+  - first:
+      213: 667496686439523309
+    second: Helmets Silver_14
+  - first:
+      213: 4976643512164800171
+    second: Helmets Silver_15
+  - first:
+      213: 671209089929610763
+    second: Helmets Silver_16
+  - first:
+      213: 6408128523330256972
+    second: Helmets Silver_17
+  - first:
+      213: 1866335749856798166
+    second: Helmets Silver_18
+  - first:
+      213: 4674613895083477081
+    second: Helmets Silver_19
+  - first:
+      213: -4855830615690091734
+    second: Helmets Silver_20
+  - first:
+      213: 3453573214424677381
+    second: Helmets Silver_21
+  - first:
+      213: -3159056591395700353
+    second: Helmets Silver_22
+  - first:
+      213: 5459040595232332451
+    second: Helmets Silver_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Helmets Silver_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 200
+        width: 58
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e8907d6541042b0800000000000000
+      internalID: -5602455573241426308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 212
+        width: 58
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26dbaeb2e9161e9e0800000000000000
+      internalID: -1593885461142913694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 209
+        width: 54
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47c1301b055933cd0800000000000000
+      internalID: -2579553987753468812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 202
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081dd054effe144f0800000000000000
+      internalID: -846131379609677440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 209
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaeaaf10cbc71a710800000000000000
+      internalID: 1702779281051659950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 209
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b31b592bdfbed3a50800000000000000
+      internalID: 6502612911848272187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 145
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bbfe9b797252f4c0800000000000000
+      internalID: -4255248016193160269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 144
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35242dfeaf4976970800000000000000
+      internalID: 8748124606676746835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_8
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 144
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bcc5c832c8678a30800000000000000
+      internalID: 4217454759441190064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_9
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 146
+        width: 46
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6895c33e494251cf0800000000000000
+      internalID: -282279179754645114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_10
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 142
+        width: 44
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4bb496ac36e8f8c0800000000000000
+      internalID: -3965166323732530358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_11
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 146
+        width: 52
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a163c060100535c10800000000000000
+      internalID: 2041063021455619610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 74
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4163e7679e72795f0800000000000000
+      internalID: -750086929265052140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 85
+        width: 62
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 224345fa761a45550800000000000000
+      internalID: 6148716857962804258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_14
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 74
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de36af323bc634900800000000000000
+      internalID: 667496686439523309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_15
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 74
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba6d55c28e6901540800000000000000
+      internalID: 4976643512164800171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_16
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 76
+        width: 56
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b06844f6c1d905900800000000000000
+      internalID: 671209089929610763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_17
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 73
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c400624b0fe3ee850800000000000000
+      internalID: 6408128523330256972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 6
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5a3d9e97e86e910800000000000000
+      internalID: 1866335749856798166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_19
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 6
+        width: 50
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9584e8602909fd040800000000000000
+      internalID: 4674613895083477081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_20
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 9
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23635648cf9c9cb0800000000000000
+      internalID: -4855830615690091734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_21
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 9
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50c369b6a8e8def20800000000000000
+      internalID: 3453573214424677381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_22
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 9
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f71c08c74c6c824d0800000000000000
+      internalID: -3159056591395700353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Silver_23
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 9
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aa92458f7862cb40800000000000000
+      internalID: 5459040595232332451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Helmets Silver_0: -5602455573241426308
+      Helmets Silver_1: -1593885461142913694
+      Helmets Silver_10: -3965166323732530358
+      Helmets Silver_11: 2041063021455619610
+      Helmets Silver_12: -750086929265052140
+      Helmets Silver_13: 6148716857962804258
+      Helmets Silver_14: 667496686439523309
+      Helmets Silver_15: 4976643512164800171
+      Helmets Silver_16: 671209089929610763
+      Helmets Silver_17: 6408128523330256972
+      Helmets Silver_18: 1866335749856798166
+      Helmets Silver_19: 4674613895083477081
+      Helmets Silver_2: -2579553987753468812
+      Helmets Silver_20: -4855830615690091734
+      Helmets Silver_21: 3453573214424677381
+      Helmets Silver_22: -3159056591395700353
+      Helmets Silver_23: 5459040595232332451
+      Helmets Silver_3: -846131379609677440
+      Helmets Silver_4: 1702779281051659950
+      Helmets Silver_5: 6502612911848272187
+      Helmets Silver_6: -4255248016193160269
+      Helmets Silver_7: 8748124606676746835
+      Helmets Silver_8: 4217454759441190064
+      Helmets Silver_9: -282279179754645114
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

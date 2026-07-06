@@ -10,7 +10,6 @@ public class NewsPanel : MonoBehaviour
     public Transform BigNewsPanel;        // 대형 뉴스(BigTriggerNews 타입) 표시 패널
     public Transform IssueScroll;          // 진행 중인 소형 이슈 목록 표시 패널
     public GameObject StockWithImagePrefab; // 이미지+텍스트 조합 UI 프리팹 (뉴스 항목 생성에 사용)
-    public Transform EntirePanel;         // 전체 주식 목록 패널 (뉴스 패널 닫을 때 복귀 대상)
     public Transform newspanel;           // 이 뉴스 패널 루트 오브젝트 (닫기 버튼 클릭 시 비활성화)
 
     void Start()
@@ -60,8 +59,7 @@ public class NewsPanel : MonoBehaviour
     // IssuePanel의 자식 오브젝트를 정리하여 다음에 열 때 중복 표시 방지
     public void OnCancelClick()
     {
-        newspanel.gameObject.SetActive(false);
-        EntirePanel.gameObject.SetActive(true);
+        UIManager.instance.ReturnToEntire(newspanel.gameObject);
         foreach (Transform child in IssueScroll) // 기존 이슈 항목 정리
         {
             Destroy(child.gameObject);

@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 62af2686e5baced4b97b6f9c66c70012
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9089927997314069817
+    second: Weapons A Normal_0
+  - first:
+      213: -7875416806313640235
+    second: Weapons A Normal_1
+  - first:
+      213: 7847965870030948069
+    second: Weapons A Normal_2
+  - first:
+      213: 4530663706483300024
+    second: Weapons A Normal_3
+  - first:
+      213: -4720324888686715676
+    second: Weapons A Normal_4
+  - first:
+      213: -4717594549858234831
+    second: Weapons A Normal_5
+  - first:
+      213: -3624333208441988467
+    second: Weapons A Normal_6
+  - first:
+      213: -1453418215090326735
+    second: Weapons A Normal_7
+  - first:
+      213: -8945288616021103212
+    second: Weapons A Normal_8
+  - first:
+      213: -5709672047838304138
+    second: Weapons A Normal_9
+  - first:
+      213: 1187635874794153772
+    second: Weapons A Normal_10
+  - first:
+      213: -7826282094700336193
+    second: Weapons A Normal_11
+  - first:
+      213: 7308152406695328171
+    second: Weapons A Normal_12
+  - first:
+      213: 2882246837095817148
+    second: Weapons A Normal_13
+  - first:
+      213: 2171984714782317571
+    second: Weapons A Normal_14
+  - first:
+      213: -7689393198812748696
+    second: Weapons A Normal_15
+  - first:
+      213: -7718951909028898366
+    second: Weapons A Normal_16
+  - first:
+      213: -7273171135633585527
+    second: Weapons A Normal_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Weapons A Normal_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 326
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93578c16a59e52e70800000000000000
+      internalID: 9089927997314069817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 326
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5deb881f326e4b290800000000000000
+      internalID: -7875416806313640235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 326
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e68594e06399ec60800000000000000
+      internalID: 7847965870030948069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 263
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b611b5f2a620ee30800000000000000
+      internalID: 4530663706483300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 262
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec9469e5890e7eb0800000000000000
+      internalID: -4720324888686715676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_5
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 262
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13e816570ccb78eb0800000000000000
+      internalID: -4717594549858234831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 198
+        width: 59
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8ad9234628c3bdc0800000000000000
+      internalID: -3624333208441988467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_7
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 198
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133757b75db64dbe0800000000000000
+      internalID: -1453418215090326735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_8
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 198
+        width: 55
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d67bcd563fbd380800000000000000
+      internalID: -8945288616021103212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 132
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 678ee9c068b23c0b0800000000000000
+      internalID: -5709672047838304138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_10
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 132
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27ad9729845b7010800000000000000
+      internalID: 1187635874794153772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_11
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 132
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbbe26976e5736390800000000000000
+      internalID: -7826282094700336193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba9bd75c4e5cb6560800000000000000
+      internalID: 7308152406695328171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 68
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfd6104a3ccff720800000000000000
+      internalID: 2882246837095817148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_14
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 67
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c9d262790742e10800000000000000
+      internalID: 2171984714782317571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 3
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864267630a9c94590800000000000000
+      internalID: -7689393198812748696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 3
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c95200b226c0e490800000000000000
+      internalID: -7718951909028898366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons A Normal_17
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 2
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98a8fe51361801b90800000000000000
+      internalID: -7273171135633585527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Weapons A Normal_0: 9089927997314069817
+      Weapons A Normal_1: -7875416806313640235
+      Weapons A Normal_10: 1187635874794153772
+      Weapons A Normal_11: -7826282094700336193
+      Weapons A Normal_12: 7308152406695328171
+      Weapons A Normal_13: 2882246837095817148
+      Weapons A Normal_14: 2171984714782317571
+      Weapons A Normal_15: -7689393198812748696
+      Weapons A Normal_16: -7718951909028898366
+      Weapons A Normal_17: -7273171135633585527
+      Weapons A Normal_2: 7847965870030948069
+      Weapons A Normal_3: 4530663706483300024
+      Weapons A Normal_4: -4720324888686715676
+      Weapons A Normal_5: -4717594549858234831
+      Weapons A Normal_6: -3624333208441988467
+      Weapons A Normal_7: -1453418215090326735
+      Weapons A Normal_8: -8945288616021103212
+      Weapons A Normal_9: -5709672047838304138
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

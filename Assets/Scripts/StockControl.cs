@@ -12,11 +12,15 @@ public class StockControl : MonoBehaviour
     public UnityEngine.UI.Image stockImage;       // 주식 아이콘 이미지 표시 UI
     public TextMeshProUGUI ownedAmountText;       // 보유 수량 표시 UI
     public int ownedAmount;                       // 현재 보유 수량
-    public Transform EntirePanel;  // 전체 주식 목록 패널 (구매/판매 후 복귀 대상)
-    public Transform BuyPanel;     // 구매/판매 입력 패널
-    public OrderPanel orderPanel;  // 구매/판매 확인 패널 참조
-    public int maxmount;           // 구매 또는 판매 가능한 최대 수량
     public float avgPurchasePrice; // 평균 매수 단가 (포트폴리오 손익 계산에 사용)
+
+    // 씬의 모든 StockControl 중 지정한 주식과 이름이 일치하는 인스턴스 반환 (없으면 null)
+    public static StockControl Find(Stock stock)
+    {
+        return System.Array.Find(
+            FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None),
+            sc => sc.stockinfo.StockName == stock.StockName);
+    }
 
     void Start()
     {

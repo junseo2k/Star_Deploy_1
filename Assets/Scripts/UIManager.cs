@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public PortfolioPanel portfolioPanelScript; // 포트폴리오 패널 스크립트 참조
     public Transform loanPanel;           // 대출 패널 루트
     public LoanPanel loanPanelScript;     // 대출 패널 스크립트 참조
+    public Transform buyPanel;            // 구매/판매 입력 패널 (DetailPanel에서 열고 OrderPanel에서 닫음)
     public static UIManager instance; // 어디서든 UIManager에 접근하기 위한 싱글톤 인스턴스
     [SerializeField] private NewsPanel newsPanelScript;
 
@@ -42,6 +43,13 @@ public class UIManager : MonoBehaviour
     public void NoticeGold(string noticetext)
     {
         NoticeText.text = noticetext;
+    }
+
+    // selfPanel을 숨기고 전체 주식 목록 패널로 복귀 — 여러 패널의 닫기 처리에서 공통 사용
+    public void ReturnToEntire(GameObject selfPanel)
+    {
+        selfPanel.SetActive(false);
+        EntirePanel.gameObject.SetActive(true);
     }
 
     // GameManager의 현재 날짜 값을 읽어 날짜 텍스트 갱신

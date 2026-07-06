@@ -1,0 +1,1235 @@
+fileFormatVersion: 2
+guid: 99c3f938380cac64c9097a9e88d2c6d0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5589187946498923703
+    second: Interior Props Atlas_0
+  - first:
+      213: 5923852415495655549
+    second: Interior Props Atlas_1
+  - first:
+      213: 3861023247231685760
+    second: Interior Props Atlas_2
+  - first:
+      213: 8102441762057032163
+    second: Interior Props Atlas_3
+  - first:
+      213: 7788503603771567652
+    second: Interior Props Atlas_4
+  - first:
+      213: -1861984818462066655
+    second: Interior Props Atlas_5
+  - first:
+      213: 6492737553702390946
+    second: Interior Props Atlas_6
+  - first:
+      213: 1942149977998901695
+    second: Interior Props Atlas_7
+  - first:
+      213: 7891123360596401540
+    second: Interior Props Atlas_8
+  - first:
+      213: -6734610511338294200
+    second: Interior Props Atlas_9
+  - first:
+      213: 7565826304596656587
+    second: Interior Props Atlas_10
+  - first:
+      213: 5510359480243395995
+    second: Interior Props Atlas_11
+  - first:
+      213: 7294241025487548480
+    second: Interior Props Atlas_12
+  - first:
+      213: 5068524105674925447
+    second: Interior Props Atlas_13
+  - first:
+      213: 3739471739764412151
+    second: Interior Props Atlas_14
+  - first:
+      213: -5675416576684917066
+    second: Interior Props Atlas_15
+  - first:
+      213: 5456292541844844115
+    second: Interior Props Atlas_16
+  - first:
+      213: -7445935667429897114
+    second: Interior Props Atlas_17
+  - first:
+      213: 1263737278398746987
+    second: Interior Props Atlas_18
+  - first:
+      213: -5768822356520674204
+    second: Interior Props Atlas_19
+  - first:
+      213: -2184105474493388347
+    second: Interior Props Atlas_20
+  - first:
+      213: -4232159099021545824
+    second: Interior Props Atlas_21
+  - first:
+      213: -8672819594262555818
+    second: Interior Props Atlas_22
+  - first:
+      213: -6849444362020686441
+    second: Interior Props Atlas_23
+  - first:
+      213: 7028450876634917316
+    second: Interior Props Atlas_24
+  - first:
+      213: 7310251665770719869
+    second: Interior Props Atlas_25
+  - first:
+      213: 5092713450633386209
+    second: Interior Props Atlas_26
+  - first:
+      213: -8414703724539669165
+    second: Interior Props Atlas_27
+  - first:
+      213: -8756076864133969182
+    second: Interior Props Atlas_28
+  - first:
+      213: -3074779731027495922
+    second: Interior Props Atlas_29
+  - first:
+      213: 8408371666497773269
+    second: Interior Props Atlas_30
+  - first:
+      213: 4252965347762118780
+    second: Interior Props Atlas_31
+  - first:
+      213: 7430240970425911365
+    second: Interior Props Atlas_32
+  - first:
+      213: -5594729975488817295
+    second: Interior Props Atlas_33
+  - first:
+      213: -9014740660083062989
+    second: Interior Props Atlas_34
+  - first:
+      213: 5363960011992426562
+    second: Interior Props Atlas_35
+  - first:
+      213: 2091988564507244715
+    second: Interior Props Atlas_36
+  - first:
+      213: -6977062599181166545
+    second: Interior Props Atlas_37
+  - first:
+      213: -850584305890615117
+    second: Interior Props Atlas_38
+  - first:
+      213: -763147026845609325
+    second: Interior Props Atlas_39
+  - first:
+      213: 2713164649365151298
+    second: Interior Props Atlas_40
+  - first:
+      213: -2705290267451310857
+    second: Interior Props Atlas_41
+  - first:
+      213: 2685391742134100211
+    second: Interior Props Atlas_42
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Interior Props Atlas_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 831
+        width: 89
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc96f513d8c09d40800000000000000
+      internalID: 5589187946498923703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 911
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d70557fc260c53250800000000000000
+      internalID: 5923852415495655549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 911
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08415c0df2c159530800000000000000
+      internalID: 3861023247231685760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_3
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 911
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e113b0aad7a17070800000000000000
+      internalID: 8102441762057032163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 911
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e67aa23c2561c60800000000000000
+      internalID: 7788503603771567652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 895
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128f56e3ca6e826e0800000000000000
+      internalID: -1861984818462066655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 903
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac0544b766da1a50800000000000000
+      internalID: 6492737553702390946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_7
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 895
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb148237d17e3fa10800000000000000
+      internalID: 1942149977998901695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_8
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 831
+        width: 65
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d922333e6e28d60800000000000000
+      internalID: 7891123360596401540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_9
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 895
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 844b113eb6bd982a0800000000000000
+      internalID: -6734610511338294200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_10
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 895
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc14ac540f63ff860800000000000000
+      internalID: 7565826304596656587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_11
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 895
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d1d9c80cab87c40800000000000000
+      internalID: 5510359480243395995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_12
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 895
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040344ee0995a3560800000000000000
+      internalID: 7294241025487548480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_13
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 873
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7852246e1d3075640800000000000000
+      internalID: 5068524105674925447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_14
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 847
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe05481cb545e330800000000000000
+      internalID: 3739471739764412151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_15
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 879
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bef45271bedc31b0800000000000000
+      internalID: -5675416576684917066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_16
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 879
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35e664b7825a8bb40800000000000000
+      internalID: 5456292541844844115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_17
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 879
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c0e62f5f8baa890800000000000000
+      internalID: -7445935667429897114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_18
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 879
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b615060fb52b98110800000000000000
+      internalID: 1263737278398746987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_19
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 879
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46cd04b91a601ffa0800000000000000
+      internalID: -5768822356520674204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_20
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 879
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c9e5d094af70b1e0800000000000000
+      internalID: -2184105474493388347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 879
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae22ede8b95445c0800000000000000
+      internalID: -4232159099021545824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 879
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 653dee29784f3a780800000000000000
+      internalID: -8672819594262555818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_23
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 863
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79574f484a2e1f0a0800000000000000
+      internalID: -6849444362020686441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_24
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 863
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c96b1f75d21a8160800000000000000
+      internalID: 7028450876634917316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_25
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 863
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7aa8fc982b337560800000000000000
+      internalID: 7310251665770719869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_26
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 863
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e85bd7a6e3fca640800000000000000
+      internalID: 5092713450633386209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_27
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 863
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35518a8ab87f83b80800000000000000
+      internalID: -8414703724539669165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_28
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 863
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea4747db7a2c7680800000000000000
+      internalID: -8756076864133969182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_29
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 831
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e04f88120203455d0800000000000000
+      internalID: -3074779731027495922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 663
+        width: 336
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5de1f013b7980b470800000000000000
+      internalID: 8408371666497773269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_31
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 847
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c70286b5371950b30800000000000000
+      internalID: 4252965347762118780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_32
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 847
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5484ac5abc48d1760800000000000000
+      internalID: 7430240970425911365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_33
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 847
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17752ccbab68b52b0800000000000000
+      internalID: -5594729975488817295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_34
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 831
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3378a7db12535e280800000000000000
+      internalID: -9014740660083062989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_35
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 831
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2486530263d907a40800000000000000
+      internalID: 5363960011992426562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_36
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 831
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba832adf38c380d10800000000000000
+      internalID: 2091988564507244715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 599
+        width: 301
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f289428388e7c2f90800000000000000
+      internalID: -6977062599181166545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_38
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 607
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b02ed3941e1234f0800000000000000
+      internalID: -850584305890615117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 447
+        width: 336
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 392d87982d1c865f0800000000000000
+      internalID: -763147026845609325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 143
+        width: 321
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24e9e86afd817a520800000000000000
+      internalID: 2713164649365151298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_41
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 303
+        width: 17
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc3e32c5d0e47ad0800000000000000
+      internalID: -2705290267451310857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Interior Props Atlas_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 257
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f0aba8cf8d644520800000000000000
+      internalID: 2685391742134100211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Interior Props Atlas_0: 5589187946498923703
+      Interior Props Atlas_1: 5923852415495655549
+      Interior Props Atlas_10: 7565826304596656587
+      Interior Props Atlas_11: 5510359480243395995
+      Interior Props Atlas_12: 7294241025487548480
+      Interior Props Atlas_13: 5068524105674925447
+      Interior Props Atlas_14: 3739471739764412151
+      Interior Props Atlas_15: -5675416576684917066
+      Interior Props Atlas_16: 5456292541844844115
+      Interior Props Atlas_17: -7445935667429897114
+      Interior Props Atlas_18: 1263737278398746987
+      Interior Props Atlas_19: -5768822356520674204
+      Interior Props Atlas_2: 3861023247231685760
+      Interior Props Atlas_20: -2184105474493388347
+      Interior Props Atlas_21: -4232159099021545824
+      Interior Props Atlas_22: -8672819594262555818
+      Interior Props Atlas_23: -6849444362020686441
+      Interior Props Atlas_24: 7028450876634917316
+      Interior Props Atlas_25: 7310251665770719869
+      Interior Props Atlas_26: 5092713450633386209
+      Interior Props Atlas_27: -8414703724539669165
+      Interior Props Atlas_28: -8756076864133969182
+      Interior Props Atlas_29: -3074779731027495922
+      Interior Props Atlas_3: 8102441762057032163
+      Interior Props Atlas_30: 8408371666497773269
+      Interior Props Atlas_31: 4252965347762118780
+      Interior Props Atlas_32: 7430240970425911365
+      Interior Props Atlas_33: -5594729975488817295
+      Interior Props Atlas_34: -9014740660083062989
+      Interior Props Atlas_35: 5363960011992426562
+      Interior Props Atlas_36: 2091988564507244715
+      Interior Props Atlas_37: -6977062599181166545
+      Interior Props Atlas_38: -850584305890615117
+      Interior Props Atlas_39: -763147026845609325
+      Interior Props Atlas_4: 7788503603771567652
+      Interior Props Atlas_40: 2713164649365151298
+      Interior Props Atlas_41: -2705290267451310857
+      Interior Props Atlas_42: 2685391742134100211
+      Interior Props Atlas_5: -1861984818462066655
+      Interior Props Atlas_6: 6492737553702390946
+      Interior Props Atlas_7: 1942149977998901695
+      Interior Props Atlas_8: 7891123360596401540
+      Interior Props Atlas_9: -6734610511338294200
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

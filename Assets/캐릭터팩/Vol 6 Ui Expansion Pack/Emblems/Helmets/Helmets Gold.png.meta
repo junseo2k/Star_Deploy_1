@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 8f5c927fe303fd449b6a4a0e02c634c6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4219663735177635766
+    second: Helmets Gold_0
+  - first:
+      213: 5906420729463655327
+    second: Helmets Gold_1
+  - first:
+      213: 7458214453387029419
+    second: Helmets Gold_2
+  - first:
+      213: 7708375503085070730
+    second: Helmets Gold_3
+  - first:
+      213: -2139986587284436696
+    second: Helmets Gold_4
+  - first:
+      213: -6962997008388259953
+    second: Helmets Gold_5
+  - first:
+      213: -2294400954580419760
+    second: Helmets Gold_6
+  - first:
+      213: -2292167883307584260
+    second: Helmets Gold_7
+  - first:
+      213: 6257981958562035736
+    second: Helmets Gold_8
+  - first:
+      213: -7298219364582778972
+    second: Helmets Gold_9
+  - first:
+      213: 4827937014452603066
+    second: Helmets Gold_10
+  - first:
+      213: 5772108062089197520
+    second: Helmets Gold_11
+  - first:
+      213: 3585881801705333338
+    second: Helmets Gold_12
+  - first:
+      213: 5404481125573544570
+    second: Helmets Gold_13
+  - first:
+      213: -5983460991184028757
+    second: Helmets Gold_14
+  - first:
+      213: 5456759218670302304
+    second: Helmets Gold_15
+  - first:
+      213: 6279715493476272998
+    second: Helmets Gold_16
+  - first:
+      213: 2310602624129873477
+    second: Helmets Gold_17
+  - first:
+      213: -287360524105230467
+    second: Helmets Gold_18
+  - first:
+      213: -7083084327537722460
+    second: Helmets Gold_19
+  - first:
+      213: 4971568246053064298
+    second: Helmets Gold_20
+  - first:
+      213: 5296067988693868097
+    second: Helmets Gold_21
+  - first:
+      213: -1028029133400357560
+    second: Helmets Gold_22
+  - first:
+      213: -6709104058255974573
+    second: Helmets Gold_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Helmets Gold_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 200
+        width: 58
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b76cd67fc14f8a30800000000000000
+      internalID: 4219663735177635766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 212
+        width: 58
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9b4fa12c52d7f150800000000000000
+      internalID: 5906420729463655327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 209
+        width: 54
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bab61d0b786e08760800000000000000
+      internalID: 7458214453387029419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 202
+        width: 30
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8965b8eda6a9fa60800000000000000
+      internalID: 7708375503085070730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 209
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8298fc8798d3d42e0800000000000000
+      internalID: -2139986587284436696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 209
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8ff8e6cc177e5f90800000000000000
+      internalID: -6962997008388259953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 145
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05bbae1fc76a820e0800000000000000
+      internalID: -2294400954580419760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 144
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf474ed54759030e0800000000000000
+      internalID: -2292167883307584260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_8
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 144
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818b4e26f61d8d650800000000000000
+      internalID: 6257981958562035736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_9
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 146
+        width: 46
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a79a21d72487ba90800000000000000
+      internalID: -7298219364582778972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_10
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 142
+        width: 44
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab848689227400340800000000000000
+      internalID: 4827937014452603066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_11
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 146
+        width: 52
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7bef553b5aa1050800000000000000
+      internalID: 5772108062089197520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 74
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a522f25ff7c93c130800000000000000
+      internalID: 3585881801705333338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 85
+        width: 62
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7a4d1513f2900b40800000000000000
+      internalID: 5404481125573544570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_14
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 74
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babb1152ee976fca0800000000000000
+      internalID: -5983460991184028757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_15
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 74
+        width: 58
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0647ea5299d4abb40800000000000000
+      internalID: 5456759218670302304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_16
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 76
+        width: 56
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66b8b2f48f7062750800000000000000
+      internalID: 6279715493476272998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_17
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 73
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 546b85438d8e01020800000000000000
+      internalID: 2310602624129873477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_18
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 6
+        width: 42
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77dc363027130cf0800000000000000
+      internalID: -287360524105230467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_19
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 6
+        width: 50
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ab3af6f454d3bd90800000000000000
+      internalID: -7083084327537722460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_20
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 9
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6eca92bafe8ef440800000000000000
+      internalID: 4971568246053064298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_21
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 9
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e5a64a6c96f7940800000000000000
+      internalID: 5296067988693868097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_22
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 9
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8454bec23f4bbb1f0800000000000000
+      internalID: -1028029133400357560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Helmets Gold_23
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 9
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f5586c76974e2a0800000000000000
+      internalID: -6709104058255974573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Helmets Gold_0: 4219663735177635766
+      Helmets Gold_1: 5906420729463655327
+      Helmets Gold_10: 4827937014452603066
+      Helmets Gold_11: 5772108062089197520
+      Helmets Gold_12: 3585881801705333338
+      Helmets Gold_13: 5404481125573544570
+      Helmets Gold_14: -5983460991184028757
+      Helmets Gold_15: 5456759218670302304
+      Helmets Gold_16: 6279715493476272998
+      Helmets Gold_17: 2310602624129873477
+      Helmets Gold_18: -287360524105230467
+      Helmets Gold_19: -7083084327537722460
+      Helmets Gold_2: 7458214453387029419
+      Helmets Gold_20: 4971568246053064298
+      Helmets Gold_21: 5296067988693868097
+      Helmets Gold_22: -1028029133400357560
+      Helmets Gold_23: -6709104058255974573
+      Helmets Gold_3: 7708375503085070730
+      Helmets Gold_4: -2139986587284436696
+      Helmets Gold_5: -6962997008388259953
+      Helmets Gold_6: -2294400954580419760
+      Helmets Gold_7: -2292167883307584260
+      Helmets Gold_8: 6257981958562035736
+      Helmets Gold_9: -7298219364582778972
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

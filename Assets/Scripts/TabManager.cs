@@ -44,10 +44,6 @@ public class TabManager : MonoBehaviour
     public TextMeshProUGUI LuxuryPanelText;
     public TextMeshProUGUI GamePanelText;
 
-    public OrderPanel orderPanel;   // 구매/판매 확인 패널 참조
-    public Transform EntirePanel;   // 전체 주식 목록 패널
-    public Transform buyPanel;      // 구매/판매 입력 패널
-
     // 모든 패널을 숨긴 뒤 드워프 탭을 기본으로 열고, 각 탭 버튼 텍스트 초기화
     void Start()
     {
@@ -86,43 +82,21 @@ public class TabManager : MonoBehaviour
         OnFamilyTabClick("Dwarf", DwarfPanel);
     }
 
-    // 종족(FamilyTag) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
+    // 태그(종족 또는 산업) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
     // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
-    public void CreateFamilyStock(string tag, Transform panel)
+    // byFamily가 true면 FamilyTag, false면 IndustryTag로 필터링
+    void CreateStock(string tag, Transform panel, bool byFamily)
     {
         if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
 
         foreach (Stock stock in allstock)
         {
-            if (stock.FamilyTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
+            string stockTag = byFamily ? stock.FamilyTag : stock.IndustryTag;
+            if (stockTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
             {
                 GameObject newStock = Instantiate(StockItemPrefab, panel);
                 StockControl sc = newStock.GetComponent<StockControl>();
                 sc.stockinfo = stock;
-                sc.orderPanel = orderPanel;
-                sc.EntirePanel = EntirePanel;
-                sc.BuyPanel = buyPanel;
-                sc.Initialize();
-            }
-        }
-    }
-
-    // 산업(IndustryTag) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
-    // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
-    public void CreateIndustryStock(string tag, Transform panel)
-    {
-        if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
-
-        foreach (Stock stock in allstock)
-        {
-            if (stock.IndustryTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
-            {
-                GameObject newStock = Instantiate(StockItemPrefab, panel);
-                StockControl sc = newStock.GetComponent<StockControl>();
-                sc.stockinfo = stock;
-                sc.orderPanel = orderPanel;
-                sc.EntirePanel = EntirePanel;
-                sc.BuyPanel = buyPanel;
                 sc.Initialize();
             }
         }
@@ -234,21 +208,21 @@ public class TabManager : MonoBehaviour
     // 종족 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
     public void OnFamilyTabClick(string classification, Transform panel)
     {
-        HideAllPanels();
-        panel.gameObject.SetActive(true);
-        CreateFamilyStock(classification, panel);
-        foreach (StockControl stock in panel.GetComponentsInChildren<StockControl>())
-        {
-            stock.UpdatePriceText();
-        }
+        OpenTab(classification, panel, true);
     }
 
     // 산업 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
     public void OnIndustryTabClick(string classification, Transform panel)
     {
+        OpenTab(classification, panel, false);
+    }
+
+    // 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
+    void OpenTab(string classification, Transform panel, bool byFamily)
+    {
         HideAllPanels();
         panel.gameObject.SetActive(true);
-        CreateIndustryStock(classification, panel);
+        CreateStock(classification, panel, byFamily);
         foreach (StockControl stock in panel.GetComponentsInChildren<StockControl>())
         {
             stock.UpdatePriceText();

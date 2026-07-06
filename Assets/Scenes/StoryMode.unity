@@ -436,9 +436,6 @@ MonoBehaviour:
   ConstructPanelText: {fileID: 1208624655}
   LuxuryPanelText: {fileID: 1719045476}
   GamePanelText: {fileID: 1366910647}
-  orderPanel: {fileID: 1212134989}
-  EntirePanel: {fileID: 1542111523}
-  buyPanel: {fileID: 1212134990}
 --- !u!4 &58333317
 Transform:
   m_ObjectHideFlags: 0
@@ -3023,9 +3020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewsPanel
   BigNewsPanel: {fileID: 1318003246}
-  IssueScroll: {fileID: 0}
+  IssueScroll: {fileID: 222848188}
   StockWithImagePrefab: {fileID: 5930115348903895102, guid: 0fa59a7e3a640984d80015a326b3e9fe, type: 3}
-  EntirePanel: {fileID: 1542111523}
   newspanel: {fileID: 312188955}
 --- !u!1 &320774533
 GameObject:
@@ -8468,10 +8464,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c6b5b6df4d163444b007a526e02b0b3, type: 2}
   - {fileID: 11400000, guid: b9c6af9828e05cb419bdf5155e4ad3f8, type: 2}
   - {fileID: 11400000, guid: ddcf54c17255d3746a83d1fa4522800e, type: 2}
-  randonindex: 0
   tabmanager: {fileID: 58333316}
   recentIssues: []
-  randomindex: 0
   SmallNewsCases: []
   BigTriggerCases: []
   lowGoldStreak: 0
@@ -8483,6 +8477,11 @@ MonoBehaviour:
   scheduledNationPair: 
   smallNewsTimer: 0
   loanAmount: 0
+  allEras: []
+  currentEra: {fileID: 0}
+  eraEndDay: -1
+  nextEraStartDay: 20
+  eraHintShownDay: -1
 --- !u!4 &916416869
 Transform:
   m_ObjectHideFlags: 0
@@ -12339,12 +12338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedc7fef4a2cb4847a1e29fb8bd5171b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrderPanel
-  ownedAmount: 0
   stockcontrol: {fileID: 0}
   StockNum: 0
   NoticeText: {fileID: 1977782910}
-  BuyPanel: {fileID: 1212134990}
-  EntirePanel: {fileID: 1542111523}
   PlusText: {fileID: 1564997656}
   MinusText: {fileID: 660587510}
   Check1Text: {fileID: 710569051}
@@ -12353,7 +12349,6 @@ MonoBehaviour:
   currentText: {fileID: 123903889}
   CancelText: {fileID: 594970264}
   isBuyMode: 0
-  OwnedNum: 0
 --- !u!224 &1212134990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15563,7 +15558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad354cb396633cb4d935a74d9771618d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortfolioPanel
-  EntirePanel: {fileID: 1542111523}
   portfolioPanel: {fileID: 1545795635}
   contentParent: {fileID: 1635865400}
   rowPrefab: {fileID: 5294074943600059893, guid: 3b55b4932e540884c9224552da82256d, type: 3}
@@ -15722,10 +15716,8 @@ MonoBehaviour:
   MarketCapPrice: {fileID: 2142565892}
   TotalSharePrice: {fileID: 723712324}
   currentstock: {fileID: 0}
-  EntirePanel: {fileID: 1542111523}
   DetailwithPanel: {fileID: 1552345367}
   maxmount: 0
-  BuyPanel: {fileID: 1212134990}
   orderPanel: {fileID: 1212134989}
 --- !u!1 &1555620737
 GameObject:
@@ -15924,7 +15916,6 @@ MonoBehaviour:
   maxLoanText: {fileID: 585175707}
   inputAmountText: {fileID: 800289155}
   noticeText: {fileID: 7308673}
-  EntirePanel: {fileID: 1542111523}
   loanPanel: {fileID: 1559101601}
   interestText: {fileID: 806185218}
 --- !u!114 &1559101603
@@ -17635,6 +17626,7 @@ MonoBehaviour:
   portfolioPanelScript: {fileID: 1545795636}
   loanPanel: {fileID: 1559101601}
   loanPanelScript: {fileID: 1559101602}
+  buyPanel: {fileID: 1212134990}
   newsPanelScript: {fileID: 312188958}
 --- !u!1 &1840759292
 GameObject:

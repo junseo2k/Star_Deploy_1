@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 3adef7d21576e7b4f84a2a55d2ac1587
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3732764797690946366
+    second: Weapons B Silver_0
+  - first:
+      213: 2245437141822987290
+    second: Weapons B Silver_1
+  - first:
+      213: 2493613210220022379
+    second: Weapons B Silver_2
+  - first:
+      213: 6892953531016736960
+    second: Weapons B Silver_3
+  - first:
+      213: 2989506666614858891
+    second: Weapons B Silver_4
+  - first:
+      213: -6138040839090333482
+    second: Weapons B Silver_5
+  - first:
+      213: -4973913805065876604
+    second: Weapons B Silver_6
+  - first:
+      213: -3485605953189363251
+    second: Weapons B Silver_7
+  - first:
+      213: 3305351421949443174
+    second: Weapons B Silver_8
+  - first:
+      213: -8614693429920897279
+    second: Weapons B Silver_9
+  - first:
+      213: 2810744097343673984
+    second: Weapons B Silver_10
+  - first:
+      213: 519538729321891526
+    second: Weapons B Silver_11
+  - first:
+      213: -3338718582788695994
+    second: Weapons B Silver_12
+  - first:
+      213: -8263214254289415930
+    second: Weapons B Silver_13
+  - first:
+      213: -457509045451100650
+    second: Weapons B Silver_14
+  - first:
+      213: 2239369147496444186
+    second: Weapons B Silver_15
+  - first:
+      213: -4632131474491976145
+    second: Weapons B Silver_16
+  - first:
+      213: -3129316547614301341
+    second: Weapons B Silver_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Weapons B Silver_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 327
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc5c8b813e823cc0800000000000000
+      internalID: -3732764797690946366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 326
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cd3d30f25692f10800000000000000
+      internalID: 2245437141822987290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 325
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ac262c0081b9220800000000000000
+      internalID: 2493613210220022379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 260
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0f68d47b0b8af50800000000000000
+      internalID: 6892953531016736960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 260
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b84ad35697cdc7920800000000000000
+      internalID: 2989506666614858891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 261
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d81e29a06c41daa0800000000000000
+      internalID: -6138040839090333482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 197
+        width: 62
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48b03a94fbb19fab0800000000000000
+      internalID: -4973913805065876604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_7
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 196
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc149256ad3a0afc0800000000000000
+      internalID: -3485605953189363251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_8
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 199
+        width: 58
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66cf0231b97fedd20800000000000000
+      internalID: 3305351421949443174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 133
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1076ca4d7f5727880800000000000000
+      internalID: -8614693429920897279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_10
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 133
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08612b45dd4c10720800000000000000
+      internalID: 2810744097343673984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_11
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 133
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c60a40c8b5c53700800000000000000
+      internalID: 519538729321891526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64852e3632d7aa1d0800000000000000
+      internalID: -3338718582788695994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 69
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60192268a6a235d80800000000000000
+      internalID: -8263214254289415930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_14
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 67
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61eeb5872f996a9f0800000000000000
+      internalID: -457509045451100650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_15
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 6
+        width: 55
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11be7dff56d31f10800000000000000
+      internalID: 2239369147496444186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_16
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 3
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f26dffd47fc57bfb0800000000000000
+      internalID: -4632131474491976145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons B Silver_17
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 4
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 363a2b50e2f6294d0800000000000000
+      internalID: -3129316547614301341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Weapons B Silver_0: -3732764797690946366
+      Weapons B Silver_1: 2245437141822987290
+      Weapons B Silver_10: 2810744097343673984
+      Weapons B Silver_11: 519538729321891526
+      Weapons B Silver_12: -3338718582788695994
+      Weapons B Silver_13: -8263214254289415930
+      Weapons B Silver_14: -457509045451100650
+      Weapons B Silver_15: 2239369147496444186
+      Weapons B Silver_16: -4632131474491976145
+      Weapons B Silver_17: -3129316547614301341
+      Weapons B Silver_2: 2493613210220022379
+      Weapons B Silver_3: 6892953531016736960
+      Weapons B Silver_4: 2989506666614858891
+      Weapons B Silver_5: -6138040839090333482
+      Weapons B Silver_6: -4973913805065876604
+      Weapons B Silver_7: -3485605953189363251
+      Weapons B Silver_8: 3305351421949443174
+      Weapons B Silver_9: -8614693429920897279
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
