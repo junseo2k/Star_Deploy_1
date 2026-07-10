@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private const int ERA_COOLDOWN = 5;         // 시대 종료 후 휴지기 턴 수
     private const int ERA_HINT_DAYS_BEFORE = 2; // 힌트 뉴스를 며칠 전에 보여줄지
     private Era pendingEra; // 힌트 뉴스로 예고된, 아직 시작 안 한 시대
+    public NewsTemplate[] newsTemplates;
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -330,7 +331,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"이자 {interest}G 차감. 남은 대출금: {loanAmount}G");
         }
         
-        smallNewsTimer++;
+        smallNewsTimer++; //소형 뉴스 생성
         if (SmallNewsCases.Count > 0 && smallNewsTimer >= Random.Range(3, 6))
         {
             int RandomSmall = Random.Range(0, SmallNewsCases.Count);
@@ -338,6 +339,13 @@ public class GameManager : MonoBehaviour
             if (!activeNewsList.Exists(active => active.caseData == picked))
                 AddActiveNews(picked);
             smallNewsTimer = 0;
+        }
+        // OnNextDayButton()의 소형 뉴스 생성 부분에 아래처럼 분기 추가
+        if (newsTemplates.Length > 0 && Random.value < 0.3f) // 30% 확률로 템플릿 뉴스
+        {
+            NewsTemplate t = newsTemplates[Random.Range(0, newsTemplates.Length)];
+            Case generated = TemplateNewsGenerator.Generate(t);
+            if (generated != null) AddActiveNews(generated);
         }
         // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전
         if (currentDay == scheduledBigNewsVibeDay
@@ -516,7 +524,6 @@ if (currentEra != null)
         foreach (StockControl sc in allstocks)
             sc.UpdatePriceText();
     }
-    
 
     UIManager.instance.NoticeText.text = active.displayDescription;
 
@@ -633,4 +640,5 @@ if (currentEra != null)
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);
     }
+    // GameManager에 추가할 필드
 }

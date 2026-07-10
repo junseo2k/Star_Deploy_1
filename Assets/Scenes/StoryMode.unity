@@ -8482,6 +8482,7 @@ MonoBehaviour:
   eraEndDay: -1
   nextEraStartDay: 20
   eraHintShownDay: -1
+  newsTemplates: []
 --- !u!4 &916416869
 Transform:
   m_ObjectHideFlags: 0
@@ -16127,7 +16128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.06719971}
+  m_AnchoredPosition: {x: 0, y: -0.06713867}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566972546

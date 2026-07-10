@@ -1,0 +1,281 @@
+﻿템플릿이름,대상주식,사건문구,상승여부,변동최소,변동최대,지속일
+Template_Army,BreathMark,브레스마크 용병이 마을에서 민간인을 해쳤습니다. 대륙이 분노하고 있습니다.,False,-20,-12,2
+Template_Army,BreathMark,브레스마크가 작전 중 큰 타격을 입었습니다. 정예 드래곤 전사 여럿을 잃었다는 비보입니다.,False,-15,-8,2
+Template_Army,IronReform,아이언리폼이 마법 강화 갑옷 개발에 성공했습니다. 드워프제에 뒤지지 않는다는 평가에 대륙이 술렁이고 있습니다.,True,8,15,2
+Template_Army,IronHeart,마노사 왕국이 아이언하트와의 무기 수출 계약을 파기했습니다. 청천벽력 같은 소식입니다.,False,-20,-12,2
+Template_Army,IronHeart,아이언하트 공업이 납품한 방어구 일부에서 균열이 발견되어 대규모 리콜이 진행됩니다.,False,-15,-8,2
+Template_Army,WarMaker,워메이커가 역대 최대 전쟁 계약을 따냈습니다. 수천 오크 전사가 전장으로 향합니다.,True,8,15,2
+Template_Army,WarMaker,"워메이커가 전투에서 참패했습니다. ""오크 용병은 수만 많지..."" 라는 말이 퍼지고 있습니다.",False,-15,-8,2
+Template_Army,BreathMark,브레스마크 용병단의 고급 계약 단가가 너무 높다는 불만이 커지고 있습니다. 계약 취소가 잇따르고 있습니다.,False,-10,-5,2
+Template_Army,BreathMark,브레스마크 용병단이 신규 부대를 편성 중입니다. 확장 여부에 관심이 쏠립니다.,True,-5,5,2
+Template_Army,BreathMark,브레스마크 용병단에 전투 의뢰가 급증하고 있습니다.,True,8,15,2
+Template_Army,BreathMark,브레스마크가 불가능해 보이던 방어 임무를 완벽히 해냈습니다. 이름만 대면 적이 도망간다는 소문이 돌고 있습니다.,True,8,15,2
+Template_Army,BreathMark,브레스마크 용병단이 마노사 왕국과 장기 치안 계약을 체결했습니다.,True,5,10,2
+Template_Army,IronReform,아이언리폼 방산의 핵심 기술자가 아이언하트 공업으로 이직했다는 소식입니다.,False,-10,-5,2
+Template_Army,IronReform,아이언리폼 방산의 시제품이 성능 테스트에서 기준에 못 미쳤습니다.,False,-15,-8,2
+Template_Army,IronReform,아이언리폼 방산의 시제품이 군부 시연에서 좋은 평가를 받았습니다. 양산 가능성이 높아졌습니다.,True,8,15,2
+Template_Army,IronReform,마노사 왕국이 방산 정책 방향을 재검토한다고 발표했습니다. 아이언리폼의 미래에 관심이 쏠립니다.,True,-5,5,2
+Template_Army,IronReform,아이언리폼 방산이 마노사 왕국 정부로부터 추가 지원금을 확보했습니다.,True,8,15,2
+Template_Army,IronReform,아이언리폼 방산에 대한 정부 지원이 축소될 수 있다는 소식입니다. 정책 변화 우려가 커지고 있습니다.,False,-15,-8,2
+Template_Army,IronHeart,아이언하트 공업이 바이브레스 왕국과 5년간의 방어구 독점 공급 계약을 체결했습니다.,True,5,10,2
+Template_Army,IronHeart,아이언하트의 신형 공성 병기 '스톤브레이커'가 시험에서 성벽을 한 방에 부숴버렸습니다. 3년간의 개발이 마침내 결실을 맺었습니다.,True,8,15,2
+Template_Army,IronHeart,아이언하트 공업의 분기 매출과 영업이익이 모두 전분기 대비 크게 상승했습니다.,True,5,10,2
+Template_Army,IronHeart,아이언하트 공업의 마법 금속 합금 연구가 실패로 끝났습니다. 연구비만 수천만 골드가 날아갔습니다.,False,-10,-5,2
+Template_Army,IronHeart,아이언하트 공업이 마법 금속 합금 기술 연구에 착수했습니다. 성패에 관심이 쏠립니다.,True,-5,5,2
+Template_Army,WarMaker,워메이커 용병단이 계약 이행 중 약탈 행위를 저질렀다는 고발이 들어왔습니다.,False,-20,-12,2
+Template_Army,WarMaker,워메이커 용병단에 전투 의뢰가 급증하고 있습니다.,True,8,15,2
+Template_Army,WarMaker,워메이커 용병단의 저가 전략이 효과를 보면서 의뢰가 꾸준히 늘고 있습니다.,True,5,10,2
+Template_Army,WarMaker,워메이커 용병단 내부에서 오크 파벌 간 충돌이 발생했습니다. 부대 운영에 차질입니다.,False,-10,-5,2
+Template_Army,WarMaker,워메이커 용병단이 훈련 방식을 전면 개편한다고 발표했습니다. 전투력 변화에 관심이 쏠립니다.,True,-5,5,2
+Template_Bank,DragonSafe,드래곤 금고에서 금이 감쪽같이 사라졌습니다. 드래곤조차 눈치 못 챘다니... 대륙이 발칵 뒤집혔습니다.,False,-20,-12,2
+Template_Bank,DragonSafe,드래곤 금고에서 한 귀족 가문이 재산을 통째로 빼가고 있습니다. 뭔가 큰일이 벌어지려나 봅니다.,False,-10,-5,2
+Template_Bank,AurelionCapital,아우렐리온이 엄청난 돈을 걸었던 투자가 물거품이 되었습니다. 손실이 어마어마하다는 소문입니다.,False,-20,-12,2
+Template_Bank,Aedanial,에이더니얼이 판단을 크게 잘못해서 고객 자산이 많이 줄었습니다. 드래곤 금고까지 걱정된다는 말이...,False,-15,-8,2
+Template_Bank,DragonSafe,"드래곤 금고에 고대 마법 봉인이 새로 걸렸습니다. ""이 금고를 털 수 있는 자는 대륙에 없다""고 자신하고 있습니다.",True,8,15,2
+Template_Bank,DragonSafe,드래곤 금고의 해외 지점에서 보안 사고가 발생했습니다. 신뢰도에 타격입니다.,False,-10,-5,2
+Template_Bank,DragonSafe,드래곤 금고의 분기 수익이 크게 증가했습니다. 자산 관리 수수료 수입이 호조입니다.,True,5,10,2
+Template_Bank,DragonSafe,드래곤 금고에 마노사 왕국 최대 귀족 가문이 전체 자산을 위탁했습니다.,True,5,10,2
+Template_Bank,DragonSafe,드래곤 금고가 소규모 국가에 지점 설립을 검토 중입니다. 확장 여부에 관심이 쏠립니다.,True,-5,5,2
+Template_Bank,AurelionCapital,아우렐리온 캐피탈의 핵심 고객이 드래곤 금고로 자산을 이전했다는 소식입니다.,False,-10,-5,2
+Template_Bank,AurelionCapital,"아우렐리온 가문의 투자가 대박을 쳤습니다. ""과감하게 걸었는데 다 맞았다""며 대륙 최고 수익률을 자랑하고 있습니다.",True,8,15,2
+Template_Bank,AurelionCapital,아우렐리온 캐피탈이 드레고니아 시장에 진출한다고 발표했습니다.,True,5,10,2
+Template_Bank,AurelionCapital,아우렐리온 캐피탈이 왕실 재정 자문 계약을 연장했습니다.,True,2,5,2
+Template_Bank,AurelionCapital,아우렐리온 캐피탈 내부에서 횡령 의혹이 제기되었습니다. 조사가 진행 중입니다.,False,-10,-5,2
+Template_Bank,AurelionCapital,아우렐리온 가문의 차기 후계자가 공식 경영에 참여하기 시작했습니다. 경영 방침 변화에 관심이 쏠립니다.,True,-5,5,2
+Template_Bank,Aedanial,에이더니얼 자산관리의 주요 고객이 계약을 해지했습니다. 경쟁사로 이동한 것으로 알려졌습니다.,False,-10,-5,2
+Template_Bank,Aedanial,에이더니얼 자산관리의 보수적 운용 전략이 시장 변동기에 빛을 발하고 있습니다.,True,5,10,2
+Template_Bank,Aedanial,에이더니얼 자산관리가 엘프 왕국 귀족 자산 위탁을 새로 수주했습니다.,True,2,5,2
+Template_Bank,Aedanial,에이더니얼 자산관리가 운용 전략을 일부 수정한다고 발표했습니다. 공격적 운용 비중을 소폭 늘린다고 합니다.,True,-5,5,2
+Template_Bank,Aedanial,에이더니얼 자산관리가 마노사 투자 자문 시장 점유율을 25%까지 끌어올렸습니다.,True,5,10,2
+Template_Bank,Aedanial,에이더니얼 자산관리가 운용하던 펀드에서 예상 밖의 손실이 발생했습니다.,False,-10,-5,2
+Template_Bank,Corta,코타 상업은행에서 대출 부실 문제가 불거지고 있습니다. 연체율이 급상승 중입니다.,False,-10,-5,2
+Template_Bank,Corta,코타 상업은행이 디지털 마법 뱅킹 서비스 도입을 검토하고 있습니다.,True,-5,5,2
+Template_Bank,Corta,코타 상업은행의 예금 잔고가 역대 최고치를 기록했습니다.,True,2,5,2
+Template_Bank,Corta,코타 상업은행이 서민 대상 저금리 대출 상품을 출시하여 큰 호응을 얻고 있습니다.,True,5,10,2
+Template_Bank,Corta,코타 상업은행이 지방 도시에 신규 지점 5곳을 동시에 개설했습니다.,True,8,15,2
+Template_Bank,Corta,코타 상업은행의 지방 지점들이 수익성 악화로 폐쇄를 검토 중입니다.,False,-5,-2,2
+Template_Bank,Corta,코타 상업은행 직원이 고객 자금을 횡령한 사건이 적발되었습니다.,False,-10,-5,2
+Template_Clinic,LootHeel,루트힐에 정체 모를 마름병이 퍼지고 있습니다. 약초가 시들어가고 있습니다. 대륙 약재 시장이 흔들릴 수 있습니다.,False,-15,-8,2
+Template_Clinic,LootHeel,루트힐에서 지금까지 없던 약효의 희귀 약초가 발견되었습니다. 세계수 덕분일까요?,True,8,15,2
+Template_Clinic,Alchemia,"알케미아 치유 포션이 ""물 탄 포션""이라는 불만이 터졌습니다. 효과가 절반도 안 된다며 난리입니다.",False,-10,-5,2
+Template_Clinic,EverGreen,에버그린 약을 먹고 부작용이 나타난 사람들이 보고되고 있습니다. 왕실이 직접 조사에 나섰어요.,False,-15,-8,2
+Template_Clinic,LootHeel,루트힐 약초원의 약초를 밀반출하던 조직이 적발되어 왕실 조사가 시작되었습니다.,False,-10,-5,2
+Template_Clinic,LootHeel,루트힐 약초원의 올해 약초 수확량이 예상을 크게 웃돌았습니다.,True,2,5,2
+Template_Clinic,LootHeel,루트힐 약초원이 세계수 인근 신규 재배지를 확보했습니다. 생산량 변화에 관심이 쏠립니다.,True,-5,5,2
+Template_Clinic,LootHeel,루트힐 약초원이 알케미아 제약과 장기 원재료 공급 계약을 체결했습니다.,True,5,10,2
+Template_Clinic,LootHeel,루트힐 약초원의 주요 재배지 일부가 자연재해로 훼손되었습니다.,False,-10,-5,2
+Template_Clinic,AuraScale,아우라스케일 생명과학의 핵심 연구가 실패로 끝났습니다. 연구비 손실이 막대합니다.,False,-20,-12,2
+Template_Clinic,AuraScale,아우라스케일 생명과학의 연구 윤리에 대한 문제가 제기되었습니다. 대륙 학계에서 논란이 일고 있습니다.,False,-15,-8,2
+Template_Clinic,AuraScale,아우라스케일 생명과학의 신형 치유 포션이 임상에서 놀라운 효과를 보였습니다.,True,8,15,2
+Template_Clinic,AuraScale,아우라스케일 생명과학이 왕실로부터 추가 연구 지원금을 확보했습니다.,True,8,15,2
+Template_Clinic,AuraScale,아우라스케일 생명과학에 대한 왕실 지원이 축소될 수 있다는 소식입니다.,False,-10,-5,2
+Template_Clinic,AuraScale,아우라스케일 생명과학이 엘프 연구진과 합동 프로젝트를 시작했습니다. 성과 여부에 관심이 쏠립니다.,True,-5,5,2
+Template_Clinic,AuraScale,아우라스케일 생명과학이 드레고니아 유전자 연구에서 획기적인 성과를 냈습니다.,True,12,20,2
+Template_Clinic,Alchemia,알케미아가 치유 포션 대량 생산에 성공했습니다. 전장의 생명의 물이 쏟아질 겁니다. 군납 계약이 코앞입니다.,True,8,15,2
+Template_Clinic,Alchemia,알케미아 제약이 오크 왕국 시장에 진출하여 대량 공급 계약을 체결했습니다.,True,5,10,2
+Template_Clinic,Alchemia,알케미아 제약의 원재료 가격이 급등하면서 수익성이 악화되고 있습니다.,False,-10,-5,2
+Template_Clinic,Alchemia,알케미아 제약의 핵심 약제 조합법이 경쟁사에 유출된 정황이 포착되었습니다.,False,-10,-5,2
+Template_Clinic,Alchemia,알케미아 제약의 상비약이 대륙 판매량 1위를 기록했습니다.,True,5,10,2
+Template_Clinic,Alchemia,알케미아 제약이 엘프 약초를 활용한 프리미엄 라인 출시를 검토 중입니다.,True,-5,5,2
+Template_Clinic,EverGreen,에버그린 에센스가 마노사 왕국과 대량 약제 구매 계약을 연장했습니다.,True,5,10,2
+Template_Clinic,EverGreen,에버그린이 전설의 약초 배합법을 되살려냈습니다. 치유력이 기존보다 훨씬 강해졌다고. 학자들이 경탄하고 있습니다.,True,8,15,2
+Template_Clinic,EverGreen,에버그린 에센스의 핵심 약초 재배지에서 병충해가 발생했습니다. 원재료 수급에 비상이 걸렸습니다.,False,-10,-5,2
+Template_Clinic,EverGreen,에버그린 에센스가 인간 조제사를 처음으로 고용했습니다. 엘프 사회 내에서 찬반 논란이 있습니다.,True,-5,5,2
+Template_Clinic,EverGreen,에버그린 에센스의 숙련 조제사들이 고령으로 대거 은퇴하면서 생산 속도가 크게 떨어지고 있습니다.,False,-5,-2,2
+Template_Clinic,EverGreen,에버그린 에센스의 고급 약제가 대륙 의료 학회에서 최우수 제품으로 선정되었습니다.,True,2,5,2
+Template_Construct,SteelBuilder,스틸빌더가 드레고니아 요새 건설을 따냈습니다. 드래곤을 위한 성채를 드워프가 짓는 겁니다.,True,8,15,2
+Template_Construct,GreenRoot,그린루트 건설의 핵심 건축가가 고령으로 은퇴하면서 기술 공백이 우려됩니다.,False,-5,-2,2
+Template_Construct,GreenRoot,"그린루트가 지은 나무 건물이 건축 대회 우승! ""자연과 하나 된 건축""이라는 극찬!",True,8,15,2
+Template_Construct,GreenRoot,그린루트 건설의 친환경 공법이 내구성 문제로 비판받고 있습니다.,False,-10,-5,2
+Template_Construct,GreenRoot,그린루트 건설이 드워프 석재 기술을 접목한 신공법을 테스트 중입니다.,True,-5,5,2
+Template_Construct,GreenRoot,그린루트 건설이 세계수 보호 구역 보수 사업을 왕실로부터 위탁받았습니다.,True,2,5,2
+Template_Construct,GreenRoot,그린루트 건설 프로젝트 부지 인근에서 자연 훼손 논란이 발생했습니다.,False,-10,-5,2
+Template_Construct,GreenRoot,그린루트 건설이 마노사 왕국에서 친환경 건축 프로젝트를 수주했습니다. 해외 진출 첫 사례입니다.,True,5,10,2
+Template_Construct,Solistar,솔리스타 부동산의 개발 프로젝트가 왕실 규제에 걸려 중단되었습니다.,False,-10,-5,2
+Template_Construct,Solistar,솔리스타 부동산이 이부 코타 중심부에 대형 상업 시설을 착공합니다.,True,5,10,2
+Template_Construct,Solistar,부동산 시장 침체로 솔리스타 부동산의 미분양이 급증하고 있습니다.,False,-10,-5,2
+Template_Construct,Solistar,솔리스타 부동산의 고급 주거 단지가 완판되었습니다. 분양 성적이 역대 최고입니다.,True,2,5,2
+Template_Construct,Solistar,솔리스타 부동산이 지방 도시 개발 사업 진출을 검토 중입니다.,True,-5,5,2
+Template_Construct,Solistar,마노사 왕국이 도시를 넓히기로! 솔리스타가 가장 크게 덕을 볼 거라는 전망!,True,8,15,2
+Template_Construct,Solistar,솔리스타 부동산의 건물에서 하자 문제가 발견되어 입주자 불만이 커지고 있습니다.,False,-10,-5,2
+Template_Construct,SteelBuilder,스틸빌더 건설의 건축물이 내구성 평가에서 대륙 최고점을 받았습니다.,True,5,10,2
+Template_Construct,SteelBuilder,스틸빌더 건설이 마법 강화 건축 공법 도입을 검토 중입니다.,True,-5,5,2
+Template_Construct,SteelBuilder,스틸빌더 건설의 건축 현장에서 구조물 붕괴 사고가 발생했습니다.,False,-15,-8,2
+Template_Construct,SteelBuilder,스틸빌더 건설의 원자재 비용이 급등하면서 프로젝트 수익성이 악화되고 있습니다.,False,-10,-5,2
+Template_Construct,SteelBuilder,스틸빌더 건설이 납기를 맞추지 못해 위약금을 물게 되었습니다.,False,-10,-5,2
+Template_Construct,SteelBuilder,스틸빌더 건설이 마노사 왕국 도시 재건 프로젝트에 참여합니다.,True,2,5,2
+Template_Construct,HighRock,하이락이 대형 광산 시설 공사를 따냈습니다. 지하 건축은 역시 하이락! 장인들이 신나 있습니다.,True,8,15,2
+Template_Construct,HighRock,하이락 건축의 광산 건설 현장에서 안전 사고가 발생했습니다.,False,-10,-5,2
+Template_Construct,HighRock,하이락 건축이 엘프 건축 기술을 일부 도입한다고 발표했습니다. 전통 방식과의 조합에 관심이 쏠립니다.,True,-5,5,2
+Template_Construct,HighRock,하이락 건축이 인력 부족으로 여러 프로젝트 일정에 차질을 빚고 있습니다.,False,-5,-2,2
+Template_Construct,HighRock,하이락 건축의 독자적인 지하 건축 공법이 업계에서 주목받고 있습니다.,True,2,5,2
+Template_Construct,HighRock,하이락 건축의 해외 프로젝트에서 품질 문제가 제기되었습니다. 신뢰도에 타격입니다.,False,-10,-5,2
+Template_Construct,HighRock,하이락 건축이 마노사 왕국 인프라 사업에 참여하게 되었습니다. 해외 진출의 발판입니다.,True,5,10,2
+Template_Coopang,GlobalLogistics,글로발의 핵심 운송길에서 해적이 나타났습니다. 짐을 통째로 털렸어요. 피해가 상당!,False,-15,-8,2
+Template_Coopang,DwarfTrail,드워프 트레일 산악길에서 낙석이 쏟아져 운송이 완전히 멈췄습니다. 갇힌 마차가 수십 대!,False,-15,-8,2
+Template_Coopang,SkyMark,스카이마크 주요 운송로에서 대형 사고! 마차가 뒤집히고 짐이 길에 쏟아졌어요. 물류 마비 중!,False,-15,-8,2
+Template_Coopang,SkyForge,스카이포지가 폭풍을 만나 짐을 잃어버렸습니다. 고가 화물이 구름 속으로 사라졌답니다...,False,-15,-8,2
+Template_Coopang,GlobalLogistics,글로발 로지스틱스가 경쟁사에 주요 거래처를 빼앗겼습니다.,False,-10,-5,2
+Template_Coopang,GlobalLogistics,글로발 로지스틱스가 공중 운송 사업 진출을 검토 중입니다. 드레고니아 업체와의 경쟁이 우려됩니다.,True,-5,5,2
+Template_Coopang,GlobalLogistics,글로발 로지스틱스가 신규 국제 운송 노선 개설을 준비하고 있습니다.,True,5,10,2
+Template_Coopang,GlobalLogistics,"글로발이 마노사 내수 물류에서 1등! ""작지만 빠른"" 전략이 먹혔습니다.",True,8,15,2
+Template_Coopang,GlobalLogistics,글로발 로지스틱스의 마차 운송 차량이 노후화되어 운송 지연이 잦아지고 있습니다.,False,-5,-2,2
+Template_Coopang,GlobalLogistics,글로발 로지스틱스의 새로운 운송 경로가 효율성을 크게 높였다는 평가입니다.,True,2,5,2
+Template_Coopang,DwarfTrail,드워프 트레일이 산을 관통하는 새 경로를 뚫었습니다. 배달 시간이 확 줄었대요. 드워프의 뚝심!,True,8,15,2
+Template_Coopang,DwarfTrail,드워프 트레일 수송이 마노사 왕국과의 운송 경로를 재개했습니다. 오랜만에 좋은 소식입니다.,True,8,15,2
+Template_Coopang,DwarfTrail,마노사와의 갈등으로 드워프 트레일 수송의 핵심 운송 경로가 또다시 폐쇄되었습니다.,False,-15,-8,2
+Template_Coopang,DwarfTrail,드워프 트레일 수송의 운송 비용이 상승하면서 수익성이 악화되고 있습니다.,False,-5,-2,2
+Template_Coopang,DwarfTrail,드워프 트레일 수송의 광물 전문 운송 서비스가 업계 최고 평가를 받았습니다.,True,2,5,2
+Template_Coopang,DwarfTrail,드워프 트레일 수송이 지하 터널 물류 시스템 구축을 검토 중입니다.,True,-5,5,2
+Template_Coopang,SkyMark,스카이마크 물류가 윈드시어 기술을 응용한 고속 물류 시스템 개발을 검토 중입니다.,True,-5,5,2
+Template_Coopang,SkyMark,스카이마크 물류의 해외 노선이 정치적 이유로 차단되었습니다.,False,-10,-5,2
+Template_Coopang,SkyMark,스카이마크 물류의 분기 물동량이 역대 최고를 기록했습니다.,True,2,5,2
+Template_Coopang,SkyMark,스카이마크 물류와 드워프 트레일 수송이 양국 간 시범 교역 운송을 시작했습니다.,True,5,10,2
+Template_Coopang,SkyMark,스카이마크 물류 노동자들이 처우 개선을 요구하며 파업에 돌입했습니다.,False,-10,-5,2
+Template_Coopang,SkyMark,스카이마크가 대륙 동쪽에 거대 물류 거점을 열었습니다. 마차와 짐꾼이 쉴 새 없이 움직이고 있습니다.,True,8,15,2
+Template_Coopang,SkyForge,스카이포지가 고가 화물 전문 운송을 시작했는데 반응이 뜨겁습니다. 드래곤이 직접 날라다 주니 안심이죠.,True,8,15,2
+Template_Coopang,SkyForge,스카이포지 운송의 높은 운임 때문에 고객 이탈이 늘고 있습니다.,False,-10,-5,2
+Template_Coopang,SkyForge,스카이포지 운송이 지상 물류 사업 진출을 검토 중입니다. 사업 다각화 여부에 관심이 쏠립니다.,True,-5,5,2
+Template_Coopang,SkyForge,스카이포지 운송의 운송 속도가 경쟁사 대비 2배 빠르다는 조사 결과가 발표되었습니다.,True,2,5,2
+Template_Coopang,SkyForge,스카이포지 운송 소속 드레고니아 조종사가 비행 중 사고를 일으켰습니다. 안전성에 의문이 제기되고 있습니다.,False,-10,-5,2
+Template_Coopang,SkyForge,스카이포지 운송이 엘프 왕국과 항공 물류 계약을 체결했습니다.,True,5,10,2
+Template_Food,ManosaGrain,마노사 그레인의 곡물 창고에 불이 났습니다. 한 계절치 곡식이 재가 되었습니다.,False,-15,-8,2
+Template_Food,Silvana,실바나 근처에 해충이 떼로 몰려들었습니다. 마법 작물까지 위험합니다. 에버그린도 초비상입니다.,False,-10,-5,2
+Template_Food,OrcaGree,오르카그리 목장에 가축 역병이 퍼졌습니다. 수천 마리를 처분해야 합니다. 참담한 소식입니다.,False,-20,-12,2
+Template_Food,ManosaGrain,마노사 그레인의 신규 농장 확장이 완료되어 생산량이 크게 늘어났습니다.,True,5,10,2
+Template_Food,ManosaGrain,마노사 그레인이 왕국 비상 식량 비축을 전담하게 되었습니다. 왕실 인장이 찍힌 계약입니다.,True,8,15,2
+Template_Food,ManosaGrain,마노사 그레인이 유기농 농법 도입을 검토 중입니다. 비용 상승 우려와 품질 향상 기대가 엇갈리고 있습니다.,True,-5,5,2
+Template_Food,ManosaGrain,마노사 그레인의 식품 유통망이 지방 도시까지 확대되었습니다.,True,2,5,2
+Template_Food,ManosaGrain,마노사 그레인의 식품에서 이물질이 발견되어 소비자 불만이 커지고 있습니다.,False,-10,-5,2
+Template_Food,ManosaGrain,마노사 그레인의 주요 농장에서 해충 피해가 발생했습니다. 올해 생산량 감소가 예상됩니다.,False,-10,-5,2
+Template_Food,Silvana,실바나 농원의 핵심 인력이 고령화로 은퇴하면서 생산성이 떨어지고 있습니다.,False,-5,-2,2
+Template_Food,Silvana,실바나 농원이 젊은 엘프 인력 확보를 위한 교육 프로그램을 시작했습니다.,True,-5,5,2
+Template_Food,Silvana,실바나 농원의 농산물 밀수출 조직이 적발되었습니다. 왕실이 조사에 착수했습니다.,False,-10,-5,2
+Template_Food,Silvana,실바나의 수출 규제가 풀릴 수 있다는 소식입니다. 엘프 안에서만 먹던 걸 밖에서도 살 수 있게 됩니다.,True,8,15,2
+Template_Food,Silvana,실바나 농원의 올해 작황이 매우 좋다는 보고가 나왔습니다.,True,2,5,2
+Template_Food,Silvana,실바나 농원의 마법 농산물이 대륙 최고 품질상을 수상했습니다.,True,5,10,2
+Template_Food,OrcaGree,오르카그리 농업연합이 곡물 생산과 축산 비중을 재조정한다고 발표했습니다.,True,-5,5,2
+Template_Food,OrcaGree,오르카그리 농업연합이 드레고니아와 대규모 사료 공급 계약을 연장했습니다.,True,5,10,2
+Template_Food,OrcaGree,오르카그리 농업연합의 수출품에서 위생 문제가 적발되었습니다. 수입국에서 반품 조치가 내려졌습니다.,False,-10,-5,2
+Template_Food,OrcaGree,오르카그리의 축산이 폭발적으로 늘었습니다. 전투 가축이 대륙 곳곳으로 팔려나가고 있습니다.,True,8,15,2
+Template_Food,OrcaGree,오르카그리 농업연합이 품질 개선 프로그램을 도입해 수출 단가가 올랐습니다.,True,2,5,2
+Template_Food,OrcaGree,오르카그리 농업연합이 타종족 노동자를 대거 해고했다는 소식입니다. 논란이 커지고 있습니다.,False,-10,-5,2
+Template_Food,FlameScale,플레임스케일 농업의 특산물 가격이 너무 높다는 비판이 나오고 있습니다. 수요가 줄고 있습니다.,False,-10,-5,2
+Template_Food,FlameScale,플레임스케일 농업의 화산 농장 인근에서 소규모 분화가 발생했습니다. 농작물 피해가 우려됩니다.,False,-15,-8,2
+Template_Food,FlameScale,플레임스케일 농업이 마노사 왕국과 대규모 수입 계약을 체결했습니다.,True,5,10,2
+Template_Food,FlameScale,플레임스케일 농업의 수출 허가가 지연되고 있습니다. 관료주의적 절차가 발목을 잡고 있습니다.,False,-5,-2,2
+Template_Food,FlameScale,플레임스케일 농업의 신규 재배 기술로 수확량이 2배 증가했다는 소식입니다.,True,5,10,2
+Template_Food,FlameScale,플레임스케일 농업의 화산 특산물이 마노사 귀족 사이에서 폭발적 인기를 얻고 있습니다.,True,8,15,2
+Template_Food,FlameScale,플레임스케일 농업이 엘프 왕국과 합작 친환경 농업 프로젝트를 논의 중입니다.,True,-5,5,2
+Template_Game,OrcFightclub,"파이트클럽이 역대 최대 격투 대회를 예고! ""프론티어 최강을 가린다!"" 기대감이 하늘을 찌릅니다!",True,8,15,2
+Template_Game,OrcFightclub,"파이트클럽에서 승부 조작 발각! ""경기가 짜여진 각본이었다""는 폭로에 팬들이 분노! 수사 시작!",False,-20,-12,2
+Template_Game,Ibukota,"""요즘 이부코타 공연이 재미없다""는 평가가 쏟아지고 있습니다. 관객이 줄고 격투장으로 가는 사람이 늘었대요.",False,-10,-5,2
+Template_Game,BoneFire,본파이어 주류를 마시고 건강 문제를 호소하는 사례가 보고되었습니다. 도수가 너무 높다는 비판입니다.,False,-10,-5,2
+Template_Game,BoneFire,본파이어 주류가 오크 전통 축제 공식 주류로 선정되었습니다.,True,5,10,2
+Template_Game,BoneFire,본파이어 주류의 신제품 '블랙 파이어'가 오크 전역에서 히트 중입니다.,True,2,5,2
+Template_Game,BoneFire,본파이어 주류가 도수를 낮춘 수출용 라인 개발을 검토 중입니다.,True,-5,5,2
+Template_Game,BoneFire,본파이어 주류의 인간 시장 진출이 실패했습니다. 맛이 너무 자극적이라는 평가입니다.,False,-5,-2,2
+Template_Game,BoneFire,"전장에서 병사들이 본파이어를 마시고 ""이 술이면 다시 싸울 수 있다!""고 외쳤답니다. 입소문이 대륙 전역으로!",True,8,15,2
+Template_Game,BoneFire,본파이어 주류의 양조 시설에서 폭발 사고가 발생했습니다.,False,-10,-5,2
+Template_Game,OrcFightclub,오르크 파이트클럽이 마법 사용을 허용하는 새로운 경기 규칙을 검토 중입니다. 찬반이 엇갈리고 있습니다.,True,-5,5,2
+Template_Game,OrcFightclub,오르크 파이트클럽의 대형 경기가 관객 부족으로 적자를 기록했습니다.,False,-10,-5,2
+Template_Game,OrcFightclub,오르크 파이트클럽에 전설적인 오크 전사가 출전을 선언했습니다. 예매가 폭주하고 있습니다.,False,-10,5,2
+Template_Game,OrcFightclub,오르크 파이트클럽 경기 중 선수가 중상을 입는 사고가 발생했습니다. 안전 규정 강화 요구가 커지고 있습니다.,False,-10,-5,2
+Template_Game,OrcFightclub,오르크 파이트클럽의 격투 대회가 인간 왕국에서도 중계됩니다. 해외 관객이 급증하고 있습니다.,True,8,15,2
+Template_Game,Ibukota,이부코타 극장의 대형 공연이 돌연 취소되었습니다. 환불 소동이 벌어지고 있습니다.,False,-15,-8,2
+Template_Game,Ibukota,이부코타가 초호화 공연 시리즈를 발표! 고대 드래곤 마법사의 대서사시랍니다. 예매 폭발 중!,True,8,15,2
+Template_Game,Ibukota,이부코타 극장 투기장에서 관객 안전 사고가 발생했습니다. 운영 중단이 검토되고 있습니다.,False,-15,-8,2
+Template_Game,Ibukota,이부코타 극장이 엘프 예술단 초청 공연을 기획 중입니다. 종족 간 문화 교류에 관심이 쏠립니다.,True,-5,5,2
+Template_Game,Ibukota,이부코타 극장의 투기장 대회가 역대 최다 관객을 기록했습니다.,True,8,15,2
+Template_Game,Ibukota,이부코타 극장이 다국적 예술단과 합작 공연을 성사시켰습니다.,True,5,10,2
+Template_Game,HighEner,하이애너 맥주 양조장에서 화재가 발생했습니다. 생산 차질이 예상됩니다.,False,-10,-5,2
+Template_Game,HighEner,하이애너 맥주의 엘프 시장 진출이 또다시 실패했습니다. 향이 너무 강하다는 평가입니다.,False,-5,-2,2
+Template_Game,HighEner,하이애너 맥주에서 이물질이 발견되어 일부 제품이 리콜됩니다.,False,-10,-5,2
+Template_Game,HighEner,하이애너 맥주가 저도수 라인을 출시할지 검토 중입니다. 기존 팬들의 반응은 엇갈리고 있습니다.,True,-5,5,2
+Template_Game,HighEner,하이애너 맥주가 올해 맥주 축제 공식 후원사로 선정되었습니다.,True,5,10,2
+Template_Game,HighEner,하이애너 맥주의 대륙 판매량이 분기 기준 역대 최고를 기록했습니다.,True,2,5,2
+Template_Game,HighEner,"하이애너의 비밀 숙성 한정판 맥주가 나오자마자 순식간에 동났습니다. ""한 잔만 더!""를 외치고 있습니다.",True,8,15,2
+Template_Luxury,GlimWing,"글림윙이 납품한 보석이 가짜라는 논란! ""진짜 드래곤 보석인지 의심된다""며 소동입니다.",False,-15,-8,2
+Template_Luxury,GlimWing,글림윙과 실버포지가 종족을 넘어 합작 컬렉션을 발표! 드래곤 보석+드워프 은세공이라니!,True,5,10,2
+Template_Luxury,SilverForge,실버포지와 글림윙이 합작 컬렉션 출시! 드워프+드래곤의 만남에 대륙이 환호!,True,5,10,2
+Template_Luxury,Crescent,크레센트에서 판 고급 음식에서 문제가 나왔습니다. 귀족 부인들이 난리입니다. 신뢰에 금이 갔습니다.,False,-10,-5,2
+Template_Luxury,GlimWing,글림윙 보석공예가 마법 강화 보석 라인을 준비 중입니다. 시장 반응에 관심이 쏠립니다.,True,-5,5,2
+Template_Luxury,GlimWing,경기 침체로 고급 장신구 수요가 크게 줄고 있습니다. 글림윙도 타격을 받고 있습니다.,False,-10,-5,2
+Template_Luxury,GlimWing,글림윙 보석공예의 자연 테마 장신구가 엘프 귀족층에서 폭발적 인기를 끌고 있습니다.,True,2,5,2
+Template_Luxury,GlimWing,글림윙이 마노사 왕실에 장신구를 납품! 왕비가 직접 찼다는 소문에 주문이 쏟아지고 있습니다.,True,8,15,2
+Template_Luxury,GlimWing,글림윙 보석공예의 핵심 장인이 경쟁사로 이직했습니다.,False,-10,-5,2
+Template_Luxury,SilverForge,실버포지 장신구가 마법 장신구 라인 진출을 검토 중입니다. 전통 세공과의 조합에 관심이 쏠립니다.,True,-5,5,2
+Template_Luxury,SilverForge,실버포지 장신구의 모조품이 시장에 대량으로 풀려 브랜드 이미지가 훼손되고 있습니다.,False,-10,-5,2
+Template_Luxury,SilverForge,실버포지 장신구의 정교한 세공 기술이 대륙 공예 대회에서 1위를 차지했습니다.,True,2,5,2
+Template_Luxury,SilverForge,"실버포지 은세공이 드레고니아 귀족들 사이에서 열풍! ""드워프 손재주는 역시 최고""라며 주문 폭주!",True,8,15,2
+Template_Luxury,SilverForge,실버포지 장신구의 원자재인 은 가격이 급등하면서 수익성이 악화되고 있습니다.,False,-10,-5,2
+Template_Luxury,SilverForge,실버포지 장신구의 숙련 장인 3명이 동시에 은퇴하면서 생산 역량에 타격입니다.,False,-5,-2,2
+Template_Luxury,Crescent,경기 침체로 크레센트 유통의 사치품 매출이 급감하고 있습니다.,False,-15,-8,2
+Template_Luxury,Crescent,크레센트 고급 매장이 돈을 긁어모으고 있습니다. 귀족들이 줄을 서서 물건을 사고 있습니다. 역대 최고 매출!,True,5,10,2
+Template_Luxury,Crescent,크레센트 유통이 엘프 왕국 명품 독점 수입 계약을 체결했습니다.,True,8,15,2
+Template_Luxury,Crescent,크레센트 유통이 중저가 라인 출시를 검토 중입니다. 프리미엄 이미지와의 충돌 우려가 있습니다.,True,-5,5,2
+Template_Luxury,Crescent,크레센트 유통의 물류 창고에서 화재가 발생하여 대량의 재고가 소실되었습니다.,False,-10,-5,2
+Template_Luxury,Crescent,크레센트 유통이 해외 시장 진출을 위한 사전 조사에 착수했습니다.,True,5,10,2
+Template_Luxury,FareBreez,페어브리즈 의류의 주요 거래처가 저가 경쟁사로 이동했습니다.,False,-5,-2,2
+Template_Luxury,FareBreez,페어브리즈 의류가 마노사 왕국과 고급 의류 독점 공급 계약을 체결했습니다.,True,5,10,2
+Template_Luxury,FareBreez,페어브리즈 의류의 신규 디자인이 대륙 패션 대상을 수상했습니다.,True,2,5,2
+Template_Luxury,FareBreez,페어브리즈 의류가 드레고니아 시장 진출을 논의 중입니다. 종족 간 패션 취향 차이가 관건입니다.,True,-5,5,2
+Template_Luxury,FareBreez,페어브리즈 의류의 마법 직물에서 알레르기 반응 사례가 보고되었습니다. 수거 조치가 내려졌습니다.,False,-15,-8,2
+Template_Luxury,FareBreez,페어브리즈 의류의 젊은 인력 이탈이 심화되면서 생산 차질이 커지고 있습니다.,False,-10,-5,2
+Template_Luxury,FareBreez,"페어브리즈의 마법 직물 드레스가 마노사 사교계를 휩쓸고 있습니다. ""이거 어디서 사요?""를 연발!",True,8,15,2
+Template_Magic,ManaCore,"마나코어 신제품에서 마법이 폭주하는 사고가 잇따르고 있습니다. ""집이 탄다""며 소비자들이 난리입니다.",False,-15,-8,2
+Template_Magic,ManaCore,마나코어의 마법 생활용품이 대륙 전역에서 대히트를 치고 있습니다. 집집마다 하나씩 있을 정도랍니다.,True,8,15,2
+Template_Magic,ManaPell,마나코어가 저가 제품을 내놓으면서 마나펠의 밥그릇을 직접 노리고 있습니다. 장사가 뚝 떨어졌습니다.,False,-10,-5,2
+Template_Magic,MaginoTech,"마지노의 핵심 실험이 대실패로 끝났습니다. 연구소 한 동이 날아갔고, 투자금도 함께 증발.",False,-20,-12,2
+Template_Magic,MaginoTech,마지노 연구소에서 마법 에너지가 폭주하는 사고가 났습니다. 연구소가 반쯤 무너졌습니다.,False,-20,-12,2
+Template_Magic,ManaCore,마나코어 시스템즈의 핵심 기술이 유출된 정황이 포착되었습니다.,False,-10,-5,2
+Template_Magic,ManaCore,마나코어 시스템즈가 오크 왕국 대중 시장 진출을 검토 중입니다. 저가 라인 출시 여부에 관심이 쏠립니다.,True,-5,5,2
+Template_Magic,ManaCore,마나코어 시스템즈가 드레고니아 시장 진출에 성공했습니다.,True,5,10,2
+Template_Magic,ManaCore,마나코어 시스템즈가 신형 마법 소재 시제품 공개를 예고했습니다. 시장의 기대가 큽니다.,True,8,15,2
+Template_Magic,ManaCore,마나코어 시스템즈가 경쟁사에 밀려 시장 점유율이 하락하고 있습니다.,False,-10,-5,2
+Template_Magic,ManaPell,마나펠 마법공예의 방수 망토가 모험가들 사이에서 필수품으로 자리 잡았습니다.,True,2,5,2
+Template_Magic,ManaPell,마나펠 마법공예의 원재료 수급이 불안정해지면서 생산에 차질이 생기고 있습니다.,False,-10,-5,2
+Template_Magic,ManaPell,마나펠 마법공예가 똑똑한 오크 연구진을 추가 영입했습니다. 신제품 개발이 기대됩니다.,True,-5,5,2
+Template_Magic,ManaPell,마나펠 마법공예가 인간 왕국 대형 유통망에 입점했습니다.,True,5,10,2
+Template_Magic,ManaPell,마나펠의 싼 마법 부적이 대륙 모험가들 사이에서 필수품이 되었습니다. 주문이 폭주하고 있습니다.,True,8,15,2
+Template_Magic,ManaPell,마나펠 마법공예 제품의 마법 효과가 광고보다 약하다는 불만이 쏟아지고 있습니다.,False,-10,-5,2
+Template_Magic,MaginoTech,마지노 테크놀로지가 왕국 군대와 대규모 마법 병기 공급 계약을 체결했습니다.,True,8,15,2
+Template_Magic,MaginoTech,마지노 테크놀로지의 신형 마법 장비가 시장에서 폭발적 반응을 얻고 있습니다.,True,5,10,2
+Template_Magic,MaginoTech,마지노의 마법 에너지 실험이 대성공을 거뒀습니다. 마법석 하나로 마을 하나를 밝힐 수 있게 되었답니다. 대혁신의 전조?,True,8,15,2
+Template_Magic,MaginoTech,마지노 테크놀로지가 엘프 마법사를 대거 영입했습니다. 연구 방향 변화에 관심이 쏠립니다.,True,-5,5,2
+Template_Magic,MaginoTech,마지노 테크놀로지의 마법 장비에서 결함이 발견되어 전량 리콜됩니다.,False,-10,-5,2
+Template_Magic,WindSeer,윈드시어 매직스가 공중 이동 기술 연구에 착수했다고 발표했습니다. 성공 여부는 미지수입니다.,True,-5,5,2
+Template_Magic,WindSeer,윈드시어 매직스의 핵심 연구원이 기술 유출 혐의로 체포되었습니다.,False,-20,-12,2
+Template_Magic,WindSeer,엘프 왕실이 윈드시어 매직스의 수출 허가를 다시 제한한다고 발표했습니다.,False,-10,-5,2
+Template_Magic,WindSeer,"윈드시어 기술의 수출이 허가되었습니다. 대륙이 들썩이고 있습니다. 엘프 기술을 살 수 있게 되다니, 놀라운 일입니다.",True,12,20,2
+Template_Magic,WindSeer,윈드시어 매직스의 마법 이동 장치에서 안전 사고가 발생했습니다. 사용 중지 권고가 내려졌습니다.,False,-15,-8,2
+Template_Magic,WindSeer,윈드시어 매직스에서 차세대 마법 연구가 순조롭게 진행 중이라는 소식입니다.,True,5,10,2
+Template_Magic,WindSeer,윈드시어 매직스가 마법 고속 이동 장치의 효율을 크게 개선했습니다.,True,8,15,2
+Template_Mining,GlamerRock,"글램머락 오크 광부들이 ""이 갱도는 너무 위험하다""며 떼로 빠져나갔습니다.",False,-10,-5,2
+Template_Mining,GlamerRock,글램머락 광산에서 납품한 광물의 품질 조작이 적발되었습니다. 신뢰에 큰 타격입니다.,False,-20,-12,2
+Template_Mining,BrootSteel,브루트스틸 공장에서 용광로가 폭발했습니다. 생산 라인이 완전히 멈췄습니다.,False,-15,-8,2
+Template_Mining,BrootSteel,"브루트스틸이 새 단조법을 개발했습니다. ""오크 철강도 이 정도면 쓸 만하다""는 평가가 나오기 시작했습니다.",True,5,10,2
+Template_Mining,BlazeMine,블레이즈마인 깊은 곳에서 전설로만 전해지던 희귀 마나석 광맥이 발견되었습니다. 드워프 왕국이 떠들썩합니다.,True,12,20,2
+Template_Mining,BlazeMine,블레이즈마인 광산에서 대규모 붕괴 사고가 발생했습니다. 인명 피해가 보고되고 있습니다.,False,-20,-12,2
+Template_Mining,BlazeMine,"""더 이상은 못 참겠다!"" 블레이즈마인 광부들이 곡괭이를 내려놓고 파업에 돌입했습니다.",False,-10,-5,2
+Template_Mining,IromCore,아이언코어 철강이 신소재 합금 개발에 성공했습니다. 기존 철강보다 강도가 30% 높다고 합니다.,True,8,15,2
+Template_Mining,IromCore,아이언코어 철강의 주요 용광로에서 화재가 발생했습니다. 생산 차질이 불가피합니다.,False,-15,-8,2
+Template_Mining,GlamerRock,드워프산 고품질 광물에 밀려 글램머락의 주요 거래처가 이탈하고 있습니다.,False,-10,-5,2
+Template_Mining,GlamerRock,글램머락 광산이 채굴 방식을 기계화한다고 발표했습니다. 효율은 오르지만 일자리 감소 우려도 있습니다.,True,-5,5,2
+Template_Mining,GlamerRock,글램머락에서 새 광맥을 찾아냈습니다. 오크들이 신나서 노래를 부르고 있다고 합니다.,True,8,15,2
+Template_Mining,GlamerRock,글램머락 광산이 인간 왕국과 대규모 저가 광물 공급 계약을 체결했습니다.,True,5,10,2
+Template_Mining,GlamerRock,글램머락 광산의 저가 전략이 효과를 보면서 시장 점유율이 확대되고 있습니다.,True,2,5,2
+Template_Mining,BrootSteel,브루트스틸 철강의 경영권을 놓고 똑똑한 오크파와 강한 오크파가 대립하고 있습니다.,True,-5,5,2
+Template_Mining,BrootSteel,브루트스틸 철강 제품이 내구성 테스트에서 기준 미달 판정을 받았습니다.,False,-10,-5,2
+Template_Mining,BrootSteel,브루트스틸 철강 광산 노동자들이 처우 개선을 요구하며 대규모 파업에 돌입했습니다.,False,-10,-5,2
+Template_Mining,BrootSteel,브루트스틸 철강이 건설용 저가 철강 대량 수주에 성공했습니다.,True,5,10,2
+Template_Mining,BrootSteel,브루트스틸 철강의 수출 물량이 전년 대비 크게 증가했습니다.,True,2,5,2
+Template_Mining,BlazeMine,블레이즈마인 광산에서 유독 가스가 유출되어 일부 구역이 폐쇄되었습니다.,False,-10,-5,2
+Template_Mining,BlazeMine,블레이즈마인 광산의 경영진이 세대교체를 단행했습니다. 새 광산장의 방침에 관심이 쏠립니다.,True,-5,5,2
+Template_Mining,BlazeMine,블레이즈마인 광산이 드레고니아와 장기 광물 공급 계약을 체결했습니다.,True,5,10,2
+Template_Mining,BlazeMine,블레이즈마인 광산의 이번 분기 채굴량이 전분기 대비 크게 증가했습니다.,True,5,10,2
+Template_Mining,IromCore,아이언코어 철강이 마노사 왕국 건설 프로젝트에 대량 납품 계약을 따냈습니다.,True,5,10,2
+Template_Mining,IromCore,아이언코어 철강의 분기 매출이 역대 최고를 기록했습니다.,True,5,10,2
+Template_Mining,IromCore,오크산 저가 철강에 시장을 빼앗기고 있다는 분석이 나왔습니다. 점유율이 하락 중입니다.,False,-10,-5,2
+Template_Mining,IromCore,아이언코어 철강이 친환경 제련 공법을 도입한다고 발표했습니다. 시장 반응은 엇갈리고 있습니다.,True,-5,5,2
+Template_Mining,IromCore,아이언코어 철강 제품에서 품질 결함이 발견되어 대규모 리콜이 진행됩니다.,False,-10,-5,2
