@@ -16,11 +16,12 @@ public class PortfolioPanel : MonoBehaviour
     public void Open()
     {
         // 이전 항목 제거
+        Debug.Log("Portfolio Open() 호출됨"); // 추가
         foreach (Transform child in contentParent)
             Destroy(child.gameObject);
 
         StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
+        Debug.Log($"찾은 StockControl 개수: {allStocks.Length}"); // 추가
         float totalCurrentValue = 0f;  // 현재 보유 주식 총 평가금액
         float totalPurchaseCost = 0f;  // 평균 매수가 기준 총 매수 원금
 
@@ -48,6 +49,8 @@ public class PortfolioPanel : MonoBehaviour
 
             totalCurrentValue += currentValue;
             totalPurchaseCost += purchaseCost;
+            if (sc.ownedAmount <= 0) continue;
+            
         }
 
         // 총 평가금액
@@ -68,8 +71,4 @@ public class PortfolioPanel : MonoBehaviour
     }
 
     // 닫기 버튼 클릭 시 포트폴리오 패널 닫고 전체 주식 목록 패널로 복귀
-    public void OnCloseClick()
-    {
-        UIManager.instance.ReturnToEntire(portfolioPanel.gameObject);
-    }
 }

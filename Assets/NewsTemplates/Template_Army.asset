@@ -17,199 +17,199 @@ MonoBehaviour:
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C \uC6A9\uBCD1\uC774 \uB9C8\uC744\uC5D0\uC11C
       \uBBFC\uAC04\uC778\uC744 \uD574\uCCE4\uC2B5\uB2C8\uB2E4. \uB300\uB959\uC774
       \uBD84\uB178\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -20
     changeMax: -12
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C\uAC00 \uC791\uC804 \uC911 \uD070 \uD0C0\uACA9\uC744
       \uC785\uC5C8\uC2B5\uB2C8\uB2E4. \uC815\uC608 \uB4DC\uB798\uACE4 \uC804\uC0AC
       \uC5EC\uB7FF\uC744 \uC783\uC5C8\uB2E4\uB294 \uBE44\uBCF4\uC785\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -15
     changeMax: -8
+    isUncertain: 1
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC\uC774 \uB9C8\uBC95 \uAC15\uD654 \uAC11\uC637
       \uAC1C\uBC1C\uC5D0 \uC131\uACF5\uD588\uC2B5\uB2C8\uB2E4. \uB4DC\uC6CC\uD504\uC81C\uC5D0
       \uB4A4\uC9C0\uC9C0 \uC54A\uB294\uB2E4\uB294 \uD3C9\uAC00\uC5D0 \uB300\uB959\uC774
       \uC220\uB801\uC774\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 1
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uB9C8\uB178\uC0AC \uC655\uAD6D\uC774 \uC544\uC774\uC5B8\uD558\uD2B8\uC640\uC758
       \uBB34\uAE30 \uC218\uCD9C \uACC4\uC57D\uC744 \uD30C\uAE30\uD588\uC2B5\uB2C8\uB2E4.
       \uCCAD\uCC9C\uBCBD\uB825 \uAC19\uC740 \uC18C\uC2DD\uC785\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -20
     changeMax: -12
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC774 \uB0A9\uD488\uD55C
       \uBC29\uC5B4\uAD6C \uC77C\uBD80\uC5D0\uC11C \uADE0\uC5F4\uC774 \uBC1C\uACAC\uB418\uC5B4
       \uB300\uADDC\uBAA8 \uB9AC\uCF5C\uC774 \uC9C4\uD589\uB429\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -15
     changeMax: -8
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4\uAC00 \uC5ED\uB300 \uCD5C\uB300 \uC804\uC7C1
       \uACC4\uC57D\uC744 \uB530\uB0C8\uC2B5\uB2C8\uB2E4. \uC218\uCC9C \uC624\uD06C
       \uC804\uC0AC\uAC00 \uC804\uC7A5\uC73C\uB85C \uD5A5\uD569\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 1
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4\uAC00 \uC804\uD22C\uC5D0\uC11C \uCC38\uD328\uD588\uC2B5\uB2C8\uB2E4.
       \"\uC624\uD06C \uC6A9\uBCD1\uC740 \uC218\uB9CC \uB9CE\uC9C0...\" \uB77C\uB294
       \uB9D0\uC774 \uD37C\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -15
     changeMax: -8
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C \uC6A9\uBCD1\uB2E8\uC758 \uACE0\uAE09
       \uACC4\uC57D \uB2E8\uAC00\uAC00 \uB108\uBB34 \uB192\uB2E4\uB294 \uBD88\uB9CC\uC774
       \uCEE4\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4. \uACC4\uC57D \uCDE8\uC18C\uAC00
       \uC787\uB530\uB974\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -10
     changeMax: -5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C \uC6A9\uBCD1\uB2E8\uC774 \uC2E0\uADDC
       \uBD80\uB300\uB97C \uD3B8\uC131 \uC911\uC785\uB2C8\uB2E4. \uD655\uC7A5 \uC5EC\uBD80\uC5D0
       \uAD00\uC2EC\uC774 \uC3E0\uB9BD\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: -5
     changeMax: 5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C \uC6A9\uBCD1\uB2E8\uC5D0 \uC804\uD22C
       \uC758\uB8B0\uAC00 \uAE09\uC99D\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C\uAC00 \uBD88\uAC00\uB2A5\uD574 \uBCF4\uC774\uB358
       \uBC29\uC5B4 \uC784\uBB34\uB97C \uC644\uBCBD\uD788 \uD574\uB0C8\uC2B5\uB2C8\uB2E4.
       \uC774\uB984\uB9CC \uB300\uBA74 \uC801\uC774 \uB3C4\uB9DD\uAC04\uB2E4\uB294
       \uC18C\uBB38\uC774 \uB3CC\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 16aef88362311fe46b0b66d9c7178d41, type: 2}
     eventText: "\uBE0C\uB808\uC2A4\uB9C8\uD06C \uC6A9\uBCD1\uB2E8\uC774 \uB9C8\uB178\uC0AC
       \uC655\uAD6D\uACFC \uC7A5\uAE30 \uCE58\uC548 \uACC4\uC57D\uC744 \uCCB4\uACB0\uD588\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 5
     changeMax: 10
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC \uBC29\uC0B0\uC758 \uD575\uC2EC \uAE30\uC220\uC790\uAC00
       \uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC73C\uB85C \uC774\uC9C1\uD588\uB2E4\uB294
       \uC18C\uC2DD\uC785\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -10
     changeMax: -5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC \uBC29\uC0B0\uC758 \uC2DC\uC81C\uD488\uC774
       \uC131\uB2A5 \uD14C\uC2A4\uD2B8\uC5D0\uC11C \uAE30\uC900\uC5D0 \uBABB \uBBF8\uCCE4\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -15
     changeMax: -8
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC \uBC29\uC0B0\uC758 \uC2DC\uC81C\uD488\uC774
       \uAD70\uBD80 \uC2DC\uC5F0\uC5D0\uC11C \uC88B\uC740 \uD3C9\uAC00\uB97C \uBC1B\uC558\uC2B5\uB2C8\uB2E4.
       \uC591\uC0B0 \uAC00\uB2A5\uC131\uC774 \uB192\uC544\uC84C\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uB9C8\uB178\uC0AC \uC655\uAD6D\uC774 \uBC29\uC0B0 \uC815\uCC45 \uBC29\uD5A5\uC744
       \uC7AC\uAC80\uD1A0\uD55C\uB2E4\uACE0 \uBC1C\uD45C\uD588\uC2B5\uB2C8\uB2E4.
       \uC544\uC774\uC5B8\uB9AC\uD3FC\uC758 \uBBF8\uB798\uC5D0 \uAD00\uC2EC\uC774
       \uC3E0\uB9BD\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: -5
     changeMax: 5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC \uBC29\uC0B0\uC774 \uB9C8\uB178\uC0AC
       \uC655\uAD6D \uC815\uBD80\uB85C\uBD80\uD130 \uCD94\uAC00 \uC9C0\uC6D0\uAE08\uC744
       \uD655\uBCF4\uD588\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 20fb4d276cabdcf43b1b211a34a2f62a, type: 2}
     eventText: "\uC544\uC774\uC5B8\uB9AC\uD3FC \uBC29\uC0B0\uC5D0 \uB300\uD55C \uC815\uBD80
       \uC9C0\uC6D0\uC774 \uCD95\uC18C\uB420 \uC218 \uC788\uB2E4\uB294 \uC18C\uC2DD\uC785\uB2C8\uB2E4.
       \uC815\uCC45 \uBCC0\uD654 \uC6B0\uB824\uAC00 \uCEE4\uC9C0\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -15
     changeMax: -8
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC774 \uBC14\uC774\uBE0C\uB808\uC2A4
       \uC655\uAD6D\uACFC 5\uB144\uAC04\uC758 \uBC29\uC5B4\uAD6C \uB3C5\uC810 \uACF5\uAE09
       \uACC4\uC57D\uC744 \uCCB4\uACB0\uD588\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 5
     changeMax: 10
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8\uC758 \uC2E0\uD615 \uACF5\uC131 \uBCD1\uAE30
       '\uC2A4\uD1A4\uBE0C\uB808\uC774\uCEE4'\uAC00 \uC2DC\uD5D8\uC5D0\uC11C \uC131\uBCBD\uC744
       \uD55C \uBC29\uC5D0 \uBD80\uC234\uBC84\uB838\uC2B5\uB2C8\uB2E4. 3\uB144\uAC04\uC758
       \uAC1C\uBC1C\uC774 \uB9C8\uCE68\uB0B4 \uACB0\uC2E4\uC744 \uB9FA\uC5C8\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC758 \uBD84\uAE30 \uB9E4\uCD9C\uACFC
       \uC601\uC5C5\uC774\uC775\uC774 \uBAA8\uB450 \uC804\uBD84\uAE30 \uB300\uBE44
       \uD06C\uAC8C \uC0C1\uC2B9\uD588\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 5
     changeMax: 10
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC758 \uB9C8\uBC95 \uAE08\uC18D
       \uD569\uAE08 \uC5F0\uAD6C\uAC00 \uC2E4\uD328\uB85C \uB05D\uB0AC\uC2B5\uB2C8\uB2E4.
       \uC5F0\uAD6C\uBE44\uB9CC \uC218\uCC9C\uB9CC \uACE8\uB4DC\uAC00 \uB0A0\uC544\uAC14\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -10
     changeMax: -5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: 33d11c22f8931244e9de0ccc8f20070d, type: 2}
     eventText: "\uC544\uC774\uC5B8\uD558\uD2B8 \uACF5\uC5C5\uC774 \uB9C8\uBC95 \uAE08\uC18D
       \uD569\uAE08 \uAE30\uC220 \uC5F0\uAD6C\uC5D0 \uCC29\uC218\uD588\uC2B5\uB2C8\uB2E4.
       \uC131\uD328\uC5D0 \uAD00\uC2EC\uC774 \uC3E0\uB9BD\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: -5
     changeMax: 5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4 \uC6A9\uBCD1\uB2E8\uC774 \uACC4\uC57D \uC774\uD589
       \uC911 \uC57D\uD0C8 \uD589\uC704\uB97C \uC800\uC9C8\uB800\uB2E4\uB294 \uACE0\uBC1C\uC774
       \uB4E4\uC5B4\uC654\uC2B5\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -20
     changeMax: -12
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4 \uC6A9\uBCD1\uB2E8\uC5D0 \uC804\uD22C \uC758\uB8B0\uAC00
       \uAE09\uC99D\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 8
     changeMax: 15
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4 \uC6A9\uBCD1\uB2E8\uC758 \uC800\uAC00 \uC804\uB7B5\uC774
       \uD6A8\uACFC\uB97C \uBCF4\uBA74\uC11C \uC758\uB8B0\uAC00 \uAFB8\uC900\uD788
       \uB298\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: 5
     changeMax: 10
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4 \uC6A9\uBCD1\uB2E8 \uB0B4\uBD80\uC5D0\uC11C
       \uC624\uD06C \uD30C\uBC8C \uAC04 \uCDA9\uB3CC\uC774 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4.
       \uBD80\uB300 \uC6B4\uC601\uC5D0 \uCC28\uC9C8\uC785\uB2C8\uB2E4."
-    isPositive: 0
     changeMin: -10
     changeMax: -5
+    isUncertain: 0
   - targetStock: {fileID: 11400000, guid: b042e60e62ad474448852bf030885eee, type: 2}
     eventText: "\uC6CC\uBA54\uC774\uCEE4 \uC6A9\uBCD1\uB2E8\uC774 \uD6C8\uB828 \uBC29\uC2DD\uC744
       \uC804\uBA74 \uAC1C\uD3B8\uD55C\uB2E4\uACE0 \uBC1C\uD45C\uD588\uC2B5\uB2C8\uB2E4.
       \uC804\uD22C\uB825 \uBCC0\uD654\uC5D0 \uAD00\uC2EC\uC774 \uC3E0\uB9BD\uB2C8\uB2E4."
-    isPositive: 1
     changeMin: -5
     changeMax: 5
+    isUncertain: 0
   lastingDay: 2
   lowPercent:
   - 1

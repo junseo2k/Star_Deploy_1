@@ -27,6 +27,8 @@ public class DetailPanel : MonoBehaviour
     public Transform DetailwithPanel;        // 상세 패널 전체 루트 (구매/판매 패널 전환 시 비활성화)
     public int maxmount;                     // 구매 또는 판매 가능한 최대 수량
     public OrderPanel orderPanel;           // 구매/판매 수량 확인 패널 참조
+    public SidebarTabManager sidebarTabManager; // 인스펙터에서 연결
+    public GameObject marketListPanel; // TabManager가 붙어있는 주식 목록 화면 최상위 오브젝트
 
 
 
@@ -43,6 +45,7 @@ public class DetailPanel : MonoBehaviour
     // 주식 데이터를 받아 상세 패널 UI 텍스트를 갱신
     public void ShowDetail(Stock stock)
     {
+        transform.SetAsLastSibling(); // 항상 다른 UI보다 위에 그려지도록
         currentstock = stock;
         StockName.text = stock.StockName;
         StockImage.sprite = stock.StockIcon;
@@ -118,14 +121,15 @@ public class DetailPanel : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        UIManager.instance.ReturnToEntire(DetailwithPanel.gameObject);
+        UIManager.instance.ReturnToStock(DetailwithPanel.gameObject);
     }
     // 구매 버튼 클릭 시 상세 패널 닫고 구매 패널 열기
     // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 구매 수량 계산
     public void OnBuyButtonClick()
-    {
+    {  
         DetailwithPanel.gameObject.SetActive(false);
         UIManager.instance.buyPanel.gameObject.SetActive(true);
+        UIManager.instance.buyPanel.transform.SetAsLastSibling(); // 추가
         StockControl sc = StockControl.Find(currentstock);
         if (sc != null)
             orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기

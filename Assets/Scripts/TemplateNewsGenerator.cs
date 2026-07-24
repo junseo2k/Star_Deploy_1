@@ -1,10 +1,17 @@
 using UnityEngine;
 
 // NewsTemplate 하나를 받아서 무작위 조합으로 즉석 Case를 만들어주는 헬퍼
-// 생성된 Case는 기존 GameManager.AddActiveNews()에 그대로 넘기면 됨
+// 생성된 Case는 확정 뉴스면 바로, 불확정 뉴스면 대기열을 거쳐 GameManager.AddActiveNews()로 넘기면 됨
 public static class TemplateNewsGenerator
 {
-    public static Case Generate(NewsTemplate template)
+    // Generate 결과를 담는 상자 — Case 데이터와 확정/불확정 여부를 같이 전달하기 위함
+    public struct GeneratedNews
+    {
+        public Case caseData;     // 생성된 뉴스 데이터
+        public bool isUncertain;  // true면 불확정 뉴스 (효과가 나중에 나타남)
+    }
+
+    public static GeneratedNews? Generate(NewsTemplate template)
     {
         // 재료가 하나도 없으면 생성 불가
         if (template.events.Length == 0) return null;
@@ -27,6 +34,6 @@ public static class TemplateNewsGenerator
         generated.lowPercent = template.lowPercent;
         generated.newsType = Case.NewsType.SmallCompanyNews;
 
-        return generated;
+        return new GeneratedNews { caseData = generated, isUncertain = picked.isUncertain };
     }
 }

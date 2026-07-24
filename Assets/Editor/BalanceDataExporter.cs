@@ -42,7 +42,8 @@ public class BalanceDataExporter
             foreach (var e in t.events)
             {
                 string stockName = e.targetStock != null ? e.targetStock.StockName : "?";
-                sb.AppendLine($"{t.name},{stockName},{EscapeCsv(e.eventText)},{e.isPositive}," +
+                bool isPositive = (e.changeMin + e.changeMax) >= 0; // isPositive 필드가 삭제되어 부호로 direct 계산
+                sb.AppendLine($"{t.name},{stockName},{EscapeCsv(e.eventText)},{isPositive}," +
                     $"{e.changeMin},{e.changeMax},{t.lastingDay}");
             }
         }

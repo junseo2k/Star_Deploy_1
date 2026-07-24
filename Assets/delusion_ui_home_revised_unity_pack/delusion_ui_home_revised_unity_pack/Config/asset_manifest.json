@@ -1,0 +1,559 @@
+{
+  "pack": "DELUSION Home UI — Font Free",
+  "png_count": 55,
+  "font_file_count": 0,
+  "mockup_layer_count": 0,
+  "validation": "passed",
+  "assets": [
+    {
+      "path": "Assets/Backgrounds/merchant_office_1920x1080.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "2dc7b3ae999605980ea4ba08818e6050da4a5243d1d6673a6a565e2540c29ff3"
+    },
+    {
+      "path": "Assets/Characters/lina_transparent.png",
+      "size": [
+        1122,
+        1402
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "6ae7d1d5dac7fcf8a7397186bd40b508b5d8340e930bc64595f1f9996b00f9b1"
+    },
+    {
+      "path": "Assets/Content/NewsThumbnails/news_magic_engine.png",
+      "size": [
+        124,
+        124
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "aeead05099a26fdbbfd5c9f4c758a069160074451564b618bc51e4e9655205c0"
+    },
+    {
+      "path": "Assets/Content/NewsThumbnails/news_mining_shutdown.png",
+      "size": [
+        124,
+        124
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "28eefb3e3a9e1ffe9dc1a5ee0f3fca8b2788d7430bd721553d3179a8583021c4"
+    },
+    {
+      "path": "Assets/Content/NewsThumbnails/source_pixel_magic_circle.png",
+      "size": [
+        22,
+        22
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "53b9e53c12000c760fd595a16fe1dc7f68cd8c05b852f810c335fcf669f9a346"
+    },
+    {
+      "path": "Assets/Content/NewsThumbnails/source_pixel_pickaxe.png",
+      "size": [
+        22,
+        22
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "03628be8118723000aa7805127458f3d532fc91d34eb6f7892858cb671d566f5"
+    },
+    {
+      "path": "Assets/Icons/arrow_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "54a1e920f6a3722a6a1787c7eb98e806a6db91d39469f6e86359823eb09f0fbe"
+    },
+    {
+      "path": "Assets/Icons/arrow_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "83d697968c843146ea91211ecdc242e61ac9290e948fc0b7e10f1d51e526e32b"
+    },
+    {
+      "path": "Assets/Icons/arrow_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "3199b2ebf2dcab50372155c1ac1ed84e3bffaa1dfb90c3c8a6281184b90cfbf0"
+    },
+    {
+      "path": "Assets/Icons/assets_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "b9df430129c19f6f40c0735128cb074a5d1bb330790978b1b5c16f1500a1047e"
+    },
+    {
+      "path": "Assets/Icons/assets_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "c5367b917cb9a7dc86bec896fe7127b85dee12f193482db445b7159960374cd7"
+    },
+    {
+      "path": "Assets/Icons/assets_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "bd9d9b4cacdba2ad04acaded08a6d00514b00d0b45c4e656d32a77f491135cd0"
+    },
+    {
+      "path": "Assets/Icons/coin_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "27a9cce8a0887575a47c785c97499c8419e451845de540c5eec8de7bba904b67"
+    },
+    {
+      "path": "Assets/Icons/coin_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "4ef4b37873a6b54438ab982fa0cae0abf89e17559357eb9952809e40ab5a0e14"
+    },
+    {
+      "path": "Assets/Icons/coin_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "b7e4f7840cbb6977db108b103bd593415fec57d58d6b79af5e3fc84ae958aa00"
+    },
+    {
+      "path": "Assets/Icons/companies_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "d2ddf7a23388c3e8b8ce48e1efe8ae393965823a482e9be4bddfb21771b3f7f1"
+    },
+    {
+      "path": "Assets/Icons/companies_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "6163bc04bc101aadaee136cfe72263fb6d1d4357cfce1360ee2462d69669b610"
+    },
+    {
+      "path": "Assets/Icons/companies_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "0a411669fea5598bcf3d701822843d96a5d913450b1629cee42b41986c072c70"
+    },
+    {
+      "path": "Assets/Icons/era_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "c8f191f97c5d13f45446685de6b81fa9971f9a2e2cd0270834891450473a036e"
+    },
+    {
+      "path": "Assets/Icons/era_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "efd21339c2105b61e34bbe6f64769bf5ddc619e1795116dbb185758cc4169d85"
+    },
+    {
+      "path": "Assets/Icons/era_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "0f152ea92c8d7859b9171a6667b92eae38fcc7f9b4c9ba4fa941e06cd1ff3fff"
+    },
+    {
+      "path": "Assets/Icons/home_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "b7555c59ede93effa778fbc86283490515188c8a600574568302cf414fe8b023"
+    },
+    {
+      "path": "Assets/Icons/home_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "dfd38c840e6c86fec28ca165e8388138b21e9c5b9e9467f4fd51aabf7013edeb"
+    },
+    {
+      "path": "Assets/Icons/home_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "871b787e7ffe28513d9e3b1ff1acd1eb59f6aebaf4691c94505c10ca989ff158"
+    },
+    {
+      "path": "Assets/Icons/market_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "168402ca0b1e88cb63c629c4ac8815dcd4ef63f7b412aefef334dfac6661b8cc"
+    },
+    {
+      "path": "Assets/Icons/market_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "7dc1ca277326e1f2a074e876a2589c7e5dd50422e96ceea2aecdcc5cbbab664a"
+    },
+    {
+      "path": "Assets/Icons/market_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "443eeeb001670d4943111bdd591d45e1a4b7ec8da32625148bc1d9ac76ac5c3a"
+    },
+    {
+      "path": "Assets/Icons/settings_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "4aa039f60e92d47660de16f3d7e56f1f7912bb7cb70da3cffe29f6a58fad6bc5"
+    },
+    {
+      "path": "Assets/Icons/settings_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "c16bbefd26759e7b146fb1d721cf99cf273efe81ae21a8a8ad6f808690494511"
+    },
+    {
+      "path": "Assets/Icons/settings_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "decde4d2a5f56a59aa6f741994adb96c587e81e0667fba74e62eb19058f200ee"
+    },
+    {
+      "path": "Assets/Icons/turn_active.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "28654a77d6410cc8db20a95c3471506ca91fdfdc2a5a463eae68ed67777f2aef"
+    },
+    {
+      "path": "Assets/Icons/turn_dark.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "5f52ef48cac09ef4b562450b85e512eacb654d68495420b43046c977716e1540"
+    },
+    {
+      "path": "Assets/Icons/turn_light.png",
+      "size": [
+        64,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "5274fbb0f5c41821e3855bef38a7cff811e5120d0e375876986cf5be0e4efc94"
+    },
+    {
+      "path": "Assets/UI/Buttons/next_day_hover_blank_356x90.png",
+      "size": [
+        356,
+        90
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "947c565ed9d60b4edd990fc5ee59b656e53c21e1ec440c7e4503ed8ff3f3cc25"
+    },
+    {
+      "path": "Assets/UI/Buttons/next_day_normal_blank_356x90.png",
+      "size": [
+        356,
+        90
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "ad4d2944cad770d99c25c608669979a083c590a4098c653122e90471df8bc4d7"
+    },
+    {
+      "path": "Assets/UI/Buttons/next_day_pressed_blank_356x90.png",
+      "size": [
+        356,
+        90
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "2c9932922ee80b284302621fa451272ce70966db709cbff63f0d07e89ce16858"
+    },
+    {
+      "path": "Assets/UI/Decorations/briefing_divider_964x1.png",
+      "size": [
+        964,
+        1
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "29abf8366b16b12adf5e5dace22d6711756f127909462981990b14853f9e54a5"
+    },
+    {
+      "path": "Assets/UI/Decorations/status_divider_1x41.png",
+      "size": [
+        1,
+        41
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "cc68ec0b869539b39e4192c412494d5fa4e413c4af0787c4ad7bb0899966a368"
+    },
+    {
+      "path": "Assets/UI/Decorations/watchlist_divider_1x64.png",
+      "size": [
+        1,
+        64
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "cb9b5f9bdb4a4146a637c86fa2d429d06e49c3c285d2a25a59657c2139cb010d"
+    },
+    {
+      "path": "Assets/UI/NineSlice/panel_nav_9slice.png",
+      "size": [
+        192,
+        192
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "f29ffd245e79de02dced9aef58ffcc25165daa1e2325671ca5772b82f9676528"
+    },
+    {
+      "path": "Assets/UI/NineSlice/panel_surface_9slice.png",
+      "size": [
+        192,
+        192
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "3803b5cde41e4f73c61baf4ef9f06ae218e73cf579e76bbe8ae8d9a8fd8cfbd1"
+    },
+    {
+      "path": "Assets/UI/NineSlice/panel_surface_alt_9slice.png",
+      "size": [
+        192,
+        192
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "fd116fe059a5a3c6ab43a9ff6fdb7606777d89454d86faba2320600708bfe446"
+    },
+    {
+      "path": "Assets/UI/Panels/brand_medallion_empty_60x60.png",
+      "size": [
+        60,
+        60
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "11a5ddff716e365e19db4972c78a8e9f3b03ec6f61344b96317448fa78c780a6"
+    },
+    {
+      "path": "Assets/UI/Panels/briefing_card_1040x390.png",
+      "size": [
+        1040,
+        390
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "4b155bf7b775cd2b7165a84a14136600cbb69074f776cd5c8131f742aeabc025"
+    },
+    {
+      "path": "Assets/UI/Panels/lina_speech_bubble_450x120.png",
+      "size": [
+        450,
+        120
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "0431c7b2cc19748e02c6c5a7c4de293fd54880ccb3d5bb1425c5a88b9a9cc4d2"
+    },
+    {
+      "path": "Assets/UI/Panels/portfolio_card_1040x96.png",
+      "size": [
+        1040,
+        96
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "137c015fb5277c8c16ee53dfd78a545044f3f7c085ede23cb1ddaf0f935e5f00"
+    },
+    {
+      "path": "Assets/UI/Panels/sidebar_background_138x1080.png",
+      "size": [
+        138,
+        1080
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "c5abe3d9a5a52e9a74375953a47a0611b4deae499829f89ff62fd06287d319f1"
+    },
+    {
+      "path": "Assets/UI/Panels/sidebar_nav_selected_124x84.png",
+      "size": [
+        124,
+        84
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "b0c314882a6a99ce30ad84532822b9e50a0213cee343ee1308fca03084c090a3"
+    },
+    {
+      "path": "Assets/UI/Panels/top_status_bar_792x73.png",
+      "size": [
+        792,
+        73
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "7b485c0ac9d007ecbd5f2c9aa4f09a18c1a0fa6f0842016e17df751f18139bb0"
+    },
+    {
+      "path": "Assets/UI/Panels/watchlist_card_1040x156.png",
+      "size": [
+        1040,
+        156
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "dd54a26bb9fe40c50410c54e86a9813d5b0c6c03c4d6abb14f6a0e86fbdc861f"
+    },
+    {
+      "path": "Assets/UI/Pills/briefing_count_57x34.png",
+      "size": [
+        57,
+        34
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "55a9f2cf7dae339df6f15093904297a2cd0907b2fd0bedc3eee1602d61c5fd6d"
+    },
+    {
+      "path": "Assets/UI/Pills/performance_down_188x47.png",
+      "size": [
+        188,
+        47
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "a34914d1cf00d432d30ed183f6947969b2d7626c83f6ae4f52c0c6d2fd975efb"
+    },
+    {
+      "path": "Assets/UI/Pills/performance_up_188x47.png",
+      "size": [
+        188,
+        47
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "8706ddcc278f66fef94a8d3b356bf5b6066bae4c572c36f7824702924d51e69a"
+    },
+    {
+      "path": "Assets/UI/Pills/sector_magic_92x33.png",
+      "size": [
+        92,
+        33
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "a4db0d7880209435a3c76961f817c8d2884bc0d743d755a4666784eefd6d86a8"
+    },
+    {
+      "path": "Assets/UI/Pills/sector_mining_64x33.png",
+      "size": [
+        64,
+        33
+      ],
+      "mode": "RGBA",
+      "contains_baked_text": false,
+      "sha256": "a4d41c73145162f33018eb37a0004e6cddbf18a2601fb20dc2f7b08778bfd5f7"
+    }
+  ]
+}

@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     private const int ERA_HINT_DAYS_BEFORE = 2; // 힌트 뉴스를 며칠 전에 보여줄지
     private Era pendingEra; // 힌트 뉴스로 예고된, 아직 시작 안 한 시대
     public NewsTemplate[] newsTemplates;
+    public List<PendingNews> pendingNewsList = new List<PendingNews>(); // 불확정 뉴스 대기열
+    private const int UNCERTAIN_NEWS_DELAY = 2;       // 불확정 뉴스 효과가 나타나기까지 걸리는 턴 수
+    private List<string> dailyNotices = new List<string>(); // 오늘 발생한 알림 메시지 모음 (줄바꿈으로 이어서 표시)
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -237,7 +240,7 @@ public class GameManager : MonoBehaviour
         if (!File.Exists(path))
         {
         // isAffectedByNews 컬럼 추가
-            string header = "day,stockName,currentPrice,previousPrice,priceChangePct,isAffectedByNews\n";
+            string header = "day,stockName,currentPrice,previousPrice,priceChangePct,isAffectedByNews,eraEffect\n";
             File.WriteAllText(path, header);
         }
 
@@ -268,14 +271,22 @@ public class GameManager : MonoBehaviour
 
         // 가격 변동률 계산
             float changePct = stock.ChangePercent;
-
+            int eraEffect = 0;
+            if (currentEra != null)
+            {
+                if (System.Array.Exists(currentEra.boostedIndustries, t => t == stock.IndustryTag))
+                    eraEffect = 1;
+                else if (System.Array.Exists(currentEra.weakenedIndustries, t => t == stock.IndustryTag))
+                    eraEffect = -1;
+            }
             sb.AppendLine(
                 $"{currentDay}," +
                 $"{stock.StockName}," +
                 $"{stock.StockCurrentPrice}," +
                 $"{stock.StockPreviousPrice}," +
                 $"{changePct:F2}," +
-                $"{(isAffected ? 1 : 0)}"
+                $"{(isAffected ? 1 : 0)}," +
+                $"{eraEffect}"
             );
         }
 
@@ -314,12 +325,31 @@ public class GameManager : MonoBehaviour
 }
 
     // 다음 날 버튼 클릭 시 호출 — 날짜 증가, 랜덤 사건 발생, UI 갱신. 감쇠는 매일 발생하므로 이곳에 계산식을 둠.
+    // 알림 메시지를 오늘 목록에 추가하고, 지금까지 쌓인 메시지를 줄바꿈으로 이어서 NoticeText에 표시
+        private void AddNotice(string message)
+        {
+            dailyNotices.Add(message);
+            UIManager.instance.NoticeText.text = string.Join("\n", dailyNotices);
+        }
+
+    
     public void OnNextDayButton()
     {
+        dailyNotices.Clear();
         foreach (ActiveCase active in activeNewsList)
         {
             active.Rday--;
             active.currentDay++;    
+        }
+        // 불확정 뉴스 대기 처리 — 지정된 턴이 지나면 실제 효과 발동
+        for (int i = pendingNewsList.Count - 1; i >= 0; i--)
+        {
+            pendingNewsList[i].daysLeft--;
+            if (pendingNewsList[i].daysLeft <= 0)
+            {
+                AddNotice($"[속보] {pendingNewsList[i].caseData.CaseDescription}"); // 소문이 사실로 확정됐음을 알
+                pendingNewsList.RemoveAt(i);
+            }
         }
         currentDay += 1;
         // 대출 이자 시스템
@@ -331,22 +361,27 @@ public class GameManager : MonoBehaviour
             Debug.Log($"이자 {interest}G 차감. 남은 대출금: {loanAmount}G");
         }
         
-        smallNewsTimer++; //소형 뉴스 생성
-        if (SmallNewsCases.Count > 0 && smallNewsTimer >= Random.Range(3, 6))
+        smallNewsTimer++; //소형 뉴스 생성 타이머 (템플릿 기반으로 통일 — 트리거는 기존과 동일한 3~5턴 주기)
+        if (newsTemplates.Length > 0 && smallNewsTimer >= Random.Range(3, 6))
         {
-            int RandomSmall = Random.Range(0, SmallNewsCases.Count);
-            Case picked = SmallNewsCases[RandomSmall];
-            if (!activeNewsList.Exists(active => active.caseData == picked))
-                AddActiveNews(picked);
             smallNewsTimer = 0;
-        }
-        // OnNextDayButton()의 소형 뉴스 생성 부분에 아래처럼 분기 추가
-        if (newsTemplates.Length > 0 && Random.value < 0.3f) // 30% 확률로 템플릿 뉴스
-        {
             NewsTemplate t = newsTemplates[Random.Range(0, newsTemplates.Length)];
-            Case generated = TemplateNewsGenerator.Generate(t);
-            if (generated != null) AddActiveNews(generated);
-        }
+            var result = TemplateNewsGenerator.Generate(t);
+            if (result.HasValue)
+            {
+                if (result.Value.isUncertain)
+                {
+                    // 불확정 뉴스 — 지금 당장 가격에 영향 주지 않고 대기열에 등록
+                    pendingNewsList.Add(new PendingNews { caseData = result.Value.caseData, daysLeft = UNCERTAIN_NEWS_DELAY });
+                    AddNotice($"[소문] {result.Value.caseData.CaseDescription}");
+                }
+                else
+                {
+                    // 확정 뉴스 — 기존 방식대로 바로 활성화
+                    AddActiveNews(result.Value.caseData);
+                }
+            }
+        }      
         // 전조 뉴스 — 대형 뉴스 발생 2~3턴 전
         if (currentDay == scheduledBigNewsVibeDay
             && scheduledBigNewsCaseIndex >= 0
@@ -395,13 +430,13 @@ if (currentEra == null && currentDay >= nextEraStartDay)
     currentEra = pendingEra != null ? pendingEra : allEras[Random.Range(0, allEras.Length)];
     pendingEra = null;
     eraEndDay = currentDay + ERA_DURATION;
-    UIManager.instance.NoticeText.text = $"[새로운 시대] {currentEra.eraName} 시작! {currentEra.eraDescription}";
+    AddNotice($"[새로운 시대] {currentEra.eraName} 시작! {currentEra.eraDescription}");
 }
 
 // 시대 종료
 if (currentEra != null && currentDay >= eraEndDay)
 {
-    UIManager.instance.NoticeText.text = $"{currentEra.eraName}이(가) 막을 내렸습니다.";
+     AddNotice($"{currentEra.eraName}이(가) 막을 내렸습니다.");
     currentEra = null;
     nextEraStartDay = currentDay + ERA_COOLDOWN;
 }
@@ -434,7 +469,8 @@ if (currentEra != null)
                 case Stock.VolatilityType.Volatile:
                     range = 4f; break;
             }
-            float Randomchange = Random.Range(-range, range);
+            float bias = 0.15f;
+            float Randomchange = Random.Range(-range, range) + bias;
             tabmanager.allstock[i].StockCurrentPrice = Mathf.RoundToInt(tabmanager.allstock[i].StockCurrentPrice * (1 + Randomchange / 100f));
 
             if (tabmanager.allstock[i].StockCurrentPrice < 1)
@@ -525,7 +561,7 @@ if (currentEra != null)
             sc.UpdatePriceText();
     }
 
-    UIManager.instance.NoticeText.text = active.displayDescription;
+    AddNotice(active.displayDescription);
 
         }
         activeNewsList.RemoveAll(active => active.Rday <= 0); // 지속일이 끝난 뉴스 제거
@@ -598,12 +634,12 @@ if (currentEra != null)
         {
             scheduledForeshadowIndex = -1;
         }
-        int offset = (foreshadow != null && foreshadow.lastingDay > 0) ? foreshadow.lastingDay : 2;
+        int offset = ((foreshadow != null && foreshadow.lastingDay > 0) ? foreshadow.lastingDay : 2) + 1;
         scheduledBigNewsVibeDay = scheduledBigNewsDay - offset;
     }
 
     // 케이스를 활성 뉴스로 등록 — 국가 쌍을 플레이스홀더에 치환하고 관련 국가 목록을 초기화
-    public void AddActiveNews(Case casedata, string forcedNationPair = null)
+    public void AddActiveNews(Case casedata, string forcedNationPair = null,  bool isRumorConfirmed = false)
     {
         Debug.Log($"뉴스 추가: {casedata.CaseName}");
         ActiveCase newActive = new ActiveCase();
@@ -636,6 +672,8 @@ if (currentEra != null)
         {
             newActive.displayDescription = casedata.CaseDescription;
         }
+        if (isRumorConfirmed)
+        newActive.displayDescription = "[속보] " + newActive.displayDescription; // 소문이 사실로 확정됐음을 표시 — 매일 효과 루프에서 이 문구가 그대로 한 번만 뜸
 
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);

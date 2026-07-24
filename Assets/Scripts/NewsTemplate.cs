@@ -11,9 +11,9 @@ public class NewsTemplate : ScriptableObject
     {
         public Stock targetStock; // 이 사건이 실제로 일어나는 회사 (문구가 회사 전용이라 직접 지정)
         public string eventText;  // 예: "블레이즈마인 광산에서 대규모 붕괴 사고가 발생했다"
-        public bool isPositive;   // true면 상승 사건, false면 하락 사건
-        public int changeMin;     // 이 사건의 변동률(%) 최솟값
-        public int changeMax;     // 이 사건의 변동률(%) 최댓값
+        public int changeMin;     // 이 사건의 변동률(%) 최솟값 — 음수면 하락, 양수면 상승
+        public int changeMax;     // 이 사건의 변동률(%) 최댓값 — 음수면 하락, 양수면 상승
+        public bool isUncertain;  // false=확정 뉴스(즉시 적용), true=불확정 뉴스(몇 턴 뒤 효과 발동)
     }
 
     public EventEntry[] events;   // 이 산업군에 속한 모든 회사의 사건을 한 풀에 모아둠

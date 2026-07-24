@@ -1,0 +1,91 @@
+{
+  "reference_resolution": [
+    1920,
+    1080
+  ],
+  "all_raster_ui_text_free": true,
+  "font_files_included": false,
+  "regions": {
+    "sidebar_background": [
+      0,
+      0,
+      138,
+      1080
+    ],
+    "sidebar_selected_slot": [
+      0,
+      135,
+      124,
+      84
+    ],
+    "brand_medallion": [
+      39,
+      28,
+      60,
+      60
+    ],
+    "status_bar": [
+      1090,
+      29,
+      792,
+      73
+    ],
+    "portfolio_card": [
+      178,
+      230,
+      1040,
+      96
+    ],
+    "briefing_card": [
+      178,
+      350,
+      1040,
+      390
+    ],
+    "watchlist_card": [
+      178,
+      764,
+      1040,
+      156
+    ],
+    "lina": [
+      1280,
+      130,
+      700,
+      870
+    ],
+    "lina_bubble": [
+      950,
+      932,
+      450,
+      120
+    ],
+    "next_day_button": [
+      1512,
+      936,
+      356,
+      90
+    ]
+  },
+  "nine_slice_borders": {
+    "panel_surface_9slice.png": [
+      48,
+      48,
+      48,
+      48
+    ],
+    "panel_surface_alt_9slice.png": [
+      48,
+      48,
+      48,
+      48
+    ],
+    "panel_nav_9slice.png": [
+      36,
+      36,
+      36,
+      36
+    ]
+  },
+  "text_rule": "Create every label, number and dynamic value as a separate TextMeshPro object in Unity."
+}

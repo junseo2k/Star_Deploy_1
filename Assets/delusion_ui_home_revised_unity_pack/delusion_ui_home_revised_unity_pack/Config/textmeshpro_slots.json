@@ -1,0 +1,77 @@
+{
+  "note": "No text pixels are included in any UI raster. These are suggested TMP rectangles only.",
+  "slots": [
+    {
+      "id": "greeting_title",
+      "rect": [
+        178,
+        132,
+        780,
+        48
+      ]
+    },
+    {
+      "id": "greeting_subtitle",
+      "rect": [
+        179,
+        184,
+        820,
+        28
+      ]
+    },
+    {
+      "id": "portfolio_label",
+      "rect": [
+        216,
+        248,
+        260,
+        20
+      ]
+    },
+    {
+      "id": "portfolio_value",
+      "rect": [
+        216,
+        276,
+        420,
+        40
+      ]
+    },
+    {
+      "id": "briefing_title",
+      "rect": [
+        216,
+        378,
+        240,
+        38
+      ]
+    },
+    {
+      "id": "watchlist_title",
+      "rect": [
+        216,
+        790,
+        220,
+        32
+      ]
+    },
+    {
+      "id": "lina_dialogue",
+      "rect": [
+        978,
+        950,
+        366,
+        76
+      ]
+    },
+    {
+      "id": "next_day_label",
+      "rect": [
+        1570,
+        958,
+        180,
+        44
+      ]
+    }
+  ]
+}

@@ -111,6 +111,7 @@
 마노사그레인 유통확대,SmallCompanyNews,1,ManosaGrain,2,5
 마노사그레인 이물질,SmallCompanyNews,2,ManosaGrain,-10,-5
 마노사그레인 해충피해,SmallCompanyNews,2,ManosaGrain,-10,-5
+마법 시대 힌트,ForeshadowNews,1,-,-,-
 마법 에너지 대폭발 사고,ForeshadowNews,4,-,-,-
 마지노 병기계약,SmallCompanyNews,2,MaginoTech,8,15
 마지노 신형장비히트,SmallCompanyNews,2,MaginoTech,5,10
@@ -310,3 +311,6 @@
 혁명 전조 1,ForeshadowNews,3,-,-,-
 혁명 전조 1,ForeshadowNews,3,-,-,-
 혁명 전조 1,ForeshadowNews,3,-,-,-
+광물의 시대 힌트,ForeshadowNews,1,-,-,-
+사치 시대 힌트,ForeshadowNews,1,-,-,-
+제약의 시대 힌트,ForeshadowNews,1,-,-,-

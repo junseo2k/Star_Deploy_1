@@ -55,16 +55,6 @@ public class NewsPanel : MonoBehaviour
             }
     }
 
-    // 닫기 버튼 클릭 시 뉴스 패널 닫고 전체 주식 목록 패널로 복귀
-    // IssuePanel의 자식 오브젝트를 정리하여 다음에 열 때 중복 표시 방지
-    public void OnCancelClick()
-    {
-        UIManager.instance.ReturnToEntire(newspanel.gameObject);
-        foreach (Transform child in IssueScroll) // 기존 이슈 항목 정리
-        {
-            Destroy(child.gameObject);
-        }
-    }
 
     // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 BigTriggerNews 타입 뉴스를 표시
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출

@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
-  m_Name: Era
+  m_Name: MiningEra
   m_EditorClassIdentifier: Assembly-CSharp::Era
-  eraName: 
-  eraDescription: 
-  boostedIndustries: []
-  weakenedIndustries: []
-  boostedRate: 0
-  weakenedRate: 0
-  hintNews: {fileID: 0}
+  eraName: "\uAD11\uC5C5\uC758 \uC2DC\uB300"
+  eraDescription: "\uAD11\uBB3C\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"
+  boostedIndustries:
+  - Mining
+  weakenedIndustries:
+  - Coopang
+  boostedRate: 1
+  weakenedRate: -1
+  hintNews: {fileID: 11400000, guid: 1ab9fbfd12f8464469c2b2c3a8e5efe4, type: 2}

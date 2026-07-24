@@ -1,0 +1,34 @@
+{
+  "colors": {
+    "surface": "#F8F4EB",
+    "surface_alt": "#F0E9DC",
+    "line": "#DCD2C2",
+    "line_dark": "#C7BBA7",
+    "nav": "#122229",
+    "nav_soft": "#203139",
+    "brass": "#C8A45E",
+    "brass_light": "#E4CA8A",
+    "brass_dark": "#9B7537",
+    "forest": "#315D50",
+    "forest_soft": "#E4EFEA",
+    "up": "#D75048",
+    "up_soft": "#F9E7E4",
+    "down": "#3F74C7",
+    "down_soft": "#E7EEF9"
+  },
+  "spacing": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    40,
+    56
+  ],
+  "corner_radius": {
+    "small": 12,
+    "card": 24,
+    "large": 28
+  }
+}

@@ -58,7 +58,6 @@ public class CaseToTemplateConverter : EditorWindow
                 {
                     targetStock = stock,
                     eventText = c.CaseDescription,
-                    isPositive = (min + max) >= 0,
                     changeMin = min,
                     changeMax = max
                 };
