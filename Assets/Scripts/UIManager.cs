@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI NoticeText;
     public TextMeshProUGUI Ownedgold;
+    public TextMeshProUGUI TotalAssetText;    // ← 추가: 총 자산(골드+주식) 표시
+    public TextMeshProUGUI TotalReturnText;   // ← 추가: 손익률(%) 표시
     public TextMeshProUGUI CurrentDay;
     public DetailPanel detailpanel;
     public Transform EntirePanel;
@@ -18,6 +20,7 @@ public class UIManager : MonoBehaviour
     public SidebarTabManager sidebarTabManager; // 사이드바 탭 초기화용 참조 추가
     public static UIManager instance;
     public Transform StockPanel; 
+    public TextMeshProUGUI EraText;    // ← 추가: 현재 시대를 표시하는 텍스트
     [SerializeField] private NewsPanel newsPanelScript;
 
     void Awake()
@@ -30,7 +33,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGoldText()
     {
-        Ownedgold.text = $"현재 골드 : {GameManager.Instance.currentgold}";
+        Ownedgold.text = $"현재 골드 : \n<size=150%><b>{GameManager.Instance.currentgold}</size></b>";
+        UpdateTotalAssetText(); // ← 추가: 골드가 바뀌면 총 자산도 함께 갱신
     }
 
     public void NoticeGold(string noticetext)
@@ -73,9 +77,53 @@ public class UIManager : MonoBehaviour
 
     public void UpdateDayText()
     {
-        CurrentDay.text = $"현재 날짜 : {GameManager.Instance.currentDay}";
+        CurrentDay.text = $"현재 날짜 : \n<size=150%><b>{GameManager.Instance.currentDay}</size></b>";
+        
+    }
+    // GameManager의 현재 시대를 읽어 시대 텍스트 갱신
+// currentEra가 null이면 "안정기"로 표시
+    public void UpdateEraText()
+{
+    if (GameManager.Instance.currentEra != null)
+        EraText.text = $"현재 시대 : \n<size=150%><b>{GameManager.Instance.currentEra.eraName}</size></b>";
+    else
+        EraText.text = "현재 시대 : \n<size=150%><b>안정기</size></b>";
+}
+    // 보유 주식 평가금액 + 현재 골드 = 총 자산
+// 보유 주식 기준 손익률(%)도 함께 계산해서 표시
+public void UpdateTotalAssetText()
+{
+    StockControl[] allStocks = FindObjectsByType<StockControl>(
+        FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+    int stockValue = 0;      // 보유 주식 현재 평가금액 합
+    float purchaseCost = 0f; // 평균 매수가 기준 원금 합
+
+    foreach (StockControl sc in allStocks)
+    {
+        if (sc.ownedAmount <= 0) continue;
+        stockValue += sc.stockinfo.StockCurrentPrice * sc.ownedAmount;
+        purchaseCost += sc.avgPurchasePrice * sc.ownedAmount;
     }
 
+    // 총 자산 = 현재 골드 + 주식 평가금액
+    int totalAsset = GameManager.Instance.currentgold + stockValue;
+    TotalAssetText.text = $"<size=50%>총 자산:</size> \n<b>{totalAsset:N0} G</b>";
+
+    // 손익률 = (현재 평가 - 매수 원금) / 매수 원금 × 100
+    // 매수한 주식이 없으면 0% 처리
+    if (purchaseCost > 0f)
+    {
+        float returnPct = (stockValue - purchaseCost) / purchaseCost * 100f;
+        string sign = returnPct >= 0f ? "+" : "";
+        string color = returnPct >= 0f ? "#FF4444" : "#4488FF"; // 상승 빨강, 하락 파랑
+        TotalReturnText.text = $"<color={color}>{sign}{returnPct:F2}%</color>";
+    }
+    else
+    {
+        TotalReturnText.text = "0.00%";
+    }
+}
     public void ShowDetail(Stock stock)
     {
         OpenScreen(detailpanel.transform);

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateDayText();
         UIManager.instance.UpdateGoldText();
         Debug.Log(Application.persistentDataPath);
+        UIManager.instance.UpdateEraText(); // ← 추가
         foreach (Case c in AllCases)
         {
            switch(c.newsType)
@@ -431,6 +432,7 @@ if (currentEra == null && currentDay >= nextEraStartDay)
     pendingEra = null;
     eraEndDay = currentDay + ERA_DURATION;
     AddNotice($"[새로운 시대] {currentEra.eraName} 시작! {currentEra.eraDescription}");
+    UIManager.instance.UpdateEraText(); // ← 추가
 }
 
 // 시대 종료
@@ -439,6 +441,7 @@ if (currentEra != null && currentDay >= eraEndDay)
      AddNotice($"{currentEra.eraName}이(가) 막을 내렸습니다.");
     currentEra = null;
     nextEraStartDay = currentDay + ERA_COOLDOWN;
+    UIManager.instance.UpdateEraText(); // ← 추가
 }
 
 // 시대 효과 적용 — 기존 가격 변동 루프(tabmanager.allstock 순회하는 부분) 안에 끼워 넣기
@@ -599,6 +602,7 @@ if (currentEra != null)
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
         SaveStockDataToCSV();
+        UIManager.instance.UpdateTotalAssetText(); // ← 추가: 주가 변동 후 총 자산 갱신
     }
     // 데이터 생성용 임시 함수 — 나중에 삭제
     public void AutoSimulate(int days)
