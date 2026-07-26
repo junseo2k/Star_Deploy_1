@@ -13,6 +13,10 @@ public class StockControl : MonoBehaviour
     public TextMeshProUGUI ownedAmountText;       // 보유 수량 표시 UI
     public int ownedAmount;                       // 현재 보유 수량
     public float avgPurchasePrice; // 평균 매수 단가 (포트폴리오 손익 계산에 사용)
+    [Header("즐겨찾기")]
+    public UnityEngine.UI.Image favoriteIcon;  // 별표 아이콘 (버튼의 이미지)
+    public Sprite favoriteOnSprite;            // 즐겨찾기 켜진 상태 스프라이트 (채워진 별)
+    public Sprite favoriteOffSprite;           // 즐겨찾기 꺼진 상태 스프라이트 (빈 별)
 
     // 씬의 모든 StockControl 중 지정한 주식과 이름이 일치하는 인스턴스 반환 (없으면 null)
     public static StockControl Find(Stock stock)
@@ -62,10 +66,27 @@ public class StockControl : MonoBehaviour
         ownedAmountText.text = $"현재 보유 수량: {ownedAmount}";
         UIManager.instance.UpdateGoldText();
         UIManager.instance.UpdateDayText();
+        RefreshFavoriteIcon(); // ← 추가: 프리팹 생성 시 아이콘 초기 표시
     }
     // 주식 아이콘 이미지 클릭 시 호출 — 상세 정보 패널 열기
     public void OnImageClick()
     {
         UIManager.instance.ShowDetail(stockinfo);
     }
+    // 별표 버튼 클릭 시 호출 — 상태 토글, 아이콘 갱신, 저장
+    public void ToggleFavorite()
+    {
+        stockinfo.isFavorite = !stockinfo.isFavorite;
+        RefreshFavoriteIcon();
+        GameManager.Instance.SaveGame();
+        UIManager.instance.favoritePanel.RefreshHome(); // ← 추가
+    }
+
+// 현재 isFavorite 값에 맞게 별표 아이콘 스프라이트 갱신
+    public void RefreshFavoriteIcon()
+    {
+        if (favoriteIcon != null)
+            favoriteIcon.sprite = stockinfo.isFavorite ? favoriteOnSprite : favoriteOffSprite;
+    }
+    
 }

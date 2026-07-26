@@ -21,7 +21,10 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public Transform StockPanel; 
     public TextMeshProUGUI EraText;    // ← 추가: 현재 시대를 표시하는 텍스트
+    public Transform favoriteFullPanel;  // 관심 종목 전체 보기 패널
+    public FavoritePanel favoritePanel;  // 관심 종목 관리 스크립트
     [SerializeField] private NewsPanel newsPanelScript;
+
 
     void Awake()
     {
@@ -33,7 +36,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGoldText()
     {
-        Ownedgold.text = $"현재 골드 : \n<size=150%><b>{GameManager.Instance.currentgold}</size></b>";
+        Ownedgold.text = $"<b>현재 골드 : \n<size=150%>{GameManager.Instance.currentgold}</size></b>";
         UpdateTotalAssetText(); // ← 추가: 골드가 바뀌면 총 자산도 함께 갱신
     }
 
@@ -53,6 +56,7 @@ public class UIManager : MonoBehaviour
     portfolioPanel.gameObject.SetActive(target == portfolioPanel);
     loanPanel.gameObject.SetActive(target == loanPanel);
     buyPanel.gameObject.SetActive(target == buyPanel);
+    favoriteFullPanel.gameObject.SetActive(target == favoriteFullPanel); // ← 추가
 
     // 닫기 버튼이 없는 화면(홈/뉴스/종목/자산)에서만 사이드바 표시
     // DetailPanel과 buyPanel은 자체 닫기 버튼이 있으므로 사이드바 숨김
@@ -77,7 +81,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateDayText()
     {
-        CurrentDay.text = $"현재 날짜 : \n<size=150%><b>{GameManager.Instance.currentDay}</size></b>";
+        CurrentDay.text = $"<b>현재 날짜 : \n<size=150%>{GameManager.Instance.currentDay}</size></b>";
         
     }
     // GameManager의 현재 시대를 읽어 시대 텍스트 갱신
@@ -85,9 +89,9 @@ public class UIManager : MonoBehaviour
     public void UpdateEraText()
 {
     if (GameManager.Instance.currentEra != null)
-        EraText.text = $"현재 시대 : \n<size=150%><b>{GameManager.Instance.currentEra.eraName}</size></b>";
+        EraText.text = $"<b>현재 시대 : \n<size=150%>{GameManager.Instance.currentEra.eraName}</size></b>";
     else
-        EraText.text = "현재 시대 : \n<size=150%><b>안정기</size></b>";
+        EraText.text = "<b>현재 시대 : \n<size=150%>안정기</size></b>";
 }
     // 보유 주식 평가금액 + 현재 골드 = 총 자산
 // 보유 주식 기준 손익률(%)도 함께 계산해서 표시
@@ -108,7 +112,7 @@ public void UpdateTotalAssetText()
 
     // 총 자산 = 현재 골드 + 주식 평가금액
     int totalAsset = GameManager.Instance.currentgold + stockValue;
-    TotalAssetText.text = $"<size=50%>총 자산:</size> \n<b>{totalAsset:N0} G</b>";
+    TotalAssetText.text = $"<b><size=50%>총 자산:</size> \n{totalAsset:N0} G</b>";
 
     // 손익률 = (현재 평가 - 매수 원금) / 매수 원금 × 100
     // 매수한 주식이 없으면 0% 처리
@@ -140,6 +144,11 @@ public void UpdateTotalAssetText()
     {
         OpenScreen(portfolioPanel);
         portfolioPanelScript.Open();
+    }
+    public void OpenFavoriteFullPanel()
+    {
+        OpenScreen(favoriteFullPanel);
+        favoritePanel.RefreshFull();
     }
 
     public void OpenLoanPanel()

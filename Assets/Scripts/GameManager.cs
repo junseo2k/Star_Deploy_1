@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
         public int currentPrice;       // 저장 시점의 주식 가격
         public int ownamount;          // 보유 수량
         public float avgPurchasePrice; // 평균 매수 단가
+        public bool isFavorite;   // ← 추가
     }
     // JSON 저장을 위한 게임 전체 데이터 구조체
     [System.Serializable]
@@ -144,6 +145,7 @@ public class GameManager : MonoBehaviour
             stockdata.currentPrice = stock.StockCurrentPrice;
             stockdata.ownamount = 0;
             stockdata.avgPurchasePrice = 0;
+            stockdata.isFavorite = stock.isFavorite; // ← 추가
 
             // 보유 중인 주식이면 수량/평균가 추가
             foreach (StockControl sc in allStocks)
@@ -152,6 +154,7 @@ public class GameManager : MonoBehaviour
                 {
                     stockdata.ownamount = sc.ownedAmount;
                     stockdata.avgPurchasePrice = sc.avgPurchasePrice;
+                    
                     break;
                 }
             }
@@ -204,6 +207,7 @@ public class GameManager : MonoBehaviour
                     {
                         stock.StockCurrentPrice = savedstock.currentPrice;
                         stock.StockPreviousPrice = savedstock.currentPrice;
+                        stock.isFavorite = savedstock.isFavorite; // ← 추가
                     }
                 }
                 foreach (StockControl sc in allStocks)
@@ -438,7 +442,7 @@ if (currentEra == null && currentDay >= nextEraStartDay)
 // 시대 종료
 if (currentEra != null && currentDay >= eraEndDay)
 {
-     AddNotice($"{currentEra.eraName}이(가) 막을 내렸습니다.");
+    AddNotice($"{currentEra.eraName}이(가) 막을 내렸습니다.");
     currentEra = null;
     nextEraStartDay = currentDay + ERA_COOLDOWN;
     UIManager.instance.UpdateEraText(); // ← 추가
@@ -531,6 +535,11 @@ if (currentEra != null)
         for (int i = 0; i < active.caseData.affectedCase.Length; i++)
         {
             Stock affected = active.caseData.affectedCase[i];
+            if (affected == null)
+            {
+                Debug.LogError($"[{active.caseData.CaseName}]의 affectedCase[{i}]가 null입니다!");
+                continue;
+            }
             affected.StockCurrentPrice = Mathf.RoundToInt(
                 affected.StockCurrentPrice *
                 (1 + Random.Range(active.caseData.ChangePriceMin[i],
@@ -557,16 +566,19 @@ if (currentEra != null)
             }
         }
     }
+    
 
-    if (active.caseData.newsType == Case.NewsType.BigTriggerNews)
-    {
-        foreach (StockControl sc in allstocks)
-            sc.UpdatePriceText();
-    }
-
-    AddNotice(active.displayDescription);
-
+        if (active.caseData.newsType == Case.NewsType.BigTriggerNews)
+        {
+            foreach (StockControl sc in allstocks)
+                sc.UpdatePriceText();
         }
+
+        if (active.currentDay == 0)
+        {
+            AddNotice(active.displayDescription);
+        }
+    }
         activeNewsList.RemoveAll(active => active.Rday <= 0); // 지속일이 끝난 뉴스 제거
         // 씬의 모든 NPC에게 오늘 주식 데이터를 전달한 뒤 매매 결정 실행
         NPCInvestor[] npcs = FindObjectsByType<NPCInvestor>(FindObjectsSortMode.None);
@@ -603,7 +615,10 @@ if (currentEra != null)
         }
         SaveStockDataToCSV();
         UIManager.instance.UpdateTotalAssetText(); // ← 추가: 주가 변동 후 총 자산 갱신
+        UIManager.instance.favoritePanel.RefreshHome(); // ← 추가
     }
+        
+    
     // 데이터 생성용 임시 함수 — 나중에 삭제
     public void AutoSimulate(int days)
     {
@@ -683,4 +698,6 @@ if (currentEra != null)
         recentIssues.Add(casedata);
     }
     // GameManager에 추가할 필드
-}
+
+    
+    }

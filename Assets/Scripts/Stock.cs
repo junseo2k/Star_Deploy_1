@@ -26,6 +26,7 @@ public class Stock : ScriptableObject
     public int TotalShare;          // 발행 주식 총 수량
     public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
+    public bool isFavorite;   // 즐겨찾기 상태 (SaveGame에서 저장)
     [System.NonSerialized] // 저장 안 되는 런타임 전용
     public List<Case> runtimeIssues = new List<Case>();
     public enum VolatilityType
