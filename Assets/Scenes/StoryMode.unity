@@ -10384,6 +10384,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2c6d0d462a6e924f81ab285cc67e804, type: 2}
   - {fileID: 11400000, guid: 243b27ffe84fcc94f8c9cce84fb83522, type: 2}
   - {fileID: 11400000, guid: fa623b8c9d0f9a141b5013cc2845b876, type: 2}
+  allBusinessProjects:
+  - {fileID: 11400000, guid: 3c3daf724a9661144b93218f3acb5622, type: 2}
+  activeBusinesses: []
 --- !u!4 &916416869
 Transform:
   m_ObjectHideFlags: 0

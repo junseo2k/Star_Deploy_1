@@ -22,6 +22,9 @@ public class Stock : ScriptableObject
     public string IndustryTag;      // 주식 분류 태그 — 산업 (예: Mining, Army)
     public int revenue;             // 기업 매출액
     public int OperatingProfit;     // 기업 영업이익
+    public int baseRevenue;         // 기본 매출 (시대 보정 전, 인스펙터 고정)
+    public int baseCost;            // 기본 비용 (인스펙터 고정)
+
     public int marketCap;           // 시가총액
     public int TotalShare;          // 발행 주식 총 수량
     public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)

@@ -42,6 +42,23 @@ public class GameManager : MonoBehaviour
     public List<PendingNews> pendingNewsList = new List<PendingNews>(); // 불확정 뉴스 대기열
     private const int UNCERTAIN_NEWS_DELAY = 2;       // 불확정 뉴스 효과가 나타나기까지 걸리는 턴 수
     private List<string> dailyNotices = new List<string>(); // 오늘 발생한 알림 메시지 모음 (줄바꿈으로 이어서 표시)
+        // 진행 중인 사업 상태를 추적하는 클래스
+    [System.Serializable]
+    public class ActiveBusiness
+    {
+    public string projectName;       // 사업 이름 (저장/식별용)
+    public string stockName;         // 대상 회사 이름 (저장용)
+    public int remainingTurns;       // 남은 턴 수
+    public int investmentCost;       // 매턴 차감할 투자 비용
+    public int successRate;          // 성공 확률
+    public int revenueBoost;         // 성공 시 baseRevenue 증가량
+    public string successNews;       // 성공 뉴스 문구
+    public string failNews;          // 실패 뉴스 문구
+    }
+    [Header("사업 시스템")]
+    public BusinessProject[] allBusinessProjects;  // 전체 사업 템플릿 목록 (인스펙터 등록)
+    public List<ActiveBusiness> activeBusinesses = new List<ActiveBusiness>(); // 현재 진행 중인 사업
+    private int businessTimer = 0;                 // 사업 착수 주기 타이머
 
     // Start보다 먼저 실행 — 싱글톤 인스턴스 등록
     void Awake()
@@ -88,6 +105,10 @@ public class GameManager : MonoBehaviour
         public int ownamount;          // 보유 수량
         public float avgPurchasePrice; // 평균 매수 단가
         public bool isFavorite;   // ← 추가
+        public int revenue;            // 추가
+        public int operatingProfit;    // 추가\
+        public int baseRevenue;   // 추가
+        public int baseCost;       // 추가
     }
     // JSON 저장을 위한 게임 전체 데이터 구조체
     [System.Serializable]
@@ -110,6 +131,8 @@ public class GameManager : MonoBehaviour
         public int eraHintShownDay;
         public string currentEraName;  // ScriptableObject는 직렬화 안 되니 이름으로 저장
         public string pendingEraName;
+        public List<ActiveBusiness> activeBusinesses;  // 추가
+        public int businessTimer;         
     }
 
     // 현재 게임 상태를 JSON 파일로 저장
@@ -133,6 +156,8 @@ public class GameManager : MonoBehaviour
         data.eraHintShownDay = eraHintShownDay;
         data.currentEraName = currentEra != null ? currentEra.eraName : "";
         data.pendingEraName = pendingEra != null ? pendingEra.eraName : "";
+        data.activeBusinesses = activeBusinesses;
+        data.businessTimer = businessTimer;
 
         // 씬의 모든 StockControl을 검색하여 보유 수량이 있는 주식만 저장 목록에 추가
         StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -146,6 +171,10 @@ public class GameManager : MonoBehaviour
             stockdata.ownamount = 0;
             stockdata.avgPurchasePrice = 0;
             stockdata.isFavorite = stock.isFavorite; // ← 추가
+            stockdata.revenue = stock.revenue;                 // 추가
+            stockdata.operatingProfit = stock.OperatingProfit;  // 추가
+            stockdata.baseRevenue = stock.baseRevenue;
+            stockdata.baseCost = stock.baseCost;
 
             // 보유 중인 주식이면 수량/평균가 추가
             foreach (StockControl sc in allStocks)
@@ -196,6 +225,8 @@ public class GameManager : MonoBehaviour
             eraHintShownDay = data.eraHintShownDay;
             currentEra = System.Array.Find(allEras, e => e.eraName == data.currentEraName);
             pendingEra = System.Array.Find(allEras, e => e.eraName == data.pendingEraName);
+            activeBusinesses = data.activeBusinesses ?? new List<ActiveBusiness>();
+            businessTimer = data.businessTimer;
 
             // 저장된 주식 보유 정보를 씬의 StockControl에 복원
             StockControl[] allStocks = FindObjectsByType<StockControl>(FindObjectsSortMode.None);
@@ -208,6 +239,10 @@ public class GameManager : MonoBehaviour
                         stock.StockCurrentPrice = savedstock.currentPrice;
                         stock.StockPreviousPrice = savedstock.currentPrice;
                         stock.isFavorite = savedstock.isFavorite; // ← 추가
+                        stock.revenue = savedstock.revenue;                 // 추가
+                        stock.OperatingProfit = savedstock.operatingProfit;  // 추가
+                        stock.baseRevenue = savedstock.baseRevenue;
+                        stock.baseCost = savedstock.baseCost;
                     }
                 }
                 foreach (StockControl sc in allStocks)
@@ -226,6 +261,8 @@ public class GameManager : MonoBehaviour
             {
                 stock.StockCurrentPrice = stock.StockBasePrice;
                 stock.StockPreviousPrice = stock.StockBasePrice;
+                stock.revenue = stock.baseRevenue;                      // 추가
+                stock.OperatingProfit = stock.baseRevenue - stock.baseCost; // 추가
             }
             currentgold = 5000; // 시작 골드
             currentDay = 1;
@@ -335,6 +372,7 @@ public class GameManager : MonoBehaviour
         {
             dailyNotices.Add(message);
             UIManager.instance.NoticeText.text = string.Join("\n", dailyNotices);
+            Debug.Log($"[알림 {dailyNotices.Count}개] {string.Join(" | ", dailyNotices)}");
         }
 
     
@@ -417,11 +455,11 @@ public class GameManager : MonoBehaviour
             ScheduleNextBigNews();
         }
         // 힌트 뉴스 — 시대 시작 며칠 전에 미리 보여줌
-if (currentEra == null
-    && nextEraStartDay >= ERA_FIRST_START_DAY
-    && currentDay == nextEraStartDay - ERA_HINT_DAYS_BEFORE
-    && eraHintShownDay != currentDay)
-{
+    if (currentEra == null
+        && nextEraStartDay >= ERA_FIRST_START_DAY
+        && currentDay == nextEraStartDay - ERA_HINT_DAYS_BEFORE
+        && eraHintShownDay != currentDay)
+    {
     eraHintShownDay = currentDay;
     // 다음 시대를 미리 결정해서 힌트로 보여줌 (랜덤은 여기서 한 번만 뽑고 고정)
     pendingEra = allEras[Random.Range(0, allEras.Length)];
@@ -461,6 +499,9 @@ if (currentEra != null)
         if (stock.StockCurrentPrice < 1) stock.StockCurrentPrice = 1;
     }
 }
+
+    RecalculateFinancials();
+    ProcessBusinesses(); 
 
         for (int i = 0; i < tabmanager.allstock.Length; i++) //상세 패널에 전날 기록이 안 남도록 함
         {
@@ -697,7 +738,99 @@ if (currentEra != null)
         activeNewsList.Add(newActive);
         recentIssues.Add(casedata);
     }
-    // GameManager에 추가할 필드
+    // 매턴 모든 회사의 매출·영업이익을 재계산
+    void RecalculateFinancials()
+    {
+        foreach (Stock stock in tabmanager.allstock)
+        {
+            float revenueModifier = 1.0f;
 
-    
+            if (currentEra != null)
+            {
+                if (System.Array.Exists(currentEra.boostedIndustries, 
+                    t => t == stock.IndustryTag))
+                    revenueModifier = 1.2f;
+                else if (System.Array.Exists(currentEra.weakenedIndustries, 
+                    t => t == stock.IndustryTag))
+                    revenueModifier = 0.8f;
+            }
+
+            stock.revenue = Mathf.RoundToInt(stock.baseRevenue * revenueModifier);
+            stock.OperatingProfit = stock.revenue - stock.baseCost;
+        }
     }
+    // 사업 시스템 — 매턴 호출
+    void ProcessBusinesses()
+    {
+    // ── 진행 중인 사업 처리 ──
+        for (int i = activeBusinesses.Count - 1; i >= 0; i--)
+        {
+            ActiveBusiness biz = activeBusinesses[i];
+            biz.remainingTurns--;
+
+            // 진행 중: 매턴 투자비만큼 영업이익 감소 (비용 증가 효과)
+            Stock stock = System.Array.Find(tabmanager.allstock, 
+                s => s.StockName == biz.stockName);
+            if (stock != null)
+            {
+                stock.OperatingProfit -= biz.investmentCost;
+            }
+
+            // 사업 완료 판정
+            if (biz.remainingTurns <= 0)
+            {
+                bool success = Random.Range(0, 100) < biz.successRate;
+
+                if (success && stock != null)
+                {
+                    // 성공: baseRevenue 영구 상승
+                    stock.baseRevenue += biz.revenueBoost;
+                    AddNotice($"[사업 성공] {biz.successNews}");
+                }
+                else
+                {
+                    // 실패: 투자금은 이미 날린 상태, 뉴스만 출력
+                    AddNotice($"[사업 실패] {biz.failNews}");
+                }
+
+                activeBusinesses.RemoveAt(i);
+            }
+        }
+
+    // ── 새 사업 착수 (일정 주기마다) ──
+        businessTimer++;
+        if (businessTimer >= Random.Range(8, 15)) // 8~14턴 주기
+        {
+            businessTimer = 0;
+            TryStartNewBusiness();
+        }
+    }
+
+// 사업 풀에서 하나 골라서 착수
+    void TryStartNewBusiness()
+    {
+        if (allBusinessProjects.Length == 0) return;
+
+        // 이미 사업 진행 중인 회사는 제외
+        BusinessProject picked = allBusinessProjects[Random.Range(0, allBusinessProjects.Length)];
+        if (picked.targetStock == null) return;
+
+        bool alreadyBusy = activeBusinesses.Exists(
+            b => b.stockName == picked.targetStock.StockName);
+        if (alreadyBusy) return;
+
+        // 사업 착수
+        ActiveBusiness newBiz = new ActiveBusiness();
+        newBiz.projectName = picked.projectName;
+        newBiz.stockName = picked.targetStock.StockName;
+        newBiz.remainingTurns = picked.duration;
+        newBiz.investmentCost = picked.investmentCost;
+        newBiz.successRate = picked.successRate;
+        newBiz.revenueBoost = picked.revenueBoost;
+        newBiz.successNews = picked.successNews;
+        newBiz.failNews = picked.failNews;
+
+        activeBusinesses.Add(newBiz);
+        AddNotice($"[신사업] {picked.startNews}");
+    }    
+}
