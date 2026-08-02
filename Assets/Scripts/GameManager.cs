@@ -637,6 +637,36 @@ if (currentEra != null)
         }
         UIManager.instance.UpdateDayText();
 
+        // OnNextDayButton() 안에 추가 — 주가 변동 처리 끝난 직후
+        foreach (Stock stock in tabmanager.allstock)
+    {
+        if (!stock.hasDividend) continue;           // 배당주가 아니면 스킵
+    
+        // 실적 악화 시 배당 삭감 — OperatingProfit이 0 이하면 배당 없음
+        if (stock.OperatingProfit <= 0)
+        {
+            AddNotice($"[배당 삭감] {stock.StockName} 실적 악화로 이번 턴 배당이 없습니다.");
+            continue;
+        }
+
+        // 보유 수량 확인
+        StockControl sc = StockControl.Find(stock);
+        if (sc == null || sc.ownedAmount <= 0) continue;
+
+        // 배당금 = 현재가 × 보유수량 × 배당률
+        int dividend = Mathf.RoundToInt(stock.StockCurrentPrice * sc.ownedAmount * stock.dividendRate);
+        if (dividend <= 0) continue;
+
+        GameManager.Instance.UpdateGold(dividend);
+        AddNotice($"[배당] {stock.StockName} {sc.ownedAmount}주 → +{dividend} G");
+    }
+        // 주가 변동 처리 끝난 직후 추가
+        foreach (Stock stock in tabmanager.allstock)
+        {
+            stock.changePctHistory.Add(stock.ChangePercent);
+            if (stock.changePctHistory.Count > 10) // 10일치 초과 시 가장 오래된 것 제거
+                stock.changePctHistory.RemoveAt(0);
+        }
         // 골드 1000 이하 연속 5턴 지속 시 게임 오버
         if (currentgold <= 1000)
         {

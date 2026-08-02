@@ -25,7 +25,7 @@ public class Stock : ScriptableObject
     public int baseRevenue;         // 기본 매출 (시대 보정 전, 인스펙터 고정)
     public int baseCost;            // 기본 비용 (인스펙터 고정)
 
-    public int marketCap;           // 시가총액
+    public int marketCap => StockCurrentPrice * TotalShare;
     public int TotalShare;          // 발행 주식 총 수량
     public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
@@ -52,4 +52,10 @@ public class Stock : ScriptableObject
     public float ChangePercent => StockPreviousPrice > 0
         ? (float)(StockCurrentPrice - StockPreviousPrice) / StockPreviousPrice * 100f
         : 0f;
+    // Stock.cs — 기존 필드들 아래에 추가
+    public bool hasDividend;       // 배당주 여부 (true면 매턴 배당금 지급)
+    [Range(0f, 0.05f)]
+    public float dividendRate;     // 배당률 (예: 0.02 = 현재가의 2%)
+    [System.NonSerialized]
+    public List<float> changePctHistory = new List<float>(); // 최근 10일치 변동률 히스토리
 }

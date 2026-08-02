@@ -34,9 +34,17 @@ public class OrderPanel : MonoBehaviour
     }
 
     // 현재 수량·금액 표시 텍스트 갱신
-    void RefreshPurchaseText()
+    public void RefreshPurchaseText()
     {
-        PurchaseText.text = $"OwnedStock : {StockNum}, \n {stockcontrol.stockinfo.StockCurrentPrice * StockNum} gold.";
+        CalculateTrade(StockNum, isBuyMode, out int endPrice, out int totalAmount);
+    
+        int startPrice = stockcontrol.stockinfo.StockCurrentPrice;
+        float execPrice = (startPrice + endPrice) / 2f;
+
+        PurchaseText.text = $"수량: {StockNum}주\n" +
+                            $"현재가: {startPrice} G\n" +
+                            $"예상 체결가: {(int)execPrice} G\n" +  // 슬리피지 반영 평균가
+                            $"총액: {totalAmount} G";
     }
 
     // + 버튼 클릭 시 거래 수량 1 증가 및 수량·금액 표시 갱신
@@ -74,47 +82,67 @@ public class OrderPanel : MonoBehaviour
     // 구매 모드: 골드 부족 시 차단 → 골드 차감·보유 수량 증가
     // 판매 모드: 보유 수량 부족 시 차단 → 골드 증가·보유 수량 감소
     // 처리 후 게임 저장 및 패널 전환
+    // OrderPanel.cs — OncheckClick() 전체 교체
     public void OncheckClick()
     {
+        Stock stock = stockcontrol.stockinfo;
+
         if (isBuyMode == true)
         {
-            // 잔액 부족 시 구매 차단
-            if (GameManager.Instance.currentgold - stockcontrol.stockinfo.StockCurrentPrice * StockNum < 0)
+            CalculateTrade(StockNum, true, out int newPrice, out int totalCost);
+
+        // 잔액 부족 시 구매 차단 (미리보기와 동일한 계산식이라 이제 표시값과 일치함)
+            if (GameManager.Instance.currentgold - totalCost < 0)
             {
                 NoticeText.text = "You don't have enough money";
                 return;
             }
-            // 평균 매수 단가 갱신: (기존 평균 × 기존 수량 + 이번 매수 금액) / 매수 후 총 수량
-            float totalCost = stockcontrol.avgPurchasePrice * stockcontrol.ownedAmount
-                            + stockcontrol.stockinfo.StockCurrentPrice * StockNum;
-            stockcontrol.ownedAmount += StockNum;
-            stockcontrol.avgPurchasePrice = totalCost / stockcontrol.ownedAmount;
-            GameManager.Instance.UpdateGold(-stockcontrol.stockinfo.StockCurrentPrice * StockNum);
-        }
-        else
-        {
-            // 보유 수량 부족 시 판매 차단
-            if (StockNum > stockcontrol.ownedAmount)
-            {
-                NoticeText.text = "You don't have enough Stocks";
-                return;
-            }
-            GameManager.Instance.UpdateGold(stockcontrol.stockinfo.StockCurrentPrice * StockNum);
-            stockcontrol.ownedAmount -= StockNum;
-        }
 
-        // 보유 수량 UI 갱신 및 골드 UI 갱신
-        stockcontrol.ownedAmountText.text = $"현재 보유 수량: {stockcontrol.ownedAmount}";
-        UIManager.instance.UpdateGoldText();
+        float totalAvgCost = stockcontrol.avgPurchasePrice * stockcontrol.ownedAmount + totalCost;
+        stockcontrol.ownedAmount += StockNum;
+        stockcontrol.avgPurchasePrice = totalAvgCost / stockcontrol.ownedAmount;
+        GameManager.Instance.UpdateGold(-totalCost);
 
-
-        // 구매/판매 패널 닫고 전체 주식 목록 패널로 복귀
-        UIManager.instance.ReturnToEntire(UIManager.instance.buyPanel.gameObject);
+        stock.StockCurrentPrice = newPrice;
     }
+    else
+    {
+        if (StockNum > stockcontrol.ownedAmount)
+        {
+            NoticeText.text = "You don't have enough Stocks";
+            return;
+        }
+
+        CalculateTrade(StockNum, false, out int newPrice, out int totalRevenue);
+
+        GameManager.Instance.UpdateGold(totalRevenue);
+        stockcontrol.ownedAmount -= StockNum;
+
+        stock.StockCurrentPrice = newPrice;
+    }
+
+    stockcontrol.ownedAmountText.text = $"현재 보유 수량: {stockcontrol.ownedAmount}";
+    UIManager.instance.UpdateGoldText();
+
+    UIManager.instance.ReturnToEntire(UIManager.instance.buyPanel.gameObject);
+}
 
     // 취소 버튼 클릭 시 거래 패널 닫고 전체 주식 목록 패널로 복귀
     public void OnCancelClick()
     {
         UIManager.instance.ReturnToEntire(UIManager.instance.buyPanel.gameObject);
+    }
+    public void CalculateTrade(int amount, bool isBuy, out int endPrice, out int totalAmount)
+    {
+        Stock stock = stockcontrol.stockinfo;
+        int startPrice = stock.StockCurrentPrice;
+        float impactRatio = stock.TotalShare > 0 ? (float)amount / stock.TotalShare : 0f;
+
+        endPrice = isBuy
+            ? Mathf.Max(1, Mathf.RoundToInt(startPrice * (1 + impactRatio)))
+            : Mathf.Max(1, Mathf.RoundToInt(startPrice * (1 - impactRatio)));
+
+        float execPrice = (startPrice + endPrice) / 2f; // 시작가~종료가 평균 = 슬리피지 반영 체결가
+        totalAmount = Mathf.RoundToInt(execPrice * amount);
     }
 }

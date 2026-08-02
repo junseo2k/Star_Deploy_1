@@ -1,10 +1,10 @@
 using TMPro;
 using Unity.VisualScripting;
+using XCharts.Runtime; // 상단에 추가
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Analytics;
-
 // 주식 상세 정보 패널을 관리하는 클래스
 // 기본 정보·서비스·중요 지표 탭 전환과 주식 데이터 표시를 담당
 public class DetailPanel : MonoBehaviour
@@ -29,6 +29,12 @@ public class DetailPanel : MonoBehaviour
     public OrderPanel orderPanel;           // 구매/판매 수량 확인 패널 참조
     public SidebarTabManager sidebarTabManager; // 인스펙터에서 연결
     public GameObject marketListPanel; // TabManager가 붙어있는 주식 목록 화면 최상위 오브젝트
+    public TextMeshProUGUI MarketLabelText; // 주가 변동 이유 라벨
+    public Transform VolumeGraphPanel; // 막대 그래프가 들어갈 패널 (인스펙터 연결)
+    public GameObject BarPrefab;       // 막대 하나짜리 프리팹 (인스펙터 연결)
+    public Transform GraphPanel; // 그래프 탭 패널 (인스펙터 연결)
+    public TextMeshProUGUI[] xAxisLabels;  // X축 날짜 텍스트 배열 (인스펙터에서 10개 연결)    
+    public BarChart barChart; // 인스펙터에서 연결
 
 
 
@@ -44,30 +50,56 @@ public class DetailPanel : MonoBehaviour
 
     // 주식 데이터를 받아 상세 패널 UI 텍스트를 갱신
     public void ShowDetail(Stock stock)
+{
+    transform.SetAsLastSibling();
+    currentstock = stock;
+    StockName.text = stock.StockName;
+    StockImage.sprite = stock.StockIcon;
+
+    int startPrice = stock.StockCurrentPrice;
+    float impactRatio = stock.TotalShare > 0 ? 1f / stock.TotalShare : 0f;
+    int endPrice = Mathf.Max(1, Mathf.RoundToInt(startPrice * (1 + impactRatio)));
+    float execPrice = (startPrice + endPrice) / 2f;
+    StockPrice.text = $"{(int)execPrice} G";
+
+    StockDescription.text = stock.StockDescription;
+    StockDetailDescription.text = stock.StockDetailDescription;
+    revenuePrice.text = $"{stock.revenue} G";
+    ProfitPrice.text = $"{stock.OperatingProfit} G";
+    MarketCapPrice.text = $"{stock.marketCap} G";
+    TotalSharePrice.text = $"{stock.TotalShare} stock";
+
+    int change = Mathf.RoundToInt(stock.ChangePercent);
+    StockChangePrice.text = change > 0 ? $"+{change}%" : $"{change}%";
+
+    MarketLabelText.text = GetMarketLabel(stock);
+
+    if (stock.changePctHistory.Count == 0) return;
+
+    // 최대 변동폭 기준 정규화 (Y축용)
+
+    // Y축 레이블
+    // XCharts 데이터 초기화 후 입력
+    barChart.RemoveChartComponent<XAxis>();
+    barChart.AddChartComponent<XAxis>();
+    barChart.ClearData();
+    var tooltip = barChart.GetChartComponent<Tooltip>();
+    if (tooltip != null)
+        tooltip.numericFormatter = "f1"; // 소수점 1자리
+    var yAxis = barChart.GetChartComponent<YAxis>();
+    if (yAxis != null)
+        yAxis.axisLabel.numericFormatter = "f1";
+
+    int today = GameManager.Instance.currentDay;
+    int startDay = today - stock.changePctHistory.Count + 1;
+
+    for (int i = 0; i < stock.changePctHistory.Count; i++)
     {
-        transform.SetAsLastSibling(); // 항상 다른 UI보다 위에 그려지도록
-        currentstock = stock;
-        StockName.text = stock.StockName;
-        StockImage.sprite = stock.StockIcon;
-        StockPrice.text = stock.StockCurrentPrice.ToString();
-        StockDescription.text = stock.StockDescription;
-        StockDetailDescription.text = stock.StockDetailDescription;
-        revenuePrice.text = $"{stock.revenue} G";
-        ProfitPrice.text = $"{stock.OperatingProfit} G";
-        MarketCapPrice.text = $"{stock.marketCap} G";
-        TotalSharePrice.text = $"{stock.TotalShare} stock";
-        int change = Mathf.RoundToInt(stock.ChangePercent);
-        if (change > 0)
-        {
-            StockChangePrice.text = $"+{change}%";
-        }
-        
-        else
-        {
-            StockChangePrice.text = $"{change}%";
-        }
-        
+        float pct = stock.changePctHistory[i];
+        barChart.AddXAxisData($"{startDay + i}일");
+        SerieData serieData = barChart.AddData(0, pct);
     }
+}
 
     // 모든 탭 패널을 비활성화 (탭 전환 전 초기화에 사용)
     public void HideAllPanels()
@@ -75,22 +107,21 @@ public class DetailPanel : MonoBehaviour
         DetailInfoPanel.gameObject.SetActive(false);
         ServicePanel.gameObject.SetActive(false);
         ImportantPanel.gameObject.SetActive(false);
+        GraphPanel.gameObject.SetActive(false); // 추가
     }
 
     // 기본 정보 탭 버튼 클릭 시 기본 정보 패널만 활성화
     public void OnDetailInfoClick()
     {
+        HideAllPanels();
         DetailInfoPanel.gameObject.SetActive(true);
-        ServicePanel.gameObject.SetActive(false);
-        ImportantPanel.gameObject.SetActive(false);
     }
 
     // 서비스 탭 버튼 클릭 시 서비스 패널만 활성화
     public void OnServiceClick()
     {
-        DetailInfoPanel.gameObject.SetActive(false);
+        HideAllPanels();
         ServicePanel.gameObject.SetActive(true);
-        ImportantPanel.gameObject.SetActive(false);
         foreach (Transform child in ServicePanel)
         {
             Destroy(child.gameObject);
@@ -110,8 +141,8 @@ public class DetailPanel : MonoBehaviour
     // 중요 지표 탭 버튼 클릭 시 중요 지표 패널만 활성화
     public void OnImportantClick()
     {
-        DetailInfoPanel.gameObject.SetActive(false);
-        ServicePanel.gameObject.SetActive(false);
+        HideAllPanels();
+        ImportantPanel.gameObject.SetActive(true);
         ImportantPanel.gameObject.SetActive(true);
     }
     // 닫기 버튼 클릭 시 서비스 프리팹 정리 후 상세 패널 닫고 전체 목록 패널로 복귀
@@ -125,19 +156,30 @@ public class DetailPanel : MonoBehaviour
     }
     // 구매 버튼 클릭 시 상세 패널 닫고 구매 패널 열기
     // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 구매 수량 계산
+    // DetailPanel.cs — OnBuyButtonClick() 교체
     public void OnBuyButtonClick()
-    {  
+    {
         DetailwithPanel.gameObject.SetActive(false);
         UIManager.instance.buyPanel.gameObject.SetActive(true);
-        UIManager.instance.buyPanel.transform.SetAsLastSibling(); // 추가
+        UIManager.instance.buyPanel.transform.SetAsLastSibling();
         StockControl sc = StockControl.Find(currentstock);
         if (sc != null)
-            orderPanel.stockcontrol = sc; // 찾은 StockControl 넘기기
-        maxmount = GameManager.Instance.currentgold / currentstock.StockCurrentPrice; // 최대 구매 가능 수량 계산
+            orderPanel.stockcontrol = sc;
+
+    // 슬리피지 때문에 수량이 늘수록 단가도 오르므로, 한 주씩 늘려가며 실제 감당 가능한 최대치를 찾음
+        maxmount = 0;
+        while (true)
+        {
+            orderPanel.CalculateTrade(maxmount + 1, true, out _, out int cost);
+            if (cost > GameManager.Instance.currentgold) break;
+            maxmount++;
+        }
+
         orderPanel.currentText.text = $"Maximum: {maxmount}";
-        orderPanel.PurchaseText.text = $"OwnedStock : 1, \n {currentstock.StockCurrentPrice} gold.";
-        orderPanel.isBuyMode = true; // 구매 모드로 설정
-    }
+        orderPanel.StockNum = 1;
+        orderPanel.RefreshPurchaseText();
+        orderPanel.isBuyMode = true;
+}
     // 판매 버튼 클릭 시 상세 패널 닫고 판매 패널 열기
     // 현재 주식에 해당하는 StockControl을 찾아 OrderPanel에 연결하고 최대 판매 수량(보유량) 계산
     public void OnSellButtonClick()
@@ -155,6 +197,44 @@ public class DetailPanel : MonoBehaviour
         orderPanel.PurchaseText.text = $"OwnedStock : {orderPanel.StockNum = 1}, \n {currentstock.StockCurrentPrice} gold.";
         orderPanel.isBuyMode = false; // 판매 모드로 설정
     }
+    // DetailPanel.cs — 새 함수 추가
+    string GetMarketLabel(Stock stock)
+    {
+        GameManager gm = GameManager.Instance;
+
+        // 1순위: 대형 뉴스 활성화 중
+        bool hasBigNews = gm.activeNewsList.Exists(a =>
+            a.caseData.newsType == Case.NewsType.BigTriggerNews);
+        if (hasBigNews)
+            return "대형 사건의 여파입니다.";
+
+        // 2순위: 시대 보정 중
+        if (gm.currentEra != null)
+        {
+            bool isBoosted = System.Array.Exists(gm.currentEra.boostedIndustries, t => t == stock.IndustryTag);
+            bool isWeakened = System.Array.Exists(gm.currentEra.weakenedIndustries, t => t == stock.IndustryTag);
+            if (isBoosted) return "시대의 흐름이 밀어올리고 있습니다.";
+            if (isWeakened) return "시대의 흐름이 짓누르고 있습니다.";
+        }
+
+        // 3순위: 소형 뉴스 영향 중
+        bool hasSmallNews = gm.activeNewsList.Exists(a =>
+            a.caseData.affectedCase != null &&
+            System.Array.Exists(a.caseData.affectedCase, s => s == stock));
+        if (hasSmallNews)
+            return "시장에 소문이 돌고 있습니다.";
+
+        // 4순위: 등락률 기준
+        float change = stock.ChangePercent;
+        if (change >= 2f) return "기관이 담고 있습니다.";
+        if (change <= -2f) return "개미들이 던지고 있습니다.";
+        return "조용한 장세입니다.";
+}
+public void OnGraphClick()
+{
+    HideAllPanels();
+    GraphPanel.gameObject.SetActive(true);
+}
 
 
 }
