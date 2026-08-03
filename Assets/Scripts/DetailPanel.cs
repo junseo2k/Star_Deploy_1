@@ -34,9 +34,8 @@ public class DetailPanel : MonoBehaviour
     public GameObject BarPrefab;       // 막대 하나짜리 프리팹 (인스펙터 연결)
     public Transform GraphPanel; // 그래프 탭 패널 (인스펙터 연결)
     public TextMeshProUGUI[] xAxisLabels;  // X축 날짜 텍스트 배열 (인스펙터에서 10개 연결)    
-    public BarChart barChart; // 인스펙터에서 연결
+    public LineChart lineChart; // 인스펙터에서 연결
     public LineChart priceChart; // Inspector에서 LineChart 오브젝트 연결
-
 
 
     void Start()
@@ -75,42 +74,45 @@ public class DetailPanel : MonoBehaviour
 
     MarketLabelText.text = GetMarketLabel(stock);
 
-    if (stock.changePctHistory.Count == 0) return;
-
-    // 최대 변동폭 기준 정규화 (Y축용)
-
-    // Y축 레이블
-    // XCharts 데이터 초기화 후 입력
-    barChart.RemoveChartComponent<XAxis>();
-    barChart.AddChartComponent<XAxis>();
-    barChart.ClearData();
-    var title = barChart.EnsureChartComponent<Title>();
-    title.text = stock.StockName;
-    var tooltip = barChart.GetChartComponent<Tooltip>();
-    if (tooltip != null)
-        tooltip.numericFormatter = "f1"; // 소수점 1자리
-        tooltip.itemFormatter = "{a} - {b}: {c}%"; // 주식이름 - 날짜 형태로 표시
-    var yAxis = barChart.GetChartComponent<YAxis>();
-    if (yAxis != null)
-        yAxis.axisLabel.numericFormatter = "f1";
+    if (stock.priceHistory.Count == 0) return;
 
     int today = GameManager.Instance.currentDay;
-    int startDay = today - stock.changePctHistory.Count + 1;
-    var barSerie = barChart.series.Count > 0 ? barChart.series[0] : barChart.AddSerie<Bar>();
-    barSerie.serieName = stock.StockName;
-    for (int i = 0; i < stock.changePctHistory.Count; i++)
-    {
-        float pct = stock.changePctHistory[i];
-        barChart.AddXAxisData($"{startDay + i}일");
-        SerieData serieData = barChart.AddData(0, pct);
+    int startDay = today - stock.priceHistory.Count + 1;
 
-    // itemStyle 컴포넌트를 실제로 데이터에 부착해야 색이 반영됨
-        var itemStyle = serieData.EnsureComponent<ItemStyle>();
-        itemStyle.show = true;
-        itemStyle.color = pct >= 0f
-            ? new Color(1f, 0.27f, 0.27f)   // 상승 빨강
-            : new Color(0.27f, 0.53f, 1f);  // 하락 파랑
+    lineChart.ClearData();
+    var chartTitle = lineChart.GetChartComponent<Title>();
+    if (chartTitle != null)
+        chartTitle.text = stock.StockName;
+    // 주가(Grid 0, YAxis 0) 범위 재계산 — 작은 변동도 잘 보이게
+    int minPrice = int.MaxValue, maxPrice = int.MinValue;
+    foreach (int p in stock.priceHistory)
+    {
+        if (p < minPrice) minPrice = p;
+        if (p > maxPrice) maxPrice = p;
     }
+    int padding = Mathf.Max(1, Mathf.RoundToInt((maxPrice - minPrice) * 0.1f));
+
+    var priceYAxis = lineChart.GetChartComponent<YAxis>(0); // 인덱스 0 = 주가용
+    if (priceYAxis != null)
+    {
+        priceYAxis.min = minPrice - padding;
+        priceYAxis.max = maxPrice + padding;
+    }
+
+    // X축 두 개(위: 주가용, 아래: 거래량용) 모두에 같은 날짜 라벨 입력
+    for (int i = 0; i < stock.priceHistory.Count; i++)
+    {
+        string label = $"{startDay + i}일";
+        lineChart.AddXAxisData(label, 0); // Grid 0 (주가) X축
+        lineChart.AddXAxisData(label, 1); // Grid 1 (거래량) X축
+    }
+
+    // 데이터 입력 — Serie 0(Line)에 주가, Serie 1(Bar)에 거래량
+    for (int i = 0; i < stock.priceHistory.Count; i++)
+        lineChart.AddData(0, stock.priceHistory[i]);
+
+    for (int i = 0; i < stock.volumeHistory.Count; i++)
+        lineChart.AddData(1, stock.volumeHistory[i]);
 }
 
     // 모든 탭 패널을 비활성화 (탭 전환 전 초기화에 사용)

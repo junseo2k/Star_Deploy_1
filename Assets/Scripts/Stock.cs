@@ -58,4 +58,10 @@ public class Stock : ScriptableObject
     public float dividendRate;     // 배당률 (예: 0.02 = 현재가의 2%)
     [System.NonSerialized]
     public List<float> changePctHistory = new List<float>(); // 최근 10일치 변동률 히스토리
+    // Stock.cs — changePctHistory 필드 바로 아래에 추가
+[System.NonSerialized]
+    public List<int> priceHistory = new List<int>();   // 최근 10일치 실제 주가 히스토리
+
+[System.NonSerialized]
+    public List<float> volumeHistory = new List<float>(); // 최근 10일치 가짜 거래량 히스토리
 }

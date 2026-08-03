@@ -660,13 +660,25 @@ if (currentEra != null)
         GameManager.Instance.UpdateGold(dividend);
         AddNotice($"[배당] {stock.StockName} {sc.ownedAmount}주 → +{dividend} G");
     }
-        // 주가 변동 처리 끝난 직후 추가
-        foreach (Stock stock in tabmanager.allstock)
-        {
-            stock.changePctHistory.Add(stock.ChangePercent);
-            if (stock.changePctHistory.Count > 10) // 10일치 초과 시 가장 오래된 것 제거
-                stock.changePctHistory.RemoveAt(0);
-        }
+    
+        // 주가 변동 처리 끝난 직후 (기존 changePctHistory.Add 있는 블록 통째로 교체)
+foreach (Stock stock in tabmanager.allstock)
+{
+    stock.changePctHistory.Add(stock.ChangePercent);
+    if (stock.changePctHistory.Count > 10)
+        stock.changePctHistory.RemoveAt(0);
+
+    // 실제 주가 히스토리 기록
+    stock.priceHistory.Add(stock.StockCurrentPrice);
+    if (stock.priceHistory.Count > 10)
+        stock.priceHistory.RemoveAt(0);
+
+    // 가짜 거래량 = 변동폭 절댓값 × 임의 계수 (필요하면 계수만 조절하면 됨)
+    float fakeVolume = Mathf.Abs(stock.ChangePercent) * 50f;
+    stock.volumeHistory.Add(fakeVolume);
+    if (stock.volumeHistory.Count > 10)
+        stock.volumeHistory.RemoveAt(0);
+}
         // 골드 1000 이하 연속 5턴 지속 시 게임 오버
         if (currentgold <= 1000)
         {
