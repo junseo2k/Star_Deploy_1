@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.IO;
 
+// 세이브/로드 화면의 슬롯 선택과 각종 확인 팝업을 관리하는 클래스
+// 메인메뉴에서 진입했는지(FromMainMenu) 인게임에서 진입했는지에 따라 같은 슬롯 클릭이
+// 불러오기/새 게임 흐름 또는 덮어쓰기/저장 흐름으로 갈린다
 public class SlotManager : MonoBehaviour
 {
     public static SlotManager Instance;
@@ -46,7 +48,16 @@ public class SlotManager : MonoBehaviour
 
     void Start()
     {
-        // 모든 팝업 비활성화
+        CloseAllPopups();
+        RefreshAllSlots();
+    }
+
+    // 메인메뉴에서 진입했는지 여부 (아니면 인게임에서 저장하러 온 것)
+    private static bool FromMainMenu => PlayerPrefs.GetInt("FromMainMenu", 0) == 1;
+
+    // 모든 팝업과 배경을 닫는다
+    void CloseAllPopups()
+    {
         newGamePopupPanel.SetActive(false);
         loadPopupPanel.SetActive(false);
         loadCompletePanel.SetActive(false);
@@ -55,11 +66,21 @@ public class SlotManager : MonoBehaviour
         savePopupPanel.SetActive(false);
         saveCompletePanel.SetActive(false);
         overlay.SetActive(false);
+    }
 
-        // 인게임에서 왔을 때만 저장 버튼 표시
-        bool fromMainMenu = PlayerPrefs.GetInt("FromMainMenu", 0) == 1;
+    // 팝업 하나를 배경과 함께 표시
+    void ShowPopup(GameObject popup, TextMeshProUGUI messageText, string message)
+    {
+        messageText.text = message;
+        overlay.SetActive(true);
+        popup.SetActive(true);
+    }
 
-        RefreshAllSlots();
+    // 선택한 슬롯을 저장 대상으로 확정
+    void ConfirmSelectedSlot()
+    {
+        PlayerPrefs.SetInt("SelectedSlot", selectedSlot);
+        PlayerPrefs.Save();
     }
 
     // 모든 슬롯 UI 갱신
@@ -74,44 +95,26 @@ public class SlotManager : MonoBehaviour
 
     // ── 슬롯 클릭 처리 ────────────────────────
 
+    // 저장된 슬롯 클릭 — 메인메뉴에서 왔으면 불러오기, 인게임이면 덮어쓰기
     public void ShowLoadPopup(int slotIndex)
     {
         selectedSlot = slotIndex;
-        bool fromMainMenu = PlayerPrefs.GetInt("FromMainMenu", 0) == 1;
 
-        if (fromMainMenu)
-        {
-            // 메인메뉴에서 왔으면 로드 팝업
-            loadMessageText.text = $"슬롯 {slotIndex}을 불러오시겠습니까?";
-            loadPopupPanel.SetActive(true);
-        }
+        if (FromMainMenu)
+            ShowPopup(loadPopupPanel, loadMessageText, $"슬롯 {slotIndex}을 불러오시겠습니까?");
         else
-        {
-            // 인게임에서 왔으면 덮어쓰기 팝업
-            overwriteMessageText.text = $"슬롯 {slotIndex}에 덮어쓰시겠습니까?";
-            overlay.SetActive(true);
-            overwritePopupPanel.SetActive(true);
-        }
+            ShowPopup(overwritePopupPanel, overwriteMessageText, $"슬롯 {slotIndex}에 덮어쓰시겠습니까?");
     }
 
+    // 빈 슬롯 클릭 — 메인메뉴에서 왔으면 새 게임, 인게임이면 저장
     public void ShowNewGamePopup(int slotIndex)
     {
         selectedSlot = slotIndex;
-        bool fromMainMenu = PlayerPrefs.GetInt("FromMainMenu", 0) == 1;
 
-        if (fromMainMenu)
-        {
-            // 메인메뉴에서 왔으면 새 게임 팝업
-            newGameMessageText.text = $"슬롯 {slotIndex}에 새 게임을 시작하시겠습니까?";
-            newGamePopupPanel.SetActive(true);
-        }
+        if (FromMainMenu)
+            ShowPopup(newGamePopupPanel, newGameMessageText, $"슬롯 {slotIndex}에 새 게임을 시작하시겠습니까?");
         else
-        {
-            // 인게임에서 왔으면 저장 팝업
-            saveMessageText.text = $"슬롯 {slotIndex}에 저장하시겠습니까?";
-            overlay.SetActive(true);
-            savePopupPanel.SetActive(true);
-        }
+            ShowPopup(savePopupPanel, saveMessageText, $"슬롯 {slotIndex}에 저장하시겠습니까?");
     }
 
     // ── 새 게임 팝업 ──────────────────────────
@@ -119,16 +122,13 @@ public class SlotManager : MonoBehaviour
     public void OnNewGameConfirm()
     {
         newGamePopupPanel.SetActive(false);
-        PlayerPrefs.SetInt("SelectedSlot", selectedSlot);
-        PlayerPrefs.Save();
+        ConfirmSelectedSlot();
         SceneManager.LoadScene("StoryMode");
     }
 
     public void OnNewGameCancel()
     {
-        overlay.SetActive(false);
-        newGamePopupPanel.SetActive(false);
-        selectedSlot = -1;
+        CancelPopup(newGamePopupPanel);
     }
 
     // ── 로드 팝업 ─────────────────────────────
@@ -136,23 +136,20 @@ public class SlotManager : MonoBehaviour
     public void OnLoadConfirm()
     {
         loadPopupPanel.SetActive(false);
-        PlayerPrefs.SetInt("SelectedSlot", selectedSlot);
-        PlayerPrefs.Save();
+        ConfirmSelectedSlot();
         loadCompletePanel.SetActive(true);
     }
 
     public void OnLoadCancel()
     {
-        overlay.SetActive(false);
-        loadPopupPanel.SetActive(false);
-        selectedSlot = -1;
+        CancelPopup(loadPopupPanel);
     }
 
     public void OnLoadCompleteConfirm()
     {
         overlay.SetActive(false);
         loadCompletePanel.SetActive(false);
-        SceneManager.LoadScene("StoryMode"); // 이게 있어야 함
+        SceneManager.LoadScene("StoryMode");
     }
 
     // ── 덮어쓰기 팝업 ─────────────────────────
@@ -160,18 +157,13 @@ public class SlotManager : MonoBehaviour
     public void OnOverwriteConfirm()
     {
         overwritePopupPanel.SetActive(false);
-        PlayerPrefs.SetInt("SelectedSlot", selectedSlot);
-        PlayerPrefs.Save();
-        GameManager.Instance.SaveGame();
-        RefreshAllSlots();
+        SaveToSelectedSlot();
         overwriteCompletePanel.SetActive(true);
     }
 
     public void OnOverwriteCancel()
     {
-        overlay.SetActive(false);
-        overwritePopupPanel.SetActive(false);
-        selectedSlot = -1;
+        CancelPopup(overwritePopupPanel);
     }
 
     public void OnOverwriteCompleteConfirm()
@@ -185,26 +177,19 @@ public class SlotManager : MonoBehaviour
     public void ShowSavePopup(int slotIndex)
     {
         selectedSlot = slotIndex;
-        saveMessageText.text = $"슬롯 {slotIndex}에 저장하시겠습니까?";
-        overlay.SetActive(true);
-        savePopupPanel.SetActive(true);
+        ShowPopup(savePopupPanel, saveMessageText, $"슬롯 {slotIndex}에 저장하시겠습니까?");
     }
 
     public void OnSaveConfirm()
     {
         savePopupPanel.SetActive(false);
-        PlayerPrefs.SetInt("SelectedSlot", selectedSlot);
-        PlayerPrefs.Save();
-        GameManager.Instance.SaveGame();
-        RefreshAllSlots();
+        SaveToSelectedSlot();
         saveCompletePanel.SetActive(true);
     }
 
     public void OnSaveCancel()
     {
-        overlay.SetActive(false);
-        savePopupPanel.SetActive(false);
-        selectedSlot = -1;
+        CancelPopup(savePopupPanel);
     }
 
     public void OnSaveCompleteConfirm()
@@ -212,15 +197,28 @@ public class SlotManager : MonoBehaviour
         saveCompletePanel.SetActive(false);
         overlay.SetActive(false);
     }
-    // ── 기타 ──────────────────────────────────
+
+    // ── 공통 처리 ──────────────────────────────
+
+    // 선택 슬롯에 현재 게임 상태를 저장하고 슬롯 목록 갱신
+    void SaveToSelectedSlot()
+    {
+        ConfirmSelectedSlot();
+        GameManager.Instance.SaveGame();
+        RefreshAllSlots();
+    }
+
+    // 팝업 취소 — 팝업과 배경을 닫고 선택을 해제
+    void CancelPopup(GameObject popup)
+    {
+        overlay.SetActive(false);
+        popup.SetActive(false);
+        selectedSlot = -1;
+    }
 
     public void OnBackClick()
     {
-        bool fromMainMenu = PlayerPrefs.GetInt("FromMainMenu", 0) == 1;
-    
-        if (fromMainMenu)
-            SceneManager.LoadScene("MainMenu"); // 메인메뉴에서 왔으면 메인메뉴로
-        else
-            SceneManager.LoadScene("StoryMode");     // 인게임에서 왔으면 게임으로
-}
+        // 메인메뉴에서 왔으면 메인메뉴로, 인게임에서 왔으면 게임으로
+        SceneManager.LoadScene(FromMainMenu ? "MainMenu" : "StoryMode");
+    }
 }

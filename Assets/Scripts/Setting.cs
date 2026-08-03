@@ -104,11 +104,6 @@ public class Setting : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    void Update()
-    {
-
-    }
-
     // 슬라이더 값이 변경될 때 호출 — 현재 음량 수치를 정수로 변환하여 텍스트에 표시
     public void OnChangeSlider()
     {

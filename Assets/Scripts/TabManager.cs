@@ -5,17 +5,16 @@ using UnityEngine;
 public class TabManager : MonoBehaviour
 {
     public GameObject StockItemPrefab; // 주식 아이템을 표시할 프리팹
+    public Stock[] allstock;           // 게임에 등록된 모든 주식 데이터
 
-    public Stock[] allstock; // 게임에 등록된 모든 주식 데이터
-
-    // 종족별 패널 (각 탭에 해당하는 주식 목록을 담는 부모 Transform)
+    [Header("종족별 패널")]
     public Transform DwarfPanel;
     public Transform ElfPanel;
     public Transform DragonPanel;
     public Transform HumanPanel;
     public Transform OrcPanel;
 
-    // 산업별 패널
+    [Header("산업별 패널")]
     public Transform MiningPanel;
     public Transform BankPanel;
     public Transform ArmyPanel;
@@ -27,7 +26,7 @@ public class TabManager : MonoBehaviour
     public Transform LuxuryPanel;
     public Transform GamePanel;
 
-    // 탭 버튼에 표시되는 텍스트
+    [Header("탭 버튼 텍스트")]
     public TextMeshProUGUI DwarfPanelText;
     public TextMeshProUGUI ElfPanelText;
     public TextMeshProUGUI DragonPanelText;
@@ -44,174 +43,87 @@ public class TabManager : MonoBehaviour
     public TextMeshProUGUI LuxuryPanelText;
     public TextMeshProUGUI GamePanelText;
 
-    // 모든 패널을 숨긴 뒤 드워프 탭을 기본으로 열고, 각 탭 버튼 텍스트 초기화
+    // 탭 하나의 구성 요소 — 패널, 버튼 라벨, 필터링에 쓸 태그
+    private struct TabEntry
+    {
+        public Transform panel;
+        public TextMeshProUGUI label;
+        public string labelText; // 버튼에 표시할 문구 (태그와 다를 수 있음: Dragonia → "Dragon")
+        public string tag;       // FamilyTag 또는 IndustryTag 값
+        public bool byFamily;    // true면 FamilyTag, false면 IndustryTag로 필터링
+
+        public TabEntry(Transform panel, TextMeshProUGUI label, string labelText, string tag, bool byFamily)
+        {
+            this.panel = panel;
+            this.label = label;
+            this.labelText = labelText;
+            this.tag = tag;
+            this.byFamily = byFamily;
+        }
+    }
+
+    private TabEntry[] tabs;
+
+    // 탭 목록 구성 → 모든 패널을 숨긴 뒤 드워프 탭을 기본으로 열고, 각 탭 버튼 텍스트 초기화
     void Start()
     {
         foreach (Stock stock in allstock)
-        {
             stock.runtimeIssues.Clear();
-        }
-        HideAllPanels();
-        OnDwarfClickTab();
-        DwarfPanelText.text = "dwarf";
-        ElfPanelText.text = "Elf";
-        DragonPanelText.text = "Dragon";
-        HumanPanelText.text = "Human";
-        OrcPanelText.text = "Orc";
-        MiningPanelText.text = "Mining";
-        BankPanelText.text = "Bank";
-        ArmyPanelText.text = "Army";
-        FoodPanelText.text = "Food";   
-        MagicPanelText.text = "Magic";
-        ClinicPanelText.text = "Clinic";
-        CoopangPanelText.text = "Coopang";
-        ConstructPanelText.text = "Construct";
-        LuxuryPanelText.text = "Luxury";
-        GamePanelText.text = "Game";
-    }
 
-    // 매 프레임 호출 (현재 사용 없음)
-    void Update()
-    {
-
-    }
-
-    // 드워프 탭 버튼 클릭 시 드워프 패널 활성화
-    public void OnDwarfClickTab()
-    {
-        OnFamilyTabClick("Dwarf", DwarfPanel);
-    }
-
-    // 태그(종족 또는 산업) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
-    // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
-    // byFamily가 true면 FamilyTag, false면 IndustryTag로 필터링
-    void CreateStock(string tag, Transform panel, bool byFamily)
-    {
-        if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
-
-        foreach (Stock stock in allstock)
+        tabs = new[]
         {
-            string stockTag = byFamily ? stock.FamilyTag : stock.IndustryTag;
-            if (stockTag == tag) // 태그가 일치하는 주식만 해당 패널에 배치
-            {
-                GameObject newStock = Instantiate(StockItemPrefab, panel);
-                StockControl sc = newStock.GetComponent<StockControl>();
-                sc.stockinfo = stock;
-                sc.Initialize();
-            }
+            new TabEntry(DwarfPanel,     DwarfPanelText,     "dwarf",     "Dwarf",     true),
+            new TabEntry(ElfPanel,       ElfPanelText,       "Elf",       "Elf",       true),
+            new TabEntry(DragonPanel,    DragonPanelText,    "Dragon",    "Dragonia",  true),
+            new TabEntry(HumanPanel,     HumanPanelText,     "Human",     "Human",     true),
+            new TabEntry(OrcPanel,       OrcPanelText,       "Orc",       "Orc",       true),
+            new TabEntry(MiningPanel,    MiningPanelText,    "Mining",    "Mining",    false),
+            new TabEntry(BankPanel,      BankPanelText,      "Bank",      "Bank",      false),
+            new TabEntry(ArmyPanel,      ArmyPanelText,      "Army",      "Army",      false),
+            new TabEntry(FoodPanel,      FoodPanelText,      "Food",      "Food",      false),
+            new TabEntry(MagicPanel,     MagicPanelText,     "Magic",     "Magic",     false),
+            new TabEntry(ClinicPanel,    ClinicPanelText,    "Clinic",    "Clinic",    false),
+            new TabEntry(CoopangPanel,   CoopangPanelText,   "Coopang",   "Coopang",   false),
+            new TabEntry(ConstructPanel, ConstructPanelText, "Construct", "Construct", false),
+            new TabEntry(LuxuryPanel,    LuxuryPanelText,    "Luxury",    "Luxury",    false),
+            new TabEntry(GamePanel,      GamePanelText,      "Game",      "Game",      false),
+        };
+
+        foreach (TabEntry tab in tabs)
+        {
+            if (tab.label != null)
+                tab.label.text = tab.labelText;
         }
+
+        OnDwarfClickTab();
     }
 
-    // 엘프 탭 버튼 클릭 시 엘프 패널 활성화
-    public void OnElfTabClick()
-    {
-        OnFamilyTabClick("Elf", ElfPanel);
-    }
-    // 오크 탭 버튼 클릭 시 오크 패널 활성화
-    public void OnOrcTabClick()
-    {
-        OnFamilyTabClick("Orc", OrcPanel);
-    }
+    // ── 탭 버튼 (인스펙터 OnClick에서 직접 연결되므로 이름을 바꾸지 말 것) ──
 
-    // 은행 탭 버튼 클릭 시 은행 패널 활성화
-    public void OnBankTabClick()
-    {
-        OnIndustryTabClick("Bank", BankPanel);
-    }
+    public void OnDwarfClickTab() { OnFamilyTabClick("Dwarf", DwarfPanel); }
+    public void OnElfTabClick() { OnFamilyTabClick("Elf", ElfPanel); }
+    public void OnOrcTabClick() { OnFamilyTabClick("Orc", OrcPanel); }
+    public void OnDragonTabClick() { OnFamilyTabClick("Dragonia", DragonPanel); }
+    public void OnHumanTabClick() { OnFamilyTabClick("Human", HumanPanel); }
 
-    // 식품 탭 버튼 클릭 시 식품 패널 활성화
-    public void OnFoodTabClick()
-    {
-        OnIndustryTabClick("Food", FoodPanel);
-    }
+    public void OnMiningTabClick() { OnIndustryTabClick("Mining", MiningPanel); }
+    public void OnBankTabClick() { OnIndustryTabClick("Bank", BankPanel); }
+    public void OnArmyTabClick() { OnIndustryTabClick("Army", ArmyPanel); }
+    public void OnFoodTabClick() { OnIndustryTabClick("Food", FoodPanel); }
+    public void OnMagicTabClick() { OnIndustryTabClick("Magic", MagicPanel); }
+    public void OnClinicTabClick() { OnIndustryTabClick("Clinic", ClinicPanel); }
+    public void OnCoopangTabClick() { OnIndustryTabClick("Coopang", CoopangPanel); }
+    public void OnConstructTabClick() { OnIndustryTabClick("Construct", ConstructPanel); }
+    public void OnLuxuryTabClick() { OnIndustryTabClick("Luxury", LuxuryPanel); }
+    public void OnGameTabClick() { OnIndustryTabClick("Game", GamePanel); }
 
-    // 마법 탭 버튼 클릭 시 마법 패널 활성화
-    public void OnMagicTabClick()
-    {
-        OnIndustryTabClick("Magic", MagicPanel);
-    }
-
-    // 의료 탭 버튼 클릭 시 의료 패널 활성화
-    public void OnClinicTabClick()
-    {
-        OnIndustryTabClick("Clinic", ClinicPanel);
-    }
-
-    // 유통 탭 버튼 클릭 시 유통 패널 활성화
-    public void OnCoopangTabClick()
-    {
-        OnIndustryTabClick("Coopang", CoopangPanel);
-    }
-
-    // 건설 탭 버튼 클릭 시 건설 패널 활성화
-    public void OnConstructTabClick()
-    {
-        OnIndustryTabClick("Construct", ConstructPanel);
-    }
-
-    // 명품 탭 버튼 클릭 시 명품 패널 활성화
-    public void OnLuxuryTabClick()
-    {
-        OnIndustryTabClick("Luxury", LuxuryPanel);
-    }
-
-    // 게임 탭 버튼 클릭 시 게임 패널 활성화
-    public void OnGameTabClick()
-    {
-        OnIndustryTabClick("Game", GamePanel);
-    }
-
-    // 드래곤 탭 버튼 클릭 시 드래곤 패널 활성화
-    public void OnDragonTabClick()
-    {
-        OnFamilyTabClick("Dragonia", DragonPanel);
-    }
-
-    // 휴먼 탭 버튼 클릭 시 휴먼 패널 활성화
-    public void OnHumanTabClick()
-    {
-        OnFamilyTabClick("Human", HumanPanel);
-    }
-
-    // 채굴 탭 버튼 클릭 시 채굴 패널 활성화
-    public void OnMiningTabClick()
-    {
-        OnIndustryTabClick("Mining", MiningPanel);
-    }
-
-    // 전쟁 탭 버튼 클릭 시 전쟁 패널 활성화
-    public void OnArmyTabClick()
-    {
-        OnIndustryTabClick("Army", ArmyPanel);
-    }
-
-    // 모든 종족/산업 패널을 비활성화
-    void HideAllPanels()
-    {
-        DwarfPanel.gameObject.SetActive(false);
-        ElfPanel.gameObject.SetActive(false);
-        DragonPanel.gameObject.SetActive(false);
-        HumanPanel.gameObject.SetActive(false);
-        OrcPanel.gameObject.SetActive(false);
-        MiningPanel.gameObject.SetActive(false);
-        BankPanel.gameObject.SetActive(false);
-        ArmyPanel.gameObject.SetActive(false);
-        FoodPanel.gameObject.SetActive(false);
-        MagicPanel.gameObject.SetActive(false);
-        ClinicPanel.gameObject.SetActive(false);
-        CoopangPanel.gameObject.SetActive(false);
-        ConstructPanel.gameObject.SetActive(false);
-        LuxuryPanel.gameObject.SetActive(false);
-        GamePanel.gameObject.SetActive(false);
-    }
-
-    // 종족 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
+    // 종족 탭 공통 처리
     public void OnFamilyTabClick(string classification, Transform panel)
     {
         OpenTab(classification, panel, true);
     }
 
-    // 산업 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
+    // 산업 탭 공통 처리
     public void OnIndustryTabClick(string classification, Transform panel)
     {
         OpenTab(classification, panel, false);
@@ -223,9 +135,36 @@ public class TabManager : MonoBehaviour
         HideAllPanels();
         panel.gameObject.SetActive(true);
         CreateStock(classification, panel, byFamily);
+
         foreach (StockControl stock in panel.GetComponentsInChildren<StockControl>())
-        {
             stock.UpdatePriceText();
+    }
+
+    // 태그(종족 또는 산업) 기준으로 주식 아이템 프리팹을 해당 패널에 생성
+    // 이미 자식 오브젝트가 있는 패널은 중복 생성을 방지하기 위해 건너뜀
+    void CreateStock(string tag, Transform panel, bool byFamily)
+    {
+        if (panel.childCount > 0) return; // 이미 생성된 패널이면 함수 종료
+
+        foreach (Stock stock in allstock)
+        {
+            string stockTag = byFamily ? stock.FamilyTag : stock.IndustryTag;
+            if (stockTag != tag) continue; // 태그가 일치하는 주식만 해당 패널에 배치
+
+            GameObject newStock = Instantiate(StockItemPrefab, panel);
+            StockControl sc = newStock.GetComponent<StockControl>();
+            sc.stockinfo = stock;
+            sc.Initialize();
+        }
+    }
+
+    // 모든 종족/산업 패널을 비활성화
+    void HideAllPanels()
+    {
+        foreach (TabEntry tab in tabs)
+        {
+            if (tab.panel != null)
+                tab.panel.gameObject.SetActive(false);
         }
     }
 }

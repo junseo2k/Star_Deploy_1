@@ -1,6 +1,5 @@
-using UnityEngine.UI;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 // 주식 정보를 담는 ScriptableObject — 인스펙터에서 각 주식 데이터를 에셋으로 생성·관리
 [CreateAssetMenu(fileName = "Stock", menuName = "Scriptable Objects/Stock")]
@@ -52,16 +51,15 @@ public class Stock : ScriptableObject
     public float ChangePercent => StockPreviousPrice > 0
         ? (float)(StockCurrentPrice - StockPreviousPrice) / StockPreviousPrice * 100f
         : 0f;
-    // Stock.cs — 기존 필드들 아래에 추가
-    public bool hasDividend;       // 배당주 여부 (true면 매턴 배당금 지급)
+    public bool hasDividend;   // 배당주 여부 (true면 매턴 배당금 지급)
     [Range(0f, 0.05f)]
-    public float dividendRate;     // 배당률 (예: 0.02 = 현재가의 2%)
-    [System.NonSerialized]
-    public List<float> changePctHistory = new List<float>(); // 최근 10일치 변동률 히스토리
-    // Stock.cs — changePctHistory 필드 바로 아래에 추가
-[System.NonSerialized]
-    public List<int> priceHistory = new List<int>();   // 최근 10일치 실제 주가 히스토리
+    public float dividendRate; // 배당률 (예: 0.02 = 현재가의 2%)
 
-[System.NonSerialized]
-    public List<float> volumeHistory = new List<float>(); // 최근 10일치 가짜 거래량 히스토리
+    // 그래프·NPC 예측에 쓰이는 최근 기록 (GameManager가 매턴 갱신, 저장 대상 아님)
+    [System.NonSerialized]
+    public List<float> changePctHistory = new List<float>(); // 변동률 히스토리
+    [System.NonSerialized]
+    public List<int> priceHistory = new List<int>();         // 실제 주가 히스토리
+    [System.NonSerialized]
+    public List<float> volumeHistory = new List<float>();    // 가짜 거래량 히스토리
 }

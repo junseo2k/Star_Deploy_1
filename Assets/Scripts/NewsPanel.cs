@@ -1,89 +1,69 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
 
 // 뉴스 패널 UI를 관리하는 클래스
-// 대형 뉴스(BigNewsPanel)와 진행 중인 소형 이슈(IssuePanel) 표시를 담당
+// 대형 뉴스(BigNewsPanel)와 진행 중인 소형 이슈(IssueScroll) 표시를 담당
 public class NewsPanel : MonoBehaviour
 {
-    public Transform BigNewsPanel;        // 대형 뉴스(BigTriggerNews 타입) 표시 패널
-    public Transform IssueScroll;          // 진행 중인 소형 이슈 목록 표시 패널
+    public Transform BigNewsPanel;          // 대형 뉴스(BigTriggerNews 타입) 표시 패널
+    public Transform IssueScroll;           // 진행 중인 소형 이슈 목록 표시 패널
     public GameObject StockWithImagePrefab; // 이미지+텍스트 조합 UI 프리팹 (뉴스 항목 생성에 사용)
-    public Transform newspanel;           // 이 뉴스 패널 루트 오브젝트 (닫기 버튼 클릭 시 비활성화)
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+    public Transform newspanel;             // 이 뉴스 패널 루트 오브젝트
 
     // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 모두 표시
     public void OnIssueClick()
     {
-        foreach (Transform child in IssueScroll)
-            Destroy(child.gameObject);
+        ClearChildren(IssueScroll);
         IssueScroll.gameObject.SetActive(true);
 
-        var smallNews = new List<ActiveCase>();
         foreach (ActiveCase active in GameManager.Instance.activeNewsList)
         {
-            if (active.caseData.newsType == Case.NewsType.SmallIndustryNews
-                || active.caseData.newsType == Case.NewsType.SmallCompanyNews
-                || active.caseData.newsType == Case.NewsType.ForeshadowNews)
-                smallNews.Add(active);
-        }
+            if (!IsIssueNews(active.caseData.newsType)) continue;
 
-        int start = 0;
-        for (int i = start; i < smallNews.Count; i++)
-        {
-            ActiveCase active = smallNews[i];
-            GameObject item = Instantiate(StockWithImagePrefab, IssueScroll);
-            item.GetComponentInChildren<Image>().sprite = active.caseData.CaseImage;
-            item.GetComponentInChildren<TextMeshProUGUI>().text =
-                $"{active.displayDescription} 남은 시간 : {active.Rday}";
+            CreateNewsItem(IssueScroll, active.caseData.CaseImage,
+                $"{active.displayDescription} 남은 시간 : {active.Rday}");
         }
-        Debug.Log($"전체 뉴스 수: {GameManager.Instance.activeNewsList.Count}");
-
-        foreach (var active in GameManager.Instance.activeNewsList)
-            {
-                Debug.Log($"타입: {active.caseData.newsType}"); 
-            }
     }
 
+    // 이슈 목록에 표시할 뉴스 타입인지 판정 (대형 뉴스는 별도 패널에서 표시)
+    static bool IsIssueNews(Case.NewsType type)
+    {
+        return type == Case.NewsType.SmallIndustryNews
+            || type == Case.NewsType.SmallCompanyNews
+            || type == Case.NewsType.ForeshadowNews;
+    }
 
     // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 BigTriggerNews 타입 뉴스를 표시
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출
     public void BigNewsClick()
     {
-        foreach (Transform child in BigNewsPanel)
-            Destroy(child.gameObject);
-
+        ClearChildren(BigNewsPanel);
         BigNewsPanel.gameObject.SetActive(true);
 
         // 뒤에서부터 탐색해 가장 최근 BigTriggerNews를 찾음
         // (같은 턴에 소형 뉴스가 뒤에 추가되어도 대형 뉴스를 놓치지 않음)
-        ActiveCase bigNews = null;
         var list = GameManager.Instance.activeNewsList;
         for (int i = list.Count - 1; i >= 0; i--)
         {
-            Case.NewsType t = list[i].caseData.newsType;
-            if (t == Case.NewsType.BigTriggerNews)
-            {
-                bigNews = list[i];
-                break;
-            }
+            if (list[i].caseData.newsType != Case.NewsType.BigTriggerNews) continue;
+
+            CreateNewsItem(BigNewsPanel, list[i].caseData.CaseImage, list[i].displayDescription);
+            return;
         }
-
-        if (bigNews == null) return;
-
-        GameObject item = Instantiate(StockWithImagePrefab, BigNewsPanel);
-        item.GetComponentInChildren<Image>().sprite = bigNews.caseData.CaseImage;
-        item.GetComponentInChildren<TextMeshProUGUI>().text = bigNews.displayDescription;
     }
 
+    // 뉴스 항목 프리팹 하나를 생성하고 이미지·텍스트를 채운다
+    void CreateNewsItem(Transform parent, Sprite image, string text)
+    {
+        GameObject item = Instantiate(StockWithImagePrefab, parent);
+        item.GetComponentInChildren<Image>().sprite = image;
+        item.GetComponentInChildren<TextMeshProUGUI>().text = text;
+    }
+
+    static void ClearChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+            Destroy(child.gameObject);
+    }
 }

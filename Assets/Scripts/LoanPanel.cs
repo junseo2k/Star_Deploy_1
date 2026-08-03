@@ -24,19 +24,18 @@ public class LoanPanel : MonoBehaviour
     // UI 텍스트 전체 갱신
     void RefreshUI()
     {
-        int maxLoan = GameManager.Instance.currentgold / 2;
+        int maxLoan = GameManager.Instance.MaxLoan;
         loanAmountText.text = $"현재 대출금: {GameManager.Instance.loanAmount} G";
         maxLoanText.text = $"대출 가능 금액: {maxLoan} G";
         inputAmountText.text = $"입력 금액: {inputAmount} G";
         noticeText.text = "";
-        int interest = Mathf.CeilToInt(GameManager.Instance.loanAmount * 0.01f);
-        interestText.text = $"턴당 이자: {interest} G";
+        interestText.text = $"턴당 이자: {GameManager.Instance.TurnInterest} G";
     }
 
     // + 버튼 클릭 시 입력 금액 증가
     public void OnPlusClick()
     {
-        int maxLoan = GameManager.Instance.currentgold / 2;
+        int maxLoan = GameManager.Instance.MaxLoan;
         if (inputAmount + stepAmount > maxLoan)
         {
             noticeText.text = "대출 한도를 초과했습니다.";

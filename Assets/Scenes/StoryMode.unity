@@ -15190,6 +15190,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   currentgold: 0
   currentDay: 0
+  loanAmount: 0
+  lowGoldStreak: 0
+  tabmanager: {fileID: 58333316}
   AllCases:
   - {fileID: 11400000, guid: db6c264a9fd77a846af0b717d37c2e86, type: 2}
   - {fileID: 11400000, guid: 110c697da3528574a8e79b4a88a05e75, type: 2}
@@ -15481,28 +15484,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5c6b5b6df4d163444b007a526e02b0b3, type: 2}
   - {fileID: 11400000, guid: b9c6af9828e05cb419bdf5155e4ad3f8, type: 2}
   - {fileID: 11400000, guid: ddcf54c17255d3746a83d1fa4522800e, type: 2}
-  tabmanager: {fileID: 58333316}
   recentIssues: []
   SmallNewsCases: []
   BigTriggerCases: []
-  lowGoldStreak: 0
   lastBigNewsDay: -1
   scheduledBigNewsDay: -1
   scheduledBigNewsVibeDay: -1
   scheduledBigNewsCaseIndex: -1
   scheduledForeshadowIndex: -1
   scheduledNationPair: 
-  smallNewsTimer: 0
-  loanAmount: 0
-  allEras:
-  - {fileID: 11400000, guid: 20e2fe6873b60b642967ce68a7a7b2ee, type: 2}
-  - {fileID: 11400000, guid: 3bc71744cc9cba24a985dd7259241126, type: 2}
-  - {fileID: 11400000, guid: 96d22ec9cbfdfd74f99075d9c02347ae, type: 2}
-  - {fileID: 11400000, guid: a8d0cadbe120d46488d0b5c25568ee6e, type: 2}
-  currentEra: {fileID: 0}
-  eraEndDay: -1
-  nextEraStartDay: 20
-  eraHintShownDay: -1
   newsTemplates:
   - {fileID: 11400000, guid: 541c1373b584e974c9929aa4a1d15e6c, type: 2}
   - {fileID: 11400000, guid: 6d85d15f81114254f8808f4ab5cd03f3, type: 2}
@@ -15514,6 +15504,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2c6d0d462a6e924f81ab285cc67e804, type: 2}
   - {fileID: 11400000, guid: 243b27ffe84fcc94f8c9cce84fb83522, type: 2}
   - {fileID: 11400000, guid: fa623b8c9d0f9a141b5013cc2845b876, type: 2}
+  smallNewsTimer: 0
+  allEras:
+  - {fileID: 11400000, guid: 20e2fe6873b60b642967ce68a7a7b2ee, type: 2}
+  - {fileID: 11400000, guid: 3bc71744cc9cba24a985dd7259241126, type: 2}
+  - {fileID: 11400000, guid: 96d22ec9cbfdfd74f99075d9c02347ae, type: 2}
+  - {fileID: 11400000, guid: a8d0cadbe120d46488d0b5c25568ee6e, type: 2}
+  currentEra: {fileID: 0}
+  eraEndDay: -1
+  nextEraStartDay: 20
+  eraHintShownDay: -1
   allBusinessProjects:
   - {fileID: 11400000, guid: 3c3daf724a9661144b93218f3acb5622, type: 2}
   activeBusinesses: []
@@ -20749,7 +20749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedc7fef4a2cb4847a1e29fb8bd5171b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrderPanel
-  stockcontrol: {fileID: 0}
+  targetStock: {fileID: 0}
   StockNum: 0
   NoticeText: {fileID: 1977782910}
   PlusText: {fileID: 1564997656}
@@ -26751,7 +26751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PortfolioPanel
   portfolioPanel: {fileID: 1545795635}
   contentParent: {fileID: 1635865400}
-  rowPrefab: {fileID: 5294074943600059893, guid: 3b55b4932e540884c9224552da82256d, type: 3}
+  rowPrefab: {fileID: 5930115348903895102, guid: 0fa59a7e3a640984d80015a326b3e9fe, type: 3}
   totalValueText: {fileID: 826112155}
   totalReturnText: {fileID: 925595662}
 --- !u!114 &1545795637
@@ -26900,37 +26900,21 @@ MonoBehaviour:
   StockPrice: {fileID: 1509106677}
   StockChangePrice: {fileID: 1295855125}
   StockDescription: {fileID: 508994566}
-  DetailInfoPanel: {fileID: 1259299864}
-  ServicePanel: {fileID: 2051842681}
-  ImportantPanel: {fileID: 3295759}
   StockDetailDescription: {fileID: 1324244209}
   revenuePrice: {fileID: 1096165943}
   ProfitPrice: {fileID: 735820201}
   MarketCapPrice: {fileID: 2142565892}
   TotalSharePrice: {fileID: 723712324}
-  currentstock: {fileID: 0}
-  DetailwithPanel: {fileID: 1552345367}
-  maxmount: 0
-  orderPanel: {fileID: 1212134989}
-  sidebarTabManager: {fileID: 1714871486}
-  marketListPanel: {fileID: 167507516}
   MarketLabelText: {fileID: 999302412}
-  VolumeGraphPanel: {fileID: 0}
-  BarPrefab: {fileID: 5276317663389877386, guid: d7fb229326eb1ec45a8e8fc40800905f, type: 3}
+  DetailInfoPanel: {fileID: 1259299864}
+  ServicePanel: {fileID: 2051842681}
+  ImportantPanel: {fileID: 3295759}
   GraphPanel: {fileID: 1629143323}
-  xAxisLabels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  DetailwithPanel: {fileID: 1552345367}
   lineChart: {fileID: 2061418106}
   priceChart: {fileID: 0}
+  orderPanel: {fileID: 1212134989}
+  currentstock: {fileID: 0}
 --- !u!1 &1555620737
 GameObject:
   m_ObjectHideFlags: 0
@@ -30918,19 +30902,19 @@ MonoBehaviour:
   TotalAssetText: {fileID: 560239931}
   TotalReturnText: {fileID: 2004735234}
   CurrentDay: {fileID: 1042519714}
-  detailpanel: {fileID: 1552345370}
+  EraText: {fileID: 1425184081}
   EntirePanel: {fileID: 1542111523}
+  StockPanel: {fileID: 167507517}
   newspanel: {fileID: 312188955}
   portfolioPanel: {fileID: 1545795635}
-  portfolioPanelScript: {fileID: 1545795636}
   loanPanel: {fileID: 1559101601}
-  loanPanelScript: {fileID: 1559101602}
   buyPanel: {fileID: 1212134990}
-  sidebarTabManager: {fileID: 1714871486}
-  StockPanel: {fileID: 167507517}
-  EraText: {fileID: 1425184081}
   favoriteFullPanel: {fileID: 2059082250}
+  detailpanel: {fileID: 1552345370}
+  portfolioPanelScript: {fileID: 1545795636}
+  loanPanelScript: {fileID: 1559101602}
   favoritePanel: {fileID: 1296421855}
+  sidebarTabManager: {fileID: 1714871486}
   newsPanelScript: {fileID: 312188958}
 --- !u!1 &1819376295
 GameObject:

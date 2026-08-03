@@ -26,9 +26,11 @@ public class NPCInvestor : MonoBehaviour
     }
     public List<StockHolding> holdings = new List<StockHolding>(); // 현재 보유 주식 목록
 
-    private Worker worker;                                                               // 모델 추론 실행기
-    private const int WINDOW_SIZE = 10;                                                  // 예측에 사용하는 과거 데이터 윈도우 크기 (일)
+    private const int WINDOW_SIZE = 10; // 예측에 사용하는 과거 데이터 윈도우 크기 (일)
+
+    private Worker worker; // 모델 추론 실행기
     private List<(Stock stock, float prediction)> dailyPredictions = new List<(Stock, float)>(); // 이번 턴에 수집한 주식별 예측값
+    private Dictionary<Stock, Queue<float[]>> priceHistories = new Dictionary<Stock, Queue<float[]>>(); // 주식별 입력 이력 큐
 
     // 모델 로드 및 추론 워커 초기화
     void Start()
@@ -61,63 +63,68 @@ public class NPCInvestor : MonoBehaviour
         }
     }
 
-    // 주식별 큐
-private Dictionary<Stock, Queue<float[]>> priceHistories
-    = new Dictionary<Stock, Queue<float[]>>();
-
-// 매일 하루가 지날 때 호출 — 가격 이력을 누적하고 윈도우가 차면 예측 실행
-public void OnDayPassed(Stock stock, float priceChangePct, float isAffectedByNews)
-{
-    if (!priceHistories.ContainsKey(stock))
-        priceHistories[stock] = new Queue<float[]>();
-
-    var history = priceHistories[stock];
-    history.Enqueue(new float[] {
-        stock.StockCurrentPrice,
-        priceChangePct,
-        isAffectedByNews
-    });
-
-    if (history.Count > WINDOW_SIZE)
-        history.Dequeue();
-
-    if (history.Count == WINDOW_SIZE)
-        MakeDecision(stock, history);
-}
-
-// 가격 이력을 정규화한 뒤 LSTM 모델로 다음 날 변동률을 예측하고 결과를 저장
-void MakeDecision(Stock stock, Queue<float[]> history)
-{
-    float minPrice = float.MaxValue;
-    float maxPrice = float.MinValue;
-    foreach (var day in history)
+    // 매일 하루가 지날 때 호출 — 가격 이력을 누적하고 윈도우가 차면 예측 실행
+    public void OnDayPassed(Stock stock, float priceChangePct, float isAffectedByNews)
     {
-        if (day[0] < minPrice) minPrice = day[0];
-        if (day[0] > maxPrice) maxPrice = day[0];
+        if (!priceHistories.TryGetValue(stock, out Queue<float[]> history))
+        {
+            history = new Queue<float[]>();
+            priceHistories[stock] = history;
+        }
+
+        history.Enqueue(new float[]
+        {
+            stock.StockCurrentPrice,
+            priceChangePct,
+            isAffectedByNews,
+        });
+
+        if (history.Count > WINDOW_SIZE)
+            history.Dequeue();
+
+        if (history.Count == WINDOW_SIZE)
+            MakeDecision(stock, history);
     }
 
-    if (maxPrice == minPrice) return; // 가격 변동이 없으면 정규화 불가, 스킵
-
-    // 입력 텐서 구성: [가격 정규화, 변동률, 뉴스 영향 여부] × WINDOW_SIZE
-    float[] inputData = new float[WINDOW_SIZE * 3];
-    int i = 0;
-    foreach (var day in history)
+    // 가격 이력을 정규화한 뒤 LSTM 모델로 다음 날 변동률을 예측하고 결과를 저장
+    void MakeDecision(Stock stock, Queue<float[]> history)
     {
-        inputData[i * 3 + 0] = (day[0] - minPrice) / (maxPrice - minPrice);
-        inputData[i * 3 + 1] = day[1];
-        inputData[i * 3 + 2] = day[2];
-        i++;
+        float minPrice = float.MaxValue;
+        float maxPrice = float.MinValue;
+        foreach (float[] day in history)
+        {
+            if (day[0] < minPrice) minPrice = day[0];
+            if (day[0] > maxPrice) maxPrice = day[0];
+        }
+
+        if (maxPrice == minPrice) return; // 가격 변동이 없으면 정규화 불가, 스킵
+
+        // 입력 텐서 구성: [가격 정규화, 변동률, 뉴스 영향 여부] × WINDOW_SIZE
+        float[] inputData = new float[WINDOW_SIZE * 3];
+        int i = 0;
+        foreach (float[] day in history)
+        {
+            inputData[i * 3 + 0] = (day[0] - minPrice) / (maxPrice - minPrice);
+            inputData[i * 3 + 1] = day[1];
+            inputData[i * 3 + 2] = day[2];
+            i++;
+        }
+
+        Tensor<float> inputTensor = new Tensor<float>(new TensorShape(1, WINDOW_SIZE, 3), inputData);
+        try
+        {
+            worker.Schedule(inputTensor);
+            Tensor<float> output = worker.PeekOutput("output_0") as Tensor<float>;
+            float predictedChange = output.DownloadToArray()[0];
+
+            Debug.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}%");
+            dailyPredictions.Add((stock, predictedChange));
+        }
+        finally
+        {
+            inputTensor.Dispose(); // 예측 도중 예외가 나도 텐서가 새지 않도록 보장
+        }
     }
-
-    var inputTensor = new Tensor<float>(new TensorShape(1, WINDOW_SIZE, 3), inputData);
-    worker.Schedule(inputTensor);
-    var output = worker.PeekOutput("output_0") as Tensor<float>;
-    float predictedChange = output.DownloadToArray()[0];
-
-    Debug.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}%");
-    dailyPredictions.Add((stock, predictedChange));
-    inputTensor.Dispose();
-}
 
     // 모든 주식 예측이 끝난 후 호출 — 예측 평균 대비 상대값으로 매수/매도 결정
     public void DecideAfterAllPredictions()

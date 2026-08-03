@@ -16,7 +16,7 @@ public class SlotUI : MonoBehaviour
     public void SetSlotIndex(int index)
     {
         slotIndex = index;
-        savePath = Application.persistentDataPath + $"/save{slotIndex}.json";
+        savePath = Path.Combine(Application.persistentDataPath, $"save{slotIndex}.json");
     }
 
     // 저장 파일 유무에 따라 슬롯 UI 갱신
