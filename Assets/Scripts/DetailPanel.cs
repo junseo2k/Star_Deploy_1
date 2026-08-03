@@ -35,6 +35,7 @@ public class DetailPanel : MonoBehaviour
     public Transform GraphPanel; // 그래프 탭 패널 (인스펙터 연결)
     public TextMeshProUGUI[] xAxisLabels;  // X축 날짜 텍스트 배열 (인스펙터에서 10개 연결)    
     public BarChart barChart; // 인스펙터에서 연결
+    public LineChart priceChart; // Inspector에서 LineChart 오브젝트 연결
 
 
 
@@ -83,21 +84,32 @@ public class DetailPanel : MonoBehaviour
     barChart.RemoveChartComponent<XAxis>();
     barChart.AddChartComponent<XAxis>();
     barChart.ClearData();
+    var title = barChart.EnsureChartComponent<Title>();
+    title.text = stock.StockName;
     var tooltip = barChart.GetChartComponent<Tooltip>();
     if (tooltip != null)
         tooltip.numericFormatter = "f1"; // 소수점 1자리
+        tooltip.itemFormatter = "{a} - {b}: {c}%"; // 주식이름 - 날짜 형태로 표시
     var yAxis = barChart.GetChartComponent<YAxis>();
     if (yAxis != null)
         yAxis.axisLabel.numericFormatter = "f1";
 
     int today = GameManager.Instance.currentDay;
     int startDay = today - stock.changePctHistory.Count + 1;
-
+    var barSerie = barChart.series.Count > 0 ? barChart.series[0] : barChart.AddSerie<Bar>();
+    barSerie.serieName = stock.StockName;
     for (int i = 0; i < stock.changePctHistory.Count; i++)
     {
         float pct = stock.changePctHistory[i];
         barChart.AddXAxisData($"{startDay + i}일");
         SerieData serieData = barChart.AddData(0, pct);
+
+    // itemStyle 컴포넌트를 실제로 데이터에 부착해야 색이 반영됨
+        var itemStyle = serieData.EnsureComponent<ItemStyle>();
+        itemStyle.show = true;
+        itemStyle.color = pct >= 0f
+            ? new Color(1f, 0.27f, 0.27f)   // 상승 빨강
+            : new Color(0.27f, 0.53f, 1f);  // 하락 파랑
     }
 }
 
@@ -236,5 +248,29 @@ public void OnGraphClick()
     GraphPanel.gameObject.SetActive(true);
 }
 
+    // 주가 그래프를 그리고, 오늘 등락에 따라 선 색을 정한다
+    public void DrawPriceChart(List<double> priceHistory, float changePercent)
+    {
+        priceChart.ClearData(); // 이전 데이터 초기화
+
+        Serie serie = priceChart.series.Count > 0
+            ? priceChart.series[0]
+            : priceChart.AddSerie<Line>();
+
+        // 상승(0 이상) → 빨강, 하락 → 파랑
+        Color lineColor = changePercent >= 0f
+            ? new Color(1f, 0.27f, 0.27f)   // 상승 빨강
+            : new Color(0.27f, 0.53f, 1f);  // 하락 파랑
+        serie.lineStyle.color = lineColor;   // 선 색
+        serie.itemStyle.color = lineColor;   // 점(마커) 색 — 범례 색도 여기서 따라감
+
+        for (int i = 0; i < priceHistory.Count; i++)
+        {
+            priceChart.AddXAxisData(i.ToString());
+            serie.AddData(priceHistory[i]);
+        }
+
+        priceChart.RefreshChart(); // 변경사항 즉시 반영
+    }
 
 }
