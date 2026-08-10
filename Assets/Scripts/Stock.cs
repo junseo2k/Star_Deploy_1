@@ -19,12 +19,24 @@ public class Stock : ScriptableObject
     public Sprite StockIcon;        // 주식 아이콘 이미지
     public string FamilyTag;        // 주식 분류 태그 — 종족 (예: Dwarf, Elf, Dragon, Human)
     public string IndustryTag;      // 주식 분류 태그 — 산업 (예: Mining, Army)
-    public int revenue;             // 기업 매출액
-    public int OperatingProfit;     // 기업 영업이익
-    public int baseRevenue;         // 기본 매출 (시대 보정 전, 인스펙터 고정)
+    // 아래 두 값은 매턴 RecalculateFinancials()가 다시 계산하는 파생값이라 저장할 필요가 없다
+    // 직렬화하면 플레이 중 바뀐 값이 에셋 파일에 눌어붙어 매번 파일이 수정 상태가 된다
+    [System.NonSerialized]
+    public int revenue;             // 기업 매출액 (시대 보정 적용 후)
+    [System.NonSerialized]
+    public int OperatingProfit;     // 기업 영업이익 (revenue - baseCost)
+    public int baseRevenue;         // 기본 매출 (시대 보정 전, 인스펙터 고정 — 런타임에 절대 변경하지 말 것)
     public int baseCost;            // 기본 비용 (인스펙터 고정)
 
-    public int marketCap => StockCurrentPrice * TotalShare;
+    // 사업 성공 보너스가 누적되는 런타임 매출 기준값 — 매턴 매출 계산은 이 값을 쓴다
+    // baseRevenue를 직접 올리면 ScriptableObject 에셋에 값이 눌어붙어 다음 플레이로 새어나간다
+    [System.NonSerialized]
+    public int runtimeBaseRevenue;
+
+    // 시가총액 = 현재가 × 발행주식수
+    // int끼리 곱하면 주가가 214,748을 넘는 순간 21억을 넘겨 음수가 되므로, long으로 올린 뒤 곱한다
+    // (long)을 곱셈 앞에 붙여야 한다 — 곱한 뒤에 붙이면 이미 넘친 값을 옮기는 것이라 소용없다
+    public long marketCap => (long)StockCurrentPrice * TotalShare;
     public int TotalShare;          // 발행 주식 총 수량
     public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)

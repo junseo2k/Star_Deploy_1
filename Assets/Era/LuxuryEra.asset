@@ -19,5 +19,5 @@ MonoBehaviour:
   weakenedIndustries:
   - Game
   boostedRate: 1
-  weakenedRate: -1
+  weakenedRate: 1
   hintNews: {fileID: 11400000, guid: 33765310f40c6054697ce6c94761b0fb, type: 2}

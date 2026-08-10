@@ -1,67 +1,70 @@
 import tensorflow as tf
 import numpy as np
 import pandas as pd #csv 읽기 라이브러리. csv 파일은 각 열을 쉼표로 구분하는 텍스트 파일로, 엑셀과 거의 유사
+import random
+random.seed(42)
+np.random.seed(42)
+tf.random.set_seed(42)
 df = pd.read_csv("stock_history.csv") #csv 파일을 표로 읽음. df는 데이터프래임
+# 1) 뉴스 영향 여부에 따라 변동률 차이가 있는가?
+print(df.groupby("isAffectedByNews")["priceChangePct"].describe())
+
+# 2) 시대 효과에 따라 변동률 차이가 있는가?
+print(df.groupby("eraEffect")["priceChangePct"].describe())
+
+# 3) "어제 변동률"과 "오늘 변동률"이 상관관계가 있는가? (자기상관)
+df_sorted = df.sort_values(["stockName", "day"])
+df_sorted["prevChangePct"] = df_sorted.groupby("stockName")["priceChangePct"].shift(1)
+print(df_sorted[["priceChangePct", "prevChangePct"]].corr())
 # 주식 하나 선택 (실제 게임 주식 이름으로 바꿔요)
 # 슬라이딩 윈도우로 X, y 만들기
 window_size = 10#과거 10일치를 보고 내일을 예측
-X, y = [], [] #입력 데이터(x, 과거 10일치)와 정답 데이터(y, 내일 변동률) 리스트 생성
-for stock_name in df["stockName"].unique():  # 모든 주식 이름을 중복 없이 하나씩 순회. unique가 중복 제거
-    stock_df = df[df["stockName"] == stock_name].sort_values("day") #이 주식데이터만 필터링하고 날짜 순 정렬
-    prices = stock_df["currentPrice"].values #가격만 뽑음
-    change_pct = stock_df["priceChangePct"].values      # 변동률
-    is_affected = stock_df["isAffectedByNews"].values   # 뉴스 영향 여부
-    #가격 정규화. LSTM은 숫자에 민감하기 때문에 0~1사이 값으로 바꿔주는 게 좋음. 1일수록 가격이 높다고 판단    
-    price_min = prices.min()
-    price_max = prices.max()
-    if price_max == price_min:  # 가격 변동이 없으면 건너뜀
+# X, y를 한 리스트에 다 모으는 대신, 처음부터 train/test로 나눠 담기
+X_train, y_train = [], []
+X_test, y_test = [], []
+
+for stock_name in df["stockName"].unique():
+    stock_df = df[df["stockName"] == stock_name].sort_values("day")
+    prices = stock_df["currentPrice"].values
+    change_pct = stock_df["priceChangePct"].values
+    is_affected = stock_df["isAffectedByNews"].values
+
+    n = len(prices)
+    train_end = int(n * 0.8)
+
+    price_min = prices[:train_end].min()
+    price_max = prices[:train_end].max()
+    if price_max == price_min:
         continue
+
     prices_normalized = (prices - price_min) / (price_max - price_min)
-    for i in range(window_size, len(prices_normalized)): #10번째 날부터 끝까지 반복
-    # 가격 + 소형뉴스 + 대형뉴스 3개를 묶어서 입력
-        window = [] #이번 반복에서 만들 입력 데이터 10일치
-        for j in range(i - window_size, i): #최근 과거 10일 동안 반복
-            window.append([
-                prices_normalized[j],  # 가격
-                change_pct[j],         # 변동률
-                is_affected[j]         # 뉴스 영향 여부
-            ])
-        X.append(window) #10일치 데이터를 x에 넣음. 가격, 변동률, 뉴스 영향 여부
-        y.append(change_pct[i])#실제 어떤 변동이 있었는지 변동값을 y에 넣음. 이게 정답 데이터.
+    prices_normalized = np.clip(prices_normalized, 0, 1.5)
 
-X = np.array(X) #리스트를 numpy 배열로 변환
-y = np.array(y)
+    for i in range(window_size, len(prices_normalized)):
+        window = []
+        for j in range(i - window_size, i):
+            window.append([prices_normalized[j], change_pct[j], is_affected[j]])
 
-# train / test 나누기
-split = int(len(X) * 0.8) #80%를 학습, 20%를 테스트로 나눔.
-x_train, x_test = X[:split], X[split:] #train엔 처음부터 80%, test엔 80% 이후
-y_train, y_test = y[:split], y[split:]
+        # ★ 여기서 바로 train/test로 분배
+        if i < train_end:
+            X_train.append(window)
+            y_train.append(change_pct[i])
+        else:
+            X_test.append(window)
+            y_test.append(change_pct[i])
 
-print(f"훈련: {len(x_train)}개 / 테스트: {len(x_test)}개") #데이터가 잘 나뉘었는지 확인
-model = tf.keras.models.Sequential() # 빈 스택 정의. 텍스트에서만 사용. sequential = 순차적으로
-model.add( #드롭다운 층. 25%를 무작위로 비활성화
-    tf.keras.layers.Dropout(
-        rate=0.25
-    )
-)
-model.add( #LSTM 추가. 32개의 유닛을 사용. 유닛은 층 안에 있는 뉴런 개수
-    tf.keras.layers.LSTM(
-        units = 32,
-        return_sequences=True  # 10일치 각각의 결과를 다음 LSTM에 넘겨줌. 없으면 마지막 날 결과만 넘겨줌
-    )
-)
-model.add(tf.keras.layers.LSTM(units=32))#첫 번째 LSTM의 결과를 받아서 더 깊게 학습
-model.add( #드롭다운 층. 25%를 무작위로 비활성화. 과적합 방지를 위해 하나 더 추가
-    tf.keras.layers.Dropout(
-        rate=0.25
-    )
-)
-model.add(
-    tf.keras.layers.Dense(#출력층.
-        units = 1,#숫자 하나 출력(변동층)
-        activation="linear"#출력값 제한 없음
-    )
-)
+x_train = np.array(X_train)
+y_train = np.array(y_train)
+x_test = np.array(X_test)
+y_test = np.array(y_test)
+
+print(f"훈련: {len(x_train)}개 / 테스트: {len(x_test)}개")
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.LSTM(units=32, return_sequences=True))
+model.add(tf.keras.layers.Dropout(rate=0.25))   # LSTM "뒤"로 이동
+model.add(tf.keras.layers.LSTM(units=32))
+model.add(tf.keras.layers.Dropout(rate=0.25))
+model.add(tf.keras.layers.Dense(units=1, activation="linear"))
 model.compile( 
     loss = "mse",#평균 제곱 오차로, 예측값과 실제값 차이를 제곱해서 평균냄.
     optimizer=tf.keras.optimizers.Adam(), #학습 방향을 조정하는 알고리즘으로, Adam이 가장 많이 쓰이는 옵티마이저
@@ -70,12 +73,22 @@ model.compile(
 model.build(input_shape=(None, window_size, 3)) #모델에 입력 형태 알려주기. 샘플 수는 None으로, 상관 없음. 특성은 3개
 model.summary()#모델 구조를 표로 출력
 
+callbacks = [
+    tf.keras.callbacks.EarlyStopping(
+        monitor="val_loss", patience=5, restore_best_weights=True
+    ),  # val_loss가 5 epoch 동안 안 좋아지면 멈추고, 가장 좋았던 가중치로 복원
+    tf.keras.callbacks.ModelCheckpoint(
+        "best_model.keras", monitor="val_loss", save_best_only=True
+    ),  # 가장 성능 좋은 시점의 모델을 별도 파일로 저장
+]
+
 history = model.fit(
-    x_train, y_train, #학습 데이터
-    batch_size = 256, #한번에 256개씩 묶어서 학습
-    epochs = 20, #전체 데이터를 20번 반복
-    validation_split = 0.2, #테스트 데이터 분할. 20%가 검증용
-    verbose = 1 #학습 진행상황 출력
+    x_train, y_train,
+    batch_size=256,
+    epochs=100,              # ★ 20 → 100으로 늘리되 EarlyStopping이 알아서 멈춤
+    validation_split=0.2,
+    callbacks=callbacks,
+    verbose=1
 )
 predicted = model.predict(x_test) #테스트 데이터로 예측
 predicted = predicted.reshape(-1) #2차원 배열을 1차원으로. [[2.3], [-1.5]] → [2.3, -1.5]

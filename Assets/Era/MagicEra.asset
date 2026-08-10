@@ -19,5 +19,5 @@ MonoBehaviour:
   weakenedIndustries:
   - Army
   boostedRate: 1
-  weakenedRate: -1
+  weakenedRate: 1
   hintNews: {fileID: 11400000, guid: 965426ad2256d994f8bd8af07fc144d5, type: 2}

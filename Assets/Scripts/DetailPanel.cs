@@ -57,9 +57,9 @@ public class DetailPanel : MonoBehaviour
         StockPrice.text = $"{stock.StockCurrentPrice} G";
         StockDescription.text = stock.StockDescription;
         StockDetailDescription.text = stock.StockDetailDescription;
-        revenuePrice.text = $"{stock.revenue} G";
-        ProfitPrice.text = $"{stock.OperatingProfit} G";
-        MarketCapPrice.text = $"{stock.marketCap} G";
+        revenuePrice.text = UIFormat.Gold(stock.revenue);
+        ProfitPrice.text = UIFormat.Gold(stock.OperatingProfit);
+        MarketCapPrice.text = UIFormat.Gold(stock.marketCap);
         TotalSharePrice.text = $"{stock.TotalShare} stock";
         StockChangePrice.text = UIFormat.SignedPercentPlain(Mathf.RoundToInt(stock.ChangePercent));
         MarketLabelText.text = GetMarketLabel(stock);

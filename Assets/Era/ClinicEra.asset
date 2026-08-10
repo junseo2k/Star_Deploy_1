@@ -19,5 +19,5 @@ MonoBehaviour:
   weakenedIndustries:
   - Bank
   boostedRate: 1
-  weakenedRate: -1
+  weakenedRate: 1
   hintNews: {fileID: 11400000, guid: f1fe3ab0d8947c8448d194bbea7cc1f3, type: 2}

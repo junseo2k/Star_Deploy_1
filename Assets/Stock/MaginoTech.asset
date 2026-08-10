@@ -26,13 +26,13 @@ MonoBehaviour:
   StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
   FamilyTag: Human
   IndustryTag: Magic
-  revenue: 100
-  OperatingProfit: 100
-  marketCap: 100
-  TotalShare: 30
+  baseRevenue: 580000
+  baseCost: 407000
+  TotalShare: 10000
   RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
+  isFavorite: 0
   volatilityType: 2
   nation: "\uC778\uAC04"

@@ -19,5 +19,5 @@ MonoBehaviour:
   weakenedIndustries:
   - Coopang
   boostedRate: 1
-  weakenedRate: -1
+  weakenedRate: 1
   hintNews: {fileID: 11400000, guid: 1ab9fbfd12f8464469c2b2c3a8e5efe4, type: 2}

@@ -56,7 +56,7 @@ public class BalanceDataExporter
     static void ExportStocks()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("이름,종족,산업,기준가,변동성타입,국가,매출,영업이익,시가총액,발행주식수");
+        sb.AppendLine("이름,종족,산업,기준가,변동성타입,국가,기본매출,기본영업이익,기준시가총액,발행주식수");
 
         string[] guids = AssetDatabase.FindAssets("t:Stock");
         foreach (string guid in guids)
@@ -65,9 +65,14 @@ public class BalanceDataExporter
             Stock stock = AssetDatabase.LoadAssetAtPath<Stock>(path);
             if (stock == null) continue;
 
+            // revenue / OperatingProfit / StockCurrentPrice는 런타임 전용(NonSerialized)이라
+            // 플레이 모드가 아닌 지금은 전부 0이다. 밸런스 확인용이므로 에셋에 저장된 기준값으로 계산한다
+            int baseProfit = stock.baseRevenue - stock.baseCost;
+            long baseMarketCap = (long)stock.StockBasePrice * stock.TotalShare;
+
             sb.AppendLine($"{stock.StockName},{stock.FamilyTag},{stock.IndustryTag}," +
                 $"{stock.StockBasePrice},{stock.volatilityType},{stock.nation}," +
-                $"{stock.revenue},{stock.OperatingProfit},{stock.marketCap},{stock.TotalShare}");
+                $"{stock.baseRevenue},{baseProfit},{baseMarketCap},{stock.TotalShare}");
         }
 
         string savePath = Path.Combine(Application.dataPath, "../StockBalanceData.csv");

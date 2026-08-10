@@ -15,7 +15,22 @@
       "Bash(sed 's/,.*//')",
       "Bash(python3 *)",
       "Bash(Get-ChildItem -Recurse -Directory)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "PowerShell(& \"C:\\\\Users\\\\이준서\\\\.local\\\\bin\\\\uvx.exe\" --from mcpforunityserver==9.3.1 --with \"mcp<2\" mcp-for-unity --help)",
+      "PowerShell(claude mcp *)",
+      "PowerShell($cmd = \"$env:USERPROFILE\\\\.local\\\\bin\\\\uvx.exe\"; $json = \\(@{ type=\"stdio\"; command=$cmd; args=@\\(\"--from\",\"mcpforunityserver==9.3.1\",\"--with\",\"mcp<2\",\"mcp-for-unity\"\\) } | ConvertTo-Json -Compress\\); claude mcp add-json UnityMCP $json -s local)",
+      "PowerShell($cmd = \"$env:USERPROFILE\\\\.local\\\\bin\\\\uvx.exe\"; \\(@{ type=\"stdio\"; command=$cmd; args=@\\(\"--from\",\"mcpforunityserver==9.3.1\",\"--with\",\"mcp<2\",\"mcp-for-unity\"\\) } | ConvertTo-Json -Compress\\))",
+      "PowerShell(ConvertTo-Json *)",
+      "PowerShell(Copy-Item *)",
+      "Bash(python \"/c/Users/이준서/AppData/Local/Temp/claude/C--Users-----Documents-GitHub-Star-Deploy-1/a62aea6f-e9f4-4e88-8b0f-681838f0a8b7/scratchpad/dec.py\" \"블레이즈마인 사업.asset\")",
+      "PowerShell($f = \"$env:USERPROFILE\\\\AppData\\\\LocalLow\\\\DefaultCompany\\\\Star_Deploy\\\\save2.json\"; $j = Get-Content $f -Raw | ConvertFrom-Json; \"currentday: $\\($j.currentday\\)  gold: $\\($j.currentgold\\)\"; $j.OwnStocks | Select-Object -First 4 stockname, currentPrice, revenue, baseRevenue, baseCost | Format-Table -AutoSize)",
+      "Bash(tasklist)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Rename-Item *)",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "Bash(python *)"
     ]
   }
 }

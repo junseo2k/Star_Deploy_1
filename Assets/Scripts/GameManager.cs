@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour
     private const int BUSINESS_MAX_INTERVAL = 15;     // 신사업 착수 최대 주기 (상한 제외)
 
     private const float DAILY_BIAS = 0.15f;           // 매일 가격에 더해지는 상승 편향 (%)
-    private const float RANGE_STABLE = 1.5f;          // 안정형 일일 변동폭 (±%)
-    private const float RANGE_NORMAL = 2.5f;          // 보통형 일일 변동폭 (±%)
-    private const float RANGE_VOLATILE = 4f;          // 고변동형 일일 변동폭 (±%)
+    private const float RANGE_STABLE = 0.5f;          // 안정형 일일 변동폭 (±%)
+    private const float RANGE_NORMAL = 1f;          // 보통형 일일 변동폭 (±%)
+    private const float RANGE_VOLATILE = 1.5f;          // 고변동형 일일 변동폭 (±%)
     private const float RANGE_DEFAULT = 2f;           // 변동 유형이 없을 때의 기본값
 
     private const int HISTORY_LENGTH = 10;            // 그래프·NPC 예측에 쓰는 최근 기록 보관 일수
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
                 isFavorite = stock.isFavorite,
                 revenue = stock.revenue,
                 operatingProfit = stock.OperatingProfit,
-                baseRevenue = stock.baseRevenue,
+                baseRevenue = stock.runtimeBaseRevenue, // 사업 보너스가 누적된 런타임 값을 저장
                 baseCost = stock.baseCost,
                 ownamount = Portfolio.GetAmount(stock),
                 avgPurchasePrice = Portfolio.GetAvgPurchasePrice(stock),
@@ -290,8 +290,9 @@ public class GameManager : MonoBehaviour
             stock.isFavorite = saved.isFavorite;
             stock.revenue = saved.revenue;
             stock.OperatingProfit = saved.operatingProfit;
-            stock.baseRevenue = saved.baseRevenue;
-            stock.baseCost = saved.baseCost;
+            stock.runtimeBaseRevenue = saved.baseRevenue;
+            // baseCost는 인스펙터 고정값이라 런타임에 바뀌지 않는다
+            // 세이브에서 되돌리면 에셋에 옛 값이 덮여 밸런스 조정이 무효화되므로 복원하지 않는다
 
             Portfolio.SetHolding(stock, saved.ownamount, saved.avgPurchasePrice);
         }
@@ -305,8 +306,13 @@ public class GameManager : MonoBehaviour
         {
             stock.StockCurrentPrice = stock.StockBasePrice;
             stock.StockPreviousPrice = stock.StockBasePrice;
-            stock.revenue = stock.baseRevenue;
-            stock.OperatingProfit = stock.baseRevenue - stock.baseCost;
+            // 사업 보너스가 쌓인 런타임 기준값을 에셋 원본으로 되돌린다 (도메인 리로드 여부와 무관하게 항상 실행)
+            stock.runtimeBaseRevenue = stock.baseRevenue;
+            stock.revenue = stock.runtimeBaseRevenue;
+            stock.OperatingProfit = stock.runtimeBaseRevenue - stock.baseCost;
+            // 즐겨찾기는 세이브 대상이지만 에셋에도 남으므로 먼저 끈다
+            // 세이브가 있으면 바로 아래 LoadGame이 저장된 값으로 다시 켜준다
+            stock.isFavorite = false;
 
             stock.changePctHistory.Clear();
             stock.priceHistory.Clear();
@@ -894,7 +900,7 @@ public class GameManager : MonoBehaviour
             if (IsBoostedByEra(stock)) revenueModifier = ERA_REVENUE_BOOST;
             else if (IsWeakenedByEra(stock)) revenueModifier = ERA_REVENUE_PENALTY;
 
-            stock.revenue = Mathf.RoundToInt(stock.baseRevenue * revenueModifier);
+            stock.revenue = Mathf.RoundToInt(stock.runtimeBaseRevenue * revenueModifier);
             stock.OperatingProfit = stock.revenue - stock.baseCost;
         }
     }
@@ -934,7 +940,7 @@ public class GameManager : MonoBehaviour
             bool success = Random.Range(0, 100) < biz.successRate;
             if (success && stock != null)
             {
-                stock.baseRevenue += biz.revenueBoost; // 성공: baseRevenue 영구 상승
+                stock.runtimeBaseRevenue += biz.revenueBoost; // 성공: 매출 기준값 영구 상승 (세이브 단위로 유지)
                 AddNotice($"[사업 성공] {biz.successNews}");
             }
             else

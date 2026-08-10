@@ -21,4 +21,12 @@ public static class UIFormat
     {
         return percent > 0 ? $"+{percent}%" : $"{percent}%";
     }
+
+    // 골드 금액에 천 단위 구분 기호를 붙인다 (예: 2930000 → "2,930,000 G")
+    // 매출·영업이익처럼 자릿수가 큰 값을 읽기 쉽게 표시하기 위함
+    // 매개변수가 long이라 int 값도 그대로 넣을 수 있다
+    public static string Gold(long amount)
+    {
+        return $"{amount:N0} G";
+    }
 }
