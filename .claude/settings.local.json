@@ -30,7 +30,22 @@
       "mcp__claude_ai_Notion__notion-search",
       "mcp__claude_ai_Notion__notion-fetch",
       "mcp__claude_ai_Notion__notion-update-page",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Read(//c/Users/이준서/.local/bin/**)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --version)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --from mcpforunityserver==9.3.1 mcp-for-unity --help)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --from mcpforunityserver==9.3.1 --with pydantic-settings mcp-for-unity --help)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --from mcpforunityserver==9.3.1 --with pydantic-settings --with \"mcp<2\" mcp-for-unity --help)",
+      "Bash(cp \"C:/Users/이준서/.claude.json\" \"C:/Users/이준서/.claude.json.bak-$\\(date +%Y%m%d-%H%M%S\\)\")",
+      "Read(//c/Users/이준서/**)",
+      "Bash(netstat -ano)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --from \"mcpforunityserver==99.99.99\" mcp-for-unity --help)",
+      "Bash(\"C:/Users/이준서/.local/bin/uvx.exe\" --from mcpforunityserver==10.1.2 mcp-for-unity --help)",
+      "Bash(curl -s --max-time 30 \"https://api.github.com/repos/CoplayDev/unity-mcp/releases/latest\")",
+      "Bash(awk '{print $1}')",
+      "mcp__UnityMCP__refresh_unity",
+      "mcp__UnityMCP__execute_code",
+      "Artifact"
     ]
   }
 }

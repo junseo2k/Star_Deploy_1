@@ -30,10 +30,7 @@ namespace MCPForUnity.Editor.Tools
         private static FieldInfo _messageField;
         private static FieldInfo _fileField;
         private static FieldInfo _lineField;
-        private static FieldInfo _instanceIdField;
-
-        // Note: Timestamp is not directly available in LogEntry; need to parse message or find alternative?
-
+    
         // Static constructor for reflection setup
         static ReadConsole()
         {
@@ -102,10 +99,6 @@ namespace MCPForUnity.Editor.Tools
                 if (_lineField == null)
                     throw new Exception("Failed to reflect LogEntry.line");
 
-                _instanceIdField = logEntryType.GetField("instanceID", instanceFlags);
-                if (_instanceIdField == null)
-                    throw new Exception("Failed to reflect LogEntry.instanceID");
-
                 // (Calibration removed)
 
             }
@@ -121,7 +114,7 @@ namespace MCPForUnity.Editor.Tools
                     _getCountMethod =
                     _getEntryMethod =
                         null;
-                _modeField = _messageField = _fileField = _lineField = _instanceIdField = null;
+                _modeField = _messageField = _fileField = _lineField = null;
             }
         }
 
@@ -140,7 +133,6 @@ namespace MCPForUnity.Editor.Tools
                 || _messageField == null
                 || _fileField == null
                 || _lineField == null
-                || _instanceIdField == null
             )
             {
                 // Log the error here as well for easier debugging in Unity Console
@@ -176,21 +168,12 @@ namespace MCPForUnity.Editor.Tools
                     int? pageSize = p.GetInt("pageSize");
                     int? cursor = p.GetInt("cursor");
                     string filterText = p.Get("filterText");
-                    string sinceTimestampStr = p.Get("sinceTimestamp"); // TODO: Implement timestamp filtering
                     string format = p.Get("format", "plain").ToLower();
                     bool includeStacktrace = p.GetBool("includeStacktrace", false);
 
                     if (types.Contains("all"))
                     {
                         types = new List<string> { "error", "warning", "log" }; // Expand 'all'
-                    }
-
-                    if (!string.IsNullOrEmpty(sinceTimestampStr))
-                    {
-                        McpLog.Warn(
-                            "[ReadConsole] Filtering by 'since_timestamp' is not currently implemented."
-                        );
-                        // Need a way to get timestamp per log entry.
                     }
 
                     return GetConsoleEntries(
@@ -265,10 +248,13 @@ namespace MCPForUnity.Editor.Tools
 
             try
             {
-                // LogEntries requires calling Start/Stop around GetEntries/GetEntryInternal
-                _startGettingEntriesMethod.Invoke(null, null);
-
-                int totalEntries = (int)_getCountMethod.Invoke(null, null);
+                // LogEntries requires calling Start/Stop around GetEntries/GetEntryInternal.
+                // StartGettingEntries() returns the entry count — use it instead of GetCount()
+                // which may return stale values within an active iteration session.
+                object startResult = _startGettingEntriesMethod.Invoke(null, null);
+                int totalEntries = startResult is int startCount
+                    ? startCount
+                    : (int)_getCountMethod.Invoke(null, null);
                 // Create instance to pass to GetEntryInternal - Ensure the type is correct
                 Type logEntryType = typeof(EditorApplication).Assembly.GetType(
                     "UnityEditor.LogEntry"
@@ -290,7 +276,6 @@ namespace MCPForUnity.Editor.Tools
                     string file = (string)_fileField.GetValue(logEntryInstance);
 
                     int line = (int)_lineField.GetValue(logEntryInstance);
-                    // int instanceId = (int)_instanceIdField.GetValue(logEntryInstance);
 
                     if (string.IsNullOrEmpty(message))
                     {
@@ -334,18 +319,7 @@ namespace MCPForUnity.Editor.Tools
                         continue;
                     }
 
-                    // TODO: Filter by timestamp (requires timestamp data)
-
-                    // --- Formatting ---
-                    string stackTrace = includeStacktrace ? ExtractStackTrace(message) : null;
-                    // Always get first line for the message, use full message only if no stack trace exists
-                    string[] messageLines = message.Split(
-                        new[] { '\n', '\r' },
-                        StringSplitOptions.RemoveEmptyEntries
-                    );
-                    string messageOnly = messageLines.Length > 0 ? messageLines[0] : message;
-
-                    // If not including stacktrace, ensure we only show the first line
+                    var (messageOnly, stackTrace) = SplitMessageAndStackTrace(message);
                     if (!includeStacktrace)
                     {
                         stackTrace = null;
@@ -366,7 +340,6 @@ namespace MCPForUnity.Editor.Tools
                                 message = messageOnly,
                                 file = file,
                                 line = line,
-                                // timestamp = "", // TODO
                                 stackTrace = stackTrace, // Will be null if includeStacktrace is false or no stack found
                             };
                             break;
@@ -516,53 +489,35 @@ namespace MCPForUnity.Editor.Tools
         }
 
         /// <summary>
-        /// Applies the "one level lower" remapping for filtering, like the old version.
-        /// This ensures compatibility with the filtering logic that expects remapped types.
+        /// Splits a Unity log message into its body and appended stack trace.
+        /// Unity concatenates both, separated by newlines, so the body may span
+        /// several lines before the stack trace begins.
         /// </summary>
-        private static LogType GetRemappedTypeForFiltering(LogType unityType)
-        {
-            switch (unityType)
-            {
-                case LogType.Error:
-                    return LogType.Warning; // Error becomes Warning
-                case LogType.Warning:
-                    return LogType.Log; // Warning becomes Log
-                case LogType.Assert:
-                    return LogType.Assert; // Assert remains Assert
-                case LogType.Log:
-                    return LogType.Log; // Log remains Log
-                case LogType.Exception:
-                    return LogType.Warning; // Exception becomes Warning
-                default:
-                    return LogType.Log; // Default fallback
-            }
-        }
-
-        /// <summary>
-        /// Attempts to extract the stack trace part from a log message.
-        /// Unity log messages often have the stack trace appended after the main message,
-        /// starting on a new line and typically indented or beginning with "at ".
-        /// </summary>
-        /// <param name="fullMessage">The complete log message including potential stack trace.</param>
-        /// <returns>The extracted stack trace string, or null if none is found.</returns>
-        private static string ExtractStackTrace(string fullMessage)
+        /// <param name="fullMessage">The complete log message including any appended stack trace.</param>
+        /// <returns>The message body (line endings normalized to "\n", internal blank lines preserved) and the stack trace, or null when none is found.</returns>
+        private static (string body, string stackTrace) SplitMessageAndStackTrace(string fullMessage)
         {
             if (string.IsNullOrEmpty(fullMessage))
-                return null;
+                return (fullMessage, null);
 
-            // Split into lines, removing empty ones to handle different line endings gracefully.
-            // Using StringSplitOptions.None might be better if empty lines matter within stack trace, but RemoveEmptyEntries is usually safer here.
-            string[] lines = fullMessage.Split(
-                new[] { '\r', '\n' },
-                StringSplitOptions.RemoveEmptyEntries
-            );
+            string[] lines = fullMessage.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
 
             // If there's only one line or less, there's no separate stack trace.
             if (lines.Length <= 1)
-                return null;
+                return (fullMessage, null);
 
-            int stackStartIndex = -1;
+            int stackStartIndex = FindStackStartIndex(lines);
+            if (stackStartIndex <= 0)
+                return (string.Join("\n", lines), null);
 
+            return (
+                string.Join("\n", lines.Take(stackStartIndex)),
+                string.Join("\n", lines.Skip(stackStartIndex))
+            );
+        }
+
+        private static int FindStackStartIndex(string[] lines)
+        {
             // Start checking from the second line onwards.
             for (int i = 1; i < lines.Length; ++i)
             {
@@ -584,21 +539,11 @@ namespace MCPForUnity.Editor.Tools
                     )
                 )
                 {
-                    stackStartIndex = i;
-                    break; // Found the likely start of the stack trace
+                    return i; // Found the likely start of the stack trace
                 }
             }
 
-            // If a potential start index was found...
-            if (stackStartIndex > 0)
-            {
-                // Join the lines from the stack start index onwards using standard newline characters.
-                // This reconstructs the stack trace part of the message.
-                return string.Join("\n", lines.Skip(stackStartIndex));
-            }
-
-            // No clear stack trace found based on the patterns.
-            return null;
+            return -1;
         }
 
         /* LogEntry.mode bits exploration (based on Unity decompilation/observation):

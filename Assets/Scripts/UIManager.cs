@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     public PortfolioPanel portfolioPanelScript;
     public LoanPanel loanPanelScript;
     public FavoritePanel favoritePanel;
+    public QuarterReportPanel quarterReportPanel; // 분기 실적 발표 팝업 (화면 전환이 아니라 위에 덮어씀)
     public SidebarTabManager sidebarTabManager;
     [SerializeField] private NewsPanel newsPanelScript;
 

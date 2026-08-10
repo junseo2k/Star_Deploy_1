@@ -12,6 +12,7 @@ namespace MCPForUnity.Editor.Setup
     /// <summary>
     /// Handles automatic triggering of the MCP setup window and exposes menu entry points
     /// </summary>
+    [InitializeOnLoad]
     public static class SetupWindowService
     {
         private const string SETUP_COMPLETED_KEY = EditorPrefKeys.SetupCompleted;

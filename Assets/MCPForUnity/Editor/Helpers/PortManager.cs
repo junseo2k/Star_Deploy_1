@@ -65,6 +65,25 @@ namespace MCPForUnity.Editor.Helpers
         }
 
         /// <summary>
+        /// How long the configured port may keep returning AddressAlreadyInUse before the
+        /// bridge gives up on it and discovers a new one. The common cause of a transient
+        /// conflict is our own previous listener whose OS socket has not been released yet
+        /// after a domain reload (slower on Windows/macOS); this window covers that race so
+        /// the bridge keeps the configured port instead of stranding the client on the
+        /// orphan (#1173).
+        /// </summary>
+        public const double BusyPortFallbackWindowSeconds = 3.0;
+
+        /// <summary>
+        /// Decide whether a configured port that keeps reporting AddressAlreadyInUse should be
+        /// abandoned for a freshly discovered port. Returns false (keep retrying the same port)
+        /// until it has been continuously busy for <see cref="BusyPortFallbackWindowSeconds"/>,
+        /// which distinguishes a domain-reload socket-release race from a foreign occupant (#1173).
+        /// </summary>
+        public static bool ShouldAbandonBusyPort(double busyForSeconds)
+            => busyForSeconds >= BusyPortFallbackWindowSeconds;
+
+        /// <summary>
         /// Persist a user-selected port and return the value actually stored.
         /// If <paramref name="port"/> is unavailable, the next available port is chosen instead.
         /// </summary>
@@ -119,10 +138,15 @@ namespace MCPForUnity.Editor.Helpers
         /// <returns>True if port is available</returns>
         public static bool IsPortAvailable(int port)
         {
-            // Start with quick loopback check
             try
             {
                 var testListener = new TcpListener(IPAddress.Loopback, port);
+#if UNITY_EDITOR_OSX
+                // On macOS, SO_REUSEADDR (the default) lets multiple processes bind the same
+                // port — including AssetImportWorkers. ExclusiveAddressUse prevents this so
+                // the test bind fails when another process already holds the port.
+                try { testListener.Server.ExclusiveAddressUse = true; } catch { }
+#endif
                 testListener.Start();
                 testListener.Stop();
             }
@@ -130,28 +154,6 @@ namespace MCPForUnity.Editor.Helpers
             {
                 return false;
             }
-
-#if UNITY_EDITOR_OSX
-            // On macOS, the OS might report the port as available (SO_REUSEADDR) even if another process
-            // is using it, unless we also check active connections or try a stricter bind.
-            // Double check by trying to Connect to it. If we CAN connect, it's NOT available.
-            try
-            {
-                using var client = new TcpClient();
-                var connectTask = client.ConnectAsync(IPAddress.Loopback, port);
-                // If we connect successfully, someone is listening -> Not available
-                if (connectTask.Wait(50) && client.Connected)
-                {
-                    if (IsDebugEnabled()) McpLog.Info($"[PortManager] Port {port} bind succeeded but connection also succeeded -> Not available (Conflict).");
-                    return false;
-                }
-            }
-            catch
-            {
-                // Connection failed -> likely available (or firewall blocked, but we assume available)
-                if (IsDebugEnabled()) McpLog.Info($"[PortManager] Port {port} connection failed -> likely available.");
-            }
-#endif
 
             return true;
         }

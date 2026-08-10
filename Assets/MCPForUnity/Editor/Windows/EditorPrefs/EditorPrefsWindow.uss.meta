@@ -9,10 +9,3 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
   disableValidation: 0
-AssetOrigin:
-  serializedVersion: 1
-  productId: 329908
-  packageName: MCP for Unity | AI Driven Development
-  packageVersion: 9.0.3
-  assetPath: Assets/MCPForUnity/Editor/Windows/EditorPrefs/EditorPrefsWindow.uss
-  uploadId: 855486

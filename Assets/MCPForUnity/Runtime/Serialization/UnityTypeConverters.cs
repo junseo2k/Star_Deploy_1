@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
+using MCPForUnity.Runtime.Helpers;
 #if UNITY_EDITOR
 using UnityEditor; // Required for AssetDatabase and EditorUtility
 #endif
@@ -24,7 +25,11 @@ namespace MCPForUnity.Runtime.Serialization
 
         public override Vector3 ReadJson(JsonReader reader, Type objectType, Vector3 existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);
+            JToken token = JToken.Load(reader);
+            if (token is JArray arr && arr.Count >= 3)
+                return new Vector3((float)arr[0], (float)arr[1], (float)arr[2]);
+            if (token is not JObject jo)
+                throw new JsonSerializationException($"Cannot deserialize Vector3 from {token.Type}: '{token}'");
             return new Vector3(
                 (float)jo["x"],
                 (float)jo["y"],
@@ -47,7 +52,11 @@ namespace MCPForUnity.Runtime.Serialization
 
         public override Vector2 ReadJson(JsonReader reader, Type objectType, Vector2 existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);
+            JToken token = JToken.Load(reader);
+            if (token is JArray arr && arr.Count >= 2)
+                return new Vector2((float)arr[0], (float)arr[1]);
+            if (token is not JObject jo)
+                throw new JsonSerializationException($"Cannot deserialize Vector2 from {token.Type}: '{token}'");
             return new Vector2(
                 (float)jo["x"],
                 (float)jo["y"]
@@ -73,7 +82,11 @@ namespace MCPForUnity.Runtime.Serialization
 
         public override Quaternion ReadJson(JsonReader reader, Type objectType, Quaternion existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);
+            JToken token = JToken.Load(reader);
+            if (token is JArray arr && arr.Count >= 4)
+                return new Quaternion((float)arr[0], (float)arr[1], (float)arr[2], (float)arr[3]);
+            if (token is not JObject jo)
+                throw new JsonSerializationException($"Cannot deserialize Quaternion from {token.Type}: '{token}'");
             return new Quaternion(
                 (float)jo["x"],
                 (float)jo["y"],
@@ -178,7 +191,11 @@ namespace MCPForUnity.Runtime.Serialization
 
         public override Vector4 ReadJson(JsonReader reader, Type objectType, Vector4 existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            JObject jo = JObject.Load(reader);
+            JToken token = JToken.Load(reader);
+            if (token is JArray arr && arr.Count >= 4)
+                return new Vector4((float)arr[0], (float)arr[1], (float)arr[2], (float)arr[3]);
+            if (token is not JObject jo)
+                throw new JsonSerializationException($"Cannot deserialize Vector4 from {token.Type}: '{token}'");
             return new Vector4(
                 (float)jo["x"],
                 (float)jo["y"],
@@ -250,7 +267,12 @@ namespace MCPForUnity.Runtime.Serialization
     }
 
     // Converter for UnityEngine.Object references (GameObjects, Components, Materials, Textures, etc.)
-    public class UnityEngineObjectConverter : JsonConverter<UnityEngine.Object>
+    // Intentionally internal: this converter is meant for MCP-internal serialization only.
+    // Leaving it public lets third-party Newtonsoft converter scanners (e.g. jillejr's
+    // newtonsoft-json-for-unity converters) instantiate it via reflection and bind it into
+    // JsonConvert.DefaultSettings, which silently rewrites any UnityEngine.Object reference in
+    // unrelated project code as an asset path string. See issue #1138.
+    internal class UnityEngineObjectConverter : JsonConverter<UnityEngine.Object>
     {
         public override bool CanRead => true; // We need to implement ReadJson
         public override bool CanWrite => true;
@@ -278,8 +300,7 @@ namespace MCPForUnity.Runtime.Serialization
                     writer.WriteStartObject();
                     writer.WritePropertyName("name");
                     writer.WriteValue(value.name);
-                    writer.WritePropertyName("instanceID");
-                    writer.WriteValue(value.GetInstanceID());
+                    WriteSerializedObjectId(writer, value);
                     writer.WritePropertyName("isAssetWithoutPath");
                     writer.WriteValue(true);
                     writer.WriteEndObject();
@@ -291,8 +312,7 @@ namespace MCPForUnity.Runtime.Serialization
                 writer.WriteStartObject();
                 writer.WritePropertyName("name");
                 writer.WriteValue(value.name);
-                writer.WritePropertyName("instanceID");
-                writer.WriteValue(value.GetInstanceID());
+                WriteSerializedObjectId(writer, value);
                 writer.WriteEndObject();
             }
 #else
@@ -300,8 +320,7 @@ namespace MCPForUnity.Runtime.Serialization
             writer.WriteStartObject();
             writer.WritePropertyName("name");
             writer.WriteValue(value.name);
-            writer.WritePropertyName("instanceID");
-            writer.WriteValue(value.GetInstanceID());
+            WriteSerializedObjectId(writer, value);
              writer.WritePropertyName("warning");
             writer.WriteValue("UnityEngineObjectConverter running in non-Editor mode, asset path unavailable.");
             writer.WriteEndObject();
@@ -360,11 +379,47 @@ namespace MCPForUnity.Runtime.Serialization
                     return null;
                 }
 
+#if UNITY_6000_5_OR_NEWER
+                // Try to resolve by entityID (Unity 6.5+). Falls through to instanceID/guid/path on failure.
+                if (jo.TryGetValue("entityID", out JToken entityIdToken) && entityIdToken.Type == JTokenType.String)
+                {
+                    string serializedEntityId = entityIdToken.ToString();
+                    if (ulong.TryParse(serializedEntityId, out ulong rawEntityId))
+                    {
+                        EntityId eid = EntityId.FromULong(rawEntityId);
+                        UnityEngine.Object entityObj = UnityEditor.EditorUtility.EntityIdToObject(eid);
+                        if (entityObj != null)
+                        {
+                            if (objectType.IsAssignableFrom(entityObj.GetType()))
+                            {
+                                return entityObj;
+                            }
+
+                            if (objectType == typeof(Transform) && entityObj is GameObject entityGo)
+                            {
+                                return entityGo.transform;
+                            }
+
+                            if (typeof(Component).IsAssignableFrom(objectType) && entityObj is GameObject entityGameObj)
+                            {
+                                var component = entityGameObj.GetComponent(objectType);
+                                if (component != null)
+                                {
+                                    return component;
+                                }
+                            }
+                        }
+                    }
+
+                    UnityEngine.Debug.LogWarning($"[UnityEngineObjectConverter] Could not resolve entityID '{serializedEntityId}' to a valid {objectType.Name}. Falling back to instanceID/guid/path.");
+                }
+#endif
+
                 // Try to resolve by instanceID
                 if (jo.TryGetValue("instanceID", out JToken idToken) && idToken.Type == JTokenType.Integer)
                 {
                     int instanceId = idToken.ToObject<int>();
-                    UnityEngine.Object obj = UnityEditor.EditorUtility.InstanceIDToObject(instanceId);
+                    UnityEngine.Object obj = UnityObjectIdCompat.InstanceIDToObjectCompat(instanceId);
                     if (obj != null)
                     {
                         // Direct type match
@@ -415,7 +470,7 @@ namespace MCPForUnity.Runtime.Serialization
                 }
 
                 // Object format not recognized
-                UnityEngine.Debug.LogWarning($"[UnityEngineObjectConverter] JSON object missing 'instanceID', 'guid', or 'path' field for {objectType.Name} deserialization. Object: {jo.ToString(Formatting.None)}");
+                UnityEngine.Debug.LogWarning($"[UnityEngineObjectConverter] JSON object missing 'instanceID', 'entityID', 'guid', or 'path' field for {objectType.Name} deserialization. Object: {jo.ToString(Formatting.None)}");
                 return null;
             }
 
@@ -446,6 +501,19 @@ namespace MCPForUnity.Runtime.Serialization
                     return false;
             }
             return true;
+        }
+
+        private static void WriteSerializedObjectId(JsonWriter writer, UnityEngine.Object value)
+        {
+            // Always emit instanceID so older consumers keep working.
+            writer.WritePropertyName("instanceID");
+            writer.WriteValue(value.GetInstanceIDCompat());
+#if UNITY_6000_5_OR_NEWER
+            // Additionally emit entityID on Unity 6.5+ as the stable ulong form
+            // (per Unity docs, EntityId.ToString() is NOT a stable serialization format).
+            writer.WritePropertyName("entityID");
+            writer.WriteValue(EntityId.ToULong(value.GetEntityId()).ToString());
+#endif
         }
     }
 }

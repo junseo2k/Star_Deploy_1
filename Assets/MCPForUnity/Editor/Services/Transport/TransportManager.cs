@@ -16,6 +16,8 @@ namespace MCPForUnity.Editor.Services.Transport
         private TransportState _stdioState = TransportState.Disconnected("stdio");
         private Func<IMcpTransportClient> _webSocketFactory;
         private Func<IMcpTransportClient> _stdioFactory;
+        private Task<bool> _httpStartTask;
+        private Task<bool> _stdioStartTask;
 
         public TransportManager()
         {
@@ -42,17 +44,30 @@ namespace MCPForUnity.Editor.Services.Transport
             };
         }
 
-        private IMcpTransportClient GetClient(TransportMode mode)
+        public Task<bool> StartAsync(TransportMode mode)
         {
-            return mode switch
+            // Editor-main-thread only (no locking needed). Coalesce concurrent starts for the
+            // same mode: manual Connect, reload-resume, and auto-start can otherwise race, and
+            // WebSocketTransportClient.StartAsync tears down a live connection first — two
+            // interleaved starts bounce each other's session.
+            Task<bool> inFlight = mode switch
             {
-                TransportMode.Http => _httpClient,
-                TransportMode.Stdio => _stdioClient,
+                TransportMode.Http => _httpStartTask,
+                TransportMode.Stdio => _stdioStartTask,
                 _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, "Unsupported transport mode"),
             };
+            if (inFlight != null && !inFlight.IsCompleted)
+            {
+                return inFlight;
+            }
+
+            Task<bool> started = StartCoreAsync(mode);
+            if (mode == TransportMode.Http) _httpStartTask = started;
+            else _stdioStartTask = started;
+            return started;
         }
 
-        public async Task<bool> StartAsync(TransportMode mode)
+        private async Task<bool> StartCoreAsync(TransportMode mode)
         {
             IMcpTransportClient client = GetOrCreateClient(mode);
 
@@ -127,6 +142,55 @@ namespace MCPForUnity.Editor.Services.Transport
         }
 
         public bool IsRunning(TransportMode mode) => GetState(mode).IsConnected;
+
+        /// <summary>
+        /// Synchronous teardown for shutdown/reload hooks where async awaits are not possible.
+        /// </summary>
+        public void ForceStop(TransportMode mode)
+        {
+            IMcpTransportClient client = GetClient(mode);
+            string transportName = client?.TransportName ?? mode.ToString().ToLowerInvariant();
+
+            if (client == null)
+            {
+                UpdateState(mode, TransportState.Disconnected(transportName));
+                return;
+            }
+
+            try
+            {
+                if (client is WebSocketTransportClient wsClient)
+                {
+                    wsClient.ForceStop();
+                }
+                else
+                {
+                    client.StopAsync().GetAwaiter().GetResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                McpLog.Warn($"Error while force-stopping transport {transportName}: {ex.Message}");
+            }
+            finally
+            {
+                UpdateState(mode, TransportState.Disconnected(transportName));
+            }
+        }
+
+        /// <summary>
+        /// Gets the active transport client for the specified mode.
+        /// Returns null if the client hasn't been created yet.
+        /// </summary>
+        public IMcpTransportClient GetClient(TransportMode mode)
+        {
+            return mode switch
+            {
+                TransportMode.Http => _httpClient,
+                TransportMode.Stdio => _stdioClient,
+                _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, "Unsupported transport mode"),
+            };
+        }
 
         private void UpdateState(TransportMode mode, TransportState state)
         {

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e000d22e289ee48829cf9459e1737e, type: 3}
   m_Name: "\uBE14\uB808\uC774\uC988\uB9C8\uC778 \uC0AC\uC5C5"
   m_EditorClassIdentifier: Assembly-CSharp::BusinessProject
-  projectName: "\uBE14\uB808\uC774\uC988\uB9C8\uC778"
+  projectName: "\uBBF8\uC2A4\uB9B4 \uC2E0\uAD11\uB9E5 \uAC1C\uBC1C"
   targetStock: {fileID: 11400000, guid: 8249dd1bf690694429095fe3a6b93f35, type: 2}
-  investmentCost: 60000
-  duration: 5
+  investmentCost: 284000
+  durationQuarters: 1
   successRate: 60
-  revenueBoost: 210000
+  incomeBoost: 95000
+  incomeDrop: 38000
+  assetBoost: 402000
   startNews: "\uBE14\uB808\uC774\uC988\uB9C8\uC778\uC774 \uBBF8\uC2A4\uB9B4 \uC2E0\uAD11\uB9E5
     \uAC1C\uBC1C\uC5D0 \uCC29\uC218\uD588\uB2E4"
   successNews: "\uBE14\uB808\uC774\uC988\uB9C8\uC778\uC758 \uC2E0\uAD11\uB9E5\uC5D0\uC11C

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e000d22e289ee48829cf9459e1737e, type: 3}
+  m_Name: "\uC544\uC6B0\uB810\uB9AC\uC628\uCE90\uD53C\uD0C8 \uC0AC\uC5C5"
+  m_EditorClassIdentifier: Assembly-CSharp::BusinessProject
+  projectName: "\uC655\uC2E4 \uAD6D\uCC44 \uC778\uC218 \uC0AC\uC5C5"
+  targetStock: {fileID: 11400000, guid: 60bf84910a34b7d40974b19facac886e, type: 2}
+  investmentCost: 315000
+  durationQuarters: 1
+  successRate: 68
+  incomeBoost: 105000
+  incomeDrop: 42000
+  assetBoost: 446000
+  startNews: "\uC544\uC6B0\uB810\uB9AC\uC628\uCE90\uD53C\uD0C8\uC774 \uC655\uC2E4 \uAD6D\uCC44 \uC778\uC218 \uC0AC\uC5C5\uC744 \uAC1C\uC2DC\uD588\uB2E4"
+  successNews: "\uC544\uC6B0\uB810\uB9AC\uC628\uCE90\uD53C\uD0C8\uC758 \uC655\uC2E4 \uAD6D\uCC44 \uC778\uC218 \uC0AC\uC5C5, \uC608\uCE58\uAE08\uC774 \uBAB0\uB9AC\uBA70 \uD070 \uC218\uC775\uC744 \uB0C8\uB2E4!"
+  failNews: "\uC544\uC6B0\uB810\uB9AC\uC628\uCE90\uD53C\uD0C8\uC758 \uC655\uC2E4 \uAD6D\uCC44 \uC778\uC218 \uC0AC\uC5C5, \uB300\uADDC\uBAA8 \uBD80\uC2E4\uC774 \uD130\uC838 \uC190\uC2E4\uB9CC \uB0A8\uC558\uB2E4"

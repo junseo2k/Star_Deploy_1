@@ -18,8 +18,8 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI StockChangePrice;       // 이전 가격 대비 변동률(%) 표시 텍스트
     public TextMeshProUGUI StockDescription;       // 주식 요약 설명 표시 텍스트
     public TextMeshProUGUI StockDetailDescription; // 기업 상세 설명 표시 텍스트
-    public TextMeshProUGUI revenuePrice;           // 매출액 표시 텍스트
-    public TextMeshProUGUI ProfitPrice;            // 영업이익 표시 텍스트
+    public TextMeshProUGUI revenuePrice;           // 수입 표시 텍스트
+    public TextMeshProUGUI AssetPrice;             // 회사 금고 표시 텍스트
     public TextMeshProUGUI MarketCapPrice;         // 시가총액 표시 텍스트
     public TextMeshProUGUI TotalSharePrice;        // 총 발행 주식 수 표시 텍스트
     public TextMeshProUGUI MarketLabelText;        // 주가 변동 이유 라벨
@@ -57,8 +57,9 @@ public class DetailPanel : MonoBehaviour
         StockPrice.text = $"{stock.StockCurrentPrice} G";
         StockDescription.text = stock.StockDescription;
         StockDetailDescription.text = stock.StockDetailDescription;
-        revenuePrice.text = UIFormat.Gold(stock.revenue);
-        ProfitPrice.text = UIFormat.Gold(stock.OperatingProfit);
+        revenuePrice.text = UIFormat.Gold(stock.income);
+        // 금고 칸은 나중에 추가된 항목이라, 인스펙터 연결이 빠져 있어도 패널 전체가 죽지 않도록 확인 후 표시
+        if (AssetPrice != null) AssetPrice.text = UIFormat.Gold(stock.runtimeAsset);
         MarketCapPrice.text = UIFormat.Gold(stock.marketCap);
         TotalSharePrice.text = $"{stock.TotalShare} stock";
         StockChangePrice.text = UIFormat.SignedPercentPlain(Mathf.RoundToInt(stock.ChangePercent));

@@ -8,7 +8,7 @@ namespace MCPForUnity.Editor.Tools
     /// <summary>
     /// Poll a previously started async test job by job_id.
     /// </summary>
-    [McpForUnityTool("get_test_job", AutoRegister = false)]
+    [McpForUnityTool("get_test_job", AutoRegister = false, Group = "testing")]
     public static class GetTestJob
     {
         public static object HandleCommand(JObject @params)
@@ -19,8 +19,9 @@ namespace MCPForUnity.Editor.Tools
                 return new ErrorResponse("Missing required parameter 'job_id'.");
             }
 
-            bool includeDetails = ParamCoercion.CoerceBool(@params?["includeDetails"], false);
-            bool includeFailedTests = ParamCoercion.CoerceBool(@params?["includeFailedTests"], false);
+            var p = new ToolParams(@params);
+            bool includeDetails = p.GetBool("includeDetails");
+            bool includeFailedTests = p.GetBool("includeFailedTests");
 
             var job = TestJobManager.GetJob(jobId);
             if (job == null)
