@@ -258,8 +258,8 @@ Template_Mining,BrootSteel,"브루트스틸이 새 단조법을 개발했습니�
 Template_Mining,BlazeMine,블레이즈마인 깊은 곳에서 전설로만 전해지던 희귀 마나석 광맥이 발견되었습니다. 드워프 왕국이 떠들썩합니다.,True,12,20,2
 Template_Mining,BlazeMine,블레이즈마인 광산에서 대규모 붕괴 사고가 발생했습니다. 인명 피해가 보고되고 있습니다.,False,-20,-12,2
 Template_Mining,BlazeMine,"""더 이상은 못 참겠다!"" 블레이즈마인 광부들이 곡괭이를 내려놓고 파업에 돌입했습니다.",False,-10,-5,2
-Template_Mining,IromCore,아이언코어 철강이 신소재 합금 개발에 성공했습니다. 기존 철강보다 강도가 30% 높다고 합니다.,True,8,15,2
-Template_Mining,IromCore,아이언코어 철강의 주요 용광로에서 화재가 발생했습니다. 생산 차질이 불가피합니다.,False,-15,-8,2
+Template_Mining,IronCore,아이언코어 철강이 신소재 합금 개발에 성공했습니다. 기존 철강보다 강도가 30% 높다고 합니다.,True,8,15,2
+Template_Mining,IronCore,아이언코어 철강의 주요 용광로에서 화재가 발생했습니다. 생산 차질이 불가피합니다.,False,-15,-8,2
 Template_Mining,GlamerRock,드워프산 고품질 광물에 밀려 글램머락의 주요 거래처가 이탈하고 있습니다.,False,-10,-5,2
 Template_Mining,GlamerRock,글램머락 광산이 채굴 방식을 기계화한다고 발표했습니다. 효율은 오르지만 일자리 감소 우려도 있습니다.,True,-5,5,2
 Template_Mining,GlamerRock,글램머락에서 새 광맥을 찾아냈습니다. 오크들이 신나서 노래를 부르고 있다고 합니다.,True,8,15,2
@@ -274,8 +274,8 @@ Template_Mining,BlazeMine,블레이즈마인 광산에서 유독 가스가 유�
 Template_Mining,BlazeMine,블레이즈마인 광산의 경영진이 세대교체를 단행했습니다. 새 광산장의 방침에 관심이 쏠립니다.,True,-5,5,2
 Template_Mining,BlazeMine,블레이즈마인 광산이 드레고니아와 장기 광물 공급 계약을 체결했습니다.,True,5,10,2
 Template_Mining,BlazeMine,블레이즈마인 광산의 이번 분기 채굴량이 전분기 대비 크게 증가했습니다.,True,5,10,2
-Template_Mining,IromCore,아이언코어 철강이 마노사 왕국 건설 프로젝트에 대량 납품 계약을 따냈습니다.,True,5,10,2
-Template_Mining,IromCore,아이언코어 철강의 분기 매출이 역대 최고를 기록했습니다.,True,5,10,2
-Template_Mining,IromCore,오크산 저가 철강에 시장을 빼앗기고 있다는 분석이 나왔습니다. 점유율이 하락 중입니다.,False,-10,-5,2
-Template_Mining,IromCore,아이언코어 철강이 친환경 제련 공법을 도입한다고 발표했습니다. 시장 반응은 엇갈리고 있습니다.,True,-5,5,2
-Template_Mining,IromCore,아이언코어 철강 제품에서 품질 결함이 발견되어 대규모 리콜이 진행됩니다.,False,-10,-5,2
+Template_Mining,IronCore,아이언코어 철강이 마노사 왕국 건설 프로젝트에 대량 납품 계약을 따냈습니다.,True,5,10,2
+Template_Mining,IronCore,아이언코어 철강의 분기 매출이 역대 최고를 기록했습니다.,True,5,10,2
+Template_Mining,IronCore,오크산 저가 철강에 시장을 빼앗기고 있다는 분석이 나왔습니다. 점유율이 하락 중입니다.,False,-10,-5,2
+Template_Mining,IronCore,아이언코어 철강이 친환경 제련 공법을 도입한다고 발표했습니다. 시장 반응은 엇갈리고 있습니다.,True,-5,5,2
+Template_Mining,IronCore,아이언코어 철강 제품에서 품질 결함이 발견되어 대규모 리콜이 진행됩니다.,False,-10,-5,2

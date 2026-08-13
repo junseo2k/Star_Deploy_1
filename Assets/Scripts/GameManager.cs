@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public int eraHintShownDay = -1;   // 힌트 뉴스를 보여준 날짜 (중복 출력 방지)
 
     [Header("사업 시스템")]
-    public BusinessProject[] allBusinessProjects;                             // 전체 사업 템플릿 목록 (인스펙터 등록)
+    // 사업 템플릿은 이제 Stock.businesses 배열에 회사별로 등록한다 — 여기서 전체 목록을 따로 관리하지 않는다
     public List<ActiveBusiness> activeBusinesses = new List<ActiveBusiness>(); // 현재 진행 중인 사업
 
     // ── 게임 밸런스 상수 ──────────────────────────────
@@ -69,10 +69,14 @@ public class GameManager : MonoBehaviour
     private const float ERA_REVENUE_BOOST = 1.2f;     // 유망 산업 매출 배율
     private const float ERA_REVENUE_PENALTY = 0.8f;   // 비선호 산업 매출 배율
 
-    // 분기 마감마다 회사 하나하나가 새 사업을 벌일 확률
-    // 0.25면 회사당 평균 4분기(40턴)에 한 번 사업을 한다. 40개 회사 기준 분기당 10건 정도가 발표된다
-    // 올리면 시장이 매 분기 출렁이고, 내리면 사업 소식이 귀해져 한 건의 무게가 커진다
-    private const float BUSINESS_START_CHANCE = 0.25f;
+    // 분기 마감마다 회사 하나하나가 새 사업을 벌일 확률 — 성향에 따라 다르게 준다
+    // 재투자형은 번 돈을 다음 사업에 넣는 게 정체성이라 더 자주 벌이고, 배당형은 안정을 우선해 덜 벌인다
+    // 40개 평균이 옛 0.25와 비슷하게 유지되도록 두 값의 중간이 0.25 부근이 되게 잡았다
+    private const float BUSINESS_START_CHANCE_REINVEST = 0.35f;
+    private const float BUSINESS_START_CHANCE_DIVIDEND = 0.18f;
+
+    // 사업 착수 후에도 금고에 운영비 이만큼의 분기치는 남겨야 한다 — 안전 마진 없이 다 지르면 전부 부도난다
+    private const int BUSINESS_SAFETY_MARGIN_QUARTERS = 2;
 
     private const int QUARTER_LENGTH = 10;            // 분기 길이 (턴) — 200턴이면 20분기
 
@@ -82,10 +86,16 @@ public class GameManager : MonoBehaviour
     private const float QUARTER_REPORT_THRESHOLD = 3f; // 이 수치(%) 미만의 수입 변화는 공시하지 않는다 (알림 도배 방지)
     // 주가를 움직이는 엔진은 수입 하나다. 금고는 회사의 체력이지 가치 평가 요소가 아니므로 주가에 넣지 않는다
     // 금고를 주가에 반영하면 배당을 줄수록·사업을 시작할수록 주가가 떨어지는 역설이 생긴다
-    private const float PROFIT_WEIGHT = 1.0f;         // 목표 주가에 수입이 반영되는 비중
-    private const float ASSET_WEIGHT = 0f;            // 금고는 주가에 직접 반영하지 않는다
+    // 실적이 좋아진 것을 목표 주가에 얼마나 세게 반영할지 정하는 손잡이
+    // "매출의 몇 %만큼 수입이 늘었나"에 이 값을 곱해 주가 배수를 만든다. 클수록 실적에 예민해진다
+    // 40개 매출값을 채운 지금(Step 6), 안정형(운영비 30%)과 자원형(60%) 사이에서 체감이 맞게 2.0으로 올린다
+    private const float PROFIT_SENSITIVITY = 2.0f;
     private const float FAIR_PRICE_MIN_RATIO = 0.3f;  // 목표 주가 하한 (기준가의 30% — 적자가 심해도 0으로 떨어지지 않게)
     private const float FAIR_PRICE_MAX_RATIO = 3.0f;  // 목표 주가 상한 (기준가의 300% — 사업 연속 성공으로 무한히 오르지 않게)
+
+    // 금고가 마이너스라고 바로 부도나지 않는다 — 버티는 기간을 준다
+    private const int SOLVENCY_CRISIS_QUARTERS = 3;   // 이 분기 이상 연속 마이너스면 "부도 위기" 경고
+    private const int SOLVENCY_DELIST_QUARTERS = 5;   // 이 분기 이상 연속 마이너스면 상장폐지
 
     private const float DAILY_BIAS = 0.15f;           // 매일 가격에 더해지는 상승 편향 (%)
     private const float RANGE_STABLE = 0.5f;          // 안정형 일일 변동폭 (±%)
@@ -112,10 +122,11 @@ public class GameManager : MonoBehaviour
         public string projectName;  // 사업 이름 (저장/식별용)
         public string stockName;       // 대상 회사 이름 (저장용)
         public int remainingQuarters;  // 남은 분기 수 — 분기 마감일마다 하나씩 줄어든다
+        public int totalQuarters;      // 착수 시점의 전체 기간 — "3분기 중 1분기 남음" 진행률 표시에 쓴다
         public int investmentCost;     // 착수할 때 금고에서 빠져나간 투자 비용 (기록용)
         public int successRate;     // 성공 확률
-        public int incomeBoost;     // 성공 시 수입 증가량
-        public int incomeDrop;      // 실패 시 수입 감소량
+        public int revenueBoost;    // 성공 시 평소 매출 증가량
+        public int revenueDrop;     // 실패 시 평소 매출 감소량
         public int assetBoost;      // 성공 시 자산 증가량
         public string successNews;  // 성공 뉴스 문구
         public string failNews;     // 실패 뉴스 문구
@@ -131,8 +142,11 @@ public class GameManager : MonoBehaviour
         public float avgPurchasePrice; // 평균 매수 단가
         public bool isFavorite;        // 즐겨찾기 여부
         public int income;             // 시대 보정까지 반영된 이번 분기 수입
-        public int baseIncome;         // 사업 성패가 누적된 런타임 기준 수입
+        public int revenue;            // 사업 성패가 누적된 런타임 매출
+        public int baseIncome;         // [구버전 세이브 호환] 매출·운영비로 나누기 전 형식의 값
         public int asset;              // 회사 금고
+        public int negativeQuarters;   // 금고가 연속으로 마이너스인 분기 수
+        public bool isDelisted;        // 상장폐지 여부
     }
 
     // JSON 저장을 위한 게임 전체 데이터 구조체
@@ -245,8 +259,10 @@ public class GameManager : MonoBehaviour
                 currentPrice = stock.StockCurrentPrice,
                 isFavorite = stock.isFavorite,
                 income = stock.income,
-                baseIncome = stock.runtimeBaseIncome, // 사업 성패가 누적된 런타임 값을 저장
+                revenue = stock.runtimeRevenue, // 사업 성패가 누적된 런타임 매출을 저장
                 asset = stock.runtimeAsset,
+                negativeQuarters = stock.negativeQuarters,
+                isDelisted = stock.isDelisted,
                 ownamount = Portfolio.GetAmount(stock),
                 avgPurchasePrice = Portfolio.GetAvgPurchasePrice(stock),
             });
@@ -305,10 +321,15 @@ public class GameManager : MonoBehaviour
             stock.StockPreviousPrice = saved.currentPrice;
             stock.isFavorite = saved.isFavorite;
             stock.income = saved.income;
-            stock.runtimeBaseIncome = saved.baseIncome;
+            // 옛 세이브에는 revenue 칸이 없다. 그때는 baseIncome을 매출로 본다 (운영비가 0이던 시절의 값)
+            stock.runtimeRevenue = saved.revenue > 0 ? saved.revenue : saved.baseIncome;
             stock.runtimeAsset = saved.asset;
+            stock.negativeQuarters = saved.negativeQuarters;
+            stock.isDelisted = saved.isDelisted;
 
-            Portfolio.SetHolding(stock, saved.ownamount, saved.avgPurchasePrice);
+            // 상폐된 회사는 보유 주식이 있어도 복원하지 않는다 — 상폐 시점에 이미 전액 손실 처리됐다
+            if (!stock.isDelisted)
+                Portfolio.SetHolding(stock, saved.ownamount, saved.avgPurchasePrice);
         }
     }
 
@@ -320,13 +341,18 @@ public class GameManager : MonoBehaviour
         {
             stock.StockCurrentPrice = stock.StockBasePrice;
             stock.StockPreviousPrice = stock.StockBasePrice;
-            // 사업 보너스가 쌓인 런타임 기준값을 에셋 원본으로 되돌린다 (도메인 리로드 여부와 무관하게 항상 실행)
-            stock.runtimeBaseIncome = stock.baseIncome;
+            // 사업 보너스가 쌓인 런타임 매출을 에셋 원본으로 되돌린다 (도메인 리로드 여부와 무관하게 항상 실행)
+            stock.runtimeRevenue = stock.BaselineRevenue;
             stock.runtimeAsset = stock.BaselineAsset;
-            stock.income = stock.runtimeBaseIncome;
+            stock.income = stock.runtimeRevenue - stock.operatingCost;
             // 즐겨찾기는 세이브 대상이지만 에셋에도 남으므로 먼저 끈다
             // 세이브가 있으면 바로 아래 LoadGame이 저장된 값으로 다시 켜준다
             stock.isFavorite = false;
+
+            // 상폐 상태도 NonSerialized라 에디터에서 값이 남지 않지만, 도메인 리로드 없이 이어서
+            // 새 게임을 시작하는 경우를 대비해 명시적으로 초기화한다. 세이브가 있으면 LoadGame이 다시 채운다
+            stock.negativeQuarters = 0;
+            stock.isDelisted = false;
 
             stock.changePctHistory.Clear();
             stock.priceHistory.Clear();
@@ -426,6 +452,8 @@ public class GameManager : MonoBehaviour
     // 분기 마감 — 이 게임의 핵심 이벤트
     // 순서에 의미가 있다: 수입이 확정돼야 금고에 넣을 수 있고, 사업 결과가 수입을 바꾼 뒤라야
     // 목표 주가가 제대로 나오며, 배당은 금고에 돈이 들어온 다음에 빼야 한다
+    // 새 사업 착수는 배당·부도 판정보다 뒤에 둔다 — 배당으로 나갈 돈까지 투자비로 써버리면
+    // "금고 바닥 → 사업 줄임"이 성립하지 않는다. 최종 금고를 보고 착수 여부를 정해야 한다
     void SettleQuarter()
     {
         // 이 구간에서 나오는 알림은 전부 실적 발표 팝업으로 모인다
@@ -433,12 +461,14 @@ public class GameManager : MonoBehaviour
         quarterReportLines.Clear();
 
         RecalculateFinancials();   // ① 이번 분기 수입 확정 (시대 보정 반영)
-        ProcessBusinesses();       // ② 사업 성공·실패 발표 → 수입이 바뀜
+        ResolveBusinesses();       // ② 진행 중이던 사업의 성공·실패 발표 → 수입이 바뀜
         RecalculateFinancials();   // ③ 사업 결과를 수입에 즉시 반영
         AccumulateAssets();        // ④ 확정된 수입을 금고에 넣는다
         PayDividends();            // ⑤ 배당형 회사가 금고에서 배당을 지급
-        AnnounceQuarterResults();  // ⑥ 실적 공시 — 지난 분기 대비 수입 증감
-        ApplyFinancialGravity();   // ⑦ 바뀐 실적을 주가에 반영 (발표 쇼크)
+        CheckSolvency();           // ⑥ 배당까지 다 나간 최종 금고로 부도 위기·상장폐지 판정
+        StartNewBusinesses();      // ⑦ 최종 금고를 보고 새 사업 착수 여부를 정한다
+        AnnounceQuarterResults();  // ⑧ 실적 공시 — 지난 분기 대비 수입 증감
+        ApplyFinancialGravity();   // ⑨ 바뀐 실적을 주가에 반영 (발표 쇼크)
 
         isSettlingQuarter = false;
 
@@ -603,7 +633,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentEra == null) return;
 
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             if (IsBoostedByEra(stock))
                 stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 + currentEra.boostedRate / 100f));
@@ -618,7 +648,7 @@ public class GameManager : MonoBehaviour
     // 어제 가격을 StockPreviousPrice에 보관해 변동률 계산 기준으로 삼는다
     void ApplyDailyDrift()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             stock.StockChangePrice = 0; // 상세 패널에 전날 기록이 남지 않도록 초기화
             stock.StockPreviousPrice = stock.StockCurrentPrice;
@@ -678,7 +708,7 @@ public class GameManager : MonoBehaviour
     // 대형 뉴스 효과 — 산업군별로 당사국/비당사국 변동률을 나눠 적용
     void ApplyBigNewsEffect(ActiveCase active, float rate)
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             // 이 주식의 산업군에 맞는 변동률 찾기
             Case.IndustryRate matchedRate = default;
@@ -721,6 +751,7 @@ public class GameManager : MonoBehaviour
                     Debug.LogError($"[{data.CaseName}]의 affectedCase[{i}]가 null입니다!");
                     continue;
                 }
+                if (affected.isDelisted) continue; // 상폐된 회사는 뉴스 효과를 받지 않는다
 
                 affected.StockCurrentPrice = Mathf.RoundToInt(
                     affected.StockCurrentPrice *
@@ -739,7 +770,7 @@ public class GameManager : MonoBehaviour
 
         foreach (Case.ChainEffect effect in data.chainEffects)
         {
-            if (effect.stock == null) continue;
+            if (effect.stock == null || effect.stock.isDelisted) continue;
 
             effect.stock.StockCurrentPrice = Mathf.RoundToInt(
                 effect.stock.StockCurrentPrice *
@@ -775,7 +806,7 @@ public class GameManager : MonoBehaviour
 
         // 뉴스 영향 여부는 NPC마다 같으므로 한 번만 계산해서 재사용
         Dictionary<Stock, float> newsFlags = new Dictionary<Stock, float>();
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             bool isAffected = activeNewsList.Exists(active =>
                 active.caseData.affectedCase != null &&
@@ -785,7 +816,7 @@ public class GameManager : MonoBehaviour
 
         foreach (NPCInvestor npc in npcs)
         {
-            foreach (Stock stock in tabmanager.allstock)
+            foreach (Stock stock in LiveStocks)
                 npc.OnDayPassed(stock, stock.StockChangePrice, newsFlags[stock]);
 
             npc.DecideAfterAllPredictions();
@@ -795,7 +826,7 @@ public class GameManager : MonoBehaviour
     // 배당주 배당금 지급 — 영업이익이 0 이하면 삭감
     void PayDividends()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             if (!stock.hasDividend) continue;
 
@@ -837,7 +868,7 @@ public class GameManager : MonoBehaviour
     // 그래프·NPC 예측에 쓰이는 최근 기록 갱신 (최대 HISTORY_LENGTH일치 유지)
     void RecordStockHistories()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             AppendCapped(stock.changePctHistory, stock.ChangePercent);
             AppendCapped(stock.priceHistory, stock.StockCurrentPrice);
@@ -965,13 +996,16 @@ public class GameManager : MonoBehaviour
     // 매턴 모든 회사의 매출·영업이익을 재계산
     void RecalculateFinancials()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             float revenueModifier = 1.0f;
             if (IsBoostedByEra(stock)) revenueModifier = ERA_REVENUE_BOOST;
             else if (IsWeakenedByEra(stock)) revenueModifier = ERA_REVENUE_PENALTY;
 
-            stock.income = Mathf.RoundToInt(stock.runtimeBaseIncome * revenueModifier);
+            // 시대는 매출만 밀거나 누른다. 운영비는 시대와 무관하게 그대로 나간다
+            // 그래서 운영비가 무거운 회사일수록 같은 시대 배율에도 수입이 크게 흔들린다
+            int revenue = Mathf.RoundToInt(stock.runtimeRevenue * revenueModifier);
+            stock.income = revenue - stock.operatingCost;
         }
     }
 
@@ -989,11 +1023,11 @@ public class GameManager : MonoBehaviour
             && System.Array.Exists(currentEra.weakenedIndustries, t => t == stock.IndustryTag);
     }
 
-    // 사업 시스템 — 분기 마감일에만 호출된다
+    // 진행 중이던 사업의 성공·실패만 판정한다 — 분기 마감일에만 호출된다
     // 사업 결과가 분기 실적 발표와 같은 날 나와야 "이번 분기 잘 나올까?" 하는 긴장감이 생긴다
-    void ProcessBusinesses()
+    // 새 사업 착수(StartNewBusinesses)는 여기서 하지 않는다 — 배당·부도 판정이 끝난 뒤 최종 금고를 보고 정한다
+    void ResolveBusinesses()
     {
-        // ── 진행 중인 사업 처리 ──
         for (int i = activeBusinesses.Count - 1; i >= 0; i--)
         {
             ActiveBusiness biz = activeBusinesses[i];
@@ -1008,65 +1042,172 @@ public class GameManager : MonoBehaviour
             bool success = Random.Range(0, 100) < biz.successRate;
             if (success && stock != null)
             {
-                stock.runtimeBaseIncome += biz.incomeBoost;
+                // 사업이 올리는 것은 순수입이 아니라 평소 매출이다 — 성공하면 장사 규모 자체가 커진다
+                stock.runtimeRevenue += biz.revenueBoost;
                 stock.runtimeAsset += biz.assetBoost;
                 AddNotice($"[사업 성공] {biz.successNews}");
             }
             else
             {
-                // 실패: 투자금은 이미 날아갔고, 수입도 소폭 내려간다
+                // 실패: 투자금은 이미 날아갔고, 평소 매출도 소폭 내려간다
                 if (stock != null)
-                    stock.runtimeBaseIncome -= biz.incomeDrop;
+                    stock.runtimeRevenue -= biz.revenueDrop;
                 AddNotice($"[사업 실패] {biz.failNews}");
             }
 
             activeBusinesses.RemoveAt(i);
         }
-
-        // ── 새 사업 착수 ──
-        // 회사마다 독립적으로 판정한다. 전체에서 한 곳만 뽑으면 회사가 40개라 한 회사당
-        // 사업 한 번 보는 데 수백 턴이 걸려서, 회사를 고르는 재미가 나오지 않는다
-        foreach (BusinessProject project in allBusinessProjects)
-        {
-            if (Random.value < BUSINESS_START_CHANCE)
-                TryStartBusiness(project);
-        }
     }
 
-    // 사업 하나를 착수 조건에 맞으면 시작한다
-    void TryStartBusiness(BusinessProject picked)
+    // 새 사업 착수 — 분기 마감일에, 배당·부도 판정이 끝난 뒤 호출된다
+    // 회사마다 독립적으로 딱 한 번만 판정한다. 사업 목록을 먼저 돌며 하나씩 판정하면
+    // 사업을 많이 가진 회사만 착수 확률이 배로 뛰어서, 사업 종류를 늘릴수록 불공평해진다
+    void StartNewBusinesses()
     {
-        if (picked == null || picked.targetStock == null) return;
+        foreach (Stock stock in LiveStocks)
+            TryStartBusiness(stock);
+    }
 
-        Stock target = picked.targetStock;
+    // 회사 하나가 새 사업을 시작할지 판정한다
+    void TryStartBusiness(Stock stock)
+    {
+        if (stock.businesses == null || stock.businesses.Length == 0) return;
 
         // 이미 사업 진행 중인 회사는 제외
-        if (activeBusinesses.Exists(b => b.stockName == target.StockName)) return;
+        if (activeBusinesses.Exists(b => b.stockName == stock.StockName)) return;
 
-        // 금고가 투자비를 감당하지 못하면 사업을 벌이지 못한다 — 이것이 "금고 = 회사 체력"의 실제 작동 지점
-        if (target.runtimeAsset < picked.investmentCost)
+        // 금고가 마이너스면 새 도박을 벌이지 않는다 — 빚진 회사가 사업을 벌이면 부도 카운트가 무의미해진다
+        if (stock.runtimeAsset < 0) return;
+
+        // 성향별로 착수 확률이 다르다 — 재투자형은 자주, 배당형은 신중하게
+        float chance = stock.payoutStyle == Stock.PayoutStyle.Reinvest
+            ? BUSINESS_START_CHANCE_REINVEST
+            : BUSINESS_START_CHANCE_DIVIDEND;
+        if (Random.value >= chance) return;
+
+        // 착수 후에도 운영비 몇 분기치는 금고에 남는 사업만 후보로 삼는다 — 안전 마진 없이 다 지르면 전부 부도난다
+        int safetyMargin = stock.operatingCost * BUSINESS_SAFETY_MARGIN_QUARTERS;
+        List<BusinessProject> affordable = new List<BusinessProject>();
+        foreach (BusinessProject project in stock.businesses)
         {
-            Debug.Log($"[사업 보류] {target.StockName} 금고 부족 ({target.runtimeAsset} < {picked.investmentCost})");
+            if (project == null) continue;
+            if (stock.runtimeAsset - project.investmentCost < safetyMargin) continue;
+            affordable.Add(project);
+        }
+        if (affordable.Count == 0)
+        {
+            Debug.Log($"[사업 보류] {stock.StockName} 안전 마진을 남기고 감당할 사업이 없음 (금고 {stock.runtimeAsset})");
             return;
         }
 
-        // 착수 즉시 금고에서 투자비를 한 번에 꺼내 쓴다
-        target.runtimeAsset -= picked.investmentCost;
+        StartBusiness(stock, affordable[Random.Range(0, affordable.Count)]);
+    }
 
+    // 사업 하나를 실제로 착수시킨다 — 금고에서 투자비를 빼고 진행 목록에 등록
+    void StartBusiness(Stock stock, BusinessProject picked)
+    {
+        stock.runtimeAsset -= picked.investmentCost;
+
+        int quarters = Mathf.Max(1, picked.durationQuarters);
         activeBusinesses.Add(new ActiveBusiness
         {
             projectName = picked.projectName,
-            stockName = target.StockName,
-            remainingQuarters = Mathf.Max(1, picked.durationQuarters),
+            stockName = stock.StockName,
+            remainingQuarters = quarters,
+            totalQuarters = quarters,
             investmentCost = picked.investmentCost,
             successRate = picked.successRate,
-            incomeBoost = picked.incomeBoost,
-            incomeDrop = picked.incomeDrop,
+            revenueBoost = picked.revenueBoost,
+            revenueDrop = picked.revenueDrop,
             assetBoost = picked.assetBoost,
             successNews = picked.successNews,
             failNews = picked.failNews,
         });
         AddNotice($"[신사업] {picked.startNews}");
+    }
+
+    // ── 금고 · 부도 · 상장폐지 ─────────────────────────
+
+    // 상장 중인 회사만 순회한다 — 상폐 종목을 빠뜨리고 건드리는 실수를 막기 위한 단일 통로
+    // tabmanager.allstock 배열에서 실제로 제거하지는 않는다 — 인스펙터에 등록된 원본 배열이라 되돌리기가 까다롭다
+    IEnumerable<Stock> LiveStocks
+    {
+        get
+        {
+            foreach (Stock stock in tabmanager.allstock)
+                if (!stock.isDelisted) yield return stock;
+        }
+    }
+
+    // 금고 상태를 보고 경고 → 부도 위기 → 상장폐지를 판정한다
+    // 배당까지 다 빠져나간 최종 금고를 봐야 "금고 바닥 → 위험 시작"이 제대로 작동한다
+    void CheckSolvency()
+    {
+        foreach (Stock stock in LiveStocks)
+        {
+            if (stock.runtimeAsset >= 0)
+            {
+                stock.negativeQuarters = 0; // 플러스로 돌아오면 초기화 — "위기에서 극적으로 살아나는" 이야기가 나온다
+                continue;
+            }
+
+            stock.negativeQuarters++;
+
+            if (stock.negativeQuarters >= SOLVENCY_DELIST_QUARTERS)
+            {
+                DelistStock(stock);
+            }
+            else if (stock.negativeQuarters >= SOLVENCY_CRISIS_QUARTERS)
+            {
+                AddNotice($"[부도 위기] {stock.StockName} 금고가 {stock.negativeQuarters}분기 연속 마이너스입니다.");
+            }
+            else
+            {
+                AddNotice($"[경고] {stock.StockName} 금고가 마이너스입니다. ({stock.negativeQuarters}분기째)");
+            }
+        }
+    }
+
+    // 상장폐지 처리 — 순서가 중요하다: 보유 주식을 먼저 비운 뒤, 진행 중이던 사업·뉴스를 걷어내고,
+    // 화면에 남은 흔적(상세 패널·주식 목록 슬롯)을 지운다. 하나라도 빠뜨리면 없는 회사에
+    // 뉴스가 붙거나 배당이 나가는 유령 상태가 된다
+    void DelistStock(Stock stock)
+    {
+        stock.isDelisted = true;
+
+        Portfolio.SetHolding(stock, 0, 0); // 보유 주식 전액 손실 — 골드 지급 없음 (기획대로)
+
+        activeBusinesses.RemoveAll(b => b.stockName == stock.StockName);
+
+        // 이 회사 하나만을 대상으로 하는 뉴스만 걷어낸다. 여러 회사가 걸린 뉴스(대형 뉴스 등)는
+        // 다른 회사를 위해 남겨둔다
+        activeNewsList.RemoveAll(active => IsCompanyOnlyNewsFor(active.caseData, stock));
+        pendingNewsList.RemoveAll(pending => IsCompanyOnlyNewsFor(pending.caseData, stock));
+
+        stock.isFavorite = false;
+        stock.runtimeIssues.Clear();
+
+        if (UIManager.instance.detailpanel != null)
+            UIManager.instance.detailpanel.CloseIfShowing(stock);
+
+        // 이미 생성된 주식 목록 슬롯이 있으면 숨긴다 (탭을 아직 안 열었다면 TabManager.CreateStock이
+        // 애초에 생성하지 않는다)
+        foreach (StockControl sc in StockControl.FindAll())
+            if (sc.stockinfo == stock)
+                sc.gameObject.SetActive(false);
+
+        UIManager.instance.favoritePanel.RefreshHome();
+
+        AddNotice($"[상장폐지] {stock.StockName}이(가) 상장폐지되었습니다.");
+    }
+
+    // 이 뉴스가 오직 이 회사 하나만을 대상으로 하는지 판정
+    static bool IsCompanyOnlyNewsFor(Case data, Stock stock)
+    {
+        return data != null
+            && data.affectedCase != null
+            && data.affectedCase.Length > 0
+            && System.Array.TrueForAll(data.affectedCase, s => s == null || s == stock);
     }
 
     // ── 회사 자산 / 재무 기반 주가 ────────────────────
@@ -1076,7 +1217,7 @@ public class GameManager : MonoBehaviour
     // (영업이익이 음수면 곱셈 결과도 음수라 따로 분기할 필요가 없다)
     void AccumulateAssets()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             stock.runtimeAsset += stock.income; // 그 분기에 번 돈이 통째로 금고에 들어간다
         }
@@ -1086,7 +1227,7 @@ public class GameManager : MonoBehaviour
     // 평소에는 뉴스·시대·매매만 주가를 움직이고, 실적은 발표일에 한 번에 반영되어 이 날이 이벤트가 된다
     void ApplyFinancialGravity()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             int gap = GetFairPrice(stock) - stock.StockCurrentPrice;
             if (gap == 0) continue;
@@ -1106,7 +1247,7 @@ public class GameManager : MonoBehaviour
     // 사업 성공·실패 뉴스와 별개로, 시대 보정까지 반영된 최종 성적표를 보여주는 역할
     void AnnounceQuarterResults()
     {
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             int previous = stock.lastQuarterIncome;
             stock.lastQuarterIncome = stock.income;
@@ -1121,22 +1262,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 목표 주가 — 회사의 실적·자산이 게임 시작 시점의 몇 배가 됐는지로 계산한다
+    // 목표 주가 — 회사 실적이 게임 시작 시점보다 얼마나 나아졌는지로 계산한다
     // 절대 공식(영업이익 × PER)을 쓰지 않는 이유: 종목별로 주가와 이익의 비율이 8~22배까지
     // 제각각이라, 절대 공식을 쓰면 게임을 시작하자마자 전 종목 주가가 뒤집힌다
-    // 이 방식은 실적이 그대로면 목표가 = 기준가가 되어 기존 밸런스를 건드리지 않는다
+    // 실적이 그대로면 목표가 = 기준가가 되어 기존 밸런스를 건드리지 않는다
     public int GetFairPrice(Stock stock)
     {
-        // 기준 영업이익이 0 이하인 회사는 "몇 배"를 낼 수 없으므로 실적 항목은 1배로 두고 자산만 본다
-        float profitScore = stock.BaselineIncome > 0
-            ? (float)stock.income / stock.BaselineIncome
-            : 1f;
-        float assetScore = (float)stock.runtimeAsset / stock.BaselineAsset;
+        // "시작보다 얼마나 늘었나"를 매출 규모로 나눈다 — 나누는 쪽이 항상 양수라 부호가 뒤집히지 않는다
+        // 예전처럼 수입으로 나누면 평소 적자인 회사에서 두 가지가 깨진다
+        //   ① 기준 수입이 0 이하면 계산 자체가 불가능해 사업 성공이 주가에 전혀 반영되지 않는다
+        //   ② 음수끼리 나누면 부호가 뒤집혀, 적자가 두 배로 커질 때 목표 주가가 두 배로 오른다
+        // 뺄셈으로 바꾸면 적자가 줄어드는 것도 "개선"으로 잡혀서, 부도 위기에서 살아나는 회복이 주가에 나타난다
+        float improvement = (float)(stock.income - stock.BaselineIncome)
+                            / Mathf.Max(stock.BaselineRevenue, 1);
 
-        // 실적 60% + 자산 40% 비중으로 섞는다
-        float multiplier = 1f
-            + (profitScore - 1f) * PROFIT_WEIGHT
-            + (assetScore - 1f) * ASSET_WEIGHT;
+        float multiplier = 1f + improvement * PROFIT_SENSITIVITY;
 
         // 폭락·폭등이 끝없이 이어지지 않도록 기준가의 30%~300% 사이로 제한
         multiplier = Mathf.Clamp(multiplier, FAIR_PRICE_MIN_RATIO, FAIR_PRICE_MAX_RATIO);
@@ -1157,7 +1297,7 @@ public class GameManager : MonoBehaviour
         }
 
         StringBuilder sb = new StringBuilder();
-        foreach (Stock stock in tabmanager.allstock)
+        foreach (Stock stock in LiveStocks)
         {
             int eraEffect = IsBoostedByEra(stock) ? 1 : (IsWeakenedByEra(stock) ? -1 : 0);
 

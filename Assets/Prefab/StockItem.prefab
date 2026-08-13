@@ -57,8 +57,6 @@ MonoBehaviour:
   StockDescriptionText: {fileID: 5192442560594049445}
   stockImage: {fileID: 1292509924287155230}
   ownedAmountText: {fileID: 890006818012009455}
-  ownedAmount: 0
-  avgPurchasePrice: 0
   favoriteIcon: {fileID: 8081015001884074329}
   favoriteOnSprite: {fileID: 3828233312272572337, guid: 68ee424534d746e47b1a48cbc668c354, type: 3}
   favoriteOffSprite: {fileID: 8688233742085728730, guid: f9643cf355ebf9a4d96f9675817bde62, type: 3}
@@ -398,8 +396,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 85650eff4c5aa614682e8a2eeed5c9f0, type: 2}
+  m_sharedMaterial: {fileID: -1841028897687635947, guid: 85650eff4c5aa614682e8a2eeed5c9f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -537,8 +535,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 85650eff4c5aa614682e8a2eeed5c9f0, type: 2}
+  m_sharedMaterial: {fileID: -1841028897687635947, guid: 85650eff4c5aa614682e8a2eeed5c9f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
+  m_Name: FoodEra
+  m_EditorClassIdentifier: Assembly-CSharp::Era
+  eraName: "\uD48D\uB144\uC758 \uC2DC\uB300"
+  eraDescription: "\uD48D\uB144\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"
+  boostedIndustries:
+  - Food
+  weakenedIndustries:
+  - Construct
+  boostedRate: 1
+  weakenedRate: 1
+  hintNews: {fileID: 0}

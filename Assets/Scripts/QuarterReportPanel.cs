@@ -28,7 +28,7 @@ public class QuarterReportPanel : MonoBehaviour
         transform.SetAsLastSibling(); // 다른 UI에 가리지 않도록 맨 앞으로
 
         if (titleText != null) titleText.text = $"{quarter}분기 실적 발표";
-        if (bodyText != null) bodyText.text = string.Join("\n", lines);
+        if (bodyText != null) bodyText.text = string.Join("\n", SortByUrgency(lines));
 
         // 내용 줄 수에 맞춰 스크롤 영역 높이를 다시 잡는다 (안 하면 긴 내용이 잘린다)
         if (scrollContent != null)
@@ -39,5 +39,31 @@ public class QuarterReportPanel : MonoBehaviour
     public void OnCloseButton()
     {
         gameObject.SetActive(false);
+    }
+
+    // 상장폐지·부도 위기 소식은 다른 소식에 묻히면 안 되므로 맨 위로 끌어올린다
+    // List.Sort는 안정 정렬이 아니라서, 우선순위가 같은 항목들 사이의 원래 순서가 뒤섞일 수 있다
+    // 그래서 원래 인덱스를 함께 정렬 기준으로 넣어 같은 우선순위 안에서는 원래 순서를 지킨다
+    static List<string> SortByUrgency(List<string> lines)
+    {
+        int[] indices = new int[lines.Count];
+        for (int i = 0; i < indices.Length; i++) indices[i] = i;
+
+        System.Array.Sort(indices, (a, b) =>
+        {
+            int urgencyCompare = Urgency(lines[a]).CompareTo(Urgency(lines[b]));
+            return urgencyCompare != 0 ? urgencyCompare : a.CompareTo(b);
+        });
+
+        List<string> sorted = new List<string>(lines.Count);
+        foreach (int i in indices) sorted.Add(lines[i]);
+        return sorted;
+    }
+
+    static int Urgency(string line)
+    {
+        if (line.StartsWith("[상장폐지]")) return 0;
+        if (line.StartsWith("[부도 위기]")) return 1;
+        return 2;
     }
 }

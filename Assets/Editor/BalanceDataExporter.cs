@@ -56,7 +56,7 @@ public class BalanceDataExporter
     static void ExportStocks()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("이름,종족,산업,기준가,변동성타입,국가,기본수입,기본금고,기준시가총액,발행주식수");
+        sb.AppendLine("이름,종족,산업,기준가,변동성타입,국가,체질,성향,소유주,평소매출,운영비,기본수입,기본금고,기준시가총액,발행주식수");
 
         string[] guids = AssetDatabase.FindAssets("t:Stock");
         foreach (string guid in guids)
@@ -71,7 +71,9 @@ public class BalanceDataExporter
 
             sb.AppendLine($"{stock.StockName},{stock.FamilyTag},{stock.IndustryTag}," +
                 $"{stock.StockBasePrice},{stock.volatilityType},{stock.nation}," +
-                $"{stock.baseIncome},{stock.BaselineAsset},{baseMarketCap},{stock.TotalShare}");
+                $"{stock.companyType},{stock.payoutStyle},{stock.owner}," +
+                $"{stock.BaselineRevenue},{stock.operatingCost}," +
+                $"{stock.BaselineIncome},{stock.BaselineAsset},{baseMarketCap},{stock.TotalShare}");
         }
 
         string savePath = Path.Combine(Application.dataPath, "../StockBalanceData.csv");

@@ -19,32 +19,79 @@ public class Stock : ScriptableObject
     public Sprite StockIcon;        // 주식 아이콘 이미지
     public string FamilyTag;        // 주식 분류 태그 — 종족 (예: Dwarf, Elf, Dragon, Human)
     public string IndustryTag;      // 주식 분류 태그 — 산업 (예: Mining, Army)
-    // ── 회사가 굴리는 두 가지 돈: 수입과 금고 ──
-    // 매출·비용을 따로 두지 않고 "실제로 남는 돈" 하나만 다룬다 (회계 용어 최소화)
+    // ── 정체성 — 누가 만든 회사인가 ──
+    // 읽을거리이자 뉴스 분위기의 재료다. 수입·주가 계산에는 일절 쓰지 않는다
+    public enum OwnerType
+    {
+        Family,   // 가문 소유 — 대를 이어온 이야기
+        Guild,    // 길드 소유 — 조합원들의 공동 소유
+        Commoner, // 평민 소유 — 맨손으로 일군 회사
+        Royal     // 왕실 소유 — 나라가 뒤를 봐준다
+    }
+    public OwnerType owner;
 
-    // 기본 수입 (분기당, 시대 보정 전 — 인스펙터 고정, 런타임에 절대 변경하지 말 것)
-    public int baseIncome;
+    // ── 체질 — 평소에 어떻게 버는가 ──
+    // 매출과 운영비의 차이가 회사 성격을 만든다. 운영비가 무거울수록 시대에 크게 휘둘린다
+    public enum CompanyType
+    {
+        Stable,   // 안정형: 운영비가 가볍다. 꾸준히 흑자지만 크게 뛰지도 않는다
+        Resource, // 자원형: 매출이 크다. 흑자지만 시대에 따라 오르내린다
+        HighRisk, // 고위험형: 매출도 운영비도 크다. 흑자와 적자를 오간다
+        Growth    // 성장형: 평소엔 적자. 사업 성공과 좋은 시대가 겹쳐야 크게 번다
+    }
+    public CompanyType companyType;
 
-    // 기본 금고 (인스펙터 고정) — 0으로 두면 게임 시작 시 수입 기준으로 자동 산정된다
+    // 성향 — 번 돈을 어디에 쓰는가
+    public enum PayoutStyle
+    {
+        Dividend, // 배당형: 주주에게 나눠준다. 갖고만 있어도 돈이 들어온다
+        Reinvest  // 재투자형: 다음 사업에 넣는다. 배당은 없지만 크게 성장할 수 있다
+    }
+    public PayoutStyle payoutStyle;
+
+    // ── 활동 — 이 회사가 벌일 수 있는 사업들 ──
+    // 예전엔 사업(BusinessProject) 쪽이 회사 하나를 가리켰다. 그러면 회사마다 사업이 몇 개든
+    // 착수 확률이 사업 개수만큼 배가돼서 사업 많은 회사가 유리해진다. 그래서 방향을 뒤집는다:
+    // 회사가 사업 목록을 들고, 착수 판정도 회사당 한 번만 한다 (GameManager.TryStartBusiness)
+    public BusinessProject[] businesses;
+
+    // ── 회사가 굴리는 돈: 매출 − 운영비 = 수입, 그리고 금고 ──
+
+    // 평소 매출 (분기당, 시대 보정 전 — 인스펙터 고정, 런타임에 절대 변경하지 말 것)
+    // 사업 안 해도 장사로 들어오는 돈이라 항상 양수다. 시대 배율은 이 값에만 곱한다
+    public int baseRevenue;
+
+    // 운영비 (분기당 고정 지출 — 월급, 유지비)
+    // 시대가 좋든 나쁘든 똑같이 나간다. 그래서 이게 무거운 회사일수록 수입이 크게 흔들린다
+    public int operatingCost;
+
+    // 기본 금고 (인스펙터 고정) — 0으로 두면 게임 시작 시 운영비 기준으로 자동 산정된다
     // 종목 40개의 금고를 일일이 채우지 않아도 되도록 만든 장치로, 특색을 주고 싶은 회사만 값을 넣으면 된다
     public int baseAsset;
-
-    // baseAsset이 비어 있을 때 금고를 수입의 몇 배로 잡을지
-    public const int AUTO_ASSET_MULTIPLIER = 10;
 
     // 시대 보정까지 적용된 이번 분기 수입 — RecalculateFinancials()가 다시 계산하는 파생값이라 저장하지 않는다
     // 직렬화하면 플레이 중 바뀐 값이 에셋 파일에 눌어붙어 매번 파일이 수정 상태가 된다
     [System.NonSerialized]
     public int income;
 
-    // 사업 성패가 누적되는 런타임 기준값 — 분기 수입 계산은 이 값을 쓴다
-    // 인스펙터 원본(baseIncome)을 직접 건드리면 에셋에 값이 눌어붙어 다음 플레이로 새어나간다
+    // 사업 성패가 누적되는 런타임 매출 — 분기 수입 계산은 이 값을 쓴다
+    // 사업에 성공하면 여기가 영구히 올라간다. 즉 "회사가 지금까지 키운 실력"에 해당한다
+    // 인스펙터 원본(baseRevenue)을 직접 건드리면 에셋에 값이 눌어붙어 다음 플레이로 새어나간다
     [System.NonSerialized]
-    public int runtimeBaseIncome;
+    public int runtimeRevenue;
 
     // 회사 금고 — 분기 수입이 쌓이고, 사업 투자비와 배당이 여기서 빠져나간다
     [System.NonSerialized]
     public int runtimeAsset;
+
+    // 금고가 연속으로 마이너스인 분기 수 — 플러스로 돌아오면 0으로 초기화된다
+    // "위기에서 극적으로 살아나는" 이야기가 여기서 나온다
+    [System.NonSerialized]
+    public int negativeQuarters;
+
+    // 상장폐지 여부 — 한 번 켜지면 이 회사는 게임에서 더 이상 살아있는 종목으로 취급되지 않는다
+    [System.NonSerialized]
+    public bool isDelisted;
 
     // 지난 분기 수입 — 실적 공시에서 "이번 분기에 얼마나 늘었나"를 계산하는 기준
     [System.NonSerialized]
@@ -52,13 +99,35 @@ public class Stock : ScriptableObject
 
     // ── 목표 주가 산정의 기준선 ──
     // 인스펙터 고정값에서 바로 계산되므로 따로 저장할 필요가 없다
-    // 이 기준 대비 지금 수입이 몇 배인지로 목표가를 구하기 때문에, 종목별 주가 배수가 제각각이어도 밸런스가 깨지지 않는다
-    public int BaselineIncome => baseIncome;
+    // 게임 시작 시점 대비 지금 실적이 얼마나 나아졌는지로 목표가를 구하기 때문에,
+    // 종목별 주가 배수가 제각각이어도 밸런스가 깨지지 않는다
 
-    // 기준 금고 — baseAsset이 비어 있으면 수입 기준으로 자동 산정 (0으로 나누는 것을 막기 위해 최소 1 보장)
-    public int BaselineAsset => baseAsset > 0
-        ? baseAsset
-        : Mathf.Max(BaselineIncome, 1) * AUTO_ASSET_MULTIPLIER;
+    // 기준 매출 — 목표 주가 계산에서 나누는 쪽으로 쓰인다. 항상 양수여야 부호가 뒤집히지 않는다
+    public int BaselineRevenue => baseRevenue;
+
+    // 기준 수입 — 게임 시작 시점의 분기 수입. 성장형은 이 값이 음수일 수 있다
+    public int BaselineIncome => BaselineRevenue - operatingCost;
+
+    // 체질별로 "금고가 몇 분기치 운영비를 담고 시작하는가"
+    // 나쁜 체질일수록 두껍게 준다 — 평소 적자여도 좋은 시대가 올 때까지 버텨야 하기 때문
+    public int SurvivalQuarters
+    {
+        get
+        {
+            switch (companyType)
+            {
+                case CompanyType.Stable: return 4;
+                case CompanyType.Resource: return 5;
+                case CompanyType.HighRisk: return 8;
+                case CompanyType.Growth: return 10;
+                default: return 4;
+            }
+        }
+    }
+
+    // 기준 금고 — baseAsset이 비어 있으면 "몇 분기를 버티는가"로 자동 산정
+    // 수입이 아니라 운영비를 기준으로 삼는 이유: 적자 회사도 음수가 끼어들지 않아 계산이 안전하다
+    public int BaselineAsset => baseAsset > 0 ? baseAsset : operatingCost * SurvivalQuarters;
 
     // 시가총액 = 현재가 × 발행주식수
     // int끼리 곱하면 주가가 214,748을 넘는 순간 21억을 넘겨 음수가 되므로, long으로 올린 뒤 곱한다

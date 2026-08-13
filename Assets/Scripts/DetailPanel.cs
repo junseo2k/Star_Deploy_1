@@ -18,11 +18,17 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI StockChangePrice;       // 이전 가격 대비 변동률(%) 표시 텍스트
     public TextMeshProUGUI StockDescription;       // 주식 요약 설명 표시 텍스트
     public TextMeshProUGUI StockDetailDescription; // 기업 상세 설명 표시 텍스트
-    public TextMeshProUGUI revenuePrice;           // 수입 표시 텍스트
+    public TextMeshProUGUI revenuePrice;           // 평소 매출(runtimeRevenue) 표시 텍스트 — 이름은 예전 그대로지만 이제 매출을 보여준다
+    public TextMeshProUGUI OperatingCostPrice;     // 운영비 표시 텍스트
+    public TextMeshProUGUI IncomePrice;            // 분기 수입(시대 보정 포함) 표시 텍스트
     public TextMeshProUGUI AssetPrice;             // 회사 금고 표시 텍스트
     public TextMeshProUGUI MarketCapPrice;         // 시가총액 표시 텍스트
     public TextMeshProUGUI TotalSharePrice;        // 총 발행 주식 수 표시 텍스트
     public TextMeshProUGUI MarketLabelText;        // 주가 변동 이유 라벨
+    public TextMeshProUGUI CompanyBadgeText;       // 체질 · 성향 · 소유주 배지
+    public TextMeshProUGUI ActiveBusinessText;     // 진행 중인 사업 상태
+
+    private static readonly Color WarningColor = new Color(0.9f, 0.3f, 0.3f); // 금고 마이너스일 때 쓰는 경고 색
 
     [Header("탭 패널")]
     public Transform DetailInfoPanel;  // 기본 정보 탭 패널
@@ -57,15 +63,42 @@ public class DetailPanel : MonoBehaviour
         StockPrice.text = $"{stock.StockCurrentPrice} G";
         StockDescription.text = stock.StockDescription;
         StockDetailDescription.text = stock.StockDetailDescription;
-        revenuePrice.text = UIFormat.Gold(stock.income);
-        // 금고 칸은 나중에 추가된 항목이라, 인스펙터 연결이 빠져 있어도 패널 전체가 죽지 않도록 확인 후 표시
-        if (AssetPrice != null) AssetPrice.text = UIFormat.Gold(stock.runtimeAsset);
+
+        // 매출 · 운영비 · 수입을 나란히 보여줘서 "매출에서 운영비를 빼면 수입"이라는 구조가 한눈에 보이게 한다
+        revenuePrice.text = UIFormat.Gold(stock.runtimeRevenue);
+        if (OperatingCostPrice != null) OperatingCostPrice.text = $"- {UIFormat.Gold(stock.operatingCost)}";
+        if (IncomePrice != null) IncomePrice.text = UIFormat.Gold(stock.income);
+
+        // 금고 — 마이너스면 빨갛게, 3분기 이상 연속 적자면 부도 위기 문구를 덧붙인다
+        if (AssetPrice != null)
+        {
+            AssetPrice.color = stock.runtimeAsset < 0 ? WarningColor : Color.white;
+            AssetPrice.text = stock.negativeQuarters >= 3
+                ? $"{UIFormat.Gold(stock.runtimeAsset)} ({stock.negativeQuarters}분기째 적자·부도위기)"
+                : UIFormat.Gold(stock.runtimeAsset);
+        }
+
         MarketCapPrice.text = UIFormat.Gold(stock.marketCap);
         TotalSharePrice.text = $"{stock.TotalShare} stock";
         StockChangePrice.text = UIFormat.SignedPercentPlain(Mathf.RoundToInt(stock.ChangePercent));
         MarketLabelText.text = GetMarketLabel(stock);
 
+        // 체질 · 성향 · 소유주 배지 — 기획 1장(정체성)·2장(체질)이 한 줄로 드러나는 자리
+        if (CompanyBadgeText != null)
+            CompanyBadgeText.text = $"{UIFormat.CompanyTypeLabel(stock.companyType)} · {UIFormat.PayoutStyleLabel(stock.payoutStyle)} · {UIFormat.OwnerLabel(stock.owner)}";
+
+        if (ActiveBusinessText != null)
+            ActiveBusinessText.text = GetActiveBusinessStatus(stock);
+
         RefreshHistoryChart(stock);
+    }
+
+    // 이 회사가 지금 진행 중인 사업이 있으면 진행률과 함께, 없으면 안내 문구를 반환
+    string GetActiveBusinessStatus(Stock stock)
+    {
+        var biz = GameManager.Instance.activeBusinesses.Find(b => b.stockName == stock.StockName);
+        if (biz == null) return "진행 중인 사업 없음";
+        return $"진행 중인 사업: {biz.projectName} ({biz.totalQuarters}분기 중 {biz.remainingQuarters}분기 남음)";
     }
 
     // 최근 주가·거래량 히스토리를 복합 차트에 반영
@@ -167,6 +200,15 @@ public class DetailPanel : MonoBehaviour
     // 닫기 버튼 클릭 시 서비스 프리팹 정리 후 상세 패널 닫고 종목 목록 패널로 복귀
     public void OnExitButton()
     {
+        ClearServiceItems();
+        UIManager.instance.ReturnToStock(DetailwithPanel.gameObject);
+    }
+
+    // 그 회사가 상장폐지될 때 GameManager가 호출한다 — 지금 이 패널이 그 회사를 보여주고 있으면 닫는다
+    // 다른 회사를 보고 있거나 패널이 닫혀 있으면 아무 일도 하지 않는다
+    public void CloseIfShowing(Stock stock)
+    {
+        if (currentstock != stock) return;
         ClearServiceItems();
         UIManager.instance.ReturnToStock(DetailwithPanel.gameObject);
     }

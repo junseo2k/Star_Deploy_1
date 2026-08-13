@@ -148,6 +148,8 @@ public class TabManager : MonoBehaviour
 
         foreach (Stock stock in allstock)
         {
+            if (stock.isDelisted) continue; // 상장폐지된 회사는 목록에 슬롯을 만들지 않는다
+
             string stockTag = byFamily ? stock.FamilyTag : stock.IndustryTag;
             if (stockTag != tag) continue; // 태그가 일치하는 주식만 해당 패널에 배치
 

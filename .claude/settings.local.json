@@ -45,7 +45,32 @@
       "Bash(awk '{print $1}')",
       "mcp__UnityMCP__refresh_unity",
       "mcp__UnityMCP__execute_code",
-      "Artifact"
+      "Artifact",
+      "Bash(awk -F': ' '{s[$1]+=$2; n[$1]++; if\\($2<min[$1]||n[$1]==1\\)min[$1]=$2; if\\($2>max[$1]\\)max[$1]=$2} END{for\\(k in s\\) printf \"%s: n=%d min=%d max=%d avg=%.0f\\\\n\", k, n[k], min[k], max[k], s[k]/n[k]}')",
+      "WebFetch(domain:claude.ai)",
+      "mcp__UnityMCP__manage_asset",
+      "Bash(sed -n 2,1316p /c/Users/이준서/.claude/projects/C--Users-----Documents-GitHub-Star-Deploy-1/1c1b4ee4-4632-47ea-be03-476e2c9e3f6d/tool-results/artifact-0a71f8a0-1786465584-f152.html)",
+      "Bash(wc -l /c/Users/이준서/AppData/Local/Temp/claude/C--Users-----Documents-GitHub-Star-Deploy-1/1c1b4ee4-4632-47ea-be03-476e2c9e3f6d/scratchpad/business-workflow.html)",
+      "Bash(head -c 200 /c/Users/이준서/AppData/Local/Temp/claude/C--Users-----Documents-GitHub-Star-Deploy-1/1c1b4ee4-4632-47ea-be03-476e2c9e3f6d/scratchpad/business-workflow.html)",
+      "Bash(echo)",
+      "Bash(echo \"---TAIL---\")",
+      "Bash(grep -rl \"m_EditorClassIdentifier: Assembly-CSharp::Stock$\" --include=\"*.asset\" .)",
+      "mcp__UnityMCP__execute_menu_item",
+      "Bash(awk -F, 'NR>1 {printf \"%-18s 체질=%-8s 매출=%-9s 운영비=%-6s 수입=%-9s 금고=%s\\\\n\", $1,$7,$10,$11,$12,$13}' StockBalanceData.csv)",
+      "Bash(awk -F, 'NR>1 && $1==1 {print NR\": \"$0; c++} c>3{exit}' stock_history.csv)",
+      "Bash(awk -F, 'NR>1{if\\($1>mx\\)mx=$1} END{print \"최대 day: \"mx}' stock_history.csv)",
+      "Bash(awk -F, 'NR>1 {if\\(prev!=\"\" && $1+0 < prev+0\\) print \"실행 경계: 줄 \"NR\"  day \"prev\" -> \"$1; prev=$1} NR==2{prev=$1}' stock_history.csv)",
+      "Bash(awk -F, 'NR>1 && $1!=\"\" {print $1\",\"$4}')",
+      "Bash(sort -k6 -n)",
+      "Bash(awk 'BEGIN{printf \"%.2f배\\\\n\", \\(1.0015\\)^500}')",
+      "Bash(echo \"일일 상승편향만으로 예상되는 500일 배수: $\\(awk 'BEGIN{printf \"%.2f배\\\\n\", \\(1.0015\\)^500}'\\)\")",
+      "Bash(awk -F, 'FNR==NR{base[$1]=$2; next} {r=$3/base[$2]; if\\(r>=2.85\\) near++; n++} END{printf \"천장\\(기준가 3배\\) 근처\\(2.85배 이상\\)에서 보낸 날의 비율: %.1f%%\\\\n\", near*100/n}' /tmp/base.txt -)",
+      "Bash(awk -F, '{d[$1]=1} $6==1{news++} $7!=0{era++} END{printf \"기록된 날: %d일\\\\n뉴스 영향 받은 종목-날: %d\\\\n시대 영향 받은 종목-날: %d\\\\n\", length\\(d\\), news, era}')",
+      "Bash(awk -F'|' '{print $2}' /tmp/biz_map.txt)",
+      "mcp__UnityMCP__batch_execute",
+      "mcp__UnityMCP__manage_components",
+      "mcp__UnityMCP__manage_gameobject",
+      "mcp__UnityMCP__manage_camera"
     ]
   }
 }

@@ -29,4 +29,36 @@ public static class UIFormat
     {
         return $"{amount:N0} G";
     }
+
+    // 체질을 한글 배지 문구로 변환 (상세 패널 배지에 사용)
+    public static string CompanyTypeLabel(Stock.CompanyType type)
+    {
+        switch (type)
+        {
+            case Stock.CompanyType.Stable: return "안정형";
+            case Stock.CompanyType.Resource: return "자원형";
+            case Stock.CompanyType.HighRisk: return "고위험형";
+            case Stock.CompanyType.Growth: return "성장형";
+            default: return "";
+        }
+    }
+
+    // 성향을 한글 배지 문구로 변환
+    public static string PayoutStyleLabel(Stock.PayoutStyle style)
+    {
+        return style == Stock.PayoutStyle.Reinvest ? "재투자형" : "배당형";
+    }
+
+    // 소유주를 한글 배지 문구로 변환
+    public static string OwnerLabel(Stock.OwnerType owner)
+    {
+        switch (owner)
+        {
+            case Stock.OwnerType.Family: return "가문 소유";
+            case Stock.OwnerType.Guild: return "길드 소유";
+            case Stock.OwnerType.Commoner: return "평민 소유";
+            case Stock.OwnerType.Royal: return "왕실 소유";
+            default: return "";
+        }
+    }
 }

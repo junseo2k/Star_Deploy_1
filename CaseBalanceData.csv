@@ -29,8 +29,8 @@
 ★실버포지 합작성공,SmallCompanyNews,2,SilverForge,5,10
 ★아우렐리온 투자실패,SmallCompanyNews,3,AurelionCapital,-20,-12
 ★아이언리폼 방어구개발,SmallCompanyNews,2,IronReform,8,15
-★아이언코어 신소재 개발,SmallCompanyNews,2,IromCore,8,15
-★아이언코어 용광로 화재,SmallCompanyNews,2,IromCore,-15,-8
+★아이언코어 신소재 개발,SmallCompanyNews,2,IronCore,8,15
+★아이언코어 용광로 화재,SmallCompanyNews,2,IronCore,-15,-8
 ★아이언하트 계약해지,SmallCompanyNews,3,IronHeart,-20,-12
 ★아이언하트 리콜,SmallCompanyNews,2,IronHeart,-15,-8
 ★알케미아 효과미달,SmallCompanyNews,2,Alchemia,-10,-5
@@ -195,11 +195,11 @@
 아이언리폼 정책검토,SmallCompanyNews,1,IronReform,-5,5
 아이언리폼 지원금확보,SmallCompanyNews,2,IronReform,8,15
 아이언리폼 지원축소,SmallCompanyNews,2,IronReform,-15,-8
-아이언코어 대량납품,SmallCompanyNews,2,IromCore,5,10
-아이언코어 매출최고,SmallCompanyNews,2,IromCore,5,10
-아이언코어 점유율하락,SmallCompanyNews,2,IromCore,-10,-5
-아이언코어 친환경 도입,SmallCompanyNews,1,IromCore,-5,5
-아이언코어 품질결함,SmallCompanyNews,2,IromCore,-10,-5
+아이언코어 대량납품,SmallCompanyNews,2,IronCore,5,10
+아이언코어 매출최고,SmallCompanyNews,2,IronCore,5,10
+아이언코어 점유율하락,SmallCompanyNews,2,IronCore,-10,-5
+아이언코어 친환경 도입,SmallCompanyNews,1,IronCore,-5,5
+아이언코어 품질결함,SmallCompanyNews,2,IronCore,-10,-5
 아이언하트 독점공급,SmallCompanyNews,2,IronHeart,5,10
 아이언하트 스톤브레이커,SmallCompanyNews,2,IronHeart,8,15
 아이언하트 실적상승,SmallCompanyNews,2,IronHeart,5,10
