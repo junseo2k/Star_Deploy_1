@@ -23,7 +23,7 @@ MonoBehaviour:
     \uC8FC\uB825\uC774\uB2E4. \uACE0\uAE09 \uAE30\uC220\uC740 \uC5C6\uC9C0\uB9CC
     \uAC00\uACA9\uC774 \uC2F8\uC11C \uB300\uC911 \uC2DC\uC7A5\uC5D0\uC11C \uC798
     \uD314\uB9B0\uB2E4."
-  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  StockIcon: {fileID: 6134083143053426617, guid: ae3d2ec7ddc174243a39c36e36913626, type: 3}
   FamilyTag: Orc
   IndustryTag: Magic
   owner: 2
@@ -33,7 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4df9f9104b94e7eae9444b2d5f15e69, type: 2}
   baseRevenue: 30000
   operatingCost: 36000
-  baseIncome: 30000
   baseAsset: 0
   TotalShare: 10000
   RecentIssue: []

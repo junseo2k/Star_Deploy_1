@@ -23,7 +23,7 @@ MonoBehaviour:
     \uAE30\uC220 \uB3C4\uC785\uC744 \uC2DC\uB3C4 \uC911\uC774\uAE30\uB3C4 \uD558\uB2E4.
     \uACF5\uACA9\uC801\uC73C\uB85C \uC5F0\uAD6C\uC5D0 \uD22C\uC790\uD574\uC11C \uC131\uC7A5\uC131\uC740
     \uB192\uC9C0\uB9CC \uB9AC\uC2A4\uD06C\uB3C4 \uD06C\uB2E4."
-  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  StockIcon: {fileID: 6999883073793910074, guid: ee06cf24f5c456f469550cc8c0ffff5a, type: 3}
   FamilyTag: Human
   IndustryTag: Magic
   owner: 0
@@ -33,7 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e803ed87d7b4dbca33cf2181f363e3a, type: 2}
   baseRevenue: 173000
   operatingCost: 104000
-  baseIncome: 173000
   baseAsset: 0
   TotalShare: 10000
   RecentIssue: []

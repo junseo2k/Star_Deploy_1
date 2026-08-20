@@ -23,7 +23,7 @@ MonoBehaviour:
     \uACE0\uAE09 \uC758\uB958 \uACF5\uAE09 \uACC4\uC57D\uC744 \uCCB4\uACB0\uD588\uB2E4.
     \uC5D8\uD504 \uCCAD\uB144 \uC778\uB825 \uC720\uCD9C\uB85C \uC0DD\uC0B0 \uAE30\uBC18\uC774
     \uC57D\uD574\uC9C0\uB294 \uAC8C \uB9AC\uC2A4\uD06C."
-  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  StockIcon: {fileID: -7195303632528399762, guid: 7ac1c0fd236f78a46b12e1d94fd54d83, type: 3}
   FamilyTag: Elf
   IndustryTag: Luxury
   owner: 2
@@ -33,7 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: edd292e0929a4716bb519a94e673be44, type: 2}
   baseRevenue: 72000
   operatingCost: 68000
-  baseIncome: 72000
   baseAsset: 0
   TotalShare: 10000
   RecentIssue: []

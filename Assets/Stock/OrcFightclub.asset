@@ -23,7 +23,7 @@ MonoBehaviour:
     \uC655\uAD6D\uC5D0\uC11C\uB3C4 \uAD00\uB78C \uC218\uC694\uAC00 \uB298\uACE0 \uC788\uB2E4.
     \uACA9\uD22C \uC2DC\uC98C\uC774\uB791 \uB300\uD615 \uB9E4\uCE58\uC5D0 \uB530\uB77C
     \uB9E4\uCD9C \uBCC0\uB3D9\uC774 \uD06C\uB2E4."
-  StockIcon: {fileID: 5441167850420058880, guid: 122377c6a71b0d04b93af99292bdd1f9, type: 3}
+  StockIcon: {fileID: 5139900975908909041, guid: 285f6d0300a73e64a8e3a0a25ebd1690, type: 3}
   FamilyTag: Orc
   IndustryTag: Game
   owner: 2
@@ -33,7 +33,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cdae946672744a2958293b6175b48d9, type: 2}
   baseRevenue: 13000
   operatingCost: 16000
-  baseIncome: 13000
   baseAsset: 0
   TotalShare: 10000
   RecentIssue: []
