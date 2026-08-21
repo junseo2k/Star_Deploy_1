@@ -103,7 +103,8 @@ public class GameManager : MonoBehaviour
     private const float RANGE_VOLATILE = 1.5f;          // 고변동형 일일 변동폭 (±%)
     private const float RANGE_DEFAULT = 2f;           // 변동 유형이 없을 때의 기본값
 
-    private const int HISTORY_LENGTH = 10;            // 그래프·NPC 예측에 쓰는 최근 기록 보관 일수
+    // 그래프는 이만큼 쌓여야 선이 그려진다 — 그래프 탭 잠금 기준일로도 쓰이므로 public
+    public const int HISTORY_LENGTH = 10;             // 그래프·NPC 예측에 쓰는 최근 기록 보관 일수
     private const float FAKE_VOLUME_SCALE = 50f;      // 가짜 거래량 계수 (변동폭 절댓값 × 이 값)
     private const int MIN_STOCK_PRICE = 1;            // 주가 하한 (0 이하로 내려가지 않도록)
 
@@ -115,6 +116,20 @@ public class GameManager : MonoBehaviour
     private bool isSettlingQuarter;
     private List<string> quarterReportLines = new List<string>();
 
+    // 이번 분기에 각 회사의 실적이 왜 변했는지 한 줄 이유를 기억해둔다 (회사 이름 → 이유)
+    // 실적 공시에 "▲12%"만 뜨면 원인을 알 수 없어서, 사업 성패 같은 원인을 여기 담아뒀다가 같이 보여준다
+    private Dictionary<string, string> quarterChangeReasons = new Dictionary<string, string>();
+
+    // 지난 분기에 각 회사에 걸려 있던 시대 배율 (회사 이름 → 1.2 / 1.0 / 0.8)
+    // "지금 시대가 미는가"만 봐서는 시대가 끝나서 수입이 원래대로 떨어진 분기를 설명할 수 없다.
+    // 시대 종료야말로 수입이 가장 크게 꺾이는 순간이라, 지난 배율과 비교해야 원인을 제대로 짚는다
+    private Dictionary<string, float> lastQuarterEraModifier = new Dictionary<string, float>();
+
+    // 지난 분기 각 회사의 평소 매출 (회사 이름 → runtimeRevenue)
+    // 수입 변화를 "시대 때문"과 "사업 때문"으로 갈라내려면 지난 매출이 있어야 한다.
+    // 매출은 사업 성공·실패로만 바뀌므로, 매출이 움직였다는 것은 곧 사업 결과가 나왔다는 뜻이다
+    private Dictionary<string, int> lastQuarterRevenue = new Dictionary<string, int>();
+
     // 진행 중인 사업 상태를 추적하는 클래스
     [System.Serializable]
     public class ActiveBusiness
@@ -123,6 +138,7 @@ public class GameManager : MonoBehaviour
         public string stockName;       // 대상 회사 이름 (저장용)
         public int remainingQuarters;  // 남은 분기 수 — 분기 마감일마다 하나씩 줄어든다
         public int totalQuarters;      // 착수 시점의 전체 기간 — "3분기 중 1분기 남음" 진행률 표시에 쓴다
+        public int startedQuarter;     // 몇 분기에 착수했는지 — 이번 분기에 막 시작한 사업과 예전부터 진행 중인 사업을 구분한다
         public int investmentCost;     // 착수할 때 금고에서 빠져나간 투자 비용 (기록용)
         public int successRate;     // 성공 확률
         public int revenueBoost;    // 성공 시 평소 매출 증가량
@@ -459,6 +475,7 @@ public class GameManager : MonoBehaviour
         // 이 구간에서 나오는 알림은 전부 실적 발표 팝업으로 모인다
         isSettlingQuarter = true;
         quarterReportLines.Clear();
+        quarterChangeReasons.Clear();
 
         RecalculateFinancials();   // ① 이번 분기 수입 확정 (시대 보정 반영)
         ResolveBusinesses();       // ② 진행 중이던 사업의 성공·실패 발표 → 수입이 바뀜
@@ -467,8 +484,9 @@ public class GameManager : MonoBehaviour
         PayDividends();            // ⑤ 배당형 회사가 금고에서 배당을 지급
         CheckSolvency();           // ⑥ 배당까지 다 나간 최종 금고로 부도 위기·상장폐지 판정
         StartNewBusinesses();      // ⑦ 최종 금고를 보고 새 사업 착수 여부를 정한다
-        AnnounceQuarterResults();  // ⑧ 실적 공시 — 지난 분기 대비 수입 증감
-        ApplyFinancialGravity();   // ⑨ 바뀐 실적을 주가에 반영 (발표 쇼크)
+        ReportOngoingBusinesses(); // ⑧ 아직 결과가 안 나온 사업들을 다시 한 번 알려준다
+        AnnounceQuarterResults();  // ⑨ 실적 공시 — 지난 분기 대비 수입 증감
+        ApplyFinancialGravity();   // ⑩ 바뀐 실적을 주가에 반영 (발표 쇼크)
 
         isSettlingQuarter = false;
 
@@ -998,15 +1016,19 @@ public class GameManager : MonoBehaviour
     {
         foreach (Stock stock in LiveStocks)
         {
-            float revenueModifier = 1.0f;
-            if (IsBoostedByEra(stock)) revenueModifier = ERA_REVENUE_BOOST;
-            else if (IsWeakenedByEra(stock)) revenueModifier = ERA_REVENUE_PENALTY;
-
             // 시대는 매출만 밀거나 누른다. 운영비는 시대와 무관하게 그대로 나간다
             // 그래서 운영비가 무거운 회사일수록 같은 시대 배율에도 수입이 크게 흔들린다
-            int revenue = Mathf.RoundToInt(stock.runtimeRevenue * revenueModifier);
+            int revenue = Mathf.RoundToInt(stock.runtimeRevenue * GetEraRevenueModifier(stock));
             stock.income = revenue - stock.operatingCost;
         }
+    }
+
+    // 지금 이 회사의 매출에 걸려 있는 시대 배율 — 수혜 1.2 / 무관 1.0 / 타격 0.8
+    public float GetEraRevenueModifier(Stock stock)
+    {
+        if (IsBoostedByEra(stock)) return ERA_REVENUE_BOOST;
+        if (IsWeakenedByEra(stock)) return ERA_REVENUE_PENALTY;
+        return 1.0f;
     }
 
     // 현재 시대가 이 주식의 산업군을 밀어주는지 여부
@@ -1038,21 +1060,41 @@ public class GameManager : MonoBehaviour
             // 투자비는 착수할 때 금고에서 이미 빠져나갔으므로 진행 중에는 아무것도 하지 않는다
             if (biz.remainingQuarters > 0) continue;
 
+            // 회사를 못 찾으면(이름이 바뀌었거나 목록에서 빠졌거나) 판정 자체를 건너뛴다
+            // 예전에는 이 경우가 실패 처리로 흘러들어가서, 있지도 않은 회사의 실패 뉴스가 떴다
+            if (stock == null)
+            {
+                activeBusinesses.RemoveAt(i);
+                continue;
+            }
+
+            int revenueBefore = stock.runtimeRevenue;
+
             // 사업 완료 판정 — 성공은 크게, 실패는 작게 (한 번 실패로 회사가 죽지 않도록)
             bool success = Random.Range(0, 100) < biz.successRate;
-            if (success && stock != null)
+            if (success)
             {
                 // 사업이 올리는 것은 순수입이 아니라 평소 매출이다 — 성공하면 장사 규모 자체가 커진다
                 stock.runtimeRevenue += biz.revenueBoost;
                 stock.runtimeAsset += biz.assetBoost;
-                AddNotice($"[사업 성공] {biz.successNews}");
+
+                // 문구만 띄우면 "그래서 얼마가 달라졌는데?"를 알 수 없다 — 매출이 얼마에서 얼마로 갔는지 숫자로 보여준다
+                AddNotice($"[사업 성공] {stock.StockName} · {biz.projectName}\n" +
+                          $"    {biz.successNews}\n" +
+                          $"    매출 {UIFormat.Gold(revenueBefore)} → {UIFormat.Gold(stock.runtimeRevenue)} (+{UIFormat.Gold(biz.revenueBoost)})" +
+                          (biz.assetBoost > 0 ? $" · 금고 +{UIFormat.Gold(biz.assetBoost)}" : ""));
+                quarterChangeReasons[stock.StockName] = $"{biz.projectName} 성공";
             }
             else
             {
                 // 실패: 투자금은 이미 날아갔고, 평소 매출도 소폭 내려간다
-                if (stock != null)
-                    stock.runtimeRevenue -= biz.revenueDrop;
-                AddNotice($"[사업 실패] {biz.failNews}");
+                stock.runtimeRevenue -= biz.revenueDrop;
+
+                AddNotice($"[사업 실패] {stock.StockName} · {biz.projectName}\n" +
+                          $"    {biz.failNews}\n" +
+                          $"    매출 {UIFormat.Gold(revenueBefore)} → {UIFormat.Gold(stock.runtimeRevenue)} (-{UIFormat.Gold(biz.revenueDrop)})" +
+                          $" · 투자금 {UIFormat.Gold(biz.investmentCost)} 회수 실패");
+                quarterChangeReasons[stock.StockName] = $"{biz.projectName} 실패";
             }
 
             activeBusinesses.RemoveAt(i);
@@ -1115,6 +1157,7 @@ public class GameManager : MonoBehaviour
             stockName = stock.StockName,
             remainingQuarters = quarters,
             totalQuarters = quarters,
+            startedQuarter = CurrentQuarter,
             investmentCost = picked.investmentCost,
             successRate = picked.successRate,
             revenueBoost = picked.revenueBoost,
@@ -1123,7 +1166,28 @@ public class GameManager : MonoBehaviour
             successNews = picked.successNews,
             failNews = picked.failNews,
         });
-        AddNotice($"[신사업] {picked.startNews}");
+
+        // 착수 문구 한 줄만 띄우면 어느 회사가 무슨 사업을 언제까지 하는지 알 수 없다.
+        // 여기서 회사·사업명·기간·성공확률·성패 시 효과를 한꺼번에 보여줘야
+        // 몇 분기 뒤 실적이 튀었을 때 "아, 그때 그 사업 때문이구나"로 이어진다
+        AddNotice($"[신사업] {stock.StockName} · {picked.projectName}\n" +
+                  $"    {picked.startNews}\n" +
+                  $"    투자 {UIFormat.Gold(picked.investmentCost)} · {quarters}분기 뒤({CurrentQuarter + quarters}분기) 결과 발표 · 성공 확률 {picked.successRate}%\n" +
+                  $"    성공하면 매출 +{UIFormat.Gold(picked.revenueBoost)} / 실패하면 매출 -{UIFormat.Gold(picked.revenueDrop)}");
+    }
+
+    // 이번 분기에 막 시작한 사업 말고, 예전부터 굴러가고 있는 사업을 분기 리포트에 다시 알려준다
+    // 결과가 나오는 분기에만 사업 이야기가 보이면 그 사이 분기에는 존재 자체를 잊게 된다
+    void ReportOngoingBusinesses()
+    {
+        foreach (ActiveBusiness biz in activeBusinesses)
+        {
+            if (biz.startedQuarter == CurrentQuarter) continue; // 방금 착수한 건 위에서 이미 알렸다
+
+            int resultQuarter = CurrentQuarter + biz.remainingQuarters;
+            AddNotice($"[진행 중] {biz.stockName} · {biz.projectName}\n" +
+                      $"    {biz.totalQuarters}분기 중 {biz.remainingQuarters}분기 남음 → {resultQuarter}분기에 결과 발표 (성공 확률 {biz.successRate}%)");
+        }
     }
 
     // ── 금고 · 부도 · 상장폐지 ─────────────────────────
@@ -1252,14 +1316,112 @@ public class GameManager : MonoBehaviour
             int previous = stock.lastQuarterIncome;
             stock.lastQuarterIncome = stock.income;
 
+            // 이유 판정에 쓸 "지난 분기 배율 → 이번 분기 배율"을 확정한다
+            // continue로 빠지는 회사도 배율은 갱신해둬야, 다음 분기 비교가 어긋나지 않는다
+            float previousModifier = lastQuarterEraModifier.TryGetValue(stock.StockName, out float saved) ? saved : 1.0f;
+            float currentModifier = GetEraRevenueModifier(stock);
+            lastQuarterEraModifier[stock.StockName] = currentModifier;
+
+            // 매출도 같은 규칙으로 기억해둔다 — 기록이 없으면 이번 매출을 그대로 써서 "변화 없음"으로 본다
+            int previousRevenue = lastQuarterRevenue.TryGetValue(stock.StockName, out int savedRevenue)
+                ? savedRevenue
+                : stock.runtimeRevenue;
+            lastQuarterRevenue[stock.StockName] = stock.runtimeRevenue;
+
             if (previous <= 0) continue; // 첫 분기는 비교 대상이 없다
 
             float changePercent = (stock.income - previous) * 100f / previous;
             if (Mathf.Abs(changePercent) < QUARTER_REPORT_THRESHOLD) continue; // 변화가 미미하면 공시하지 않는다
 
             string arrow = changePercent > 0 ? "▲" : "▼";
-            AddNotice($"[실적] {stock.StockName} 수입 {arrow}{Mathf.Abs(changePercent):F0}% ({UIFormat.Gold(stock.income)})");
+            AddNotice($"[실적] {stock.StockName} 수입 {arrow}{Mathf.Abs(changePercent):F0}% ({UIFormat.Gold(stock.income)}) — {GetIncomeChangeReason(stock, previousRevenue, previousModifier, currentModifier)}");
         }
+    }
+
+    // 이번 분기 수입이 왜 변했는지 한 줄로 설명한다
+    // 1순위는 사업 성패(평소 매출 자체가 영구히 바뀐 것),
+    // 2순위는 시대 배율의 변화(매출은 그대로인데 배율만 1.2 ↔ 1.0 ↔ 0.8로 옮겨간 것)
+    string GetIncomeChangeReason(Stock stock, int previousRevenue, float previousModifier, float currentModifier)
+    {
+        // 수입 = round(매출 × 시대배율) − 운영비 다. 지난 분기와 빼면 운영비는 상쇄되고 "매출 × 배율"만 남는다.
+        // 덕분에 변화를 두 몫으로 정확히 쪼갤 수 있다 (둘을 더하면 실제 변화와 일치한다)
+        //   시대 몫 = 지난 매출 × (이번 배율 − 지난 배율)   ← 매출은 지난 분기 그대로 두고 배율만 바꿔봤을 때
+        //   사업 몫 = (이번 매출 − 지난 매출) × 이번 배율   ← 배율은 이번 분기로 두고 매출만 바꿔봤을 때
+        float eraDelta = previousRevenue * (currentModifier - previousModifier);
+        float businessDelta = (stock.runtimeRevenue - previousRevenue) * currentModifier;
+
+        // 사업 쪽 문구는 ResolveBusinesses가 남겨둔 "{사업명} 성공/실패"를 그대로 쓴다
+        bool hasBusiness = quarterChangeReasons.TryGetValue(stock.StockName, out string businessReason)
+                           && Mathf.Abs(businessDelta) >= 1f;
+        bool hasEra = Mathf.Abs(eraDelta) >= 1f;
+
+        if (!hasEra && !hasBusiness) return DescribeSteadyEra(currentModifier);
+        if (!hasEra) return businessReason;
+        if (!hasBusiness) return DescribeEraShift(previousModifier, currentModifier);
+
+        // 둘 다 움직인 분기 — 기여분이 큰 쪽을 주 원인으로 앞에 세운다.
+        // 예전에는 사업 결과가 있으면 무조건 사업을 이유로 적어서, 시대 수혜로 수입이 3배가 된 분기에도
+        // "사업 실패"만 떠서 화면 숫자와 정반대로 읽혔다
+        bool eraIsBigger = Mathf.Abs(eraDelta) >= Mathf.Abs(businessDelta);
+        string main = eraIsBigger ? ShortEraPhrase(previousModifier, currentModifier) : businessReason;
+        string sub = eraIsBigger ? ShortBusinessPhrase(businessReason) : ShortEraPhrase(previousModifier, currentModifier);
+
+        // 방향이 같으면 서로 밀어준 것이고, 다르면 한쪽이 다른 쪽을 깎아먹은 것이다
+        bool sameDirection = (eraDelta > 0f) == (businessDelta > 0f);
+        return sameDirection ? $"{main} + {sub}" : $"{main} ({WithRoParticle(sub)} 일부 상쇄)";
+    }
+
+    // 시대 배율이 움직인 방향을 문장으로 — 시대가 유일한 원인일 때 쓴다
+    string DescribeEraShift(float previousModifier, float currentModifier)
+    {
+        string eraName = currentEra != null ? currentEra.eraName : "시대";
+
+        if (currentModifier > previousModifier)
+            return currentModifier > 1.0f ? $"{eraName} 수혜를 받기 시작" : "시대의 타격에서 벗어남";
+
+        return currentModifier < 1.0f ? $"{eraName} 타격을 받기 시작" : "시대의 수혜가 끝남";
+    }
+
+    // 사업과 나란히 놓을 때 쓰는 짧은 형태 — 한 줄에 둘이 들어가므로 문장이 아니라 명사로 끊는다
+    // 수혜·타격이 "끝나는" 쪽은 현재 시대가 원인이 아니므로(이미 다른 시대이거나 시대 없음) 이름을 붙이지 않는다
+    string ShortEraPhrase(float previousModifier, float currentModifier)
+    {
+        string eraName = currentEra != null ? currentEra.eraName : "시대";
+
+        if (currentModifier > previousModifier)
+            return currentModifier > 1.0f ? $"{eraName} 수혜" : "시대 타격 해소";
+
+        return currentModifier < 1.0f ? $"{eraName} 타격" : "시대 수혜 종료";
+    }
+
+    // 배율이 그대로인 분기 — 변화를 만든 것이 아니라 계속 걸려 있는 상태를 알린다
+    string DescribeSteadyEra(float currentModifier)
+    {
+        string eraName = currentEra != null ? currentEra.eraName : "시대";
+
+        if (currentModifier > 1.0f) return $"{eraName} 수혜가 이어지는 중";
+        if (currentModifier < 1.0f) return $"{eraName} 타격이 이어지는 중";
+        return "장사 규모 변화";
+    }
+
+    // "{사업명} 성공/실패" → "사업 성공 / 사업 실패"
+    // 괄호 안 보조 자리에까지 사업명을 넣으면 줄이 너무 길어진다. 사업명은 같은 팝업의 [사업 실패] 줄에 이미 있다
+    static string ShortBusinessPhrase(string businessReason)
+    {
+        return businessReason != null && businessReason.EndsWith("실패") ? "사업 실패" : "사업 성공";
+    }
+
+    // 한국어 조사 "로 / 으로"를 앞 글자의 받침에 맞춰 고른다 (실패 → 실패로, 성공 → 성공으로)
+    // 받침이 없거나 받침이 ㄹ이면 "로", 그 밖에는 "으로"
+    static string WithRoParticle(string word)
+    {
+        if (string.IsNullOrEmpty(word)) return word;
+
+        char last = word[word.Length - 1];
+        if (last < '가' || last > '힣') return word + "로"; // 한글이 아니면 그냥 붙인다
+
+        int finalConsonant = (last - '가') % 28; // 0이면 받침 없음, 8이면 받침 ㄹ
+        return word + (finalConsonant == 0 || finalConsonant == 8 ? "로" : "으로");
     }
 
     // 목표 주가 — 회사 실적이 게임 시작 시점보다 얼마나 나아졌는지로 계산한다

@@ -41,6 +41,18 @@ public class DetailPanel : MonoBehaviour
     public LineChart lineChart;  // 주가(Serie 0) + 거래량(Serie 1) 복합 차트
     public LineChart priceChart; // DrawPriceChart 전용 단일 차트
 
+    [Header("그래프 탭 잠금")]
+    // 주가 기록이 GameManager.HISTORY_LENGTH일치 쌓여야 선이 제대로 그려진다.
+    // 그 전에는 탭을 눌러봐야 점 몇 개뿐이라, 아예 버튼을 잠그고 며칠 남았는지 알려준다
+    public Button graphTabButton;                // 그래프 탭 버튼 (잠금 대상)
+    public TextMeshProUGUI graphTabLabel;        // 그래프 탭 버튼 글자 (잠금 문구 표시)
+
+    // 그래프 탭이 열리는 날 — 히스토리가 가득 차는 날과 같게 맞춰둔다
+    public static int GraphUnlockDay => GameManager.HISTORY_LENGTH;
+
+    // 지금 그래프를 볼 수 있는지
+    public static bool IsGraphUnlocked => GameManager.Instance.currentDay >= GraphUnlockDay;
+
     [Header("연결")]
     public OrderPanel orderPanel;  // 구매/판매 수량 확인 패널 참조
     public Stock currentstock;     // 현재 상세 패널에 표시 중인 주식 데이터
@@ -90,15 +102,41 @@ public class DetailPanel : MonoBehaviour
         if (ActiveBusinessText != null)
             ActiveBusinessText.text = GetActiveBusinessStatus(stock);
 
+        RefreshGraphTabLock();
         RefreshHistoryChart(stock);
     }
 
-    // 이 회사가 지금 진행 중인 사업이 있으면 진행률과 함께, 없으면 안내 문구를 반환
+    // 그래프 탭 버튼을 날짜에 따라 잠그거나 푼다 — 상세 패널을 열 때마다 호출된다
+    void RefreshGraphTabLock()
+    {
+        bool unlocked = IsGraphUnlocked;
+
+        if (graphTabButton != null)
+            graphTabButton.interactable = unlocked; // 잠기면 눌리지 않고 회색으로 보인다
+
+        if (graphTabLabel != null)
+        {
+            int daysLeft = GraphUnlockDay - GameManager.Instance.currentDay;
+            graphTabLabel.text = unlocked ? "그래프" : $"그래프 (D-{daysLeft})";
+        }
+
+        // 잠긴 상태로 그래프 탭이 열려 있으면(예: 잠금 전에 열어둔 화면) 기본 정보 탭으로 되돌린다
+        if (!unlocked && GraphPanel != null && GraphPanel.gameObject.activeSelf)
+            OnDetailInfoClick();
+    }
+
+    // 이 회사가 지금 진행 중인 사업이 있으면 진행률·성공확률·성패 시 효과까지, 없으면 안내 문구를 반환
+    // 결과가 나온 분기에만 사업이 보이면 "왜 갑자기 실적이 튀었지?"가 되므로,
+    // 진행 중일 때부터 무엇이 걸려 있는지 미리 읽을 수 있게 한다
     string GetActiveBusinessStatus(Stock stock)
     {
         var biz = GameManager.Instance.activeBusinesses.Find(b => b.stockName == stock.StockName);
         if (biz == null) return "진행 중인 사업 없음";
-        return $"진행 중인 사업: {biz.projectName} ({biz.totalQuarters}분기 중 {biz.remainingQuarters}분기 남음)";
+
+        int resultQuarter = GameManager.Instance.CurrentQuarter + biz.remainingQuarters;
+        return $"진행 중인 사업: {biz.projectName}\n" +
+               $"{biz.totalQuarters}분기 중 {biz.remainingQuarters}분기 남음 → {resultQuarter}분기에 결과 발표 (성공 확률 {biz.successRate}%)\n" +
+               $"성공하면 매출 +{UIFormat.Gold(biz.revenueBoost)} / 실패하면 매출 -{UIFormat.Gold(biz.revenueDrop)}";
     }
 
     // 최근 주가·거래량 히스토리를 복합 차트에 반영
@@ -191,8 +229,16 @@ public class DetailPanel : MonoBehaviour
     }
 
     // 그래프 탭 버튼 클릭 시 그래프 패널만 활성화
+    // 버튼을 잠가두긴 했지만, 다른 곳에서 코드로 부를 수도 있으므로 여기서도 한 번 더 막는다
     public void OnGraphClick()
     {
+        if (!IsGraphUnlocked)
+        {
+            int daysLeft = GraphUnlockDay - GameManager.Instance.currentDay;
+            UIManager.instance.NoticeGold($"주가 그래프는 {GraphUnlockDay}일차부터 볼 수 있습니다. ({daysLeft}일 남음)");
+            return;
+        }
+
         HideAllPanels();
         GraphPanel.gameObject.SetActive(true);
     }
