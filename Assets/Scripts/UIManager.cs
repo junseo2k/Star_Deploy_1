@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     {
         Era era = GameManager.Instance.currentEra;
         string eraName = era != null ? era.eraName : "안정기";
-        EraText.text = $"<b>현재 시대 : \n<size=150%>{eraName}</size></b>";
+        EraText.text = $"<b>현재 시대 : \n<size=130%>{eraName}</size></b>";
     }
 
     // 보유 주식 평가금액 + 현재 골드 = 총 자산
