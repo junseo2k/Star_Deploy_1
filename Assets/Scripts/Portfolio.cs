@@ -13,7 +13,7 @@ public static class Portfolio
         public float avgPurchasePrice;  // 평균 매수 단가
     }
 
-    private static readonly Dictionary<Stock, Holding> holdings = new Dictionary<Stock, Holding>();
+    private static readonly Dictionary<Stock, Holding> holdings = new();
 
     // 보유 중인(수량 1 이상) 주식 목록 — 총 자산·포트폴리오 화면에서 순회용
     public static IEnumerable<KeyValuePair<Stock, Holding>> All => holdings;
@@ -94,7 +94,7 @@ public static class Portfolio
     {
         if (!holdings.TryGetValue(stock, out Holding h))
         {
-            h = new Holding();
+            h = new();
             holdings[stock] = h;
         }
         return h;

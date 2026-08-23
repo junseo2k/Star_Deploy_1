@@ -84,12 +84,12 @@ public class QuarterReportPanel : MonoBehaviour
 
     static string BuildBody(List<string> lines)
     {
-        List<string> remaining = new List<string>(lines); // 어느 묶음에도 안 들어간 줄을 추리기 위한 사본
-        List<string> result = new List<string>();
+        List<string> remaining = new(lines); // 어느 묶음에도 안 들어간 줄을 추리기 위한 사본
+        List<string> result = new();
 
         foreach (Section section in Sections)
         {
-            List<string> matched = new List<string>();
+            List<string> matched = new();
             for (int i = remaining.Count - 1; i >= 0; i--)
             {
                 if (!StartsWithAny(remaining[i], section.prefixes)) continue;

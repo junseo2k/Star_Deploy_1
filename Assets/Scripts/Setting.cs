@@ -67,8 +67,8 @@ public class Setting : MonoBehaviour
         AudioListener.volume = saved / 100f; // 슬라이더 0~100 → AudioListener 0~1 변환
 
         // 지원 해상도 목록 구성 (주사율만 다른 중복 항목 제거)
-        List<string> options = new List<string>();
-        resolutions = new List<Resolution>();
+        List<string> options = new();
+        resolutions = new();
         string last = "";
         foreach (Resolution res in Screen.resolutions)
         {

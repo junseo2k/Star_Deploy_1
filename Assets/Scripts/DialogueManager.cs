@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.InputSystem; // 이거 추가
+using UnityEngine.InputSystem;
 
 // 대화 한 줄을 담는 데이터 클래스 — 화자 이름과 대화 텍스트로 구성
 [System.Serializable]

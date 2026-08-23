@@ -12,14 +12,12 @@ public class SidebarTabManager : MonoBehaviour
         public Sprite darkSprite;     // 비활성 이미지
         public Sprite lightSprite;    // 활성(밝은) 이미지
         public GameObject indicatorBar; // 선택 시 보이는 왼쪽 세로 바 (예: SideHomeBar)
-        public ScreenType screenType; // 추가: 이 탭이 실제로 열어야 하는 화면
+        public ScreenType screenType;   // 이 탭이 실제로 열어야 하는 화면
     }
 
     public NavTab[] tabs;
     public GameObject stockDetailPanel; // DetailPanel의 DetailwithPanel 연결
     public enum ScreenType { Home, News, Stock, Portfolio }
-
-
 
     void Start()
     {
@@ -28,38 +26,38 @@ public class SidebarTabManager : MonoBehaviour
 
     // 버튼 OnClick에 인덱스 전달해서 연결 (0=홈, 1=시장, 2=종목, 3=자산, 4=경쟁자들)
     public void OpenTab(int index)
-{
-    for (int i = 0; i < tabs.Length; i++)
     {
-        bool isSelected = (i == index);
-        if (tabs[i].panel != null) tabs[i].panel.SetActive(isSelected);
-        if (tabs[i].icon != null) tabs[i].icon.sprite = isSelected ? tabs[i].lightSprite : tabs[i].darkSprite;
-        if (tabs[i].indicatorBar != null) tabs[i].indicatorBar.SetActive(isSelected);
-    }
+        for (int i = 0; i < tabs.Length; i++)
+        {
+            bool isSelected = (i == index);
+            if (tabs[i].panel != null) tabs[i].panel.SetActive(isSelected);
+            if (tabs[i].icon != null) tabs[i].icon.sprite = isSelected ? tabs[i].lightSprite : tabs[i].darkSprite;
+            if (tabs[i].indicatorBar != null) tabs[i].indicatorBar.SetActive(isSelected);
+        }
 
-    switch (tabs[index].screenType)
-    {
-        case ScreenType.Home:
-            UIManager.instance.OpenScreen(UIManager.instance.EntirePanel);
-            break;
-        case ScreenType.News:
-            UIManager.instance.OpenNewsPanel();
-            break;
-        case ScreenType.Stock:
-            UIManager.instance.OpenScreen(UIManager.instance.StockPanel);
-            break;
-        case ScreenType.Portfolio:
-            UIManager.instance.OpenPortfolioPanel();
-            break;
+        switch (tabs[index].screenType)
+        {
+            case ScreenType.Home:
+                UIManager.instance.OpenScreen(UIManager.instance.EntirePanel);
+                break;
+            case ScreenType.News:
+                UIManager.instance.OpenNewsPanel();
+                break;
+            case ScreenType.Stock:
+                UIManager.instance.OpenScreen(UIManager.instance.StockPanel);
+                break;
+            case ScreenType.Portfolio:
+                UIManager.instance.OpenPortfolioPanel();
+                break;
+        }
     }
-}
 
     public void HideAllTabs()
-{
-    for (int i = 0; i < tabs.Length; i++)
     {
-        if (tabs[i].icon != null) tabs[i].icon.sprite = tabs[i].darkSprite;
-        if (tabs[i].indicatorBar != null) tabs[i].indicatorBar.SetActive(false);
+        for (int i = 0; i < tabs.Length; i++)
+        {
+            if (tabs[i].icon != null) tabs[i].icon.sprite = tabs[i].darkSprite;
+            if (tabs[i].indicatorBar != null) tabs[i].indicatorBar.SetActive(false);
+        }
     }
-}
 }

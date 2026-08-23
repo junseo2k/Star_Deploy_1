@@ -41,13 +41,17 @@ public class Stock : ScriptableObject
     }
     public CompanyType companyType;
 
-    // 성향 — 번 돈을 어디에 쓰는가
-    public enum PayoutStyle
+    // 성격 — 번 돈을 어디에 쓰는가. 평소 행동의 90%를 여기서 정한다 (기획 문서 "체질 — 성격" 참고)
+    // 예전 이름은 PayoutStyle(Dividend/Reinvest) 2종이었다. FormerlySerializedAs로 필드 이름을 바꿔도
+    // 기존 40개 종목에 이미 입력된 값(0=Dividend, 1=Reinvest)이 그대로 DividendLover/BusinessManiac으로 이어진다
+    public enum Personality
     {
-        Dividend, // 배당형: 주주에게 나눠준다. 갖고만 있어도 돈이 들어온다
-        Reinvest  // 재투자형: 다음 사업에 넣는다. 배당은 없지만 크게 성장할 수 있다
+        DividendLover,  // 배당 성애자: 배당을 꾸준히 챙긴다. 사업엔 소극적
+        BusinessManiac, // 사업 미치광이: 번 돈을 계속 새 사업에 쏟는다. 금고가 항상 얇다
+        VaultKeeper     // 금고 지기: 배당도 사업도 최소화하고 금고에 현금을 쌓아둔다
     }
-    public PayoutStyle payoutStyle;
+    [UnityEngine.Serialization.FormerlySerializedAs("payoutStyle")]
+    public Personality personality;
 
     // ── 활동 — 이 회사가 벌일 수 있는 사업들 ──
     // 예전엔 사업(BusinessProject) 쪽이 회사 하나를 가리켰다. 그러면 회사마다 사업이 몇 개든
@@ -138,7 +142,7 @@ public class Stock : ScriptableObject
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
     public bool isFavorite;   // 즐겨찾기 상태 (SaveGame에서 저장)
     [System.NonSerialized] // 저장 안 되는 런타임 전용
-    public List<Case> runtimeIssues = new List<Case>();
+    public List<Case> runtimeIssues = new();
     public enum VolatilityType
     {
         Stable,   // 안정형: -1.5% ~ +1.5%
@@ -159,18 +163,20 @@ public class Stock : ScriptableObject
     public float ChangePercent => StockPreviousPrice > 0
         ? (float)(StockCurrentPrice - StockPreviousPrice) / StockPreviousPrice * 100f
         : 0f;
-    public bool hasDividend;   // 배당주 여부 (true면 분기마다 배당 지급)
+    // 배당 여부는 이제 hasDividend 같은 별도 플래그가 아니라 personality == DividendLover 하나로 정해진다
+    // (예전엔 종목 40개 중 이 플래그를 실제로 켠 게 1개뿐이라 배당 시스템이 사실상 죽어 있었다)
 
     // 배당성향 — 이번 분기 수입 중 주주에게 나눠주는 비율 (예: 0.3 = 수입의 30%)
     // 주가 기준이 아니라 수입 기준이다. 주가가 올랐다고 배당이 따라 오르면 안 되기 때문
+    // 0으로 비워두면 GameBalance.DIVIDEND_RATE_DEFAULT를 대신 쓴다 — 배당 성애자 40개를 일일이 채우지 않아도 되게 하는 장치
     [Range(0f, 0.6f)]
     public float dividendRate;
 
     // 그래프·NPC 예측에 쓰이는 최근 기록 (GameManager가 매턴 갱신, 저장 대상 아님)
     [System.NonSerialized]
-    public List<float> changePctHistory = new List<float>(); // 변동률 히스토리
+    public List<float> changePctHistory = new(); // 변동률 히스토리
     [System.NonSerialized]
-    public List<int> priceHistory = new List<int>();         // 실제 주가 히스토리
+    public List<int> priceHistory = new();         // 실제 주가 히스토리
     [System.NonSerialized]
-    public List<float> volumeHistory = new List<float>();    // 가짜 거래량 히스토리
+    public List<float> volumeHistory = new();    // 가짜 거래량 히스토리
 }

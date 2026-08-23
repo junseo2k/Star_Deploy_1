@@ -28,7 +28,7 @@ public class DetailPanel : MonoBehaviour
     public TextMeshProUGUI CompanyBadgeText;       // 체질 · 성향 · 소유주 배지
     public TextMeshProUGUI ActiveBusinessText;     // 진행 중인 사업 상태
 
-    private static readonly Color WarningColor = new Color(0.9f, 0.3f, 0.3f); // 금고 마이너스일 때 쓰는 경고 색
+    private static readonly Color WarningColor = new(0.9f, 0.3f, 0.3f); // 금고 마이너스일 때 쓰는 경고 색
 
     [Header("탭 패널")]
     public Transform DetailInfoPanel;  // 기본 정보 탭 패널
@@ -39,16 +39,15 @@ public class DetailPanel : MonoBehaviour
 
     [Header("그래프")]
     public LineChart lineChart;  // 주가(Serie 0) + 거래량(Serie 1) 복합 차트
-    public LineChart priceChart; // DrawPriceChart 전용 단일 차트
 
     [Header("그래프 탭 잠금")]
-    // 주가 기록이 GameManager.HISTORY_LENGTH일치 쌓여야 선이 제대로 그려진다.
+    // 주가 기록이 GameBalance.HISTORY_LENGTH일치 쌓여야 선이 제대로 그려진다.
     // 그 전에는 탭을 눌러봐야 점 몇 개뿐이라, 아예 버튼을 잠그고 며칠 남았는지 알려준다
     public Button graphTabButton;                // 그래프 탭 버튼 (잠금 대상)
     public TextMeshProUGUI graphTabLabel;        // 그래프 탭 버튼 글자 (잠금 문구 표시)
 
     // 그래프 탭이 열리는 날 — 히스토리가 가득 차는 날과 같게 맞춰둔다
-    public static int GraphUnlockDay => GameManager.HISTORY_LENGTH;
+    public static int GraphUnlockDay => GameBalance.HISTORY_LENGTH;
 
     // 지금 그래프를 볼 수 있는지
     public static bool IsGraphUnlocked => GameManager.Instance.currentDay >= GraphUnlockDay;
@@ -97,7 +96,7 @@ public class DetailPanel : MonoBehaviour
 
         // 체질 · 성향 · 소유주 배지 — 기획 1장(정체성)·2장(체질)이 한 줄로 드러나는 자리
         if (CompanyBadgeText != null)
-            CompanyBadgeText.text = $"{UIFormat.CompanyTypeLabel(stock.companyType)} · {UIFormat.PayoutStyleLabel(stock.payoutStyle)} · {UIFormat.OwnerLabel(stock.owner)}";
+            CompanyBadgeText.text = $"{UIFormat.CompanyTypeLabel(stock.companyType)} · {UIFormat.PersonalityLabel(stock.personality)} · {UIFormat.OwnerLabel(stock.owner)}";
 
         if (ActiveBusinessText != null)
             ActiveBusinessText.text = GetActiveBusinessStatus(stock);
@@ -334,30 +333,5 @@ public class DetailPanel : MonoBehaviour
         if (change >= 2f) return "기관이 담고 있습니다.";
         if (change <= -2f) return "개미들이 던지고 있습니다.";
         return "조용한 장세입니다.";
-    }
-
-    // 주가 그래프를 그리고, 오늘 등락에 따라 선 색을 정한다
-    public void DrawPriceChart(List<double> priceHistory, float changePercent)
-    {
-        priceChart.ClearData(); // 이전 데이터 초기화
-
-        Serie serie = priceChart.series.Count > 0
-            ? priceChart.series[0]
-            : priceChart.AddSerie<Line>();
-
-        // 상승(0 이상) → 빨강, 하락 → 파랑
-        Color lineColor = changePercent >= 0f
-            ? new Color(1f, 0.27f, 0.27f)
-            : new Color(0.27f, 0.53f, 1f);
-        serie.lineStyle.color = lineColor; // 선 색
-        serie.itemStyle.color = lineColor; // 점(마커) 색 — 범례 색도 여기서 따라감
-
-        for (int i = 0; i < priceHistory.Count; i++)
-        {
-            priceChart.AddXAxisData(i.ToString());
-            serie.AddData(priceHistory[i]);
-        }
-
-        priceChart.RefreshChart(); // 변경사항 즉시 반영
     }
 }

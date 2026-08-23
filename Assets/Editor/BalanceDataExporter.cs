@@ -71,7 +71,7 @@ public class BalanceDataExporter
 
             sb.AppendLine($"{stock.StockName},{stock.FamilyTag},{stock.IndustryTag}," +
                 $"{stock.StockBasePrice},{stock.volatilityType},{stock.nation}," +
-                $"{stock.companyType},{stock.payoutStyle},{stock.owner}," +
+                $"{stock.companyType},{stock.personality},{stock.owner}," +
                 $"{stock.BaselineRevenue},{stock.operatingCost}," +
                 $"{stock.BaselineIncome},{stock.BaselineAsset},{baseMarketCap},{stock.TotalShare}");
         }

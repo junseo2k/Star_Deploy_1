@@ -25,15 +25,15 @@ public static class TemplateNewsGenerator
         Case generated = ScriptableObject.CreateInstance<Case>();
         generated.CaseName = picked.eventText;
         generated.CaseDescription = picked.eventText;
-        generated.affectedCase = new Stock[] { subject };
+        generated.affectedCase = new[] { subject };
 
-        generated.ChangePriceMin = new int[] { picked.changeMin };
-        generated.ChangePriceMax = new int[] { picked.changeMax };
+        generated.ChangePriceMin = new[] { picked.changeMin };
+        generated.ChangePriceMax = new[] { picked.changeMax };
 
         generated.lastingDay = template.lastingDay;
         generated.lowPercent = template.lowPercent;
         generated.newsType = Case.NewsType.SmallCompanyNews;
 
-        return new GeneratedNews { caseData = generated, isUncertain = picked.isUncertain };
+        return new() { caseData = generated, isUncertain = picked.isUncertain };
     }
 }

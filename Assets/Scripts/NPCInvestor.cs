@@ -24,13 +24,13 @@ public class NPCInvestor : MonoBehaviour
         public Stock stock;  // 보유 중인 주식 에셋
         public int amount;   // 보유 수량
     }
-    public List<StockHolding> holdings = new List<StockHolding>(); // 현재 보유 주식 목록
+    public List<StockHolding> holdings = new(); // 현재 보유 주식 목록
 
     private const int WINDOW_SIZE = 10; // 예측에 사용하는 과거 데이터 윈도우 크기 (일)
 
     private Worker worker; // 모델 추론 실행기
-    private List<(Stock stock, float prediction)> dailyPredictions = new List<(Stock, float)>(); // 이번 턴에 수집한 주식별 예측값
-    private Dictionary<Stock, Queue<float[]>> priceHistories = new Dictionary<Stock, Queue<float[]>>(); // 주식별 입력 이력 큐
+    private readonly List<(Stock stock, float prediction)> dailyPredictions = new(); // 이번 턴에 수집한 주식별 예측값
+    private readonly Dictionary<Stock, Queue<float[]>> priceHistories = new(); // 주식별 입력 이력 큐
 
     // 모델 로드 및 추론 워커 초기화
     void Start()
@@ -59,7 +59,7 @@ public class NPCInvestor : MonoBehaviour
         }
         else if (amount > 0)
         {
-            holdings.Add(new StockHolding { stock = stock, amount = amount });
+            holdings.Add(new() { stock = stock, amount = amount });
         }
     }
 
@@ -68,7 +68,7 @@ public class NPCInvestor : MonoBehaviour
     {
         if (!priceHistories.TryGetValue(stock, out Queue<float[]> history))
         {
-            history = new Queue<float[]>();
+            history = new();
             priceHistories[stock] = history;
         }
 
@@ -110,7 +110,7 @@ public class NPCInvestor : MonoBehaviour
             i++;
         }
 
-        Tensor<float> inputTensor = new Tensor<float>(new TensorShape(1, WINDOW_SIZE, 3), inputData);
+        Tensor<float> inputTensor = new(new TensorShape(1, WINDOW_SIZE, 3), inputData);
         try
         {
             worker.Schedule(inputTensor);

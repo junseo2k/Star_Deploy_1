@@ -43,10 +43,16 @@ public static class UIFormat
         }
     }
 
-    // 성향을 한글 배지 문구로 변환
-    public static string PayoutStyleLabel(Stock.PayoutStyle style)
+    // 성격을 한글 배지 문구로 변환
+    public static string PersonalityLabel(Stock.Personality personality)
     {
-        return style == Stock.PayoutStyle.Reinvest ? "재투자형" : "배당형";
+        switch (personality)
+        {
+            case Stock.Personality.DividendLover: return "배당 성애자";
+            case Stock.Personality.BusinessManiac: return "사업 미치광이";
+            case Stock.Personality.VaultKeeper: return "금고 지기";
+            default: return "";
+        }
     }
 
     // 소유주를 한글 배지 문구로 변환

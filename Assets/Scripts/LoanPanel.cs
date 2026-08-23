@@ -41,9 +41,7 @@ public class LoanPanel : MonoBehaviour
             noticeText.text = "대출 한도를 초과했습니다.";
             return;
         }
-        inputAmount += stepAmount;
-        inputAmountText.text = $"입력 금액: {inputAmount} G";
-        noticeText.text = "";
+        SetInputAmount(inputAmount + stepAmount);
     }
 
     // - 버튼 클릭 시 입력 금액 감소
@@ -54,7 +52,13 @@ public class LoanPanel : MonoBehaviour
             noticeText.text = "0보다 작을 수 없습니다.";
             return;
         }
-        inputAmount -= stepAmount;
+        SetInputAmount(inputAmount - stepAmount);
+    }
+
+    // 입력 금액을 바꾸고 텍스트·안내 문구를 함께 갱신 — +/- 버튼이 공유하는 로직
+    private void SetInputAmount(int amount)
+    {
+        inputAmount = amount;
         inputAmountText.text = $"입력 금액: {inputAmount} G";
         noticeText.text = "";
     }
