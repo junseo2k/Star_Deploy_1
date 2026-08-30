@@ -1,0 +1,203 @@
+{
+  "sourceOfTruth": "ChatGPT Image 2026년 8월 23일 오전 01_29_53.png",
+  "sourceResolution": [
+    1672,
+    941
+  ],
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "canvasScaler": {
+    "uiScaleMode": "Scale With Screen Size",
+    "match": 0.5
+  },
+  "legacyUIReuse": false,
+  "screen": {
+    "sidebar": {
+      "x": 0,
+      "y": 0,
+      "width": 142,
+      "height": 1080
+    },
+    "sidebarActive": {
+      "x": 0,
+      "y": 345,
+      "width": 142,
+      "height": 89
+    },
+    "sidebarSeparator": {
+      "x": 140,
+      "y": 0,
+      "width": 1,
+      "height": 1080
+    },
+    "title": {
+      "x": 241,
+      "y": 86,
+      "width": 280,
+      "height": 55
+    },
+    "subtitle": {
+      "x": 241,
+      "y": 135,
+      "width": 390,
+      "height": 26
+    },
+    "statusBar": {
+      "x": 920,
+      "y": 42,
+      "width": 790,
+      "height": 74
+    },
+    "filters": {
+      "x": 241,
+      "y": 165,
+      "height": 51,
+      "gap": 11
+    },
+    "grid": {
+      "x": 241,
+      "y": 250,
+      "columns": 2,
+      "cardWidth": 779,
+      "cardHeight": 165,
+      "columnGap": 23,
+      "rowGap": 18
+    },
+    "scrollbar": {
+      "x": 1847,
+      "y": 248,
+      "width": 7,
+      "height": 722
+    }
+  },
+  "card": {
+    "logoSlot": {
+      "x": 16,
+      "y": 18,
+      "width": 118,
+      "height": 124
+    },
+    "companyName": {
+      "x": 144,
+      "y": 34,
+      "width": 300,
+      "height": 34
+    },
+    "nationIndustry": {
+      "x": 144,
+      "y": 75,
+      "width": 290,
+      "height": 27
+    },
+    "statusDot": {
+      "x": 147,
+      "y": 116,
+      "width": 13,
+      "height": 13
+    },
+    "statusText": {
+      "x": 167,
+      "y": 109,
+      "width": 230,
+      "height": 27
+    },
+    "chart": {
+      "x": 427,
+      "y": 38,
+      "width": 185,
+      "height": 90
+    },
+    "price": {
+      "x": 650,
+      "y": 31,
+      "width": 96,
+      "height": 34
+    },
+    "change": {
+      "x": 650,
+      "y": 86,
+      "width": 96,
+      "height": 34
+    }
+  },
+  "visibleCompanies": [
+    {
+      "row": 0,
+      "column": 0,
+      "name": "윈드시어 매직스",
+      "nation": "알브레이",
+      "industry": "마법공학",
+      "logoResource": "01-windshire-magics"
+    },
+    {
+      "row": 0,
+      "column": 1,
+      "name": "드래곤 금고",
+      "nation": "바이브레스",
+      "industry": "금융",
+      "logoResource": "02-dragon-vault"
+    },
+    {
+      "row": 1,
+      "column": 0,
+      "name": "아이언하트 공업",
+      "nation": "벨리르",
+      "industry": "방산",
+      "logoResource": "03-ironheart-industries"
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "name": "블레이즈마인 광산",
+      "nation": "벨리르",
+      "industry": "광업",
+      "logoResource": "04-blazemine-mining"
+    },
+    {
+      "row": 2,
+      "column": 0,
+      "name": "아우렐리온 캐피탈",
+      "nation": "마노사",
+      "industry": "금융",
+      "logoResource": "05-aurelion-capital"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "name": "브루트스틸 철강",
+      "nation": "원 오르쿠스",
+      "industry": "광업",
+      "logoResource": "06-brutesteel"
+    },
+    {
+      "row": 3,
+      "column": 0,
+      "name": "에이더니얼 자산관리",
+      "nation": "바이브레스",
+      "industry": "금융",
+      "logoResource": "07-aethernial-asset-management"
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "name": "코타 상업은행",
+      "nation": "마노사",
+      "industry": "금융",
+      "logoResource": "08-kota-commercial-bank"
+    }
+  ],
+  "colors": {
+    "background": "#070909",
+    "sidebar": "#29373B",
+    "sidebarActive": "#1C484E",
+    "gold": "#D5A936",
+    "card": "#F8F5EE",
+    "ink": "#1E2422",
+    "muted": "#777A75",
+    "up": "#D64D43",
+    "down": "#3477B4",
+    "flat": "#8B8D89"
+  }
+}

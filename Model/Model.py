@@ -6,28 +6,56 @@ random.seed(42)
 np.random.seed(42)
 tf.random.set_seed(42)
 df = pd.read_csv("stock_history.csv") #csv 파일을 표로 읽음. df는 데이터프래임
-# 1) 뉴스 영향 여부에 따라 변동률 차이가 있는가?
-print(df.groupby("isAffectedByNews")["priceChangePct"].describe())
 
-# 2) 시대 효과에 따라 변동률 차이가 있는가?
+# 1) 뉴스 종류(없음/소형/대형)에 따라 변동률 차이가 있는가?
+# 예전엔 isAffectedByNews(켜짐/꺼짐) 하나만 봤는데, 이제 newsCategory로 종류가 나뉜다
+print(df.groupby("newsCategory")["priceChangePct"].describe())
+
+# 2) 시대 효과에 따라 변동률 차이가 있는가? (eraEffect는 -1 타격/0 무관/1 수혜, 예전과 동일)
 print(df.groupby("eraEffect")["priceChangePct"].describe())
 
 # 3) "어제 변동률"과 "오늘 변동률"이 상관관계가 있는가? (자기상관)
 df_sorted = df.sort_values(["stockName", "day"])
 df_sorted["prevChangePct"] = df_sorted.groupby("stockName")["priceChangePct"].shift(1)
 print(df_sorted[["priceChangePct", "prevChangePct"]].corr())
-# 주식 하나 선택 (실제 게임 주식 이름으로 바꿔요)
+
 # 슬라이딩 윈도우로 X, y 만들기
-window_size = 10#과거 10일치를 보고 내일을 예측
+window_size = 10 #과거 10일치를 보고 내일을 예측
+
+# NPCInvestor.cs가 텐서에 값을 넣는 순서와 반드시 똑같아야 함 (정규화 가격은 맨 앞에 따로 붙는다)
+FEATURE_COLUMNS = [
+    "priceChangePct",
+    "newsCategory",
+    "isForeshadowPending",
+    "daysSinceLastSmallNews",
+    "daysSinceLastBigNews",
+    "eraRatePct",
+    "volatilityType",
+    "quarterDayIndex",
+    "isQuarterEndToday",
+    "hasActiveBusiness",
+    "personality",
+]
+N_FEATURES = len(FEATURE_COLUMNS) + 1 #+1 = 정규화된 가격. 예전엔 3개(가격, 변동률, 뉴스여부)였던 게 12개로 늘어남
+
 # X, y를 한 리스트에 다 모으는 대신, 처음부터 train/test로 나눠 담기
 X_train, y_train = [], []
 X_test, y_test = [], []
+news_category_test = [] #테스트셋 샘플별 뉴스 상태를 따로 기록 — 나중에 카테고리별 정확도 확인용
 
 for stock_name in df["stockName"].unique():
     stock_df = df[df["stockName"] == stock_name].sort_values("day")
     prices = stock_df["currentPrice"].values
     change_pct = stock_df["priceChangePct"].values
-    is_affected = stock_df["isAffectedByNews"].values
+    news_category = stock_df["newsCategory"].values
+
+    # 나머지 feature들은 값의 범위가 제각각이라(예: daysSinceLastBigNews는 0~50대, quarterDayIndex는 0~9)
+    # NPCInvestor.cs와 똑같은 비율로 나눠서 스케일을 맞춰준다
+    features = stock_df[FEATURE_COLUMNS].copy()
+    features["daysSinceLastSmallNews"] /= 10.0
+    features["daysSinceLastBigNews"] /= 50.0
+    features["quarterDayIndex"] /= 10.0
+    features = features.values
 
     n = len(prices)
     train_end = int(n * 0.8)
@@ -43,7 +71,7 @@ for stock_name in df["stockName"].unique():
     for i in range(window_size, len(prices_normalized)):
         window = []
         for j in range(i - window_size, i):
-            window.append([prices_normalized[j], change_pct[j], is_affected[j]])
+            window.append([prices_normalized[j], *features[j]]) #가격 정규화값 + feature 11개 = 총 12개
 
         # ★ 여기서 바로 train/test로 분배
         if i < train_end:
@@ -52,11 +80,13 @@ for stock_name in df["stockName"].unique():
         else:
             X_test.append(window)
             y_test.append(change_pct[i])
+            news_category_test.append(news_category[i])
 
 x_train = np.array(X_train)
 y_train = np.array(y_train)
 x_test = np.array(X_test)
 y_test = np.array(y_test)
+news_category_test = np.array(news_category_test)
 
 print(f"훈련: {len(x_train)}개 / 테스트: {len(x_test)}개")
 model = tf.keras.models.Sequential()
@@ -65,12 +95,12 @@ model.add(tf.keras.layers.Dropout(rate=0.25))   # LSTM "뒤"로 이동
 model.add(tf.keras.layers.LSTM(units=32))
 model.add(tf.keras.layers.Dropout(rate=0.25))
 model.add(tf.keras.layers.Dense(units=1, activation="linear"))
-model.compile( 
+model.compile(
     loss = "mse",#평균 제곱 오차로, 예측값과 실제값 차이를 제곱해서 평균냄.
     optimizer=tf.keras.optimizers.Adam(), #학습 방향을 조정하는 알고리즘으로, Adam이 가장 많이 쓰이는 옵티마이저
     metrics = ["mae"] #평균 절대 오차. 학습 중 얼마나 틀리는지 보여주는 지표
 )
-model.build(input_shape=(None, window_size, 3)) #모델에 입력 형태 알려주기. 샘플 수는 None으로, 상관 없음. 특성은 3개
+model.build(input_shape=(None, window_size, N_FEATURES)) #모델에 입력 형태 알려주기. 특성 개수가 3 → 12로 늘어남
 model.summary()#모델 구조를 표로 출력
 
 callbacks = [
@@ -115,6 +145,17 @@ print(f"예측값 평균: {predicted.mean():.4f}")
 print(f"예측값 최소: {predicted.min():.4f}")
 print(f"예측값 최대: {predicted.max():.4f}")
 print(f"실제 상승 비율: {np.mean(y_test > 0):.4f}")
+
+# 뉴스 상태별 방향 정확도 — 게임 자체가 상승장 편향이라 "뉴스 없음"이 테스트셋 대부분을 차지한다.
+# 그래서 전체 평균만 보면 뉴스 있는 날 모델이 실제로 반응하는지가 묻혀버려서, 카테고리별로 쪼개서 확인한다
+print("\n뉴스 상태별 방향 정확도")
+for category, label in [(0, "뉴스 없음"), (1, "소형 뉴스"), (2, "대형 뉴스")]:
+    mask = news_category_test == category
+    if mask.sum() == 0:
+        continue
+    acc = np.mean(predicted_direction[mask] == actual_direction[mask])
+    print(f"  {label} ({mask.sum()}개): {acc:.4f}")
+
 import tf2onnx
 import onnx
 import os

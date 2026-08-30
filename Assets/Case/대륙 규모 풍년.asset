@@ -18,19 +18,16 @@ MonoBehaviour:
   affectedCase: []
   ChangePriceMin: 
   ChangePriceMax: 
+  chainEffects: []
   CaseImage: {fileID: 0}
-  isBigNews: 0
   lastingDay: 3
   lowPercent:
   - 1
   - 0.55
   - 0.25
-  newsType: 3
-  triggerKey: 
-  triggervalue: 0
+  newsType: 2
+  foreshadowCases: []
   nationPairs: []
-  ChangePriceMinNon: 
-  ChangePriceMaxNon: 
   industryRates:
   - industryTag: Army
     changePriceMin: 0

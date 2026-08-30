@@ -13,7 +13,11 @@ public class BalanceDataExporter
         ExportStocks();
         ExportCases();
         ExportTemplates();
-        Debug.Log("CSV 내보내기 완료! StockBalanceData.csv / CaseBalanceData.csv / TemplateBalanceData.csv 확인하세요.");
+        ExportIndustryRates();
+        ExportBusinesses();
+        ExportEras();
+        Debug.Log("CSV 내보내기 완료! StockBalanceData.csv / CaseBalanceData.csv / TemplateBalanceData.csv / " +
+            "CaseIndustryRates.csv / BusinessBalanceData.csv / EraBalanceData.csv 확인하세요.");
     }
 
     // 필드에 쉼표/따옴표/줄바꿈이 있으면 큰따옴표로 감싸서 CSV가 깨지지 않게 처리
@@ -23,6 +27,32 @@ public class BalanceDataExporter
         if (field.Contains(",") || field.Contains("\"") || field.Contains("\n"))
             return "\"" + field.Replace("\"", "\"\"") + "\"";
         return field;
+    }
+
+    // 문자열 배열을 ";"로 이어붙인 뒤, 안에 쉼표가 섞여 있을 수 있으니 EscapeCsv까지 통과시킨다
+    static string JoinStrings(string[] arr)
+    {
+        if (arr == null || arr.Length == 0) return "";
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (i > 0) s.Append(";");
+            s.Append(arr[i]);
+        }
+        return EscapeCsv(s.ToString());
+    }
+
+    // float 배열(뉴스 감쇠 곡선 lowPercent 등)을 ";"로 이어붙인다
+    static string JoinFloats(float[] arr)
+    {
+        if (arr == null || arr.Length == 0) return "";
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (i > 0) s.Append(";");
+            s.Append(arr[i].ToString("0.###"));
+        }
+        return s.ToString();
     }
 
     // 모든 NewsTemplate 에셋의 이벤트 목록을 한 줄씩 CSV로 기록
@@ -80,11 +110,11 @@ public class BalanceDataExporter
         File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
     }
 
-    // 모든 Case 에셋의 뉴스 정보 + 영향받는 주식별 변동률을 한 줄씩 CSV로 기록
+    // 모든 Case 에셋의 뉴스 정보 + 영향받는 주식별 변동률 + 감쇠 곡선을 한 줄씩 CSV로 기록
     static void ExportCases()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("사건이름,뉴스타입,지속일,영향주식,최소변동률,최대변동률");
+        sb.AppendLine("사건이름,뉴스타입,지속일,영향주식,최소변동률,최대변동률,감쇠곡선");
 
         string[] guids = AssetDatabase.FindAssets("t:Case");
         foreach (string guid in guids)
@@ -93,10 +123,12 @@ public class BalanceDataExporter
             Case c = AssetDatabase.LoadAssetAtPath<Case>(path);
             if (c == null) continue;
 
+            string lowPercentStr = JoinFloats(c.lowPercent);
+
             // 영향받는 주식이 없는 경우 (대형 뉴스처럼 산업군 단위로만 영향받는 경우 등)
             if (c.affectedCase == null || c.affectedCase.Length == 0)
             {
-                sb.AppendLine($"{c.CaseName},{c.newsType},{c.lastingDay},-,-,-");
+                sb.AppendLine($"{c.CaseName},{c.newsType},{c.lastingDay},-,-,-,{lowPercentStr}");
                 continue;
             }
 
@@ -106,11 +138,90 @@ public class BalanceDataExporter
                 string stockName = c.affectedCase[i] != null ? c.affectedCase[i].StockName : "?";
                 int min = (c.ChangePriceMin != null && i < c.ChangePriceMin.Length) ? c.ChangePriceMin[i] : 0;
                 int max = (c.ChangePriceMax != null && i < c.ChangePriceMax.Length) ? c.ChangePriceMax[i] : 0;
-                sb.AppendLine($"{c.CaseName},{c.newsType},{c.lastingDay},{stockName},{min},{max}");
+                sb.AppendLine($"{c.CaseName},{c.newsType},{c.lastingDay},{stockName},{min},{max},{lowPercentStr}");
             }
         }
 
         string savePath = Path.Combine(Application.dataPath, "../CaseBalanceData.csv");
+        File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
+    }
+
+    // 대형 뉴스(BigTriggerNews) 전용 — 산업군별 당사국/비당사국 변동률(industryRates)을 한 줄씩 CSV로 기록
+    // ExportCases()의 영향주식 컬럼은 "-"로만 나오는 대형 뉴스를, 여기서 산업군 단위로 풀어서 보여준다
+    static void ExportIndustryRates()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("사건이름,접경국쌍,산업태그,당사국최소,당사국최대,비당사국최소,비당사국최대");
+
+        string[] guids = AssetDatabase.FindAssets("t:Case");
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            Case c = AssetDatabase.LoadAssetAtPath<Case>(path);
+            if (c == null || c.industryRates == null || c.industryRates.Length == 0) continue;
+
+            string nationPairsStr = JoinStrings(c.nationPairs);
+
+            foreach (var ir in c.industryRates)
+            {
+                sb.AppendLine($"{c.CaseName},{nationPairsStr},{ir.industryTag}," +
+                    $"{ir.changePriceMin},{ir.changePriceMax},{ir.changePriceMinNon},{ir.changePriceMaxNon}");
+            }
+        }
+
+        string savePath = Path.Combine(Application.dataPath, "../CaseIndustryRates.csv");
+        File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
+    }
+
+    // 모든 Stock의 사업 프로젝트(businesses[])를 한 줄씩 CSV로 기록
+    static void ExportBusinesses()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("종목,사업이름,투자비용,기간분기,성공확률,매출증가량,매출감소량,금고증가량,착수문구,성공문구,실패문구");
+
+        string[] guids = AssetDatabase.FindAssets("t:Stock");
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            Stock stock = AssetDatabase.LoadAssetAtPath<Stock>(path);
+            if (stock == null || stock.businesses == null) continue;
+
+            foreach (BusinessProject p in stock.businesses)
+            {
+                if (p == null) continue;
+
+                sb.AppendLine($"{stock.StockName},{p.projectName},{p.investmentCost},{p.durationQuarters}," +
+                    $"{p.successRate},{p.revenueBoost},{p.revenueDrop},{p.assetBoost}," +
+                    $"{EscapeCsv(p.startNews)},{EscapeCsv(p.successNews)},{EscapeCsv(p.failNews)}");
+            }
+        }
+
+        string savePath = Path.Combine(Application.dataPath, "../BusinessBalanceData.csv");
+        File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
+    }
+
+    // 모든 Era 에셋을 한 줄씩 CSV로 기록
+    static void ExportEras()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("시대이름,설명,유망산업,비선호산업,유망배율,비선호배율,힌트뉴스");
+
+        string[] guids = AssetDatabase.FindAssets("t:Era");
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            Era era = AssetDatabase.LoadAssetAtPath<Era>(path);
+            if (era == null) continue;
+
+            string boosted = JoinStrings(era.boostedIndustries);
+            string weakened = JoinStrings(era.weakenedIndustries);
+            string hintNewsName = era.hintNews != null ? era.hintNews.CaseName : "";
+
+            sb.AppendLine($"{era.eraName},{EscapeCsv(era.eraDescription)},{boosted},{weakened}," +
+                $"{era.boostedRate},{era.weakenedRate},{EscapeCsv(hintNewsName)}");
+        }
+
+        string savePath = Path.Combine(Application.dataPath, "../EraBalanceData.csv");
         File.WriteAllText(savePath, sb.ToString(), Encoding.UTF8);
     }
 }

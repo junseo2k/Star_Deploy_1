@@ -51,26 +51,23 @@ public partial class GameManager
             stock.StockCurrentPrice = GameBalance.MIN_STOCK_PRICE;
     }
 
-    // 씬의 모든 NPC에게 오늘 주식 데이터를 전달한 뒤 매매 결정 실행
+    // 씬의 모든 NPC에게 오늘 주식 상태값을 전달한 뒤 매매 결정 실행
     void RunNpcInvestors()
     {
         NPCInvestor[] npcs = FindObjectsByType<NPCInvestor>(FindObjectsSortMode.None);
         if (npcs.Length == 0) return;
 
-        // 뉴스 영향 여부는 NPC마다 같으므로 한 번만 계산해서 재사용
-        Dictionary<Stock, float> newsFlags = new();
+        // 전조 뉴스 여부·종목별 feature는 NPC마다 똑같으므로 한 번만 계산해서 재사용
+        bool foreshadowPending = IsForeshadowPending();
+
+        Dictionary<Stock, StockDailyFeatures> todaysFeatures = new();
         foreach (Stock stock in LiveStocks)
-        {
-            bool isAffected = activeNewsList.Exists(active =>
-                active.caseData.affectedCase != null &&
-                System.Array.Exists(active.caseData.affectedCase, s => s == stock));
-            newsFlags[stock] = isAffected ? 1f : 0f;
-        }
+            todaysFeatures[stock] = GetDailyFeatures(stock, foreshadowPending);
 
         foreach (NPCInvestor npc in npcs)
         {
             foreach (Stock stock in LiveStocks)
-                npc.OnDayPassed(stock, stock.StockChangePrice, newsFlags[stock]);
+                npc.OnDayPassed(stock, todaysFeatures[stock]);
 
             npc.DecideAfterAllPredictions();
         }

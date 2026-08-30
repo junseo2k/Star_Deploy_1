@@ -1,316 +1,316 @@
-﻿사건이름,뉴스타입,지속일,영향주식,최소변동률,최대변동률
-★글램머락 노동자이탈,SmallCompanyNews,2,GlamerRock,-10,-5
-★글램머락 품질조작,SmallCompanyNews,3,GlamerRock,-20,-12
-★글로발 해적습격,SmallCompanyNews,2,GlobalLogistics,-15,-8
-★글림윙 진위논란,SmallCompanyNews,2,GlimWing,-15,-8
-★글림윙 합작컬렉션,SmallCompanyNews,2,GlimWing,5,10
-★드래곤금고 금유출,SmallCompanyNews,3,DragonSafe,-20,-12
-★드래곤금고 대규모인출,SmallCompanyNews,2,DragonSafe,-10,-5
-★드워프트레일 낙석사고,SmallCompanyNews,2,DwarfTrail,-15,-8
-★루트힐 병충해,SmallCompanyNews,2,LootHeel,-15,-8
-★루트힐 희귀약초발견,SmallCompanyNews,2,LootHeel,8,15
-★마나코어 오작동,SmallCompanyNews,2,ManaCore,-15,-8
-★마나코어 히트상품,SmallCompanyNews,2,ManaCore,8,15
-★마나펠 시장위협,SmallCompanyNews,2,ManaPell,-10,-5
-★마노사그레인 창고화재,SmallCompanyNews,2,ManosaGrain,-15,-8
-★마지노 실험실패,SmallCompanyNews,2,MaginoTech,-20,-12
-★마지노 에너지사고,SmallCompanyNews,3,MaginoTech,-20,-12
-★브레스마크 민간인피해,SmallCompanyNews,3,BreathMark,-20,-12
-★브레스마크 인력손실,SmallCompanyNews,2,BreathMark,-15,-8
-★브루트스틸 대형사고,SmallCompanyNews,2,BrootSteel,-15,-8
-★브루트스틸 품질개선,SmallCompanyNews,2,BrootSteel,5,10
-★블레이즈마인 마나석발견,SmallCompanyNews,3,BlazeMine,12,20
-★블레이즈마인 붕괴사고,SmallCompanyNews,3,BlazeMine,-20,-12
-★블레이즈마인 파업,SmallCompanyNews,2,BlazeMine,-10,-5
-★스카이마크 대형사고,SmallCompanyNews,2,SkyMark,-15,-8
-★스카이포지 화물손실,SmallCompanyNews,2,SkyForge,-15,-8
-★스틸빌더 요새수주,SmallCompanyNews,2,SteelBuilder,8,15
-★실바나 해충발생,SmallCompanyNews,2,Silvana,-10,-5
-★실버포지 합작성공,SmallCompanyNews,2,SilverForge,5,10
-★아우렐리온 투자실패,SmallCompanyNews,3,AurelionCapital,-20,-12
-★아이언리폼 방어구개발,SmallCompanyNews,2,IronReform,8,15
-★아이언코어 신소재 개발,SmallCompanyNews,2,IronCore,8,15
-★아이언코어 용광로 화재,SmallCompanyNews,2,IronCore,-15,-8
-★아이언하트 계약해지,SmallCompanyNews,3,IronHeart,-20,-12
-★아이언하트 리콜,SmallCompanyNews,2,IronHeart,-15,-8
-★알케미아 효과미달,SmallCompanyNews,2,Alchemia,-10,-5
-★에버그린 부작용,SmallCompanyNews,2,EverGreen,-15,-8
-★에이더니얼 판단오류,SmallCompanyNews,2,Aedanial,-15,-8
-★오르카그리 전염병,SmallCompanyNews,3,OrcaGree,-20,-12
-★오르크파이트 대회예고,SmallCompanyNews,2,OrcFightclub,8,15
-★오르크파이트 승부조작,SmallCompanyNews,3,OrcFightclub,-20,-12
-★워메이커 대규모계약,SmallCompanyNews,2,WarMaker,8,15
-★워메이커 대패,SmallCompanyNews,2,WarMaker,-15,-8
-★이부코타 품질비판,SmallCompanyNews,2,Ibukota,-10,-5
-★크레센트 품질문제,SmallCompanyNews,2,Crescent,-10,-5
-국경 전쟁 발발,BigTriggerNews,5,-,-,-
-국경 전조 1,ForeshadowNews,3,-,-,-
-국경 전조 1,ForeshadowNews,3,-,-,-
-국경 전조 1,ForeshadowNews,3,-,-,-
-국경 전조 1,ForeshadowNews,3,-,-,-
-국경 전조 ,BigTriggerNews,3,-,-,-
-국왕 서거,ForeshadowNews,4,-,-,-
-그린루트 건축가은퇴,SmallCompanyNews,2,GreenRoot,-5,-2
-그린루트 건축대상,SmallCompanyNews,2,GreenRoot,8,15
-그린루트 내구성비판,SmallCompanyNews,2,GreenRoot,-10,-5
-그린루트 석재기술접목,SmallCompanyNews,1,GreenRoot,-5,5
-그린루트 세계수보수,SmallCompanyNews,1,GreenRoot,2,5
-그린루트 자연훼손논란,SmallCompanyNews,2,GreenRoot,-10,-5
-그린루트 해외수주,SmallCompanyNews,2,GreenRoot,5,10
-글램머락 거래처이탈,SmallCompanyNews,2,GlamerRock,-10,-5
-글램머락 기계화,SmallCompanyNews,1,GlamerRock,-5,5
-글램머락 신규광맥,SmallCompanyNews,2,GlamerRock,8,15
-글램머락 저가공급계약,SmallCompanyNews,2,GlamerRock,5,10
-글램머락 점유율확대,SmallCompanyNews,1,GlamerRock,2,5
-글로발 거래처상실,SmallCompanyNews,2,GlobalLogistics,-10,-5
-글로발 공중운송검토,SmallCompanyNews,1,GlobalLogistics,-5,5
-글로발 노선개설,SmallCompanyNews,2,GlobalLogistics,5,10
-글로발 점유율1위,SmallCompanyNews,2,GlobalLogistics,8,15
-글로발 차량노후화,SmallCompanyNews,2,GlobalLogistics,-5,-2
-글로발 효율향상,SmallCompanyNews,1,GlobalLogistics,2,5
-글림윙 마법보석준비,SmallCompanyNews,1,GlimWing,-5,5
-글림윙 수요감소,SmallCompanyNews,2,GlimWing,-10,-5
-글림윙 엘프인기,SmallCompanyNews,1,GlimWing,2,5
-글림윙 왕실납품,SmallCompanyNews,2,GlimWing,8,15
-글림윙 장인이직,SmallCompanyNews,2,GlimWing,-10,-5
-대규모 전염병 확산,ForeshadowNews,5,-,-,-
-대륙 규모 풍년,ForeshadowNews,3,-,-,-
-대륙 규모 흉작,ForeshadowNews,5,-,-,-
-대륙 축제 시즌 개막,BigTriggerNews,3,-,-,-
-대형 자연재해,ForeshadowNews,4,-,-,-
-드래곤금고 보안강화,SmallCompanyNews,2,DragonSafe,8,15
-드래곤금고 보안사고,SmallCompanyNews,2,DragonSafe,-10,-5
-드래곤금고 수익증가,SmallCompanyNews,2,DragonSafe,5,10
-드래곤금고 자산위탁,SmallCompanyNews,2,DragonSafe,5,10
-드래곤금고 지점확장,SmallCompanyNews,1,DragonSafe,-5,5
-드워프트레일 경로개척,SmallCompanyNews,2,DwarfTrail,8,15
-드워프트레일 경로재개,SmallCompanyNews,2,DwarfTrail,8,15
-드워프트레일 경로폐쇄,SmallCompanyNews,2,DwarfTrail,-15,-8
-드워프트레일 비용상승,SmallCompanyNews,2,DwarfTrail,-5,-2
-드워프트레일 최고평가,SmallCompanyNews,1,DwarfTrail,2,5
-드워프트레일 터널검토,SmallCompanyNews,1,DwarfTrail,-5,5
-루트힐 밀반출적발,SmallCompanyNews,2,LootHeel,-10,-5
-루트힐 수확량호조,SmallCompanyNews,1,LootHeel,2,5
-루트힐 신규재배지,SmallCompanyNews,1,LootHeel,-5,5
-루트힐 장기공급계약,SmallCompanyNews,2,LootHeel,5,10
-루트힐 재배지훼손,SmallCompanyNews,2,LootHeel,-10,-5
-마나코어 기술유출,SmallCompanyNews,2,ManaCore,-10,-5
-마나코어 대중시장검토,SmallCompanyNews,1,ManaCore,-5,5
-마나코어 시장진출,SmallCompanyNews,2,ManaCore,5,10
-마나코어 시제품공개,SmallCompanyNews,2,ManaCore,8,15
-마나코어 점유율하락,SmallCompanyNews,2,ManaCore,-10,-5
-마나펠 방수망토인기,SmallCompanyNews,1,ManaPell,2,5
-마나펠 수급불안,SmallCompanyNews,2,ManaPell,-10,-5
-마나펠 연구진영입,SmallCompanyNews,1,ManaPell,-5,5
-마나펠 유통입점,SmallCompanyNews,2,ManaPell,5,10
-마나펠 저가부적인기,SmallCompanyNews,2,ManaPell,8,15
-마나펠 효과부족불만,SmallCompanyNews,2,ManaPell,-10,-5
-마노사그레인 농장확장,SmallCompanyNews,2,ManosaGrain,5,10
-마노사그레인 비축계약,SmallCompanyNews,2,ManosaGrain,8,15
-마노사그레인 유기농검토,SmallCompanyNews,1,ManosaGrain,-5,5
-마노사그레인 유통확대,SmallCompanyNews,1,ManosaGrain,2,5
-마노사그레인 이물질,SmallCompanyNews,2,ManosaGrain,-10,-5
-마노사그레인 해충피해,SmallCompanyNews,2,ManosaGrain,-10,-5
-마법 시대 힌트,ForeshadowNews,1,-,-,-
-마법 에너지 대폭발 사고,ForeshadowNews,4,-,-,-
-마지노 병기계약,SmallCompanyNews,2,MaginoTech,8,15
-마지노 신형장비히트,SmallCompanyNews,2,MaginoTech,5,10
-마지노 에너지성과,SmallCompanyNews,2,MaginoTech,8,15
-마지노 엘프영입,SmallCompanyNews,1,MaginoTech,-5,5
-마지노 장비리콜,SmallCompanyNews,2,MaginoTech,-10,-5
-본파이어 건강문제,SmallCompanyNews,2,BoneFire,-10,-5
-본파이어 공식주류,SmallCompanyNews,2,BoneFire,5,10
-본파이어 블랙파이어,SmallCompanyNews,1,BoneFire,2,5
-본파이어 수출라인검토,SmallCompanyNews,1,BoneFire,-5,5
-본파이어 진출실패,SmallCompanyNews,2,BoneFire,-5,-2
-본파이어 판매급증,SmallCompanyNews,2,BoneFire,8,15
-본파이어 폭발사고,SmallCompanyNews,2,BoneFire,-10,-5
-브레스마크 계약취소,SmallCompanyNews,2,BreathMark,-10,-5
-브레스마크 부대편성,SmallCompanyNews,1,BreathMark,-5,5
-브레스마크 의뢰급증,SmallCompanyNews,2,BreathMark,8,15
-브레스마크 임무성공,SmallCompanyNews,2,BreathMark,8,15
-브레스마크 치안계약,SmallCompanyNews,2,BreathMark,5,10
-브루트스틸 경영권 대립,SmallCompanyNews,1,BrootSteel,-5,5
-브루트스틸 기준미달,SmallCompanyNews,2,BrootSteel,-10,-5
-브루트스틸 대규모파업,SmallCompanyNews,2,BrootSteel,-10,-5
-브루트스틸 대량수주,SmallCompanyNews,2,BrootSteel,5,10
-브루트스틸 수출증가,SmallCompanyNews,1,BrootSteel,2,5
-블레이즈마인 가스유출,SmallCompanyNews,2,BlazeMine,-10,-5
-블레이즈마인 경영진 교체,SmallCompanyNews,1,BlazeMine,-5,5
-블레이즈마인 장기공급 계약,SmallCompanyNews,2,BlazeMine,5,10
-블레이즈마인 채굴량 증가,SmallCompanyNews,2,BlazeMine,5,10
-솔리스타 규제중단,SmallCompanyNews,2,Solistar,-10,-5
-솔리스타 대형착공,SmallCompanyNews,2,Solistar,5,10
-솔리스타 미분양급증,SmallCompanyNews,2,Solistar,-10,-5
-솔리스타 완판,SmallCompanyNews,1,Solistar,2,5
-솔리스타 지방개발검토,SmallCompanyNews,1,Solistar,-5,5
-솔리스타 최대수혜,SmallCompanyNews,2,Solistar,8,15
-솔리스타 하자문제,SmallCompanyNews,2,Solistar,-10,-5
-스카이마크 고속물류검토,SmallCompanyNews,1,SkyMark,-5,5
-스카이마크 노선차단,SmallCompanyNews,2,SkyMark,-10,-5
-스카이마크 물동량최고,SmallCompanyNews,1,SkyMark,2,5
-스카이마크 시범교역,SmallCompanyNews,2,SkyMark,5,10
-스카이마크 파업,SmallCompanyNews,2,SkyMark,-10,-5
-스카이마크 허브개설,SmallCompanyNews,2,SkyMark,8,15
-스카이포지 고가화물,SmallCompanyNews,2,SkyForge,8,15
-스카이포지 고객이탈,SmallCompanyNews,2,SkyForge,-10,-5
-스카이포지 사업다각화,SmallCompanyNews,1,SkyForge,-5,5
-스카이포지 속도2배,SmallCompanyNews,1,SkyForge,2,5
-스카이포지 조종사사고,SmallCompanyNews,2,SkyForge,-10,-5
-스카이포지 항공물류계약,SmallCompanyNews,2,SkyForge,5,10
-스틸빌더 내구성최고,SmallCompanyNews,2,SteelBuilder,5,10
-스틸빌더 마법건축검토,SmallCompanyNews,1,SteelBuilder,-5,5
-스틸빌더 붕괴사고,SmallCompanyNews,2,SteelBuilder,-15,-8
-스틸빌더 원자재급등,SmallCompanyNews,2,SteelBuilder,-10,-5
-스틸빌더 위약금,SmallCompanyNews,2,SteelBuilder,-10,-5
-스틸빌더 재건참여,SmallCompanyNews,1,SteelBuilder,2,5
-실바나 고령화,SmallCompanyNews,2,Silvana,-5,-2
-실바나 교육프로그램,SmallCompanyNews,1,Silvana,-5,5
-실바나 밀수출적발,SmallCompanyNews,2,Silvana,-10,-5
-실바나 수출규제완화,SmallCompanyNews,2,Silvana,8,15
-실바나 작황호조,SmallCompanyNews,1,Silvana,2,5
-실바나 품질상수상,SmallCompanyNews,2,Silvana,5,10
-실버포지 마법장신구검토,SmallCompanyNews,1,SilverForge,-5,5
-실버포지 모조품,SmallCompanyNews,2,SilverForge,-10,-5
-실버포지 세공1위,SmallCompanyNews,1,SilverForge,2,5
-실버포지 수출급증,SmallCompanyNews,2,SilverForge,8,15
-실버포지 은가격급등,SmallCompanyNews,2,SilverForge,-10,-5
-실버포지 장인은퇴,SmallCompanyNews,2,SilverForge,-5,-2
-아우라스케일 연구실패,SmallCompanyNews,2,AuraScale,-20,-12
-아우라스케일 윤리문제,SmallCompanyNews,2,AuraScale,-15,-8
-아우라스케일 임상성공,SmallCompanyNews,2,AuraScale,8,15
-아우라스케일 지원금,SmallCompanyNews,2,AuraScale,8,15
-아우라스케일 지원축소,SmallCompanyNews,2,AuraScale,-10,-5
-아우라스케일 합동프로젝트,SmallCompanyNews,1,AuraScale,-5,5
-아우라스케일 획기적성과,SmallCompanyNews,2,AuraScale,12,20
-아우렐리온 고객이탈,SmallCompanyNews,2,AurelionCapital,-10,-5
-아우렐리온 수익률최고,SmallCompanyNews,2,AurelionCapital,8,15
-아우렐리온 시장진출,SmallCompanyNews,2,AurelionCapital,5,10
-아우렐리온 자문연장,SmallCompanyNews,1,AurelionCapital,2,5
-아우렐리온 횡령의혹,SmallCompanyNews,2,AurelionCapital,-10,-5
-아우렐리온 후계자,SmallCompanyNews,1,AurelionCapital,-5,5
-아이언리폼 기술자이직,SmallCompanyNews,2,IronReform,-10,-5
-아이언리폼 성능미달,SmallCompanyNews,2,IronReform,-15,-8
-아이언리폼 시연성공,SmallCompanyNews,2,IronReform,8,15
-아이언리폼 정책검토,SmallCompanyNews,1,IronReform,-5,5
-아이언리폼 지원금확보,SmallCompanyNews,2,IronReform,8,15
-아이언리폼 지원축소,SmallCompanyNews,2,IronReform,-15,-8
-아이언코어 대량납품,SmallCompanyNews,2,IronCore,5,10
-아이언코어 매출최고,SmallCompanyNews,2,IronCore,5,10
-아이언코어 점유율하락,SmallCompanyNews,2,IronCore,-10,-5
-아이언코어 친환경 도입,SmallCompanyNews,1,IronCore,-5,5
-아이언코어 품질결함,SmallCompanyNews,2,IronCore,-10,-5
-아이언하트 독점공급,SmallCompanyNews,2,IronHeart,5,10
-아이언하트 스톤브레이커,SmallCompanyNews,2,IronHeart,8,15
-아이언하트 실적상승,SmallCompanyNews,2,IronHeart,5,10
-아이언하트 연구실패,SmallCompanyNews,2,IronHeart,-10,-5
-아이언하트 합금연구,SmallCompanyNews,1,IronHeart,-5,5
-알케미아 대량생산성공,SmallCompanyNews,2,Alchemia,8,15
-알케미아 오크시장진출,SmallCompanyNews,2,Alchemia,5,10
-알케미아 원재료급등,SmallCompanyNews,2,Alchemia,-10,-5
-알케미아 조합법유출,SmallCompanyNews,2,Alchemia,-10,-5
-알케미아 판매1위,SmallCompanyNews,2,Alchemia,5,10
-알케미아 프리미엄검토,SmallCompanyNews,1,Alchemia,-5,5
-에버그린 대량구매계약,SmallCompanyNews,2,EverGreen,5,10
-에버그린 배합법개발,SmallCompanyNews,2,EverGreen,8,15
-에버그린 병충해,SmallCompanyNews,2,EverGreen,-10,-5
-에버그린 인간고용,SmallCompanyNews,1,EverGreen,-5,5
-에버그린 조제사은퇴,SmallCompanyNews,2,EverGreen,-5,-2
-에버그린 최우수제품,SmallCompanyNews,1,EverGreen,2,5
-에이더니얼 고객해지,SmallCompanyNews,2,Aedanial,-10,-5
-에이더니얼 보수전략성과,SmallCompanyNews,2,Aedanial,5,10
-에이더니얼 신규수주,SmallCompanyNews,1,Aedanial,2,5
-에이더니얼 전략수정,SmallCompanyNews,1,Aedanial,-5,5
-에이더니얼 점유율상승,SmallCompanyNews,2,Aedanial,5,10
-에이더니얼 펀드손실,SmallCompanyNews,2,Aedanial,-10,-5
-오르카그리 비중조정,SmallCompanyNews,1,OrcaGree,-5,5
-오르카그리 사료공급연장,SmallCompanyNews,2,OrcaGree,5,10
-오르카그리 위생문제,SmallCompanyNews,2,OrcaGree,-10,-5
-오르카그리 축산증가,SmallCompanyNews,2,OrcaGree,8,15
-오르카그리 품질개선,SmallCompanyNews,1,OrcaGree,2,5
-오르카그리 해고논란,SmallCompanyNews,2,OrcaGree,-10,-5
-오르크파이트 마법규칙,SmallCompanyNews,1,OrcFightclub,-5,5
-오르크파이트 적자,SmallCompanyNews,2,OrcFightclub,-10,-5
-오르크파이트 전설출전,SmallCompanyNews,1,OrcFightclub,-10,5
-오르크파이트 중상사고,SmallCompanyNews,2,OrcFightclub,-10,-5
-오르크파이트 해외중계,SmallCompanyNews,2,OrcFightclub,8,15
-왕실 쿠데타 시도,BigTriggerNews,4,-,-,-
-워메이커 약탈행위,SmallCompanyNews,3,WarMaker,-20,-12
-워메이커 의뢰급증,SmallCompanyNews,2,WarMaker,8,15
-워메이커 저가전략,SmallCompanyNews,2,WarMaker,5,10
-워메이커 파벌충돌,SmallCompanyNews,2,WarMaker,-10,-5
-워메이커 훈련개편,SmallCompanyNews,1,WarMaker,-5,5
-윈드시어 공중이동연구,SmallCompanyNews,1,WindSeer,-5,5
-윈드시어 기술유출,SmallCompanyNews,3,WindSeer,-20,-12
-윈드시어 수출제한,SmallCompanyNews,2,WindSeer,-10,-5
-윈드시어 수출허가,SmallCompanyNews,2,WindSeer,12,20
-윈드시어 안전사고,SmallCompanyNews,2,WindSeer,-15,-8
-윈드시어 연구순조,SmallCompanyNews,2,WindSeer,5,10
-윈드시어 효율개선,SmallCompanyNews,2,WindSeer,8,15
-이부코타 공연취소,SmallCompanyNews,2,Ibukota,-15,-8
-이부코타 대형공연,SmallCompanyNews,2,Ibukota,8,15
-이부코타 안전사고,SmallCompanyNews,2,Ibukota,-15,-8
-이부코타 엘프초청,SmallCompanyNews,1,Ibukota,-5,5
-이부코타 최다관객,SmallCompanyNews,2,Ibukota,8,15
-이부코타 합작공연,SmallCompanyNews,2,Ibukota,5,10
-종족 간 대규모 분쟁(랜덤),ForeshadowNews,5,-,-,-
-축제 전조 1,ForeshadowNews,3,-,-,-
-축제 전조 1,ForeshadowNews,3,-,-,-
-축제 전조 1,ForeshadowNews,3,-,-,-
-축제 전조 1,ForeshadowNews,3,-,-,-
-축제 전조 1,ForeshadowNews,3,-,-,-
-코타 대출부실,SmallCompanyNews,2,Corta,-10,-5
-코타 디지털뱅킹,SmallCompanyNews,1,Corta,-5,5
-코타 예금최고,SmallCompanyNews,1,Corta,2,5
-코타 저금리대출,SmallCompanyNews,2,Corta,5,10
-코타 지점개설,SmallCompanyNews,2,Corta,8,15
-코타 지점폐쇄검토,SmallCompanyNews,2,Corta,-5,-2
-코타 횡령적발,SmallCompanyNews,2,Corta,-10,-5
-쿠데타 전조 1,ForeshadowNews,3,-,-,-
-쿠데타 전조 1,ForeshadowNews,3,-,-,-
-쿠데타 전조 1,ForeshadowNews,3,-,-,-
-쿠데타 전조 1,ForeshadowNews,3,-,-,-
-쿠데타 전조 1,ForeshadowNews,3,-,-,-
-크레센트 매출급감,SmallCompanyNews,2,Crescent,-15,-8
-크레센트 매출최고,SmallCompanyNews,2,Crescent,5,10
-크레센트 명품독점수입,SmallCompanyNews,2,Crescent,8,15
-크레센트 중저가검토,SmallCompanyNews,1,Crescent,-5,5
-크레센트 창고화재,SmallCompanyNews,2,Crescent,-10,-5
-크레센트 해외조사,SmallCompanyNews,2,Crescent,5,10
-페어브리즈 거래처이동,SmallCompanyNews,2,FareBreez,-5,-2
-페어브리즈 독점공급,SmallCompanyNews,2,FareBreez,5,10
-페어브리즈 디자인수상,SmallCompanyNews,1,FareBreez,2,5
-페어브리즈 시장진출논의,SmallCompanyNews,1,FareBreez,-5,5
-페어브리즈 알레르기,SmallCompanyNews,2,FareBreez,-15,-8
-페어브리즈 인력이탈,SmallCompanyNews,2,FareBreez,-10,-5
-페어브리즈 패션열풍,SmallCompanyNews,2,FareBreez,8,15
-플레임스케일 가격비판,SmallCompanyNews,2,FlameScale,-10,-5
-플레임스케일 분화,SmallCompanyNews,2,FlameScale,-15,-8
-플레임스케일 수입계약,SmallCompanyNews,2,FlameScale,5,10
-플레임스케일 수출지연,SmallCompanyNews,2,FlameScale,-5,-2
-플레임스케일 수확량증가,SmallCompanyNews,2,FlameScale,5,10
-플레임스케일 특산물인기,SmallCompanyNews,2,FlameScale,8,15
-플레임스케일 합작논의,SmallCompanyNews,1,FlameScale,-5,5
-하이락 광산시설수주,SmallCompanyNews,2,HighRock,8,15
-하이락 안전사고,SmallCompanyNews,2,HighRock,-10,-5
-하이락 엘프기술도입,SmallCompanyNews,1,HighRock,-5,5
-하이락 인력부족,SmallCompanyNews,2,HighRock,-5,-2
-하이락 지하공법주목,SmallCompanyNews,1,HighRock,2,5
-하이락 품질문제,SmallCompanyNews,2,HighRock,-10,-5
-하이락 해외진출,SmallCompanyNews,2,HighRock,5,10
-하이애너 양조장화재,SmallCompanyNews,2,HighEner,-10,-5
-하이애너 엘프실패,SmallCompanyNews,2,HighEner,-5,-2
-하이애너 이물질,SmallCompanyNews,2,HighEner,-10,-5
-하이애너 저도수검토,SmallCompanyNews,1,HighEner,-5,5
-하이애너 축제후원,SmallCompanyNews,2,HighEner,5,10
-하이애너 판매최고,SmallCompanyNews,1,HighEner,2,5
-하이애너 한정판완판,SmallCompanyNews,2,HighEner,8,15
-혁명 민중 봉기,BigTriggerNews,4,-,-,-
-혁명 전조 1,ForeshadowNews,3,-,-,-
-혁명 전조 1,ForeshadowNews,3,-,-,-
-혁명 전조 1,ForeshadowNews,3,-,-,-
-혁명 전조 1,ForeshadowNews,3,-,-,-
-혁명 전조 1,ForeshadowNews,3,-,-,-
-광물의 시대 힌트,ForeshadowNews,1,-,-,-
-사치 시대 힌트,ForeshadowNews,1,-,-,-
-제약의 시대 힌트,ForeshadowNews,1,-,-,-
+﻿사건이름,뉴스타입,지속일,영향주식,최소변동률,최대변동률,감쇠곡선
+★글램머락 노동자이탈,SmallCompanyNews,2,GlamerRock,-10,-5,1;0.4
+★글램머락 품질조작,SmallCompanyNews,3,GlamerRock,-20,-12,1;0.4;0.15
+★글로발 해적습격,SmallCompanyNews,2,GlobalLogistics,-15,-8,1;0.4
+★글림윙 진위논란,SmallCompanyNews,2,GlimWing,-15,-8,1;0.4
+★글림윙 합작컬렉션,SmallCompanyNews,2,GlimWing,5,10,1;0.4
+★드래곤금고 금유출,SmallCompanyNews,3,DragonSafe,-20,-12,1;0.4;0.15
+★드래곤금고 대규모인출,SmallCompanyNews,2,DragonSafe,-10,-5,1;0.4
+★드워프트레일 낙석사고,SmallCompanyNews,2,DwarfTrail,-15,-8,1;0.4
+★루트힐 병충해,SmallCompanyNews,2,LootHeel,-15,-8,1;0.4
+★루트힐 희귀약초발견,SmallCompanyNews,2,LootHeel,8,15,1;0.4
+★마나코어 오작동,SmallCompanyNews,2,ManaCore,-15,-8,1;0.4
+★마나코어 히트상품,SmallCompanyNews,2,ManaCore,8,15,1;0.4
+★마나펠 시장위협,SmallCompanyNews,2,ManaPell,-10,-5,1;0.4
+★마노사그레인 창고화재,SmallCompanyNews,2,ManosaGrain,-15,-8,1;0.4
+★마지노 실험실패,SmallCompanyNews,2,MaginoTech,-20,-12,1;0.4
+★마지노 에너지사고,SmallCompanyNews,3,MaginoTech,-20,-12,1;0.4;0.15
+★브레스마크 민간인피해,SmallCompanyNews,3,BreathMark,-20,-12,1;0.4;0.15
+★브레스마크 인력손실,SmallCompanyNews,2,BreathMark,-15,-8,1;0.4
+★브루트스틸 대형사고,SmallCompanyNews,2,BrootSteel,-15,-8,1;0.4
+★브루트스틸 품질개선,SmallCompanyNews,2,BrootSteel,5,10,1;0.4
+★블레이즈마인 마나석발견,SmallCompanyNews,3,BlazeMine,12,20,1;0.4;0.15
+★블레이즈마인 붕괴사고,SmallCompanyNews,3,BlazeMine,-20,-12,1;0.4;0.15
+★블레이즈마인 파업,SmallCompanyNews,2,BlazeMine,-10,-5,1;0.4
+★스카이마크 대형사고,SmallCompanyNews,2,SkyMark,-15,-8,1;0.4
+★스카이포지 화물손실,SmallCompanyNews,2,SkyForge,-15,-8,1;0.4
+★스틸빌더 요새수주,SmallCompanyNews,2,SteelBuilder,8,15,1;0.4
+★실바나 해충발생,SmallCompanyNews,2,Silvana,-10,-5,1;0.4
+★실버포지 합작성공,SmallCompanyNews,2,SilverForge,5,10,1;0.4
+★아우렐리온 투자실패,SmallCompanyNews,3,AurelionCapital,-20,-12,1;0.4;0.15
+★아이언리폼 방어구개발,SmallCompanyNews,2,IronReform,8,15,1;0.4
+★아이언코어 신소재 개발,SmallCompanyNews,2,IronCore,8,15,1;0.4
+★아이언코어 용광로 화재,SmallCompanyNews,2,IronCore,-15,-8,1;0.4
+★아이언하트 계약해지,SmallCompanyNews,3,IronHeart,-20,-12,1;0.4;0.15
+★아이언하트 리콜,SmallCompanyNews,2,IronHeart,-15,-8,1;0.4
+★알케미아 효과미달,SmallCompanyNews,2,Alchemia,-10,-5,1;0.4
+★에버그린 부작용,SmallCompanyNews,2,EverGreen,-15,-8,1;0.4
+★에이더니얼 판단오류,SmallCompanyNews,2,Aedanial,-15,-8,1;0.4
+★오르카그리 전염병,SmallCompanyNews,3,OrcaGree,-20,-12,1;0.4;0.15
+★오르크파이트 대회예고,SmallCompanyNews,2,OrcFightclub,8,15,1;0.4
+★오르크파이트 승부조작,SmallCompanyNews,3,OrcFightclub,-20,-12,1;0.4;0.15
+★워메이커 대규모계약,SmallCompanyNews,2,WarMaker,8,15,1;0.4
+★워메이커 대패,SmallCompanyNews,2,WarMaker,-15,-8,1;0.4
+★이부코타 품질비판,SmallCompanyNews,2,Ibukota,-10,-5,1;0.4
+★크레센트 품질문제,SmallCompanyNews,2,Crescent,-10,-5,1;0.4
+국경 전쟁 발발,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
+국경 전조 1,ForeshadowNews,3,-,-,-,
+국경 전조 1,ForeshadowNews,3,-,-,-,
+국경 전조 1,ForeshadowNews,3,-,-,-,
+국경 전조 1,ForeshadowNews,3,-,-,-,
+국경 전조 ,BigTriggerNews,3,-,-,-,
+국왕 서거,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
+그린루트 건축가은퇴,SmallCompanyNews,2,GreenRoot,-5,-2,1;0.4
+그린루트 건축대상,SmallCompanyNews,2,GreenRoot,8,15,1;0.4
+그린루트 내구성비판,SmallCompanyNews,2,GreenRoot,-10,-5,1;0.4
+그린루트 석재기술접목,SmallCompanyNews,1,GreenRoot,-5,5,1
+그린루트 세계수보수,SmallCompanyNews,1,GreenRoot,2,5,1
+그린루트 자연훼손논란,SmallCompanyNews,2,GreenRoot,-10,-5,1;0.4
+그린루트 해외수주,SmallCompanyNews,2,GreenRoot,5,10,1;0.4
+글램머락 거래처이탈,SmallCompanyNews,2,GlamerRock,-10,-5,1;0.4
+글램머락 기계화,SmallCompanyNews,1,GlamerRock,-5,5,1
+글램머락 신규광맥,SmallCompanyNews,2,GlamerRock,8,15,1;0.4
+글램머락 저가공급계약,SmallCompanyNews,2,GlamerRock,5,10,1;0.4
+글램머락 점유율확대,SmallCompanyNews,1,GlamerRock,2,5,1
+글로발 거래처상실,SmallCompanyNews,2,GlobalLogistics,-10,-5,1;0.4
+글로발 공중운송검토,SmallCompanyNews,1,GlobalLogistics,-5,5,1
+글로발 노선개설,SmallCompanyNews,2,GlobalLogistics,5,10,1;0.4
+글로발 점유율1위,SmallCompanyNews,2,GlobalLogistics,8,15,1;0.4
+글로발 차량노후화,SmallCompanyNews,2,GlobalLogistics,-5,-2,1;0.4
+글로발 효율향상,SmallCompanyNews,1,GlobalLogistics,2,5,1
+글림윙 마법보석준비,SmallCompanyNews,1,GlimWing,-5,5,1
+글림윙 수요감소,SmallCompanyNews,2,GlimWing,-10,-5,1;0.4
+글림윙 엘프인기,SmallCompanyNews,1,GlimWing,2,5,1
+글림윙 왕실납품,SmallCompanyNews,2,GlimWing,8,15,1;0.4
+글림윙 장인이직,SmallCompanyNews,2,GlimWing,-10,-5,1;0.4
+대규모 전염병 확산,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
+대륙 규모 풍년,BigTriggerNews,3,-,-,-,1;0.55;0.25
+대륙 규모 흉작,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
+대륙 축제 시즌 개막,BigTriggerNews,3,-,-,-,1;0.55;0.25
+대형 자연재해,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
+드래곤금고 보안강화,SmallCompanyNews,2,DragonSafe,8,15,1;0.4
+드래곤금고 보안사고,SmallCompanyNews,2,DragonSafe,-10,-5,1;0.4
+드래곤금고 수익증가,SmallCompanyNews,2,DragonSafe,5,10,1;0.4
+드래곤금고 자산위탁,SmallCompanyNews,2,DragonSafe,5,10,1;0.4
+드래곤금고 지점확장,SmallCompanyNews,1,DragonSafe,-5,5,1
+드워프트레일 경로개척,SmallCompanyNews,2,DwarfTrail,8,15,1;0.4
+드워프트레일 경로재개,SmallCompanyNews,2,DwarfTrail,8,15,1;0.4
+드워프트레일 경로폐쇄,SmallCompanyNews,2,DwarfTrail,-15,-8,1;0.4
+드워프트레일 비용상승,SmallCompanyNews,2,DwarfTrail,-5,-2,1;0.4
+드워프트레일 최고평가,SmallCompanyNews,1,DwarfTrail,2,5,1
+드워프트레일 터널검토,SmallCompanyNews,1,DwarfTrail,-5,5,1
+루트힐 밀반출적발,SmallCompanyNews,2,LootHeel,-10,-5,1;0.4
+루트힐 수확량호조,SmallCompanyNews,1,LootHeel,2,5,1
+루트힐 신규재배지,SmallCompanyNews,1,LootHeel,-5,5,1
+루트힐 장기공급계약,SmallCompanyNews,2,LootHeel,5,10,1;0.4
+루트힐 재배지훼손,SmallCompanyNews,2,LootHeel,-10,-5,1;0.4
+마나코어 기술유출,SmallCompanyNews,2,ManaCore,-10,-5,1;0.4
+마나코어 대중시장검토,SmallCompanyNews,1,ManaCore,-5,5,1
+마나코어 시장진출,SmallCompanyNews,2,ManaCore,5,10,1;0.4
+마나코어 시제품공개,SmallCompanyNews,2,ManaCore,8,15,1;0.4
+마나코어 점유율하락,SmallCompanyNews,2,ManaCore,-10,-5,1;0.4
+마나펠 방수망토인기,SmallCompanyNews,1,ManaPell,2,5,1
+마나펠 수급불안,SmallCompanyNews,2,ManaPell,-10,-5,1;0.4
+마나펠 연구진영입,SmallCompanyNews,1,ManaPell,-5,5,1
+마나펠 유통입점,SmallCompanyNews,2,ManaPell,5,10,1;0.4
+마나펠 저가부적인기,SmallCompanyNews,2,ManaPell,8,15,1;0.4
+마나펠 효과부족불만,SmallCompanyNews,2,ManaPell,-10,-5,1;0.4
+마노사그레인 농장확장,SmallCompanyNews,2,ManosaGrain,5,10,1;0.4
+마노사그레인 비축계약,SmallCompanyNews,2,ManosaGrain,8,15,1;0.4
+마노사그레인 유기농검토,SmallCompanyNews,1,ManosaGrain,-5,5,1
+마노사그레인 유통확대,SmallCompanyNews,1,ManosaGrain,2,5,1
+마노사그레인 이물질,SmallCompanyNews,2,ManosaGrain,-10,-5,1;0.4
+마노사그레인 해충피해,SmallCompanyNews,2,ManosaGrain,-10,-5,1;0.4
+마법 시대 힌트,ForeshadowNews,1,-,-,-,11
+마법 에너지 대폭발 사고,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
+마지노 병기계약,SmallCompanyNews,2,MaginoTech,8,15,1;0.4
+마지노 신형장비히트,SmallCompanyNews,2,MaginoTech,5,10,1;0.4
+마지노 에너지성과,SmallCompanyNews,2,MaginoTech,8,15,1;0.4
+마지노 엘프영입,SmallCompanyNews,1,MaginoTech,-5,5,1
+마지노 장비리콜,SmallCompanyNews,2,MaginoTech,-10,-5,1;0.4
+본파이어 건강문제,SmallCompanyNews,2,BoneFire,-10,-5,1;0.4
+본파이어 공식주류,SmallCompanyNews,2,BoneFire,5,10,1;0.4
+본파이어 블랙파이어,SmallCompanyNews,1,BoneFire,2,5,1
+본파이어 수출라인검토,SmallCompanyNews,1,BoneFire,-5,5,1
+본파이어 진출실패,SmallCompanyNews,2,BoneFire,-5,-2,1;0.4
+본파이어 판매급증,SmallCompanyNews,2,BoneFire,8,15,1;0.4
+본파이어 폭발사고,SmallCompanyNews,2,BoneFire,-10,-5,1;0.4
+브레스마크 계약취소,SmallCompanyNews,2,BreathMark,-10,-5,1;0.4
+브레스마크 부대편성,SmallCompanyNews,1,BreathMark,-5,5,1
+브레스마크 의뢰급증,SmallCompanyNews,2,BreathMark,8,15,1;0.4
+브레스마크 임무성공,SmallCompanyNews,2,BreathMark,8,15,1;0.4
+브레스마크 치안계약,SmallCompanyNews,2,BreathMark,5,10,1;0.4
+브루트스틸 경영권 대립,SmallCompanyNews,1,BrootSteel,-5,5,1
+브루트스틸 기준미달,SmallCompanyNews,2,BrootSteel,-10,-5,1;0.4
+브루트스틸 대규모파업,SmallCompanyNews,2,BrootSteel,-10,-5,1;0.4
+브루트스틸 대량수주,SmallCompanyNews,2,BrootSteel,5,10,1;0.4
+브루트스틸 수출증가,SmallCompanyNews,1,BrootSteel,2,5,1
+블레이즈마인 가스유출,SmallCompanyNews,2,BlazeMine,-10,-5,1;0.4
+블레이즈마인 경영진 교체,SmallCompanyNews,1,BlazeMine,-5,5,1
+블레이즈마인 장기공급 계약,SmallCompanyNews,2,BlazeMine,5,10,1;0.4
+블레이즈마인 채굴량 증가,SmallCompanyNews,2,BlazeMine,5,10,1;0.4
+솔리스타 규제중단,SmallCompanyNews,2,Solistar,-10,-5,1;0.4
+솔리스타 대형착공,SmallCompanyNews,2,Solistar,5,10,1;0.4
+솔리스타 미분양급증,SmallCompanyNews,2,Solistar,-10,-5,1;0.4
+솔리스타 완판,SmallCompanyNews,1,Solistar,2,5,1
+솔리스타 지방개발검토,SmallCompanyNews,1,Solistar,-5,5,1
+솔리스타 최대수혜,SmallCompanyNews,2,Solistar,8,15,1;0.4
+솔리스타 하자문제,SmallCompanyNews,2,Solistar,-10,-5,1;0.4
+스카이마크 고속물류검토,SmallCompanyNews,1,SkyMark,-5,5,1
+스카이마크 노선차단,SmallCompanyNews,2,SkyMark,-10,-5,1;0.4
+스카이마크 물동량최고,SmallCompanyNews,1,SkyMark,2,5,1
+스카이마크 시범교역,SmallCompanyNews,2,SkyMark,5,10,1;0.4
+스카이마크 파업,SmallCompanyNews,2,SkyMark,-10,-5,1;0.4
+스카이마크 허브개설,SmallCompanyNews,2,SkyMark,8,15,1;0.4
+스카이포지 고가화물,SmallCompanyNews,2,SkyForge,8,15,1;0.4
+스카이포지 고객이탈,SmallCompanyNews,2,SkyForge,-10,-5,1;0.4
+스카이포지 사업다각화,SmallCompanyNews,1,SkyForge,-5,5,1
+스카이포지 속도2배,SmallCompanyNews,1,SkyForge,2,5,1
+스카이포지 조종사사고,SmallCompanyNews,2,SkyForge,-10,-5,1;0.4
+스카이포지 항공물류계약,SmallCompanyNews,2,SkyForge,5,10,1;0.4
+스틸빌더 내구성최고,SmallCompanyNews,2,SteelBuilder,5,10,1;0.4
+스틸빌더 마법건축검토,SmallCompanyNews,1,SteelBuilder,-5,5,1
+스틸빌더 붕괴사고,SmallCompanyNews,2,SteelBuilder,-15,-8,1;0.4
+스틸빌더 원자재급등,SmallCompanyNews,2,SteelBuilder,-10,-5,1;0.4
+스틸빌더 위약금,SmallCompanyNews,2,SteelBuilder,-10,-5,1;0.4
+스틸빌더 재건참여,SmallCompanyNews,1,SteelBuilder,2,5,1
+실바나 고령화,SmallCompanyNews,2,Silvana,-5,-2,1;0.4
+실바나 교육프로그램,SmallCompanyNews,1,Silvana,-5,5,1
+실바나 밀수출적발,SmallCompanyNews,2,Silvana,-10,-5,1;0.4
+실바나 수출규제완화,SmallCompanyNews,2,Silvana,8,15,1;0.4
+실바나 작황호조,SmallCompanyNews,1,Silvana,2,5,1
+실바나 품질상수상,SmallCompanyNews,2,Silvana,5,10,1;0.4
+실버포지 마법장신구검토,SmallCompanyNews,1,SilverForge,-5,5,1
+실버포지 모조품,SmallCompanyNews,2,SilverForge,-10,-5,1;0.4
+실버포지 세공1위,SmallCompanyNews,1,SilverForge,2,5,1
+실버포지 수출급증,SmallCompanyNews,2,SilverForge,8,15,1;0.4
+실버포지 은가격급등,SmallCompanyNews,2,SilverForge,-10,-5,1;0.4
+실버포지 장인은퇴,SmallCompanyNews,2,SilverForge,-5,-2,1;0.4
+아우라스케일 연구실패,SmallCompanyNews,2,AuraScale,-20,-12,1;0.4
+아우라스케일 윤리문제,SmallCompanyNews,2,AuraScale,-15,-8,1;0.4
+아우라스케일 임상성공,SmallCompanyNews,2,AuraScale,8,15,1;0.4
+아우라스케일 지원금,SmallCompanyNews,2,AuraScale,8,15,1;0.4
+아우라스케일 지원축소,SmallCompanyNews,2,AuraScale,-10,-5,1;0.4
+아우라스케일 합동프로젝트,SmallCompanyNews,1,AuraScale,-5,5,1
+아우라스케일 획기적성과,SmallCompanyNews,2,AuraScale,12,20,1;0.4
+아우렐리온 고객이탈,SmallCompanyNews,2,AurelionCapital,-10,-5,1;0.4
+아우렐리온 수익률최고,SmallCompanyNews,2,AurelionCapital,8,15,1;0.4
+아우렐리온 시장진출,SmallCompanyNews,2,AurelionCapital,5,10,1;0.4
+아우렐리온 자문연장,SmallCompanyNews,1,AurelionCapital,2,5,1
+아우렐리온 횡령의혹,SmallCompanyNews,2,AurelionCapital,-10,-5,1;0.4
+아우렐리온 후계자,SmallCompanyNews,1,AurelionCapital,-5,5,1
+아이언리폼 기술자이직,SmallCompanyNews,2,IronReform,-10,-5,1;0.4
+아이언리폼 성능미달,SmallCompanyNews,2,IronReform,-15,-8,1;0.4
+아이언리폼 시연성공,SmallCompanyNews,2,IronReform,8,15,1;0.4
+아이언리폼 정책검토,SmallCompanyNews,1,IronReform,-5,5,1
+아이언리폼 지원금확보,SmallCompanyNews,2,IronReform,8,15,1;0.4
+아이언리폼 지원축소,SmallCompanyNews,2,IronReform,-15,-8,1;0.4
+아이언코어 대량납품,SmallCompanyNews,2,IronCore,5,10,1;0.4
+아이언코어 매출최고,SmallCompanyNews,2,IronCore,5,10,1;0.4
+아이언코어 점유율하락,SmallCompanyNews,2,IronCore,-10,-5,1;0.4
+아이언코어 친환경 도입,SmallCompanyNews,1,IronCore,-5,5,1
+아이언코어 품질결함,SmallCompanyNews,2,IronCore,-10,-5,1;0.4
+아이언하트 독점공급,SmallCompanyNews,2,IronHeart,5,10,1;0.4
+아이언하트 스톤브레이커,SmallCompanyNews,2,IronHeart,8,15,1;0.4
+아이언하트 실적상승,SmallCompanyNews,2,IronHeart,5,10,1;0.4
+아이언하트 연구실패,SmallCompanyNews,2,IronHeart,-10,-5,1;0.4
+아이언하트 합금연구,SmallCompanyNews,1,IronHeart,-5,5,1
+알케미아 대량생산성공,SmallCompanyNews,2,Alchemia,8,15,1;0.4
+알케미아 오크시장진출,SmallCompanyNews,2,Alchemia,5,10,1;0.4
+알케미아 원재료급등,SmallCompanyNews,2,Alchemia,-10,-5,1;0.4
+알케미아 조합법유출,SmallCompanyNews,2,Alchemia,-10,-5,1;0.4
+알케미아 판매1위,SmallCompanyNews,2,Alchemia,5,10,1;0.4
+알케미아 프리미엄검토,SmallCompanyNews,1,Alchemia,-5,5,1
+에버그린 대량구매계약,SmallCompanyNews,2,EverGreen,5,10,1;0.4
+에버그린 배합법개발,SmallCompanyNews,2,EverGreen,8,15,1;0.4
+에버그린 병충해,SmallCompanyNews,2,EverGreen,-10,-5,1;0.4
+에버그린 인간고용,SmallCompanyNews,1,EverGreen,-5,5,1
+에버그린 조제사은퇴,SmallCompanyNews,2,EverGreen,-5,-2,1;0.4
+에버그린 최우수제품,SmallCompanyNews,1,EverGreen,2,5,1
+에이더니얼 고객해지,SmallCompanyNews,2,Aedanial,-10,-5,1;0.4
+에이더니얼 보수전략성과,SmallCompanyNews,2,Aedanial,5,10,1;0.4
+에이더니얼 신규수주,SmallCompanyNews,1,Aedanial,2,5,1
+에이더니얼 전략수정,SmallCompanyNews,1,Aedanial,-5,5,1
+에이더니얼 점유율상승,SmallCompanyNews,2,Aedanial,5,10,1;0.4
+에이더니얼 펀드손실,SmallCompanyNews,2,Aedanial,-10,-5,1;0.4
+오르카그리 비중조정,SmallCompanyNews,1,OrcaGree,-5,5,1
+오르카그리 사료공급연장,SmallCompanyNews,2,OrcaGree,5,10,1;0.4
+오르카그리 위생문제,SmallCompanyNews,2,OrcaGree,-10,-5,1;0.4
+오르카그리 축산증가,SmallCompanyNews,2,OrcaGree,8,15,1;0.4
+오르카그리 품질개선,SmallCompanyNews,1,OrcaGree,2,5,1
+오르카그리 해고논란,SmallCompanyNews,2,OrcaGree,-10,-5,1;0.4
+오르크파이트 마법규칙,SmallCompanyNews,1,OrcFightclub,-5,5,1
+오르크파이트 적자,SmallCompanyNews,2,OrcFightclub,-10,-5,1;0.4
+오르크파이트 전설출전,SmallCompanyNews,1,OrcFightclub,-10,5,1
+오르크파이트 중상사고,SmallCompanyNews,2,OrcFightclub,-10,-5,1;0.4
+오르크파이트 해외중계,SmallCompanyNews,2,OrcFightclub,8,15,1;0.4
+왕실 쿠데타 시도,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
+워메이커 약탈행위,SmallCompanyNews,3,WarMaker,-20,-12,1;0.4;0.15
+워메이커 의뢰급증,SmallCompanyNews,2,WarMaker,8,15,1;0.4
+워메이커 저가전략,SmallCompanyNews,2,WarMaker,5,10,1;0.4
+워메이커 파벌충돌,SmallCompanyNews,2,WarMaker,-10,-5,1;0.4
+워메이커 훈련개편,SmallCompanyNews,1,WarMaker,-5,5,1
+윈드시어 공중이동연구,SmallCompanyNews,1,WindSeer,-5,5,1
+윈드시어 기술유출,SmallCompanyNews,3,WindSeer,-20,-12,1;0.4;0.15
+윈드시어 수출제한,SmallCompanyNews,2,WindSeer,-10,-5,1;0.4
+윈드시어 수출허가,SmallCompanyNews,2,WindSeer,12,20,1;0.4
+윈드시어 안전사고,SmallCompanyNews,2,WindSeer,-15,-8,1;0.4
+윈드시어 연구순조,SmallCompanyNews,2,WindSeer,5,10,1;0.4
+윈드시어 효율개선,SmallCompanyNews,2,WindSeer,8,15,1;0.4
+이부코타 공연취소,SmallCompanyNews,2,Ibukota,-15,-8,1;0.4
+이부코타 대형공연,SmallCompanyNews,2,Ibukota,8,15,1;0.4
+이부코타 안전사고,SmallCompanyNews,2,Ibukota,-15,-8,1;0.4
+이부코타 엘프초청,SmallCompanyNews,1,Ibukota,-5,5,1
+이부코타 최다관객,SmallCompanyNews,2,Ibukota,8,15,1;0.4
+이부코타 합작공연,SmallCompanyNews,2,Ibukota,5,10,1;0.4
+종족 간 대규모 분쟁(랜덤),BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
+축제 전조 1,ForeshadowNews,3,-,-,-,
+축제 전조 1,ForeshadowNews,3,-,-,-,
+축제 전조 1,ForeshadowNews,3,-,-,-,
+축제 전조 1,ForeshadowNews,3,-,-,-,
+축제 전조 1,ForeshadowNews,3,-,-,-,
+코타 대출부실,SmallCompanyNews,2,Corta,-10,-5,1;0.4
+코타 디지털뱅킹,SmallCompanyNews,1,Corta,-5,5,1
+코타 예금최고,SmallCompanyNews,1,Corta,2,5,1
+코타 저금리대출,SmallCompanyNews,2,Corta,5,10,1;0.4
+코타 지점개설,SmallCompanyNews,2,Corta,8,15,1;0.4
+코타 지점폐쇄검토,SmallCompanyNews,2,Corta,-5,-2,1;0.4
+코타 횡령적발,SmallCompanyNews,2,Corta,-10,-5,1;0.4
+쿠데타 전조 1,ForeshadowNews,3,-,-,-,
+쿠데타 전조 1,ForeshadowNews,3,-,-,-,
+쿠데타 전조 1,ForeshadowNews,3,-,-,-,
+쿠데타 전조 1,ForeshadowNews,3,-,-,-,
+쿠데타 전조 1,ForeshadowNews,3,-,-,-,
+크레센트 매출급감,SmallCompanyNews,2,Crescent,-15,-8,1;0.4
+크레센트 매출최고,SmallCompanyNews,2,Crescent,5,10,1;0.4
+크레센트 명품독점수입,SmallCompanyNews,2,Crescent,8,15,1;0.4
+크레센트 중저가검토,SmallCompanyNews,1,Crescent,-5,5,1
+크레센트 창고화재,SmallCompanyNews,2,Crescent,-10,-5,1;0.4
+크레센트 해외조사,SmallCompanyNews,2,Crescent,5,10,1;0.4
+페어브리즈 거래처이동,SmallCompanyNews,2,FareBreez,-5,-2,1;0.4
+페어브리즈 독점공급,SmallCompanyNews,2,FareBreez,5,10,1;0.4
+페어브리즈 디자인수상,SmallCompanyNews,1,FareBreez,2,5,1
+페어브리즈 시장진출논의,SmallCompanyNews,1,FareBreez,-5,5,1
+페어브리즈 알레르기,SmallCompanyNews,2,FareBreez,-15,-8,1;0.4
+페어브리즈 인력이탈,SmallCompanyNews,2,FareBreez,-10,-5,1;0.4
+페어브리즈 패션열풍,SmallCompanyNews,2,FareBreez,8,15,1;0.4
+플레임스케일 가격비판,SmallCompanyNews,2,FlameScale,-10,-5,1;0.4
+플레임스케일 분화,SmallCompanyNews,2,FlameScale,-15,-8,1;0.4
+플레임스케일 수입계약,SmallCompanyNews,2,FlameScale,5,10,1;0.4
+플레임스케일 수출지연,SmallCompanyNews,2,FlameScale,-5,-2,1;0.4
+플레임스케일 수확량증가,SmallCompanyNews,2,FlameScale,5,10,1;0.4
+플레임스케일 특산물인기,SmallCompanyNews,2,FlameScale,8,15,1;0.4
+플레임스케일 합작논의,SmallCompanyNews,1,FlameScale,-5,5,1
+하이락 광산시설수주,SmallCompanyNews,2,HighRock,8,15,1;0.4
+하이락 안전사고,SmallCompanyNews,2,HighRock,-10,-5,1;0.4
+하이락 엘프기술도입,SmallCompanyNews,1,HighRock,-5,5,1
+하이락 인력부족,SmallCompanyNews,2,HighRock,-5,-2,1;0.4
+하이락 지하공법주목,SmallCompanyNews,1,HighRock,2,5,1
+하이락 품질문제,SmallCompanyNews,2,HighRock,-10,-5,1;0.4
+하이락 해외진출,SmallCompanyNews,2,HighRock,5,10,1;0.4
+하이애너 양조장화재,SmallCompanyNews,2,HighEner,-10,-5,1;0.4
+하이애너 엘프실패,SmallCompanyNews,2,HighEner,-5,-2,1;0.4
+하이애너 이물질,SmallCompanyNews,2,HighEner,-10,-5,1;0.4
+하이애너 저도수검토,SmallCompanyNews,1,HighEner,-5,5,1
+하이애너 축제후원,SmallCompanyNews,2,HighEner,5,10,1;0.4
+하이애너 판매최고,SmallCompanyNews,1,HighEner,2,5,1
+하이애너 한정판완판,SmallCompanyNews,2,HighEner,8,15,1;0.4
+혁명 민중 봉기,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
+혁명 전조 1,ForeshadowNews,3,-,-,-,
+혁명 전조 1,ForeshadowNews,3,-,-,-,
+혁명 전조 1,ForeshadowNews,3,-,-,-,
+혁명 전조 1,ForeshadowNews,3,-,-,-,
+혁명 전조 1,ForeshadowNews,3,-,-,-,
+광물의 시대 힌트,ForeshadowNews,1,-,-,-,11
+사치 시대 힌트,ForeshadowNews,1,-,-,-,11
+제약의 시대 힌트,ForeshadowNews,1,-,-,-,11
