@@ -23,12 +23,12 @@ MonoBehaviour:
     \uC2DC\uC98C\uC774\uB098 \uB300\uD615 \uC774\uBCA4\uD2B8\uC5D0 \uC218\uD61C\uB97C
     \uBC1B\uACE0, \uC804\uC7C1\uC774\uB098 \uC7AC\uB09C\uC774 \uD130\uC9C0\uBA74
     \uD0C0\uACA9\uC744 \uBC1B\uB294\uB2E4."
-  StockIcon: {fileID: -8474345723873186711, guid: 3ca74aa13902960438a1238b62494814, type: 3}
+  StockIcon: {fileID: 21300000, guid: bc126f414b0222bedf026570f6a3a0b5, type: 3}
   FamilyTag: Human
   IndustryTag: Game
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: cadea79a9d36457aaf2a83f702c9cceb, type: 2}
   baseRevenue: 100000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 2
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

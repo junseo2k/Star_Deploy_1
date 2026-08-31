@@ -1,0 +1,44 @@
+{
+  "currentEra": "마법의 시대",
+  "currentGold": 5000,
+  "currentDay": 42,
+  "eraName": "마법의 시대",
+  "eraDay": 12,
+  "eraEstimatedDays": 30,
+  "eraSummary": "마법공학·제약이 성장하고, 광업·건설이 침체합니다",
+  "eraBackgroundResource": "magic_era_background",
+  "industryTrends": [
+    { "industryName": "마법공학", "isRising": true },
+    { "industryName": "제약", "isRising": true },
+    { "industryName": "광업", "isRising": false },
+    { "industryName": "건설", "isRising": false }
+  ],
+  "todayNews": [
+    {
+      "companyName": "윈드시어 매직스",
+      "headline": "윈드시어, 신형 마나 엔진 공개",
+      "description": "왕실 기술진의 첫 시험을 성공적으로 통과했습니다",
+      "changePercent": 4.8,
+      "logoResource": "17_windshire-magics"
+    },
+    {
+      "companyName": "블레이즈마인 광산",
+      "headline": "블레이즈마인, 야간 채굴 중단",
+      "description": "지하 갱도 안전 점검으로 생산이 일시 중단됐습니다",
+      "changePercent": -2.1,
+      "logoResource": "01_blazemine-mining"
+    }
+  ],
+  "gainers": [
+    { "companyName": "윈드시어 매직스", "changePercent": 4.8, "logoResource": "17_windshire-magics" },
+    { "companyName": "아이언하트 공업", "changePercent": 3.4, "logoResource": "09_ironheart-industries" },
+    { "companyName": "코타 상업은행", "changePercent": 2.3, "logoResource": "08_kota-commercial-bank" }
+  ],
+  "losers": [
+    { "companyName": "블레이즈마인 광산", "changePercent": -2.1, "logoResource": "01_blazemine-mining" },
+    { "companyName": "에이더니얼 자산관리", "changePercent": -0.8, "logoResource": "07_aethernial-asset-management" },
+    { "companyName": "드워프 트레일 수송", "changePercent": -0.6, "logoResource": "28_dwarf-trail-transport" }
+  ],
+  "daysToQuarter": 8,
+  "quarterLength": 10
+}

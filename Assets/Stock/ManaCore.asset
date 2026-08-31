@@ -24,12 +24,12 @@ MonoBehaviour:
     \uC810\uC720\uC728\uC774 \uB192\uB2E4. \uB9C8\uB178\uC0AC \uC655\uAD6D \uB300\uD45C
     \uB9C8\uBC95 \uC18C\uBE44\uC7AC \uAE30\uC5C5. \uC2E0\uAE30\uC220 \uAC1C\uBC1C
     \uB274\uC2A4\uC5D0 \uBBFC\uAC10\uD558\uAC8C \uC6C0\uC9C1\uC778\uB2E4."
-  StockIcon: {fileID: -3522133345809498341, guid: d89216922460225499153c551b817a25, type: 3}
+  StockIcon: {fileID: 21300000, guid: 9e894b1a11c9c359dd994948fff0e990, type: 3}
   FamilyTag: Human
   IndustryTag: Magic
   owner: 2
   companyType: 2
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: 4d36f383f2f14ab595e063058b136aa1, type: 2}
   baseRevenue: 68000
@@ -43,5 +43,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 2
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

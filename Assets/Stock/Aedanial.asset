@@ -23,12 +23,12 @@ MonoBehaviour:
     \uC2DC\uC7A5\uC758 20%\uB97C \uC810\uC720 \uC911. \uB4DC\uB798\uACE4 \uAE08\uACE0\uC758
     \uC548\uC804\uC131\uC744 \uAE30\uBC18\uC73C\uB85C \uBCF4\uC218\uC801\uC73C\uB85C
     \uC6B4\uC6A9\uD55C\uB2E4."
-  StockIcon: {fileID: -2090083103748907358, guid: 19cf0c9b310e8114fb9dac55c7588276, type: 3}
+  StockIcon: {fileID: 21300000, guid: 883554a0b9db21fd3307c2dbf99ffe78, type: 3}
   FamilyTag: Dragonia
   IndustryTag: Bank
   owner: 0
   companyType: 1
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 279eed34a9c54c83ba3e3a3d98504e3e, type: 2}
   baseRevenue: 350000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 0
   nation: "\uB4DC\uB798\uACE0\uB2C8\uC544"
-  hasDividend: 0
   dividendRate: 0

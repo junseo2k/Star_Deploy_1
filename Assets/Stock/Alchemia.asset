@@ -24,12 +24,12 @@ MonoBehaviour:
     \uC811\uADFC\uC131 \uB192\uC740 \uB300\uC911 \uC758\uB8CC \uC2DC\uC7A5\uC744
     \uB2F4\uB2F9\uD55C\uB2E4. \uC804\uC5FC\uBCD1 \uB274\uC2A4\uC5D0 \uC9C1\uC811
     \uC218\uD61C."
-  StockIcon: {fileID: -7295311345913102329, guid: 46297eaa2c9877d418f6e635ba850f1b, type: 3}
+  StockIcon: {fileID: 21300000, guid: 349decdafbb7170bd8ffc0184784ddaf, type: 3}
   FamilyTag: Human
   IndustryTag: Clinic
   owner: 1
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 8f4343c840304488bcd89b26cd5472f6, type: 2}
   baseRevenue: 94000
@@ -43,5 +43,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

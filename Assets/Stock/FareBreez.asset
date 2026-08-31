@@ -23,12 +23,12 @@ MonoBehaviour:
     \uACE0\uAE09 \uC758\uB958 \uACF5\uAE09 \uACC4\uC57D\uC744 \uCCB4\uACB0\uD588\uB2E4.
     \uC5D8\uD504 \uCCAD\uB144 \uC778\uB825 \uC720\uCD9C\uB85C \uC0DD\uC0B0 \uAE30\uBC18\uC774
     \uC57D\uD574\uC9C0\uB294 \uAC8C \uB9AC\uC2A4\uD06C."
-  StockIcon: {fileID: -7195303632528399762, guid: 7ac1c0fd236f78a46b12e1d94fd54d83, type: 3}
+  StockIcon: {fileID: 21300000, guid: 55cf678240f44ba2ca5d577425238fb3, type: 3}
   FamilyTag: Elf
   IndustryTag: Luxury
   owner: 2
   companyType: 2
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: edd292e0929a4716bb519a94e673be44, type: 2}
   baseRevenue: 72000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC5D8\uD504"
-  hasDividend: 0
   dividendRate: 0

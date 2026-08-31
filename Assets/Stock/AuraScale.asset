@@ -25,12 +25,12 @@ MonoBehaviour:
     \uC9C0\uC6D0\uD558\uACE0 \uC788\uB2E4. \uC5F0\uAD6C \uC131\uACFC\uC5D0 \uB530\uB77C
     \uC8FC\uAC00\uAC00 \uD06C\uAC8C \uC6C0\uC9C1\uC774\uB294 \uC804\uD615\uC801\uC778
     \uBC14\uC774\uC624\uC8FC."
-  StockIcon: {fileID: -4866110457729250799, guid: 58843aab78b258f44b5a4e513ec177b0, type: 3}
+  StockIcon: {fileID: 21300000, guid: 01e208a8f59462dbb2f591d9ec5612cd, type: 3}
   FamilyTag: Dragonia
   IndustryTag: Clinic
   owner: 0
   companyType: 3
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: 75d41a65edff4966b2e93247ed66a7e2, type: 2}
   baseRevenue: 25000
@@ -44,5 +44,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 2
   nation: "\uB4DC\uB798\uACE0\uB2C8\uC544"
-  hasDividend: 0
   dividendRate: 0

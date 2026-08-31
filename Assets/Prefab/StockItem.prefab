@@ -59,7 +59,7 @@ MonoBehaviour:
   ownedAmountText: {fileID: 890006818012009455}
   favoriteIcon: {fileID: 8081015001884074329}
   favoriteOnSprite: {fileID: 3828233312272572337, guid: 68ee424534d746e47b1a48cbc668c354, type: 3}
-  favoriteOffSprite: {fileID: 8688233742085728730, guid: f9643cf355ebf9a4d96f9675817bde62, type: 3}
+  favoriteOffSprite: {fileID: 1964345376900833377, guid: 29c1811bd2cb4534a9fdda5e4ffb9d5d, type: 3}
 --- !u!1 &2223012762032773772
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3244509305437545683
 CanvasRenderer:

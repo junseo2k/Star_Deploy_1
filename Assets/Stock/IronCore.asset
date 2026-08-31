@@ -28,12 +28,12 @@ MonoBehaviour:
     \uC804\uBC29\uC704\uB85C \uACF5\uAE09\uD55C\uB2E4. \uB9C8\uB178\uC0AC\uC640 \uAD00\uACC4\uAC00
     \uC548 \uC88B\uC544\uC9C0\uBA74\uC11C \uC218\uCD9C \uCABD\uC5D0 \uCC28\uC9C8\uC774
     \uC0DD\uAE30\uB294 \uC911."
-  StockIcon: {fileID: -6714624625368738704, guid: dc743e3ff7630564592ca25ffb19aedf, type: 3}
+  StockIcon: {fileID: 21300000, guid: a01a2894d7f9f3c62cfc02cdc30b0d18, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Mining
   owner: 0
   companyType: 2
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: 6cb72870536d4462bd305143d7bca6db, type: 2}
   baseRevenue: 527000
@@ -47,5 +47,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 0
   nation: "\uB4DC\uC6CC\uD504"
-  hasDividend: 0
   dividendRate: 0

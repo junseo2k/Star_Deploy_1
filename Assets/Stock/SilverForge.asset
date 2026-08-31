@@ -23,12 +23,12 @@ MonoBehaviour:
     \uC788\uB2E4. \uAE00\uB9BC\uC719\uACFC \uC2DC\uC7A5\uC774 \uACB9\uCE58\uC9C0\uB9CC
     \uB4DC\uC6CC\uD504 \uD2B9\uC720\uC758 \uAE30\uACC4\uC801\uC778 \uC815\uAD50\uD568\uC73C\uB85C
     \uCC28\uBCC4\uD654\uD55C\uB2E4."
-  StockIcon: {fileID: -1330869182262755219, guid: 1cbed363f7d0d2a428fe118034c3a6c8, type: 3}
+  StockIcon: {fileID: 21300000, guid: 08651b8e8db5ec39af31a93872d4209b, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Luxury
   owner: 1
   companyType: 3
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: bb08b71ef3aa4a82845c0bbf197f0df3, type: 2}
   baseRevenue: 50000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uB4DC\uC6CC\uD504"
-  hasDividend: 0
   dividendRate: 0

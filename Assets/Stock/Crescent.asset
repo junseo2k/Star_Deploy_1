@@ -21,12 +21,12 @@ MonoBehaviour:
     \uADC0\uC871\uACFC \uC0C1\uB958\uCE35 \uB300\uC0C1 \uD504\uB9AC\uBBF8\uC5C4 \uC18C\uBE44\uC7AC
     \uC2DC\uC7A5 \uC810\uC720\uC728 1\uC704. \uACBD\uAE30 \uD750\uB984\uC744 \uAC00\uC7A5
     \uC9C1\uC811\uC801\uC73C\uB85C \uBC18\uC601\uD558\uB294 \uC885\uBAA9."
-  StockIcon: {fileID: 7120697822831471180, guid: 20921de159343e04aae592dbff523c43, type: 3}
+  StockIcon: {fileID: 21300000, guid: 7863358fb9989543d2721ecd4b3a9718, type: 3}
   FamilyTag: Human
   IndustryTag: Luxury
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: a0c00984e94043649f959a566fd3948e, type: 2}
   baseRevenue: 161000
@@ -40,5 +40,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

@@ -26,12 +26,12 @@ MonoBehaviour:
     \uBC00\uBC18\uCD9C\uACFC \uBC00\uC218\uCD9C\uC774 \uBE48\uBC88\uD558\uAC8C \uC77C\uC5B4\uB09C\uB2E4.
     \uC218\uCD9C \uADDC\uC81C \uC644\uD654 \uB274\uC2A4\uAC00 \uB728\uBA74 \uD06C\uAC8C
     \uC6C0\uC9C1\uC77C \uC218 \uC788\uB2E4."
-  StockIcon: {fileID: -9060086308887113400, guid: 45a8d3b0124dfae4f92c4875854f2bca, type: 3}
+  StockIcon: {fileID: 21300000, guid: 6a49c97500877b6766029c12bd323ee5, type: 3}
   FamilyTag: Elf
   IndustryTag: Food
   owner: 1
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 8f96996d53064446bfff4a670ca56f8f, type: 2}
   baseRevenue: 258000
@@ -45,5 +45,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 0
   nation: "\uC5D8\uD504"
-  hasDividend: 0
   dividendRate: 0

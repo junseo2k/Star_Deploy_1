@@ -22,12 +22,12 @@ MonoBehaviour:
     \uC798 \uD314\uB9B0\uB2E4. \uC778\uAC04\uC774\uB098 \uC5D8\uD504 \uC2DC\uC7A5
     \uC9C4\uC785\uC5D0\uB294 \uC2E4\uD328\uD588\uB2E4. \uC624\uD06C \uB0B4\uC218\uC640
     \uC804\uC7C1 \uC218\uC694\uC5D0 \uC758\uC874\uD558\uB294 \uAD6C\uC870."
-  StockIcon: {fileID: 3216015093287713222, guid: 4bc53229fbb2df043adc841eda0eb029, type: 3}
+  StockIcon: {fileID: 21300000, guid: 1d02c023c82ce4ea2e5c80443281e413, type: 3}
   FamilyTag: Orc
   IndustryTag: Game
   owner: 2
   companyType: 2
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 4df231fc6842406eacb244edefeca200, type: 2}
   baseRevenue: 28000
@@ -41,5 +41,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC624\uD06C"
-  hasDividend: 0
   dividendRate: 0

@@ -22,12 +22,12 @@ MonoBehaviour:
     \uAE08\uACE0\uBCF4\uB2E4 \uACF5\uACA9\uC801\uC73C\uB85C \uD22C\uC790\uD558\uB294
     \uC131\uD5A5\uC774\uB77C \uC218\uC775\uB960\uC740 \uB192\uC9C0\uB9CC \uADF8\uB9CC\uD07C
     \uB9AC\uC2A4\uD06C\uB3C4 \uC788\uB2E4."
-  StockIcon: {fileID: 8665668750785588366, guid: 963a4d68d0beacc49aca124b7b084611, type: 3}
+  StockIcon: {fileID: 21300000, guid: 28415c5aab8765a44785f58114f21968, type: 3}
   FamilyTag: Human
   IndustryTag: Bank
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 39b31ed875c5419f9b373ce3f925c9f8, type: 2}
   baseRevenue: 525000
@@ -41,5 +41,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

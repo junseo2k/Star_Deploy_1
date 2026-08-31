@@ -23,12 +23,12 @@ MonoBehaviour:
     \uD488\uC9C8 \uB17C\uB780\uC774 \uACC4\uC18D \uB530\uB77C\uB2E4\uB2CC\uB2E4.
     \uB4DC\uB808\uACE0\uB2C8\uC544\uC640 \uC0AC\uB8CC \uACF5\uAE09 \uACC4\uC57D\uC744
     \uB9FA\uC73C\uBA74\uC11C \uB9E4\uCD9C\uC774 \uC548\uC815\uB410\uB2E4."
-  StockIcon: {fileID: -7964349692489630177, guid: 4ad118adbddf499419c8d9562cc820d0, type: 3}
+  StockIcon: {fileID: 21300000, guid: 5fe9c72ed0e8f02f9a19bf04e9b83d89, type: 3}
   FamilyTag: Orc
   IndustryTag: Food
   owner: 1
   companyType: 1
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: d8744795c4194e8c83790e52b9044f6c, type: 2}
   baseRevenue: 92000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC624\uD06C"
-  hasDividend: 0
   dividendRate: 0

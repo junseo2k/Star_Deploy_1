@@ -23,12 +23,12 @@ MonoBehaviour:
     \uBB3C\uB958 \uC2DC\uC2A4\uD15C\uC744 \uAC1C\uBC1C \uC911\uC774\uB77C \uC131\uC7A5\uC774
     \uAE30\uB300\uB41C\uB2E4. \uB300\uB959 \uC804\uC5ED\uC5D0 \uBB3C\uB958 \uD5C8\uBE0C
     12\uAC1C\uB97C \uC6B4\uC601 \uC911."
-  StockIcon: {fileID: -3086114350971054098, guid: 3c6bb0e9984356f4487604e31c9438cf, type: 3}
+  StockIcon: {fileID: 21300000, guid: 6b2b8dad18b105809ab327350a14ccfd, type: 3}
   FamilyTag: Human
   IndustryTag: Coopang
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: c3f42948279747b88add28acd16091bc, type: 2}
   baseRevenue: 244000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0

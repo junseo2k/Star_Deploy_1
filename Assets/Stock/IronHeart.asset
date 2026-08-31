@@ -23,12 +23,12 @@ MonoBehaviour:
     \uBC29\uC0B0 \uC218\uCD9C\uC5D0 \uCC28\uC9C8\uC774 \uC0DD\uACBC\uACE0, \uC624\uD06C\uC758
     \uC800\uAC00 \uACF5\uC138\uB85C \uD558\uC704 \uC2DC\uC7A5\uC774 \uC7A0\uC2DD\uB2F9\uD558\uB294
     \uC911."
-  StockIcon: {fileID: -8330938859056995213, guid: e9738711b74933341a7ecc7bfb65fe92, type: 3}
+  StockIcon: {fileID: 21300000, guid: 689dd3124b204102f9407d2563e4bb53, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Army
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 8ab763a4007d4631afd5206369c56607, type: 2}
   baseRevenue: 369000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uB4DC\uC6CC\uD504"
-  hasDividend: 0
   dividendRate: 0

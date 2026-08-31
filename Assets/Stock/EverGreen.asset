@@ -25,12 +25,12 @@ MonoBehaviour:
     \uCCB4\uACB0\uD558\uBA74\uC11C \uC218\uCD9C\uB3C4 \uC2DC\uC791\uD588\uB2E4. \uC5D8\uD504
     \uCCAD\uB144 \uC720\uCD9C\uB85C \uC778\uB825\uB09C\uC774 \uAC71\uC815\uB418\uB294
     \uC0C1\uD669."
-  StockIcon: {fileID: 7885143639750791749, guid: 00e2fd5b2b2af6342adbdcbac157f7e9, type: 3}
+  StockIcon: {fileID: 21300000, guid: 7a671fb25cd5ee3ff51a254b3d5633b7, type: 3}
   FamilyTag: Elf
   IndustryTag: Clinic
   owner: 1
   companyType: 1
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: dfe058f72a394862802431ad53b545e6, type: 2}
   baseRevenue: 189000
@@ -44,5 +44,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 0
   nation: "\uC5D8\uD504"
-  hasDividend: 0
   dividendRate: 0

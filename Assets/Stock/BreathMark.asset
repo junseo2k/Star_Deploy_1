@@ -23,12 +23,12 @@ MonoBehaviour:
     \uB2E4\uB978 \uC2DC\uC7A5\uC744 \uACF5\uB7B5\uD55C\uB2E4. \uC804\uC7C1 \uBC1C\uBC1C
     \uC2DC \uAC00\uC7A5 \uD06C\uAC8C \uC6C0\uC9C1\uC774\uB294 \uC885\uBAA9 \uC911
     \uD558\uB098."
-  StockIcon: {fileID: -7342610467760999369, guid: a419e9a622733c24eb92b111101bf02b, type: 3}
+  StockIcon: {fileID: 21300000, guid: e170ba7f45ab480df0399e9a41df8376, type: 3}
   FamilyTag: Dragonia
   IndustryTag: Army
   owner: 0
   companyType: 2
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: 639db7b88b1b4736a64b840d296cce38, type: 2}
   baseRevenue: 269000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 2
   nation: "\uB4DC\uB798\uACE0\uB2C8\uC544"
-  hasDividend: 0
   dividendRate: 0

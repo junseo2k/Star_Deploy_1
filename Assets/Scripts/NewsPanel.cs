@@ -14,6 +14,9 @@ public class NewsPanel : MonoBehaviour
     // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 모두 표시
     public void OnIssueClick()
     {
+        // 새 뉴스 탭 화면(DelusionNewsScreen)으로 갈아탄 뒤로는 이 패널이 비어 있을 수 있다
+        if (IssueScroll == null) return;
+
         ClearChildren(IssueScroll);
         IssueScroll.gameObject.SetActive(true);
 
@@ -38,6 +41,9 @@ public class NewsPanel : MonoBehaviour
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출
     public void BigNewsClick()
     {
+        // 패널을 지웠으면 아무것도 하지 않는다 (새 뉴스 탭 화면이 대신 표시한다)
+        if (BigNewsPanel == null) return;
+
         ClearChildren(BigNewsPanel);
         BigNewsPanel.gameObject.SetActive(true);
 

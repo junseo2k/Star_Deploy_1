@@ -23,12 +23,12 @@ MonoBehaviour:
     \uD611\uB825\uD574\uC11C \uC790\uC5F0 \uD14C\uB9C8 \uC7A5\uC2E0\uAD6C \uB77C\uC778\uC744
     \uCD94\uAC00\uD588\uB2E4. \uB4DC\uC6CC\uD504 \uBCF4\uC11D \uACF5\uC608\uC640
     \uD488\uC9C8 \uACBD\uC7C1 \uC911."
-  StockIcon: {fileID: -7442965790587165579, guid: adc0c9bfc613de640b56fcc2ca9b97e7, type: 3}
+  StockIcon: {fileID: 21300000, guid: 3e0e33655b38bb6a6a4fe570195701df, type: 3}
   FamilyTag: Dragonia
   IndustryTag: Luxury
   owner: 0
   companyType: 1
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: f5ba4886dd6047ad828b2fdc8db94fb3, type: 2}
   baseRevenue: 97000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uB4DC\uB798\uACE0\uB2C8\uC544"
-  hasDividend: 0
   dividendRate: 0

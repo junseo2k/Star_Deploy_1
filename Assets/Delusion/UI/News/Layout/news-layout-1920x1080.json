@@ -1,0 +1,65 @@
+{
+  "referenceResolution": { "width": 1920, "height": 1080 },
+  "coordinateSystem": "top-left origin, x right, y down",
+  "colors": {
+    "background": "#090D0E",
+    "sidebar": "#30373B",
+    "sidebarGold": "#E4BD61",
+    "statusBar": "#0B2023",
+    "creamCard": "#F7F3ED",
+    "ink": "#1D2221",
+    "muted": "#747873",
+    "light": "#F2EEE7",
+    "gain": "#D64D43",
+    "loss": "#2578BA",
+    "flat": "#8B8D89"
+  },
+  "sidebar": {
+    "rect": [0, 0, 142, 1080],
+    "separatorX": 140,
+    "brandRing": [39, 73, 64, 64],
+    "activeMarker": [31, 532, 6, 44],
+    "icons": {
+      "home": [48, 284, 46, 46],
+      "market": [48, 424, 46, 46],
+      "newsActive": [48, 529, 46, 46],
+      "wallet": [48, 650, 46, 46]
+    }
+  },
+  "topStatusBar": [951, 37, 800, 76],
+  "header": {
+    "title": [249, 88, 280, 55],
+    "subtitle": [249, 145, 380, 28]
+  },
+  "eraCard": {
+    "rect": [245, 201, 1504, 196],
+    "symbol": [49, 32, 108, 108],
+    "eraName": [174, 35, 390, 48],
+    "eraDay": [174, 86, 360, 32],
+    "progress": [174, 140, 470, 18],
+    "summary": [855, 44, 580, 42],
+    "tagStart": [855, 111],
+    "tagSize": [128, 50],
+    "tagGap": 14
+  },
+  "todayNews": {
+    "sectionTitle": [249, 423, 330, 39],
+    "card": [245, 467, 1504, 255],
+    "viewportInset": [20, 10, 20, 10],
+    "rowHeight": 116,
+    "visibleRows": 2,
+    "overflow": "vertical scroll"
+  },
+  "bottomCards": {
+    "gainers": [245, 745, 490, 277],
+    "losers": [757, 745, 497, 277],
+    "quarter": [1275, 745, 474, 277]
+  },
+  "rules": {
+    "illustrationScope": "era card only",
+    "sidebarSelection": "gold icon plus short gold marker; no teal band",
+    "companyRows": "emblem plus dynamic text",
+    "gainColor": "red",
+    "lossColor": "blue"
+  }
+}

@@ -23,12 +23,12 @@ MonoBehaviour:
     \uB2E4\uB978 \uC885\uC871 \uB3C4\uC2DC\uC5D0\uC11C\uB3C4 \uC77C\uBD80 \uC218\uC8FC\uB97C
     \uBC1B\uAE30 \uC2DC\uC791\uD588\uB2E4. \uC5D8\uD504 \uACE0\uB839\uD654\uB85C
     \uC778\uB825\uB09C\uC774 \uACFC\uC81C."
-  StockIcon: {fileID: 291392126260648826, guid: c4fff3ee0057cc24c99e7da3f1913785, type: 3}
+  StockIcon: {fileID: 21300000, guid: df4838d3f8db0e87c579d5a7143c3a8a, type: 3}
   FamilyTag: Elf
   IndustryTag: Construct
   owner: 1
   companyType: 3
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: 57269ecc05b04c049aa33c88dc202b9f, type: 2}
   baseRevenue: 75000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 0
   nation: "\uC5D8\uD504"
-  hasDividend: 0
   dividendRate: 0

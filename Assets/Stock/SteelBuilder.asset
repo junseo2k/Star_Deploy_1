@@ -21,12 +21,12 @@ MonoBehaviour:
     \uC804\uBB38\uC774\uB2E4. \uB4DC\uC6CC\uD504 \uD2B9\uC720\uC758 \uACAC\uACE0\uD55C
     \uAC74\uCD95\uC73C\uB85C \uAD70\uC0AC \uC2DC\uC124\uC774\uB098 \uADC0\uC871\uCE35
     \uC218\uC694\uAC00 \uB9CE\uB2E4."
-  StockIcon: {fileID: -8723490693513770421, guid: be45f856bf4256f44bde0d336a12493f, type: 3}
+  StockIcon: {fileID: 21300000, guid: 4efe5e358983b2294acffa19786c4556, type: 3}
   FamilyTag: Dwarf
   IndustryTag: Construct
   owner: 0
   companyType: 1
-  payoutStyle: 1
+  personality: 1
   businesses:
   - {fileID: 11400000, guid: b69f11716e8d4ad99768ce40d18ed657, type: 2}
   baseRevenue: 132000
@@ -40,5 +40,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uB4DC\uC6CC\uD504"
-  hasDividend: 0
   dividendRate: 0

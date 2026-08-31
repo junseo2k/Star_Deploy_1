@@ -23,12 +23,12 @@ MonoBehaviour:
     \uC218\uB3C4 \uC774\uBD80 \uCF54\uD0C0 \uC911\uC2EC\uBD80\uC758 \uC8FC\uC694
     \uAC74\uBB3C\uC744 \uC18C\uC720\uD558\uACE0 \uC788\uB2E4. \uB3C4\uC2DC \uD655\uC7A5
     \uC815\uCC45\uC5D0 \uC9C1\uC811\uC801\uC778 \uC218\uD61C\uB97C \uBC1B\uB294\uB2E4."
-  StockIcon: {fileID: 463662976758016798, guid: 99a9ac313dc064c47b89fd2b1ec21093, type: 3}
+  StockIcon: {fileID: 21300000, guid: 3a11896f99113d0d20034c13479828ef, type: 3}
   FamilyTag: Human
   IndustryTag: Construct
   owner: 0
   companyType: 0
-  payoutStyle: 0
+  personality: 0
   businesses:
   - {fileID: 11400000, guid: 91faa791cf9b403eb6d27b8ecd1ecfdf, type: 2}
   baseRevenue: 179000
@@ -42,5 +42,4 @@ MonoBehaviour:
   isFavorite: 0
   volatilityType: 1
   nation: "\uC778\uAC04"
-  hasDividend: 0
   dividendRate: 0
