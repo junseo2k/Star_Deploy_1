@@ -1,0 +1,82 @@
+{
+  "screen": {
+    "name": "Delusion Vault UI - final 6th revision",
+    "referenceResolution": [1920, 1080],
+    "coordinateSystem": "top-left origin",
+    "canvasScaler": {
+      "mode": "Scale With Screen Size",
+      "matchWidthOrHeight": 0.5
+    }
+  },
+  "regions": {
+    "sidebar": {
+      "rect": [0, 0, 142, 1080],
+      "brandRing": [39, 73, 64, 64],
+      "goldSeparator": [140, 0, 2, 1080],
+      "activeMarker": [31, 653, 6, 44],
+      "icons": {
+        "home": [48, 284, 46, 46],
+        "market": [48, 424, 46, 46],
+        "news": [48, 529, 46, 46],
+        "walletActive": [48, 650, 46, 46]
+      }
+    },
+    "topStatusBar": {
+      "rect": [951, 24, 800, 78],
+      "fields": ["currentEra", "currentGold", "currentDay"]
+    },
+    "header": {
+      "title": [202, 43, 300, 58],
+      "subtitle": [202, 102, 380, 28]
+    },
+    "assetSummary": {
+      "rect": [200, 152, 1550, 100],
+      "order": ["totalAssets", "cash", "totalProfitPercent", "totalProfitAmount", "startingAssets"]
+    },
+    "holdings": {
+      "title": [203, 269, 350, 40],
+      "sortLabel": [1490, 269, 260, 40],
+      "card": [200, 313, 1550, 525],
+      "viewportInCard": [20, 2, 1490, 520],
+      "rowHeight": 130,
+      "visibleRows": 4,
+      "overflow": "vertical ScrollRect",
+      "sort": "evaluatedValue descending",
+      "rowColumns": {
+        "logo": [44, 24, 82, 82],
+        "companyName": [168, 30],
+        "quantity": "after company name",
+        "averageAndCurrent": [168, 75],
+        "evaluatedValue": [1190, 27, 230, 43],
+        "returnPercent": [1190, 72, 230, 36]
+      },
+      "scrollbarInCard": [1525, 37, 5, 450]
+    },
+    "majorShareholder": {
+      "title": [203, 850, 360, 38],
+      "card": [200, 890, 1550, 150],
+      "style": "static deep teal, single gold border, crown only",
+      "forbiddenEffects": ["particles", "glow", "light bloom", "animation"]
+    }
+  },
+  "colors": {
+    "ink": "#1D2221",
+    "muted": "#747873",
+    "cream": "#F2EEE7",
+    "gold": "#E4BD61",
+    "rise": "#D64D43",
+    "fall": "#2578BA",
+    "flat": "#8B8D89",
+    "majorShareholderBackground": "#073335"
+  },
+  "designRules": {
+    "profitColorOnly": true,
+    "profitBars": false,
+    "profitPills": false,
+    "miniCharts": false,
+    "donutChart": false,
+    "assetTrendGraph": false,
+    "pixelArt": false,
+    "characterIllustration": false
+  }
+}

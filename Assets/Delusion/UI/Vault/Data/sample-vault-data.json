@@ -1,0 +1,55 @@
+{
+  "currentEra": "마법의 시대",
+  "currentGold": 5000,
+  "currentDay": 42,
+  "totalAssets": 12340,
+  "cash": 5000,
+  "startingAssets": 5000,
+  "totalProfitAmount": 1920,
+  "totalProfitPercent": 18.4,
+  "holdings": [
+    {
+      "companyName": "윈드시어 매직스",
+      "logoResource": "17_windshire-magics",
+      "quantity": 3,
+      "averagePrice": 820,
+      "currentPrice": 850
+    },
+    {
+      "companyName": "아이언하트 공업",
+      "logoResource": "09_ironheart-industries",
+      "quantity": 2,
+      "averagePrice": 590,
+      "currentPrice": 610
+    },
+    {
+      "companyName": "에이더니얼 자산관리",
+      "logoResource": "07_aethernial-asset-management",
+      "quantity": 4,
+      "averagePrice": 285,
+      "currentPrice": 280
+    },
+    {
+      "companyName": "드래곤 금고",
+      "logoResource": "05_dragon-vault",
+      "quantity": 1,
+      "averagePrice": 940,
+      "currentPrice": 950
+    },
+    {
+      "companyName": "블레이즈마인 광산",
+      "logoResource": "01_blazemine-mining",
+      "quantity": 2,
+      "averagePrice": 400,
+      "currentPrice": 380
+    }
+  ],
+  "majorShareholders": [
+    {
+      "companyName": "윈드시어 매직스",
+      "logoResource": "17_windshire-magics",
+      "ownershipPercent": 12.0,
+      "isLargestShareholder": true
+    }
+  ]
+}

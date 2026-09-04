@@ -16,7 +16,6 @@ public class SidebarTabManager : MonoBehaviour
     }
 
     public NavTab[] tabs;
-    public GameObject stockDetailPanel; // DetailPanel의 DetailwithPanel 연결
     public enum ScreenType { Home, News, Stock, Portfolio }
 
     void Start()
@@ -52,12 +51,4 @@ public class SidebarTabManager : MonoBehaviour
         }
     }
 
-    public void HideAllTabs()
-    {
-        for (int i = 0; i < tabs.Length; i++)
-        {
-            if (tabs[i].icon != null) tabs[i].icon.sprite = tabs[i].darkSprite;
-            if (tabs[i].indicatorBar != null) tabs[i].indicatorBar.SetActive(false);
-        }
-    }
 }

@@ -3,39 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 뉴스 패널 UI를 관리하는 클래스
-// 대형 뉴스(BigNewsPanel)와 진행 중인 소형 이슈(IssueScroll) 표시를 담당
+// 대형 뉴스(BigNewsPanel) 표시를 담당 — 소형 이슈 목록은 새 뉴스 탭 화면이 대신한다
 public class NewsPanel : MonoBehaviour
 {
     public Transform BigNewsPanel;          // 대형 뉴스(BigTriggerNews 타입) 표시 패널
-    public Transform IssueScroll;           // 진행 중인 소형 이슈 목록 표시 패널
     public GameObject StockWithImagePrefab; // 이미지+텍스트 조합 UI 프리팹 (뉴스 항목 생성에 사용)
-    public Transform newspanel;             // 이 뉴스 패널 루트 오브젝트
-
-    // 이슈 탭 버튼 클릭 시 호출 — 진행 중인 소형/전조 뉴스를 모두 표시
-    public void OnIssueClick()
-    {
-        // 새 뉴스 탭 화면(DelusionNewsScreen)으로 갈아탄 뒤로는 이 패널이 비어 있을 수 있다
-        if (IssueScroll == null) return;
-
-        ClearChildren(IssueScroll);
-        IssueScroll.gameObject.SetActive(true);
-
-        foreach (ActiveCase active in GameManager.Instance.activeNewsList)
-        {
-            if (!IsIssueNews(active.caseData.newsType)) continue;
-
-            CreateNewsItem(IssueScroll, active.caseData.CaseImage,
-                $"{active.displayDescription} 남은 시간 : {active.Rday}");
-        }
-    }
-
-    // 이슈 목록에 표시할 뉴스 타입인지 판정 (대형 뉴스는 별도 패널에서 표시)
-    static bool IsIssueNews(Case.NewsType type)
-    {
-        return type == Case.NewsType.SmallIndustryNews
-            || type == Case.NewsType.SmallCompanyNews
-            || type == Case.NewsType.ForeshadowNews;
-    }
 
     // 대형 뉴스 패널 갱신 — 가장 최근에 추가된 BigTriggerNews 타입 뉴스를 표시
     // UIManager.OpenNewsPanel()에서 뉴스 패널 열릴 때 자동 호출

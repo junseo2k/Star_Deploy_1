@@ -1,0 +1,41 @@
+﻿number,name,slug,file,nation,industry,color
+1,블레이즈마인 광산,blazemine-mining,01_blazemine-mining,벨리르,광업,#6A4228
+2,아이언코어 철강,ironcore-steel,02_ironcore-steel,벨리르,광업,#6A4228
+3,글램머락 광산,glamourrock-mining,03_glamourrock-mining,원 오르쿠스,광업,#4A4F3B
+4,브루트스틸 철강,brutesteel,04_brutesteel,원 오르쿠스,광업,#4A4F3B
+5,드래곤 금고,dragon-vault,05_dragon-vault,바이브레스,금융,#542149
+6,아우렐리온 캐피탈,aurelion-capital,06_aurelion-capital,마노사,금융,#173B5E
+7,에이더니얼 자산관리,aethernial-asset-management,07_aethernial-asset-management,바이브레스,금융,#542149
+8,코타 상업은행,kota-commercial-bank,08_kota-commercial-bank,마노사,금융,#173B5E
+9,아이언하트 공업,ironheart-industries,09_ironheart-industries,벨리르,방산,#6A4228
+10,브레스마크 용병단,breathmark-mercenaries,10_breathmark-mercenaries,바이브레스,방산,#542149
+11,워메이커 용병단,warmaker-mercenaries,11_warmaker-mercenaries,원 오르쿠스,방산,#4A4F3B
+12,아이언리폼 방산,ironreform-defense,12_ironreform-defense,마노사,방산,#173B5E
+13,오르카그리 농업연합,orkagri-union,13_orkagri-union,원 오르쿠스,농업,#4A4F3B
+14,마노사 그레인,manosa-grain,14_manosa-grain,마노사,농업,#173B5E
+15,플레임스케일 농업,flamescale-agriculture,15_flamescale-agriculture,바이브레스,농업,#542149
+16,실바나 농원,sylvana-farm,16_sylvana-farm,알브레이,농업,#245A3E
+17,윈드시어 매직스,windshire-magics,17_windshire-magics,알브레이,마법공학,#245A3E
+18,마지노 테크놀로지,magino-technology,18_magino-technology,마노사,마법공학,#173B5E
+19,마나코어 시스템즈,manacore-systems,19_manacore-systems,마노사,마법공학,#173B5E
+20,마나펠 마법공예,manafel-crafts,20_manafel-crafts,원 오르쿠스,마법공학,#4A4F3B
+21,에버그린 에센스,evergreen-essence,21_evergreen-essence,알브레이,제약,#245A3E
+22,알케미아 제약,alchemia-pharma,22_alchemia-pharma,마노사,제약,#173B5E
+23,루트힐 약초원,roothill-herbs,23_roothill-herbs,알브레이,제약,#245A3E
+24,아우라스케일 생명과학,aurascale-bioscience,24_aurascale-bioscience,바이브레스,제약,#542149
+25,스카이마크 물류,skymark-logistics,25_skymark-logistics,마노사,물류,#173B5E
+26,글로발 로지스틱스,global-logistics,26_global-logistics,마노사,물류,#173B5E
+27,스카이포지 운송,skyforge-transport,27_skyforge-transport,바이브레스,물류,#542149
+28,드워프 트레일 수송,dwarf-trail-transport,28_dwarf-trail-transport,벨리르,물류,#6A4228
+29,스틸빌더 건설,steelbuilder,29_steelbuilder,벨리르,건설,#6A4228
+30,솔리스타 부동산,solista-real-estate,30_solista-real-estate,마노사,건설,#173B5E
+31,하이락 건축,highrock-architecture,31_highrock-architecture,벨리르,건설,#6A4228
+32,그린루트 건설,greenroot-construction,32_greenroot-construction,알브레이,건설,#245A3E
+33,크레센트 유통,crescent-retail,33_crescent-retail,마노사,소비재,#173B5E
+34,글림윙 보석공예,glimwing-jewelry,34_glimwing-jewelry,바이브레스,소비재,#542149
+35,페어브리즈 의류,fairbreeze-clothing,35_fairbreeze-clothing,알브레이,소비재,#245A3E
+36,실버포지 장신구,silverforge-jewelry,36_silverforge-jewelry,벨리르,소비재,#6A4228
+37,하이애너 맥주,hyena-beer,37_hyena-beer,벨리르,오락,#6A4228
+38,본파이어 주류,bonfire-liquor,38_bonfire-liquor,원 오르쿠스,오락,#4A4F3B
+39,이부코타 극장,ibu-kota-theater,39_ibu-kota-theater,마노사,오락,#173B5E
+40,오르크 파이트클럽,orc-fight-club,40_orc-fight-club,원 오르쿠스,오락,#4A4F3B

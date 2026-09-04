@@ -282,7 +282,6 @@ public partial class GameManager
             newActive.displayDescription = "[속보] " + newActive.displayDescription;
 
         activeNewsList.Add(newActive);
-        recentIssues.Add(casedata);
     }
 
     // 이 주식이 현재 활성 뉴스의 영향을 받고 있는지 판정 (직접 영향 / 연쇄 효과 / 대형 뉴스 산업군)

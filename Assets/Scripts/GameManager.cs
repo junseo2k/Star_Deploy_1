@@ -26,7 +26,6 @@ public partial class GameManager : MonoBehaviour
 
     [Header("사건 데이터")]
     public Case[] AllCases;                                // 게임에 등록된 모든 사건(Case ScriptableObject) 배열
-    public List<Case> recentIssues = new();                // 최근 발생한 사건 이력
     public List<ActiveCase> activeNewsList = new();        // 현재 진행 중인 활성 뉴스 목록
     public List<Case> SmallNewsCases = new();               // SmallIndustryNews·SmallCompanyNews 타입 케이스 목록
     public List<Case> BigTriggerCases = new();               // BigTriggerNews 타입 케이스 목록

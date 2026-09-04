@@ -138,7 +138,6 @@ public class Stock : ScriptableObject
     // (long)을 곱셈 앞에 붙여야 한다 — 곱한 뒤에 붙이면 이미 넘친 값을 옮기는 것이라 소용없다
     public long marketCap => (long)StockCurrentPrice * TotalShare;
     public int TotalShare;          // 발행 주식 총 수량
-    public string[] RecentIssue;    // 최근 주요 이슈 목록 (상세 패널 이슈 탭에 표시)
     public ProductInfo[] products;          // 기업 서비스/상품 목록 (상세 패널 서비스 탭에 표시)
     public bool isFavorite;   // 즐겨찾기 상태 (SaveGame에서 저장)
     [System.NonSerialized] // 저장 안 되는 런타임 전용

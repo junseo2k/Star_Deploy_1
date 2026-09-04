@@ -26,13 +26,12 @@ public class UIManager : MonoBehaviour
 
     [Header("패널 스크립트")]
     public DetailPanel detailpanel;
-    public PortfolioPanel portfolioPanelScript;
-    public LoanPanel loanPanelScript;
     public FavoritePanel favoritePanel;
     public QuarterReportPanel quarterReportPanel; // 분기 실적 발표 팝업 (화면 전환이 아니라 위에 덮어씀)
     public SidebarTabManager sidebarTabManager;
     [SerializeField] private NewsPanel newsPanelScript;
     [SerializeField] private NewsScreenBinder newsScreenBinder; // 새 뉴스 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
+    [SerializeField] private VaultScreenBinder vaultScreenBinder; // 새 자산 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
 
     void Awake()
     {
@@ -74,11 +73,11 @@ public class UIManager : MonoBehaviour
         if (purchaseCost > 0f)
         {
             float returnPct = (stockValue - purchaseCost) / purchaseCost * 100f;
-            TotalReturnText.text = UIFormat.SignedPercent(returnPct);
+            TotalReturnText.text = UIFormat.SignedPercent(returnPct, 1); // 소수 첫째 자리까지 (예: +14.9%)
         }
         else
         {
-            TotalReturnText.text = "0.00%";
+            TotalReturnText.text = "0.0%";
         }
     }
 
@@ -143,7 +142,10 @@ public class UIManager : MonoBehaviour
     public void OpenPortfolioPanel()
     {
         OpenScreen(portfolioPanel);
-        portfolioPanelScript.Open();
+
+        // 자산 탭 화면을 지금 게임 상태로 다시 그린다 (연결 안 돼 있으면 그냥 넘어간다)
+        if (vaultScreenBinder != null)
+            vaultScreenBinder.Refresh();
     }
 
     public void OpenFavoriteFullPanel()

@@ -48,10 +48,4 @@ public class SlotUI : MonoBehaviour
         else
             SlotManager.Instance.ShowNewGamePopup(slotIndex); // 빈 슬롯 팝업
     }
-
-    // 저장 슬롯으로 선택됐을 때 호출
-    public void OnSaveToThisSlot()
-    {
-        SlotManager.Instance.ShowSavePopup(slotIndex);
-    }
 }

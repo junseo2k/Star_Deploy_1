@@ -174,12 +174,6 @@ public class SlotManager : MonoBehaviour
 
     // ── 저장 팝업 ─────────────────────────────
 
-    public void ShowSavePopup(int slotIndex)
-    {
-        selectedSlot = slotIndex;
-        ShowPopup(savePopupPanel, saveMessageText, $"슬롯 {slotIndex}에 저장하시겠습니까?");
-    }
-
     public void OnSaveConfirm()
     {
         savePopupPanel.SetActive(false);

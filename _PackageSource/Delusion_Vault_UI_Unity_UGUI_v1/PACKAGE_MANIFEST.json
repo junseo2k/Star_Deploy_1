@@ -1,0 +1,27 @@
+{
+  "package": "Delusion_Vault_UI_Unity_UGUI_v1",
+  "target": "Unity UGUI + TextMeshPro",
+  "referenceResolution": "1920x1080",
+  "screenRevision": "Vault final direction, revision 6",
+  "contents": {
+    "runtimeScripts": 2,
+    "editorScripts": 1,
+    "companyLogos": 40,
+    "bundledFonts": 2,
+    "visibleHoldingRows": 4,
+    "sampleHoldingRows": 5,
+    "layoutJson": 1,
+    "sampleDataJson": 1,
+    "referencePreviews": 3
+  },
+  "runtimeFeatures": [
+    "evaluated-value descending sorting",
+    "four-row vertical ScrollRect",
+    "profit/loss color-only typography",
+    "empty holdings state",
+    "empty major-shareholder state",
+    "static major-shareholder achievement card",
+    "company click events",
+    "JSON data loading"
+  ]
+}

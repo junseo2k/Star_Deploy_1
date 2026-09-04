@@ -451,8 +451,9 @@ namespace Delusion.UI.News
             label.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
             label.color = color;
             label.alignment = alignment;
-            label.overflowMode = TextOverflowModes.Ellipsis;
-            label.enableWordWrapping = false;
+            // Ellipsis는 상자 높이에 한 줄이 안 들어가면 글자를 통째로 안 그린다 (자산 탭에서 같은 문제가 있었다)
+            label.overflowMode = TextOverflowModes.Overflow;
+            label.textWrappingMode = TextWrappingModes.NoWrap;   // 예전 enableWordWrapping = false 와 같다
             label.raycastTarget = false;
             return label;
         }
