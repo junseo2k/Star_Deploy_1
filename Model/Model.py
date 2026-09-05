@@ -89,16 +89,28 @@ y_test = np.array(y_test)
 news_category_test = np.array(news_category_test)
 
 print(f"훈련: {len(x_train)}개 / 테스트: {len(x_test)}개")
+
+# 출력을 [기댓값, log(분산)] 2개로 늘려서, 평균뿐 아니라 "확신도"도 같이 학습시킨다
+# log(분산)으로 예측하는 이유: 분산은 항상 양수여야 하는데, exp(log_var)로 복원하면 부호 제약을 신경 안 써도 됨
+def gaussian_nll_loss(y_true, y_pred):
+    mean = y_pred[:, 0]
+    log_var = tf.clip_by_value(y_pred[:, 1], -10.0, 10.0)  # exp() 폭주 방지용 클리핑
+    precision = tf.exp(-log_var)
+    return tf.reduce_mean(0.5 * (log_var + precision * tf.square(y_true - mean)))
+
+def mean_mae(y_true, y_pred):  # 기댓값 head만 떼서 기존 MAE 지표처럼 확인용
+    return tf.reduce_mean(tf.abs(y_true - y_pred[:, 0]))
+
 model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.LSTM(units=32, return_sequences=True))
 model.add(tf.keras.layers.Dropout(rate=0.25))   # LSTM "뒤"로 이동
 model.add(tf.keras.layers.LSTM(units=32))
 model.add(tf.keras.layers.Dropout(rate=0.25))
-model.add(tf.keras.layers.Dense(units=1, activation="linear"))
+model.add(tf.keras.layers.Dense(units=2, activation="linear"))  # [0]=기댓값, [1]=log(분산)
 model.compile(
-    loss = "mse",#평균 제곱 오차로, 예측값과 실제값 차이를 제곱해서 평균냄.
+    loss = gaussian_nll_loss, #평균과 분산을 동시에 맞추는 가우시안 negative log-likelihood
     optimizer=tf.keras.optimizers.Adam(), #학습 방향을 조정하는 알고리즘으로, Adam이 가장 많이 쓰이는 옵티마이저
-    metrics = ["mae"] #평균 절대 오차. 학습 중 얼마나 틀리는지 보여주는 지표
+    metrics = [mean_mae] #기댓값 head 기준 평균 절대 오차
 )
 model.build(input_shape=(None, window_size, N_FEATURES)) #모델에 입력 형태 알려주기. 특성 개수가 3 → 12로 늘어남
 model.summary()#모델 구조를 표로 출력
@@ -120,12 +132,15 @@ history = model.fit(
     callbacks=callbacks,
     verbose=1
 )
-predicted = model.predict(x_test) #테스트 데이터로 예측
-predicted = predicted.reshape(-1) #2차원 배열을 1차원으로. [[2.3], [-1.5]] → [2.3, -1.5]
+raw_predicted = model.predict(x_test) #테스트 데이터로 예측 → [:,0]=기댓값, [:,1]=log(분산)
+predicted = raw_predicted[:, 0]              #기댓값 head
+predicted_log_var = raw_predicted[:, 1]      #log(분산) head
+predicted_std = np.exp(0.5 * predicted_log_var) #표준편차로 환산 (분산 = exp(log_var))
 
 # 방법 B — 평균 오차
 mae = np.mean(np.abs(predicted - y_test)) #예측값과 실제값 차이의 절댓값 평균을 냄. abs가 절댓값.
 print(f"평균 예측 오차: {mae:.4f}%")
+print(f"예측 표준편차 평균: {predicted_std.mean():.4f} (최소 {predicted_std.min():.4f} / 최대 {predicted_std.max():.4f})")
 
 # 방법 A — 방향 정확도
 threshold = predicted.mean()  # 예측값들의 평균을 임계값으로 사용하여, 평균보다 높으면 상승, 낮으면 하락으로 판단

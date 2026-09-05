@@ -250,12 +250,17 @@ public partial class GameManager : MonoBehaviour
         TryGenerateSmallNews();
         TriggerScheduledNews();
         UpdateEra();
+
+        // ApplyDailyDrift()가 StockPreviousPrice를 스냅샷 뜬다 — 시대/사업 효과는 반드시 그 "뒤"에 적용해야
+        // 오늘 등락률(priceChangePct)에 잡힌다. 스냅샷보다 먼저 적용하면 가격은 실제로 바뀌어도
+        // "어제 가격" 쪽에 섞여 들어가서 변동률에는 영원히 안 보이게 된다
+        ApplyDailyDrift();
+
         ApplyEraPriceEffects();
 
         // 실적은 매일 정산하지 않는다 — 분기 마감일에만 몰아서 처리한다
         if (IsQuarterEnd) SettleQuarter();
 
-        ApplyDailyDrift();
         ApplyActiveNewsEffects();
 
         activeNewsList.RemoveAll(active => active.Rday <= 0); // 지속일이 끝난 뉴스 제거

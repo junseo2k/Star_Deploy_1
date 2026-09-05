@@ -33,7 +33,7 @@ public class NPCInvestor : MonoBehaviour
     private const int FEATURES_PER_DAY = 12; // 하루치 입력 feature 개수 (정규화 가격 1 + StockDailyFeatures 11) — model.py의 N_FEATURES와 동일
 
     private Worker worker; // 모델 추론 실행기
-    private readonly List<(Stock stock, float prediction)> dailyPredictions = new(); // 이번 턴에 수집한 주식별 예측값
+    private readonly List<(Stock stock, float prediction, float confidence)> dailyPredictions = new(); // 이번 턴에 수집한 주식별 예측값(기댓값)과 확신도(0~1)
     private readonly Dictionary<Stock, Queue<(float price, StockDailyFeatures features)>> priceHistories = new(); // 주식별 입력 이력 큐
 
     // 모델 로드 및 추론 워커 초기화
@@ -130,10 +130,15 @@ public class NPCInvestor : MonoBehaviour
         {
             worker.Schedule(inputTensor);
             Tensor<float> output = worker.PeekOutput("output_0") as Tensor<float>;
-            float predictedChange = output.DownloadToArray()[0];
+            float[] result = output.DownloadToArray(); // [0]=기댓값, [1]=log(분산) — model.py의 2-head 출력과 동일 순서
 
-            Debug.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}%");
-            dailyPredictions.Add((stock, predictedChange));
+            float predictedChange = result[0];
+            float logVar = result[1];
+            float stdDev = Mathf.Exp(0.5f * logVar); // 분산 = exp(log_var), 표준편차 = 분산의 제곱근
+            float confidence = Mathf.Clamp01(1f / (1f + stdDev)); // 표준편차가 클수록(불확실할수록) 0에 가까워지는 확신도
+
+            Debug.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}% (표준편차 {stdDev:F2}, 확신도 {confidence:F2})");
+            dailyPredictions.Add((stock, predictedChange, confidence));
         }
         finally
         {
@@ -152,11 +157,11 @@ public class NPCInvestor : MonoBehaviour
 
         Debug.Log($"[{investorName}] 오늘 예측 평균: {avg:F2}%");
 
-        foreach (var (stock, prediction) in dailyPredictions)
+        foreach (var (stock, prediction, confidence) in dailyPredictions)
         {
             float diff = prediction - avg;
             if (diff > buyThreshold)
-                Buy(stock);
+                Buy(stock, confidence); // 확신도가 낮으면 매수 비중을 줄인다
             else if (diff < sellThreshold)
                 Sell(stock);
         }
@@ -175,10 +180,10 @@ public class NPCInvestor : MonoBehaviour
         totalAssets = gold + stockValue;
     }
 
-    // 보유 골드의 investRatio 비율로 해당 주식을 최대한 매수
-    void Buy(Stock stock)
+    // 보유 골드의 investRatio 비율로 해당 주식을 최대한 매수 (confidence만큼 매수 비중을 추가로 조절)
+    void Buy(Stock stock, float confidence)
     {
-        int budget = Mathf.FloorToInt(gold * investRatio);
+        int budget = Mathf.FloorToInt(gold * investRatio * confidence);
         int amount = budget / stock.StockCurrentPrice;
         if (amount <= 0) return;
 
