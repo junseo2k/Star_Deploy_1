@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Solistar
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Solistar
-  StockBasePrice: 250
+  StockBasePrice: 1000
   StockDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4. \uB300\uD615
     \uB3C4\uC2DC\uC640 \uADC0\uC871 \uC9C0\uC5ED\uC758 \uACE0\uAE09 \uBD80\uB3D9\uC0B0\uC744
     \uC18C\uC720\uD558\uACE0 \uAC1C\uBC1C\uD55C\uB2E4."
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 91faa791cf9b403eb6d27b8ecd1ecfdf, type: 2}
-  baseRevenue: 179000
-  operatingCost: 54000
+  baseRevenue: 716000
+  operatingCost: 216000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

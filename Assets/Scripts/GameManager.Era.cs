@@ -63,6 +63,15 @@ public partial class GameManager
         return 1.0f;
     }
 
+    // 지금 이 회사의 "새 사업 착수 확률"에 걸려 있는 시대 배율 — 수혜 1.5 / 무관 1.0 / 타격 0.6
+    // 제약의 시대면 제약 회사들이 평소보다 자주 신사업을 벌이도록 TryStartBusiness에서 곱해준다
+    public float GetEraBusinessChanceModifier(Stock stock)
+    {
+        if (IsBoostedByEra(stock)) return GameBalance.ERA_BUSINESS_CHANCE_BOOST;
+        if (IsWeakenedByEra(stock)) return GameBalance.ERA_BUSINESS_CHANCE_PENALTY;
+        return 1.0f;
+    }
+
     // 현재 시대가 이 주식의 산업군을 밀어주는지 여부
     public bool IsBoostedByEra(Stock stock)
     {

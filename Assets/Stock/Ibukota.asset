@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ibukota
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Ibukota
-  StockBasePrice: 200
+  StockBasePrice: 800
   StockDescription: "\uB9C8\uB178\uC0AC \uC218\uB3C4\uC5D0 \uBCF8\uC0AC\uB97C \uB454
     \uB300\uB959 \uCD5C\uB300 \uC624\uB77D \uBC0F \uACF5\uC5F0 \uC0AC\uC5C5\uC790. "
   StockDetailDescription: "\uB9C8\uB178\uC0AC \uC218\uB3C4\uC5D0 \uBCF8\uC0AC\uB97C
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: cadea79a9d36457aaf2a83f702c9cceb, type: 2}
-  baseRevenue: 100000
-  operatingCost: 30000
+  baseRevenue: 400000
+  operatingCost: 120000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManaPell
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: ManaPell
-  StockBasePrice: 65
+  StockBasePrice: 260
   StockDescription: "\uB611\uB611\uD55C \uC624\uD06C\uB4E4\uC774 \uC5F0\uAD6C\uD55C
     \uC2E4\uC6A9 \uB9C8\uBC95 \uC7A5\uBE44\uB97C \uB9CC\uB4DC\uB294 \uD68C\uC0AC."
   StockDetailDescription: "\uB611\uB611\uD55C \uC624\uD06C\uB4E4\uC774 \uC5F0\uAD6C\uD55C
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: e4df9f9104b94e7eae9444b2d5f15e69, type: 2}
-  baseRevenue: 30000
-  operatingCost: 36000
+  baseRevenue: 120000
+  operatingCost: 144000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

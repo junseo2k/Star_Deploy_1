@@ -84,8 +84,8 @@ namespace Delusion.UI.MarketCurrent
             Stretch(generatedRoot);
 
             BuildBackground(generatedRoot);
-            BuildSidebar(generatedRoot);
-            BuildStatusBar(generatedRoot);
+            // 사이드바와 상단 상태바는 게임 쪽 UI(Canvas의 사이드바 / Canvas/TopBar)를 쓰므로 생성하지 않는다.
+            // (예전엔 BuildSidebar / BuildStatusBar 를 여기서 불렀다 — 겹쳐 보이는 원인이었음)
             BuildHeader(generatedRoot);
             BuildFilters(generatedRoot);
             BuildScrollList(generatedRoot);
@@ -139,63 +139,10 @@ namespace Delusion.UI.MarketCurrent
             background.color = Color.white;
         }
 
-        private void BuildSidebar(RectTransform parent)
-        {
-            var sidebar = CreateImage("Sidebar", parent, LoadSprite("sidebar_base_9slice"));
-            SetTopLeft(sidebar.rectTransform, Vector2.zero, new Vector2(142f, 1080f));
-            sidebar.type = Image.Type.Sliced;
-
-            var separator = CreateImage("SidebarGoldSeparator", parent, LoadSprite("sidebar_separator"));
-            SetTopLeft(separator.rectTransform, new Vector2(140f, 0f), new Vector2(1f, 1080f));
-
-            var brand = CreateImage("BrandRing", parent, LoadSprite("brand_ring"));
-            SetTopLeft(brand.rectTransform, new Vector2(39f, 51f), new Vector2(64f, 64f));
-            brand.preserveAspect = true;
-
-            var active = CreateImage("MarketActiveBackground", parent, LoadSprite("sidebar_active_9slice"));
-            SetTopLeft(active.rectTransform, new Vector2(0f, 345f), new Vector2(142f, 89f));
-            active.type = Image.Type.Sliced;
-
-            var marker = CreateImage("MarketActiveMarker", parent, LoadSprite("sidebar_active_marker"));
-            SetTopLeft(marker.rectTransform, new Vector2(31f, 371f), new Vector2(5f, 38f));
-
-            BuildSidebarIcon(parent, "Home", "icon_home", new Vector2(47f, 244f), new Vector2(46f, 46f));
-            BuildSidebarIcon(parent, "Market", "icon_market", new Vector2(47f, 368f), new Vector2(46f, 46f));
-            BuildSidebarIcon(parent, "Trend", "icon_trend", new Vector2(47f, 495f), new Vector2(46f, 46f));
-            BuildSidebarIcon(parent, "Wallet", "icon_wallet", new Vector2(47f, 620f), new Vector2(46f, 46f));
-        }
-
-        private void BuildSidebarIcon(RectTransform parent, string name, string spriteName, Vector2 position, Vector2 size)
-        {
-            var icon = CreateImage("SidebarIcon_" + name, parent, LoadSprite(spriteName));
-            SetTopLeft(icon.rectTransform, position, size);
-            icon.preserveAspect = true;
-        }
-
-        private void BuildStatusBar(RectTransform parent)
-        {
-            var bar = CreateImage("TopStatusBar", parent, LoadSprite("top_status_bar_9slice"));
-            SetTopLeft(bar.rectTransform, new Vector2(920f, 42f), new Vector2(790f, 74f));
-            bar.type = Image.Type.Sliced;
-
-            BuildStatusItem(bar.rectTransform, "Era", "icon_sun", 36f, "현재 시대 :", currentEra);
-            BuildStatusItem(bar.rectTransform, "Gold", "icon_coin", 316f, "현재 골드 :", currentGold.ToString("N0"));
-            BuildStatusItem(bar.rectTransform, "Day", "icon_hourglass", 589f, "현재 날짜 :", currentDay.ToString());
-        }
-
-        private void BuildStatusItem(RectTransform parent, string name, string iconName, float x, string label, string value)
-        {
-            var icon = CreateImage(name + "Icon", parent, LoadSprite(iconName));
-            SetTopLeft(icon.rectTransform, new Vector2(x, 12f), new Vector2(39f, 39f));
-            icon.preserveAspect = true;
-            CreateText(name + "Label", parent, label, new Vector2(x + 51f, 9f), new Vector2(130f, 21f), 12f, true, LightText, TextAlignmentOptions.Left);
-            CreateText(name + "Value", parent, value, new Vector2(x + 51f, 31f), new Vector2(180f, 34f), 21f, true, LightText, TextAlignmentOptions.Left);
-        }
-
         private void BuildHeader(RectTransform parent)
         {
             CreateText("Title", parent, "시장", new Vector2(241f, 86f), new Vector2(260f, 55f), 46f, true, LightText, TextAlignmentOptions.Left);
-            CreateText("Subtitle", parent, "대륙의 40개 기업을 살펴보세요", new Vector2(241f, 135f), new Vector2(390f, 27f), 17f, false, new Color(0.76f, 0.77f, 0.74f), TextAlignmentOptions.Left);
+            // 부제("대륙의 40개 기업을 살펴보세요")는 게임에서 안 쓰므로 생성하지 않는다
         }
 
         private void BuildFilters(RectTransform parent)

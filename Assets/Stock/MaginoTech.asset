@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaginoTech
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: MaginoTech
-  StockBasePrice: 380
+  StockBasePrice: 1520
   StockDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4. \uB9C8\uBC95
     \uAE30\uC220 \uC5F0\uAD6C\uC640 \uC0C1\uC6A9\uD654\uAC00 \uC8FC\uB825\uC774\uB2E4. "
   StockDetailDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4.
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 3e803ed87d7b4dbca33cf2181f363e3a, type: 2}
-  baseRevenue: 173000
-  operatingCost: 104000
+  baseRevenue: 692000
+  operatingCost: 416000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

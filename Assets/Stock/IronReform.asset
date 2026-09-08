@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronReform
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronReform
-  StockBasePrice: 35
+  StockBasePrice: 140
   StockDescription: "\uB9C8\uB178\uC0AC \uC655\uAD6D\uC774 \uCD5C\uADFC \uAD6D\uAC00
     \uC0AC\uC5C5\uC73C\uB85C \uBC00\uAE30 \uC2DC\uC791\uD55C \uC2E0\uC0DD \uBC29\uC0B0\uC0AC. "
   StockDetailDescription: "\uB9C8\uB178\uC0AC \uC655\uAD6D\uC774 \uCD5C\uADFC \uAD6D\uAC00
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: d585e8d390bd4e67aeb249d7b28d4a8f, type: 2}
-  baseRevenue: 27000
-  operatingCost: 32000
+  baseRevenue: 108000
+  operatingCost: 128000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

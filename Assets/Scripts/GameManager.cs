@@ -229,7 +229,7 @@ public partial class GameManager : MonoBehaviour
 
     // ── 하루 진행 ─────────────────────────────────────
 
-    // 지금이 분기 마감일인지 — 10턴에 한 번 실적이 정산된다 (200턴이면 20분기)
+    // 지금이 분기 마감일인지 — QUARTER_LENGTH턴에 한 번 실적이 정산된다 (20턴 기준, 400턴이면 20분기)
     public bool IsQuarterEnd => currentDay % GameBalance.QUARTER_LENGTH == 0;
 
     // 현재 분기 번호 (1분기부터 시작)
@@ -324,28 +324,35 @@ public partial class GameManager : MonoBehaviour
         Debug.Log($"[알림 {dailyNotices.Count}개] {string.Join(" | ", dailyNotices)}");
     }
 
-    // 게임 오버 조건 검사 — 골드 고갈 연속 지속, 또는 대출금을 감당하지 못하는 경우
+    // 게임 오버 조건 검사 — 지금은 비활성화 상태다 (요청에 따라 임시로 꺼둠)
+    // 되살리려면 아래 주석 처리한 원래 로직을 복구하면 된다:
+    //   · 골드가 LOW_GOLD_THRESHOLD 이하로 LOW_GOLD_GAMEOVER_STREAK턴 연속 → 게임 오버
+    //   · loanAmount > 0 이고 currentgold < loanAmount (대출 상환 불가) → 게임 오버
     void CheckGameOverConditions()
     {
-        if (currentgold <= GameBalance.LOW_GOLD_THRESHOLD)
-        {
-            lowGoldStreak++;
-            if (lowGoldStreak >= GameBalance.LOW_GOLD_GAMEOVER_STREAK)
-            {
-                LoadGameOverScene();
-                return;
-            }
-        }
-        else
-        {
-            lowGoldStreak = 0;
-        }
+        // 게임 오버 없음 — 골드가 0 이하가 되든 대출을 못 갚든 게임은 계속 진행된다
+        lowGoldStreak = 0;
 
-        // 골드가 대출금보다 적으면 상환 불가 → 게임 오버
-        if (loanAmount > 0 && currentgold < loanAmount)
-            LoadGameOverScene();
+        // --- 원래 게임 오버 로직 (임시 비활성화) ---
+        // if (currentgold <= GameBalance.LOW_GOLD_THRESHOLD)
+        // {
+        //     lowGoldStreak++;
+        //     if (lowGoldStreak >= GameBalance.LOW_GOLD_GAMEOVER_STREAK)
+        //     {
+        //         LoadGameOverScene();
+        //         return;
+        //     }
+        // }
+        // else
+        // {
+        //     lowGoldStreak = 0;
+        // }
+        //
+        // if (loanAmount > 0 && currentgold < loanAmount)
+        //     LoadGameOverScene();
     }
 
+    // 게임 오버 씬 전환 — CheckGameOverConditions를 되살릴 때 함께 사용한다
     void LoadGameOverScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");

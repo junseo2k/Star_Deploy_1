@@ -315,7 +315,20 @@ public partial class GameManager
         float multiplier = 1f + improvement * GameBalance.PROFIT_SENSITIVITY;
 
         // 폭락·폭등이 끝없이 이어지지 않도록 기준가의 30%~300% 사이로 제한
+        // (제한은 "실적 대비 평가"에만 걸린다. 아래 시장 성장분은 이 제한 밖에서 따로 곱해진다)
         multiplier = Mathf.Clamp(multiplier, GameBalance.FAIR_PRICE_MIN_RATIO, GameBalance.FAIR_PRICE_MAX_RATIO);
-        return Mathf.RoundToInt(stock.StockBasePrice * multiplier);
+
+        // 시장 전체 성장 — 주가가 매일 DAILY_BIAS만큼 오르는 만큼 목표 주가도 같이 올려준다
+        //
+        // 이게 없으면 주가만 매일 오르고 목표가는 게임 시작 시점에 멈춰 있어서, 분기가 지날수록
+        // 괴리가 쌓이고 분기말마다 주가가 끌어내려지는 톱니 패턴이 생긴다 (실측: 분기말의 72%가 하락,
+        // 주가가 목표가보다 평균 7.6% 위에서 평형). 그러면 "분기말 직전에 팔고 지나서 사기"가
+        // 항상 이기는 요령이 되어버린다
+        //
+        // 현실에서도 금리가 내려가면 개별 회사 실적과 무관하게 모든 자산의 적정가치가 같이 오른다.
+        // 개별 종목의 주가가 아니라 시장 전체에 걸리는 공통 계수라서 순환 참조가 아니다
+        float marketGrowth = Mathf.Pow(1f + GameBalance.DAILY_BIAS / 100f, currentDay);
+
+        return Mathf.RoundToInt(stock.StockBasePrice * multiplier * marketGrowth);
     }
 }

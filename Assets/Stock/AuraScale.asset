@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AuraScale
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: AuraScale
-  StockBasePrice: 45
+  StockBasePrice: 180
   StockDescription: "\uB4DC\uB808\uACE0\uB2C8\uC544 \uC720\uC804\uC790 \uD2B9\uC131\uC744
     \uD65C\uC6A9\uD55C \uC7A5\uC218\uC640 \uCE58\uC720 \uC5F0\uAD6C\uB97C \uD558\uB294
     \uD68C\uC0AC. "
@@ -33,11 +33,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 75d41a65edff4966b2e93247ed66a7e2, type: 2}
-  baseRevenue: 25000
-  operatingCost: 30000
+  baseRevenue: 100000
+  operatingCost: 120000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

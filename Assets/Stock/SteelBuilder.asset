@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SteelBuilder
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: SteelBuilder
-  StockBasePrice: 185
+  StockBasePrice: 740
   StockDescription: "\uC544\uC774\uC5B8\uD558\uD2B8 \uADF8\uB8F9 \uACC4\uC5F4. \uACE0\uB0B4\uAD6C\uC131
     \uAC74\uCD95\uBB3C\uACFC \uC0B0\uC5C5\uC6A9 \uAC74\uBB3C\uC774 \uC804\uBB38\uC774\uB2E4."
   StockDetailDescription: "\uC544\uC774\uC5B8\uD558\uD2B8 \uADF8\uB8F9 \uACC4\uC5F4.
@@ -29,11 +29,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: b69f11716e8d4ad99768ce40d18ed657, type: 2}
-  baseRevenue: 132000
-  operatingCost: 79000
+  baseRevenue: 528000
+  operatingCost: 316000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

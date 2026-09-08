@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LootHeel
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: LootHeel
-  StockBasePrice: 220
+  StockBasePrice: 880
   StockDescription: "\uC138\uACC4\uC218 \uC778\uADFC\uC5D0\uC11C \uC57D\uCD08\uB97C
     \uC7AC\uBC30\uD558\uACE0 \uC6D0\uC7AC\uB8CC\uB97C \uACF5\uAE09\uD558\uB294 \uD68C\uC0AC. "
   StockDetailDescription: "\uC138\uACC4\uC218 \uC778\uADFC\uC5D0\uC11C \uC57D\uCD08\uB97C
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 74dd7800820c400787160976a0a5dbb4, type: 2}
-  baseRevenue: 122000
-  operatingCost: 116000
+  baseRevenue: 488000
+  operatingCost: 464000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrcaGree
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: OrcaGree
-  StockBasePrice: 110
+  StockBasePrice: 440
   StockDescription: "\uB300\uB959 \uCD5C\uB300 \uBB3C\uB7C9\uC758 \uCD95\uC0B0 \uBC0F
     \uACE1\uBB3C \uC0DD\uC0B0. \uC778\uAC04\uACFC \uC5D8\uD504 \uC655\uAD6D\uC5D0
     \uB300\uB7C9 \uC218\uCD9C\uD55C\uB2E4. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: d8744795c4194e8c83790e52b9044f6c, type: 2}
-  baseRevenue: 92000
-  operatingCost: 55000
+  baseRevenue: 368000
+  operatingCost: 220000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

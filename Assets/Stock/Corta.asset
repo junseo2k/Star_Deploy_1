@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Corta
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Corta
-  StockBasePrice: 160
+  StockBasePrice: 640
   StockDescription: "\uB9C8\uB178\uC0AC \uC218\uB3C4 \uC774\uBD80 \uCF54\uD0C0 \uAE30\uBC18
     \uC0C1\uC5C5\uC740\uD589. \uC544\uC6B0\uB810\uB9AC\uC628 \uCE90\uD53C\uD0C8\uC774
     \uC0C1\uB958\uCE35 \uAE08\uC735\uC774\uB77C\uBA74 \uCF54\uD0C0 \uC0C1\uC5C5\uC740\uD589\uC740
@@ -33,11 +33,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: e0da8a0438984026b0a9bf6d12997b41, type: 2}
-  baseRevenue: 200000
-  operatingCost: 190000
+  baseRevenue: 800000
+  operatingCost: 760000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

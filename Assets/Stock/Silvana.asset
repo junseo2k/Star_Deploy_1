@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Silvana
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Silvana
-  StockBasePrice: 310
+  StockBasePrice: 1240
   StockDescription: "\uC5D8\uD504 \uB9C8\uBC95 \uB18D\uBC95 \uAE30\uBC18\uC758 \uACE0\uD488\uC9C8
     \uACE1\uBB3C\uACFC \uACFC\uC77C\uC744 \uC0DD\uC0B0\uD55C\uB2E4. \uB0B4\uC218
     \uC911\uC2EC\uC774\uC9C0\uB9CC \uC5D8\uD504 \uB18D\uC0B0\uBB3C\uC740 \uB300\uB959\uC5D0\uC11C
@@ -34,11 +34,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 8f96996d53064446bfff4a670ca56f8f, type: 2}
-  baseRevenue: 258000
-  operatingCost: 77000
+  baseRevenue: 1032000
+  operatingCost: 308000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BrootSteel
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: BrootSteel
-  StockBasePrice: 95
+  StockBasePrice: 380
   StockDescription: "\uBE0C\uB8E8\uD2B8\uD3EC\uC9C0 \uACC4\uC5F4 \uCCA0\uAC15 \uAC00\uACF5\uC0AC.
     \uC800\uAC00 \uB300\uB7C9 \uC0DD\uC0B0\uC73C\uB85C \uB300\uB959 \uCCA0\uAC15
     \uC2DC\uC7A5 20%\uB97C \uBA39\uACE0 \uC788\uB2E4. \uAC74\uC124\uC774\uB791 \uC81C\uC870\uC5C5
@@ -34,11 +34,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 3e98337d682549e78bcbd32a7857ef3f, type: 2}
-  baseRevenue: 86000
-  operatingCost: 52000
+  baseRevenue: 344000
+  operatingCost: 208000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManosaGrain
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: ManosaGrain
-  StockBasePrice: 200
+  StockBasePrice: 800
   StockDescription: "\uB300\uB959 \uC911\uC2EC\uBD80\uB77C\uB294 \uC9C0\uB9AC\uC801
     \uC774\uC810\uC744 \uC0B4\uB9B0 \uB300\uADDC\uBAA8 \uACE1\uBB3C \uC0DD\uC0B0
     \uBC0F \uC2DD\uD488 \uC720\uD1B5\uC0AC. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 28bf4c6a292a423184f356228577cfd7, type: 2}
-  baseRevenue: 167000
-  operatingCost: 50000
+  baseRevenue: 668000
+  operatingCost: 200000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

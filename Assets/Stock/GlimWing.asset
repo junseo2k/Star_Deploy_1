@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlimWing
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GlimWing
-  StockBasePrice: 175
+  StockBasePrice: 700
   StockDescription: "\uB4DC\uB798\uACE4 \uAE08\uACFC \uBCF4\uC11D\uC73C\uB85C \uACE0\uAE09
     \uC7A5\uC2E0\uAD6C\uB97C \uB9CC\uB4E0\uB2E4. \uADC0\uC871\uACFC \uBD80\uC720\uCE35
     \uB9DE\uCDA4 \uC11C\uBE44\uC2A4\uAC00 \uD2B9\uC9D5. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: f5ba4886dd6047ad828b2fdc8db94fb3, type: 2}
-  baseRevenue: 97000
-  operatingCost: 58000
+  baseRevenue: 388000
+  operatingCost: 232000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

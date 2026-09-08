@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlamerRock
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GlamerRock
-  StockBasePrice: 120
+  StockBasePrice: 480
   StockDescription: "\uB4DC\uC6CC\uD504\uBCF4\uB2E4 \uD488\uC9C8\uC740 \uB5A8\uC5B4\uC9C0\uC9C0\uB9CC
     \uC555\uB3C4\uC801\uC778 \uBB3C\uB7C9\uC73C\uB85C \uC2DC\uC7A5\uC744 \uBA39\uACE0
     \uC788\uB2E4."
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 5db5ef7469c24ddfbdc51c293e2aa28d, type: 2}
-  baseRevenue: 109000
-  operatingCost: 104000
+  baseRevenue: 436000
+  operatingCost: 416000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

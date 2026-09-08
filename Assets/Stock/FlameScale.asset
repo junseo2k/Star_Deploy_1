@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlameScale
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: FlameScale
-  StockBasePrice: 75
+  StockBasePrice: 300
   StockDescription: "\uB4DC\uB808\uACE0\uB2C8\uC544 \uD654\uC0B0 \uC9C0\uB300\uC5D0\uC11C
     \uC790\uB780 \uD2B9\uC0B0\uBB3C\uC744 \uC7AC\uBC30\uD558\uB294 \uD68C\uC0AC. "
   StockDetailDescription: "\uB4DC\uB808\uACE0\uB2C8\uC544 \uD654\uC0B0 \uC9C0\uB300\uC5D0\uC11C
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: ce6aae972079415fb4bc8aa8a724206e, type: 2}
-  baseRevenue: 63000
-  operatingCost: 76000
+  baseRevenue: 252000
+  operatingCost: 304000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

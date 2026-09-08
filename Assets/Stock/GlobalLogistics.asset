@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlobalLogistics
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GlobalLogistics
-  StockBasePrice: 140
+  StockBasePrice: 560
   StockDescription: "\uB9C8\uB178\uC0AC \uB3C5\uB9BD\uACC4 \uB300\uD615 \uBB3C\uB958\uC0AC.
     \uC9C0\uC0C1 \uAE30\uBC18 \uB300\uB959 \uBB3C\uB958 \uB124\uD2B8\uC6CC\uD06C\uAC00
     \uC8FC\uB825\uC774\uB2E4."
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: e5adf6d043cb4432afd896eeceb78a3c, type: 2}
-  baseRevenue: 88000
-  operatingCost: 53000
+  baseRevenue: 352000
+  operatingCost: 212000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

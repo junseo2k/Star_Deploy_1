@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrcFightclub
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: OrcFightclub
-  StockBasePrice: 25
+  StockBasePrice: 100
   StockDescription: "\uC624\uD06C \uC804\uD1B5 \uACA9\uD22C \uB300\uD68C\uB97C \uC0C1\uC5C5\uD654\uD55C
     \uC624\uB77D \uAE30\uC5C5."
   StockDetailDescription: "\uC624\uD06C \uC804\uD1B5 \uACA9\uD22C \uB300\uD68C\uB97C
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 6cdae946672744a2958293b6175b48d9, type: 2}
-  baseRevenue: 13000
-  operatingCost: 16000
+  baseRevenue: 52000
+  operatingCost: 64000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

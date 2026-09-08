@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoneFire
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: BoneFire
-  StockBasePrice: 55
+  StockBasePrice: 220
   StockDescription: "\uC624\uD06C \uD2B9\uC720\uC758 \uAC15\uB82C\uD55C \uB9DB\uACFC
     \uB192\uC740 \uB3C4\uC218\uAC00 \uD2B9\uC9D5. \uC804\uC7C1\uD130\uB791 \uCD95\uC81C\uC5D0\uC11C
     \uC798 \uD314\uB9B0\uB2E4. "
@@ -30,11 +30,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 4df231fc6842406eacb244edefeca200, type: 2}
-  baseRevenue: 28000
-  operatingCost: 27000
+  baseRevenue: 112000
+  operatingCost: 108000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SilverForge
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: SilverForge
-  StockBasePrice: 90
+  StockBasePrice: 360
   StockDescription: "\uB4DC\uC6CC\uD504 \uC804\uD1B5\uC758 \uC815\uAD50\uD55C \uADC0\uAE08\uC18D
     \uC138\uACF5. \uB4DC\uB808\uACE0\uB2C8\uC544\uC5D0\uC11C \uC7A5\uC2E0\uAD6C \uC778\uAE30\uAC00
     \uAE09\uC0C1\uC2B9\uD558\uBA74\uC11C \uB9E4\uCD9C\uC774 \uB298\uACE0 \uC788\uB2E4. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: bb08b71ef3aa4a82845c0bbf197f0df3, type: 2}
-  baseRevenue: 50000
-  operatingCost: 60000
+  baseRevenue: 200000
+  operatingCost: 240000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

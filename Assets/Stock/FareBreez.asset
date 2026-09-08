@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FareBreez
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: FareBreez
-  StockBasePrice: 130
+  StockBasePrice: 520
   StockDescription: "\uB9C8\uBC95\uC73C\uB85C \uAC15\uD654\uB41C \uC9C1\uBB3C\uB85C
     \uACE0\uAE09 \uC758\uB958\uB97C \uB9CC\uB4E0\uB2E4. \uC790\uC5F0 \uCE5C\uD654\uC801\uC774\uACE0
     \uC6B0\uC544\uD55C \uB514\uC790\uC778\uC774 \uD2B9\uC9D5. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: edd292e0929a4716bb519a94e673be44, type: 2}
-  baseRevenue: 72000
-  operatingCost: 68000
+  baseRevenue: 288000
+  operatingCost: 272000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

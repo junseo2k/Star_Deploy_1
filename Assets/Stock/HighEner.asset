@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HighEner
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: HighEner
-  StockBasePrice: 230
+  StockBasePrice: 920
   StockDescription: "200\uB144 \uC804\uD1B5\uC758 \uB4DC\uC6CC\uD504 \uB9E5\uC8FC.
     \uB300\uB959 \uC804\uC5ED\uC5D0 \uC720\uD1B5\uB41C\uB2E4."
   StockDetailDescription: "200\uB144 \uC804\uD1B5\uC758 \uB4DC\uC6CC\uD504 \uB9E5\uC8FC.
@@ -29,11 +29,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 70fef6a08dba4945a548215286916ab9, type: 2}
-  baseRevenue: 115000
-  operatingCost: 69000
+  baseRevenue: 460000
+  operatingCost: 276000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

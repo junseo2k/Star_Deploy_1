@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AurelionCapital
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: AurelionCapital
-  StockBasePrice: 420
+  StockBasePrice: 1680
   StockDescription: "\uB9C8\uB178\uC0AC \uCD5C\uB300 \uAE08\uC735\uC0AC\uC774\uC790
     \uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4. "
   StockDetailDescription: "\uB9C8\uB178\uC0AC \uCD5C\uB300 \uAE08\uC735\uC0AC\uC774\uC790
@@ -30,11 +30,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 39b31ed875c5419f9b373ce3f925c9f8, type: 2}
-  baseRevenue: 525000
-  operatingCost: 158000
+  baseRevenue: 2100000
+  operatingCost: 632000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

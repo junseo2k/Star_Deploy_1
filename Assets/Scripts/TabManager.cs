@@ -95,6 +95,10 @@ public class TabManager : MonoBehaviour
                 tab.label.text = tab.labelText;
         }
 
+        // 옛 종목 목록 UI(종족/산업 서브탭)가 씬에 없으면(= 새 CurrentMarketScreen 사용) 탭 UI 로직은 건너뛴다.
+        // 이 컴포넌트는 그때부터 allstock 배열을 들고 있는 데이터 저장소 역할만 한다.
+        if (DwarfPanel == null) return;
+
         OnDwarfClickTab();
     }
 
@@ -132,6 +136,8 @@ public class TabManager : MonoBehaviour
     // 탭 공통 처리: 전체 패널 숨김 → 해당 패널 표시 → 주식 생성 → 가격 텍스트 갱신
     void OpenTab(string classification, Transform panel, bool byFamily)
     {
+        if (panel == null) return; // 옛 종목 목록 UI가 없는 상태 — 눌러도 아무 일도 하지 않는다
+
         HideAllPanels();
         panel.gameObject.SetActive(true);
         CreateStock(classification, panel, byFamily);

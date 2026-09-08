@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BreathMark
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: BreathMark
-  StockBasePrice: 350
+  StockBasePrice: 1400
   StockDescription: "\uB4DC\uB808\uACE0\uB2C8\uC544\uC758 \uC6A9 \uBCC0\uC2E0 \uB2A5\uB825\uACFC
     \uB9C8\uBC95\uC744 \uD65C\uC6A9\uD55C \uD504\uB9AC\uBBF8\uC5C4 \uC6A9\uBCD1\uB2E8."
   StockDetailDescription: "\uB4DC\uB808\uACE0\uB2C8\uC544\uC758 \uC6A9 \uBCC0\uC2E0
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 639db7b88b1b4736a64b840d296cce38, type: 2}
-  baseRevenue: 269000
-  operatingCost: 256000
+  baseRevenue: 1076000
+  operatingCost: 1024000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

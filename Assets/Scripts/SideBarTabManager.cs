@@ -43,7 +43,7 @@ public class SidebarTabManager : MonoBehaviour
                 UIManager.instance.OpenNewsPanel();
                 break;
             case ScreenType.Stock:
-                UIManager.instance.OpenScreen(UIManager.instance.StockPanel);
+                UIManager.instance.OpenMarketPanel();
                 break;
             case ScreenType.Portfolio:
                 UIManager.instance.OpenPortfolioPanel();

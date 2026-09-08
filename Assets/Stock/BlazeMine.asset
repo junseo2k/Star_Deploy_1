@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlazeMine
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: BlazeMine
-  StockBasePrice: 520
+  StockBasePrice: 2080
   StockDescription: "\uB300\uB959 \uCD5C\uACE0 \uD488\uC9C8\uC758 \uCCA0\uAD11\uC11D,
     \uAD6C\uB9AC, \uD76C\uADC0 \uAE08\uC18D\uC744 \uCE90\uB294 \uB4DC\uC6CC\uD504
     \uCD5C\uB300 \uAD11\uC0B0"
@@ -32,11 +32,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 3c3daf724a9661144b93218f3acb5622, type: 2}
-  baseRevenue: 473000
-  operatingCost: 284000
+  baseRevenue: 1892000
+  operatingCost: 1136000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

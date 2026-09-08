@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: "\uC544\uC774\uC5B8\uD558\uD2B8 \uC0AC\uC5C5"
   m_EditorClassIdentifier: Assembly-CSharp::BusinessProject
   projectName: "\uC911\uC7A5 \uAC11\uC8FC \uB300\uB7C9 \uC0DD\uC0B0"
-  investmentCost: 221000
+  investmentCost: 884000
   durationQuarters: 1
   successRate: 60
-  revenueBoost: 74000
-  revenueDrop: 30000
-  assetBoost: 314000
+  revenueBoost: 296000
+  revenueDrop: 120000
+  assetBoost: 1256000
   startNews: "\uC544\uC774\uC5B8\uD558\uD2B8\uAC00 \uC911\uC7A5 \uAC11\uC8FC \uB300\uB7C9
     \uC0DD\uC0B0\uC744 \uCC29\uC218\uD588\uB2E4"
   successNews: "\uC544\uC774\uC5B8\uD558\uD2B8\uC758 \uC911\uC7A5 \uAC11\uC8FC \uB300\uB7C9

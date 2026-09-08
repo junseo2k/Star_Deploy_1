@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DragonSafe
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: DragonSafe
-  StockBasePrice: 950
+  StockBasePrice: 3800
   StockDescription: "\uB300\uB959 \uC7AC\uACC4 \uC11C\uC5F4 1\uC704. \uC5ED\uC0AC\uC0C1
     \uAE08\uACE0 \uCE68\uC785\uC5D0 \uC131\uACF5\uD55C \uC0AC\uB840\uAC00 \uB2E8
     \uD55C \uBC88\uB3C4 \uC5C6\uB2E4. "
@@ -32,11 +32,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 15818533991c42be93d12bfb2db31a3b, type: 2}
-  baseRevenue: 1188000
-  operatingCost: 356000
+  baseRevenue: 4752000
+  operatingCost: 1424000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

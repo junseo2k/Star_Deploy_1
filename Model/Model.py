@@ -22,6 +22,10 @@ print(df_sorted[["priceChangePct", "prevChangePct"]].corr())
 # 슬라이딩 윈도우로 X, y 만들기
 window_size = 10 #과거 10일치를 보고 내일을 예측
 
+# 분기 길이(턴). GameBalance.QUARTER_LENGTH와 반드시 같아야 한다 — quarterDayIndex를 0~1로 정규화하는 데 쓴다
+# 이 값이 어긋나면 학습 때와 NPCInvestor.cs 추론 때의 입력 스케일이 달라져서 예측이 망가진다
+QUARTER_LENGTH = 20
+
 # NPCInvestor.cs가 텐서에 값을 넣는 순서와 반드시 똑같아야 함 (정규화 가격은 맨 앞에 따로 붙는다)
 FEATURE_COLUMNS = [
     "priceChangePct",
@@ -35,26 +39,45 @@ FEATURE_COLUMNS = [
     "isQuarterEndToday",
     "hasActiveBusiness",
     "personality",
+    "fairPriceRatio",   # 목표주가/현재주가 — 분기말 변동의 방향을 정하는 값. 맨 끝에 추가했다
 ]
-N_FEATURES = len(FEATURE_COLUMNS) + 1 #+1 = 정규화된 가격. 예전엔 3개(가격, 변동률, 뉴스여부)였던 게 12개로 늘어남
+N_FEATURES = len(FEATURE_COLUMNS) + 1 #+1 = 정규화된 가격. 예전엔 3개(가격, 변동률, 뉴스여부)였던 게 13개로 늘어남
 
 # X, y를 한 리스트에 다 모으는 대신, 처음부터 train/test로 나눠 담기
 X_train, y_train = [], []
 X_test, y_test = [], []
 news_category_test = [] #테스트셋 샘플별 뉴스 상태를 따로 기록 — 나중에 카테고리별 정확도 확인용
 
-for stock_name in df["stockName"].unique():
-    stock_df = df[df["stockName"] == stock_name].sort_values("day")
+# CSV는 게임을 돌릴 때마다 계속 덧붙여지므로 여러 판이 한 파일에 섞여 있다.
+# 종목만으로 묶고 날짜로 정렬하면 같은 day를 가진 다른 판의 행이 한 윈도우에 섞여 들어간다
+# (실제로 그렇게 학습했다가 방향 정확도가 0.53까지 떨어졌던 적이 있다).
+# runId까지 묶어야 "한 판의 연속된 하루하루"만 윈도우가 된다
+if "runId" not in df.columns:
+    df["runId"] = "legacy"  # runId 컬럼이 없던 시절의 옛 CSV도 읽히게 (전부 한 판으로 취급)
+
+# 새로 추가된 feature가 없는 옛 CSV로 학습하면, 학습 때는 그 자리가 비어 있는데 게임에서는 실제 값이
+# 들어와서 예측이 조용히 망가진다. 그런 사고는 원인을 찾기가 매우 어려우므로 여기서 바로 멈춘다
+missing = [c for c in FEATURE_COLUMNS if c not in df.columns]
+if missing:
+    raise SystemExit(
+        f"\n[중단] stock_history.csv에 다음 컬럼이 없습니다: {missing}\n"
+        f"        게임을 한 판 새로 돌려서 CSV를 다시 만든 뒤 Model/ 폴더로 복사하세요.\n"
+        f"        (기존 파일에 덧붙이지 말고 지우고 새로 만들어야 합니다 — 컬럼 수가 달라졌습니다)\n")
+
+print(f"판(runId) 수: {df['runId'].nunique()} / 종목 수: {df['stockName'].nunique()}")
+
+for (stock_name, run_id), stock_df in df.groupby(["stockName", "runId"]):
+    stock_df = stock_df.sort_values("day")
     prices = stock_df["currentPrice"].values
     change_pct = stock_df["priceChangePct"].values
     news_category = stock_df["newsCategory"].values
 
-    # 나머지 feature들은 값의 범위가 제각각이라(예: daysSinceLastBigNews는 0~50대, quarterDayIndex는 0~9)
+    # 나머지 feature들은 값의 범위가 제각각이라(예: daysSinceLastBigNews는 0~50대, quarterDayIndex는 0~19)
     # NPCInvestor.cs와 똑같은 비율로 나눠서 스케일을 맞춰준다
     features = stock_df[FEATURE_COLUMNS].copy()
     features["daysSinceLastSmallNews"] /= 10.0
     features["daysSinceLastBigNews"] /= 50.0
-    features["quarterDayIndex"] /= 10.0
+    features["quarterDayIndex"] /= QUARTER_LENGTH
     features = features.values
 
     n = len(prices)
@@ -68,25 +91,41 @@ for stock_name in df["stockName"].unique():
     prices_normalized = (prices - price_min) / (price_max - price_min)
     prices_normalized = np.clip(prices_normalized, 0, 1.5)
 
-    for i in range(window_size, len(prices_normalized)):
-        window = []
-        for j in range(i - window_size, i):
-            window.append([prices_normalized[j], *features[j]]) #가격 정규화값 + feature 11개 = 총 12개
+    # 하루치 입력 한 줄 = [정규화 가격, feature들...] — 이 종목의 전체 날짜를 한 판에 만들어둔다
+    # float32로 만드는 이유: TensorFlow가 어차피 float32로 쓰고, float64 대비 메모리가 절반이다
+    day_rows = np.column_stack([prices_normalized, features]).astype(np.float32)
 
-        # ★ 여기서 바로 train/test로 분배
-        if i < train_end:
-            X_train.append(window)
-            y_train.append(change_pct[i])
-        else:
-            X_test.append(window)
-            y_test.append(change_pct[i])
-            news_category_test.append(news_category[i])
+    # 윈도우를 파이썬 리스트로 쌓으면 값 하나하나가 파이썬 float 객체가 되어 메모리를 엄청나게 먹는다
+    # (10만 행짜리 CSV에서 실제로 메모리 부족으로 죽었다). 배열을 미리 잡아두고 슬라이스로 채우면
+    # 같은 데이터가 수십 MB로 줄어든다
+    n_windows = n - window_size
+    if n_windows <= 0:
+        continue
 
-x_train = np.array(X_train)
-y_train = np.array(y_train)
-x_test = np.array(X_test)
-y_test = np.array(y_test)
-news_category_test = np.array(news_category_test)
+    group_x = np.empty((n_windows, window_size, N_FEATURES), dtype=np.float32)
+    for k in range(n_windows):
+        i = k + window_size            # 예측 대상이 되는 날
+        group_x[k] = day_rows[i - window_size:i]   # 그 전 10일치가 입력
+
+    targets = change_pct[window_size:].astype(np.float32)   # 각 윈도우가 맞혀야 할 정답
+    categories = news_category[window_size:]
+    is_train = np.arange(window_size, n) < train_end        # ★ 여기서 train/test로 분배
+
+    X_train.append(group_x[is_train])
+    y_train.append(targets[is_train])
+    X_test.append(group_x[~is_train])
+    y_test.append(targets[~is_train])
+    news_category_test.append(categories[~is_train])
+
+# 종목·판별로 만든 조각들을 하나로 이어 붙인다
+x_train = np.concatenate(X_train)
+y_train = np.concatenate(y_train)
+x_test = np.concatenate(X_test)
+y_test = np.concatenate(y_test)
+news_category_test = np.concatenate(news_category_test)
+
+# 조각 리스트는 여기서 역할이 끝난다 — 붙여놓은 배열과 똑같은 데이터를 두 벌 들고 있을 이유가 없다
+del X_train, X_test
 
 print(f"훈련: {len(x_train)}개 / 테스트: {len(x_test)}개")
 

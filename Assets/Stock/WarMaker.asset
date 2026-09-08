@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WarMaker
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: WarMaker
-  StockBasePrice: 180
+  StockBasePrice: 720
   StockDescription: "\uC624\uD06C \uD2B9\uC720\uC758 \uBB3C\uB7C9 \uC804\uB7B5 \uAE30\uBC18
     \uC800\uAC00 \uC6A9\uBCD1 \uC11C\uBE44\uC2A4. \uB300\uB959 \uC804\uC5ED\uC5D0\uC11C
     \uC804\uC7C1 \uC758\uB8B0\uB97C \uBC1B\uB294\uB2E4. "
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 9fa79fd05cc54001acd199cf5f565606, type: 2}
-  baseRevenue: 138000
-  operatingCost: 131000
+  baseRevenue: 552000
+  operatingCost: 524000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

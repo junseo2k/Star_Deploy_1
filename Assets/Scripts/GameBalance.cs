@@ -6,7 +6,7 @@
 public static class GameBalance
 {
     // ── 골드 / 대출 / 게임 오버 ────────────────────────
-    public const int START_GOLD = 5000;              // 새 게임 시작 골드
+    public const int START_GOLD = 60000;             // 새 게임 시작 골드 (주가 4배 스케일에 맞춰 상향)
     public const int LOW_GOLD_THRESHOLD = 1000;      // 이 골드 이하가 연속되면 게임 오버 카운트 증가
     public const int LOW_GOLD_GAMEOVER_STREAK = 5;   // 게임 오버까지의 연속 턴 수
     public const float LOAN_INTEREST_RATE = 0.01f;   // 턴당 대출 이자율 (1%)
@@ -22,11 +22,17 @@ public static class GameBalance
 
     // ── 시대 시스템 ────────────────────────────────────
     public const int ERA_FIRST_START_DAY = 20;       // 시대 시스템 최초 발생 가능 날짜
-    public const int ERA_DURATION = 15;              // 시대 지속 턴 수
-    public const int ERA_COOLDOWN = 5;               // 시대 종료 후 휴지기 턴 수
+    // 시대 지속 턴 수 — 분기(QUARTER_LENGTH=20턴)보다 길게 잡아야 시대 중에 분기 마감이 최소 한 번은 지나간다
+    // (사업 착수 판정은 분기 마감에만 일어나므로, 시대가 분기보다 짧으면 시대 사업 보정이 걸릴 틈이 없다)
+    public const int ERA_DURATION = 24;              // 시대 지속 턴 수
+    public const int ERA_COOLDOWN = 8;               // 시대 종료 후 휴지기 턴 수
     public const int ERA_HINT_DAYS_BEFORE = 2;       // 힌트 뉴스를 며칠 전에 보여줄지
     public const float ERA_REVENUE_BOOST = 1.2f;     // 유망 산업 매출 배율
     public const float ERA_REVENUE_PENALTY = 0.8f;   // 비선호 산업 매출 배율
+    // 시대는 매출뿐 아니라 그 산업 회사들의 "새 사업 착수 의욕"에도 영향을 준다
+    // 예: 제약의 시대 → 제약 회사들이 평소보다 적극적으로 신사업을 벌인다 (반대 산업은 위축)
+    public const float ERA_BUSINESS_CHANCE_BOOST = 1.5f;   // 유망 산업 사업 착수 확률 배율
+    public const float ERA_BUSINESS_CHANCE_PENALTY = 0.6f; // 비선호 산업 사업 착수 확률 배율
 
     // ── 사업 시스템 ────────────────────────────────────
     // 분기 마감마다 회사 하나하나가 새 사업을 벌일 확률 — 성격에 따라 다르게 준다
@@ -45,7 +51,7 @@ public static class GameBalance
 
     // ── 뜬금 이벤트 ────────────────────────────────────
     // 성격이 만드는 뻔한 평소 패턴 위에 가끔 얹히는 예상 밖의 한 방. 게임 한 판(20분기)에
-    // 회사당 1~2번 정도 터지도록, 분기당 확률을 낮게 잡았다 (20 × 0.07 ≈ 1.4회)
+    // 회사당 1~2번 정도 터지도록, 분기당 확률을 낮게 잡았다 (20분기 × 0.07 ≈ 1.4회)
     public const float SURPRISE_EVENT_CHANCE = 0.07f;
     public const float DIVIDEND_BOMB_MULTIPLIER = 4f;    // 배당 성애자: 특별 배당이 평소 배당의 몇 배인가
     public const float DIVIDEND_BOMB_PRICE_BUMP = 0.08f; // 특별 배당 발표 시 주가가 즉시 뛰는 비율
@@ -53,7 +59,7 @@ public static class GameBalance
     public const float VAULT_SURPRISE_SCALE = 2f;        // 금고 지기: 깜짝 대형 투자의 규모 배율
 
     // ── 분기 / 회사 금고 / 재무 기반 주가 ──────────────
-    public const int QUARTER_LENGTH = 10;             // 분기 길이 (턴) — 200턴이면 20분기
+    public const int QUARTER_LENGTH = 20;             // 분기 길이 (턴) — 400턴이면 20분기
 
     // 분기 마감일에 그 분기 수입이 금고로 들어간다. 배당과 사업 투자비는 여기서 빠져나간다
     public const float QUARTER_SHOCK = 0.30f;         // 실적 발표일에 목표 주가 쪽으로 한 번에 좁히는 비율 (30%)
@@ -77,7 +83,7 @@ public static class GameBalance
     public const float RANGE_NORMAL = 1f;             // 보통형 일일 변동폭 (±%)
     public const float RANGE_VOLATILE = 1.5f;         // 고변동형 일일 변동폭 (±%)
     public const float RANGE_DEFAULT = 2f;            // 변동 유형이 없을 때의 기본값
-    public const int MIN_STOCK_PRICE = 1;             // 주가 하한 (0 이하로 내려가지 않도록)
+    public const int MIN_STOCK_PRICE = 4;            // 주가 하한 (0 이하로 내려가지 않도록 — 주가 4배 스케일에 맞춰 상향)
 
     // ── 그래프 / 학습 데이터 ───────────────────────────
     // 그래프는 이만큼 쌓여야 선이 그려진다 — 그래프 탭 잠금 기준일로도 쓰이므로 DetailPanel에서도 참조한다

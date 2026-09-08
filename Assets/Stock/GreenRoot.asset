@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreenRoot
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GreenRoot
-  StockBasePrice: 105
+  StockBasePrice: 420
   StockDescription: "\uC790\uC5F0 \uD6FC\uC190\uC744 \uCD5C\uC18C\uD654\uD558\uB294
     \uAC74\uCD95\uC774 \uC804\uBB38\uC778 \uC5D8\uD504 \uB0B4\uC218 \uAC74\uC124\uC0AC."
   StockDetailDescription: "\uC790\uC5F0 \uD6FC\uC190\uC744 \uCD5C\uC18C\uD654\uD558\uB294
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 57269ecc05b04c049aa33c88dc202b9f, type: 2}
-  baseRevenue: 75000
-  operatingCost: 90000
+  baseRevenue: 300000
+  operatingCost: 360000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

@@ -144,6 +144,11 @@ public partial class GameManager
             Stock.Personality.VaultKeeper => GameBalance.BUSINESS_START_CHANCE_VAULT,
             _ => GameBalance.BUSINESS_START_CHANCE_DIVIDEND,
         };
+
+        // 시대 보정 — 유망 산업이면 착수 확률을 올리고, 비선호 산업이면 낮춘다
+        // (예: 제약의 시대 → 제약 회사 착수 확률 ×1.5)
+        chance *= GetEraBusinessChanceModifier(stock);
+
         if (Random.value >= chance) return;
 
         // 착수 후에도 운영비 몇 분기치는 금고에 남는 사업만 후보로 삼는다 — 안전 마진 없이 다 지르면 전부 부도난다

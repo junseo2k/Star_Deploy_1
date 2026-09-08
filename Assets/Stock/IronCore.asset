@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronCore
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronCore
-  StockBasePrice: 580
+  StockBasePrice: 2320
   StockDescription: "\uBE14\uB808\uC774\uC988\uB9C8\uC778\uC5D0\uC11C \uCE90\uB0B8
     \uC6D0\uC790\uC7AC\uB97C \uAC00\uACF5\uD574\uC11C \uB300\uB959 \uCD5C\uACE0 \uD488\uC9C8
     \uCCA0\uAC15\uC744 \uB9CC\uB4DC\uB294 \uD68C\uC0AC. \uC544\uC774\uC5B8\uD558\uD2B8
@@ -36,11 +36,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 6cb72870536d4462bd305143d7bca6db, type: 2}
-  baseRevenue: 527000
-  operatingCost: 501000
+  baseRevenue: 2108000
+  operatingCost: 2004000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

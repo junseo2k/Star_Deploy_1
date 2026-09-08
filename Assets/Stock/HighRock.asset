@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HighRock
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: HighRock
-  StockBasePrice: 80
+  StockBasePrice: 320
   StockDescription: "\uAD11\uC0B0\uC774\uB791 \uB3C4\uC2DC \uC778\uD504\uB77C \uAC74\uC124\uC774
     \uC804\uBB38. \uB4DC\uC6CC\uD504 \uD2B9\uC720\uC758 \uB0B4\uAD6C\uC131 \uB192\uC740
     \uAC74\uCD95\uBB3C\uC744 \uC9D3\uB294\uB2E4. "
@@ -30,11 +30,10 @@ MonoBehaviour:
   personality: 1
   businesses:
   - {fileID: 11400000, guid: 5b9c1135266946efa3db80864615b41f, type: 2}
-  baseRevenue: 57000
-  operatingCost: 54000
+  baseRevenue: 228000
+  operatingCost: 216000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

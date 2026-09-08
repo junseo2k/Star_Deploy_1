@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronHeart
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronHeart
-  StockBasePrice: 480
+  StockBasePrice: 1920
   StockDescription: "\uB300\uB959 \uC7AC\uACC4 \uC11C\uC5F4 3\uC704. 200\uB144 \uC5ED\uC0AC\uB97C
     \uAC00\uC9C4 \uCCA0\uAC15\xB7\uBC29\uC0B0 \uBCF5\uD569 \uB300\uAE30\uC5C5\uC774\uB2E4. "
   StockDetailDescription: "\uB300\uB959 \uC7AC\uACC4 \uC11C\uC5F4 3\uC704. 200\uB144
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 8ab763a4007d4631afd5206369c56607, type: 2}
-  baseRevenue: 369000
-  operatingCost: 111000
+  baseRevenue: 1476000
+  operatingCost: 444000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

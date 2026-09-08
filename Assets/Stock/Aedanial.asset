@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aedanial
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Aedanial
-  StockBasePrice: 280
+  StockBasePrice: 1120
   StockDescription: "\uB4DC\uB798\uACE4 \uAE08\uACE0 \uACC4\uC5F4 \uC790\uC0B0 \uC6B4\uC6A9\uC0AC.
     \uADC0\uC871\uACFC \uB300\uD615 \uAE30\uC5C5\uC758 \uC790\uC0B0\uC744 \uB9E1\uC544\uC11C
     \uAD74\uB9B0\uB2E4."
@@ -31,11 +31,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: 279eed34a9c54c83ba3e3a3d98504e3e, type: 2}
-  baseRevenue: 350000
-  operatingCost: 210000
+  baseRevenue: 1400000
+  operatingCost: 840000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}

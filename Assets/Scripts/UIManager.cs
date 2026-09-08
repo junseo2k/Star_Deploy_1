@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// 게임 내 화면 전환과 공용 상단 정보(골드·날짜·시대·총 자산) 표시를 담당하는 클래스
+// 게임 내 화면 전환과 공용 상단 정보(골드·날짜·시대·손익률) 표시를 담당하는 클래스
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private NewsPanel newsPanelScript;
     [SerializeField] private NewsScreenBinder newsScreenBinder; // 새 뉴스 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
     [SerializeField] private VaultScreenBinder vaultScreenBinder; // 새 자산 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
+    [SerializeField] private MarketScreenBinder marketScreenBinder; // 새 시장(종목) 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
 
     void Awake()
     {
@@ -59,15 +60,15 @@ public class UIManager : MonoBehaviour
         EraText.text = $"<b>현재 시대 : \n<size=130%>{eraName}</size></b>";
     }
 
-    // 보유 주식 평가금액 + 현재 골드 = 총 자산
-    // 보유 주식 기준 손익률(%)도 함께 계산해서 표시
+    // 메인 화면 가운데 UI — 예전에는 총 자산을 보여줬지만, 지금은 현재 보유 골드를 크게 보여준다
+    // (총 자산·손익 요약은 자산 탭에서 확인한다)
+    // 보유 주식 기준 손익률(%)은 상단 TotalReturnText에 계속 표시한다
     public void UpdateTotalAssetText()
     {
         int stockValue = Portfolio.TotalValue();          // 보유 주식 현재 평가금액 합
         float purchaseCost = Portfolio.TotalPurchaseCost(); // 평균 매수가 기준 원금 합
 
-        int totalAsset = GameManager.Instance.currentgold + stockValue;
-        TotalAssetText.text = $"<b><size=50%>총 자산:</size> \n{totalAsset:N0} G</b>";
+        TotalAssetText.text = $"<b><size=50%>현재 골드:</size> \n{GameManager.Instance.currentgold:N0} G</b>";
 
         // 손익률 = (현재 평가 - 매수 원금) / 매수 원금 × 100 — 매수한 주식이 없으면 0% 처리
         if (purchaseCost > 0f)
@@ -119,6 +120,8 @@ public class UIManager : MonoBehaviour
     public void ReturnToStock(GameObject selfPanel)
     {
         OpenScreen(StockPanel);
+        if (marketScreenBinder != null)
+            marketScreenBinder.Refresh(); // 매매 후 돌아오면 바뀐 가격·보유 상태를 다시 그린다
         if (sidebarTabManager != null)
             sidebarTabManager.OpenTab(2);
     }
@@ -127,6 +130,16 @@ public class UIManager : MonoBehaviour
     {
         OpenScreen(detailpanel.transform);
         detailpanel.ShowDetail(stock);
+    }
+
+    // 시장(종목) 탭 열기 — 새 화면(CurrentMarketScreen)을 지금 게임 상태로 다시 그린다
+    public void OpenMarketPanel()
+    {
+        OpenScreen(StockPanel);
+
+        // 연결 스크립트가 없으면(아직 인스펙터 연결 전) 그냥 넘어간다
+        if (marketScreenBinder != null)
+            marketScreenBinder.Refresh();
     }
 
     public void OpenNewsPanel()

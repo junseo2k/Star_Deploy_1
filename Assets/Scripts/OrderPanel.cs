@@ -10,20 +10,28 @@ public class OrderPanel : MonoBehaviour
     public TextMeshProUGUI NoticeText;   // 오류 메시지 등을 표시하는 공지 텍스트
     public TextMeshProUGUI PlusText;     // + 버튼 텍스트
     public TextMeshProUGUI MinusText;    // - 버튼 텍스트
+    public TextMeshProUGUI Plus10Text;     // + 버튼 텍스트
+    public TextMeshProUGUI Minus10Text;    // - 버튼 텍스트
+    public TextMeshProUGUI MaxText;    // - 버튼 텍스트
     public TextMeshProUGUI Check1Text;   // 구매 여부 안내 텍스트
     public TextMeshProUGUI Check2Text;   // 확인 버튼 텍스트
     public TextMeshProUGUI PurchaseText; // 현재 수량·금액 표시 텍스트
     public TextMeshProUGUI currentText;  // 최대 구매/판매 가능 수량 표시 텍스트
     public TextMeshProUGUI CancelText;   // 취소 버튼 텍스트
     public bool isBuyMode;               // true: 구매 모드, false: 판매 모드
+    public int maxTradeAmount;           // 이번 거래에서 가능한 최대 수량 (구매: 최대 구매가능수량 / 판매: 보유량)
 
-    private const int MIN_TRADE_AMOUNT = 1; // 한 번에 거래할 수 있는 최소 수량
+    private const int MIN_TRADE_AMOUNT = 1;  // 한 번에 거래할 수 있는 최소 수량
+    private const int STEP_10 = 10;          // 10단위 버튼이 한 번에 움직이는 수량
 
     // 구매 패널 열릴 때 UI 텍스트 초기값 설정
     void Start()
     {
         PlusText.text = "+";
         MinusText.text = "-";
+        Plus10Text.text = "+10";
+        Minus10Text.text = "-10";
+        MaxText.text = "최대";
         Check1Text.text = "Purchase?";
         Check2Text.text = "Check";
         NoticeText.text = "";
@@ -35,10 +43,12 @@ public class OrderPanel : MonoBehaviour
     {
         targetStock = stock;
         isBuyMode = buyMode;
+        maxTradeAmount = maxAmount;
         StockNum = MIN_TRADE_AMOUNT;
         NoticeText.text = "";
         currentText.text = $"Maximum: {maxAmount}";
         RefreshPurchaseText();
+        
     }
 
     // 현재 수량·금액 표시 텍스트 갱신
@@ -77,6 +87,39 @@ public class OrderPanel : MonoBehaviour
         }
 
         StockNum--;
+        RefreshPurchaseText();
+    }
+
+    // +10 버튼 클릭 시 거래 수량 10 증가 — 최대 거래 가능 수량을 넘지 않도록 잘라준다
+    public void OnPlus10Click()
+    {
+        SetStockNum(StockNum + STEP_10);
+    }
+
+    // -10 버튼 클릭 시 거래 수량 10 감소 — 최소 수량(1) 아래로는 내려가지 않는다
+    public void OnMinus10Click()
+    {
+        SetStockNum(StockNum - STEP_10);
+    }
+
+    // 최대 버튼 클릭 시 거래 가능한 최대 수량으로 한 번에 맞춘다
+    // 구매 모드면 "지금 골드로 살 수 있는 최대 수량", 판매 모드면 "보유량 전부"
+    public void OnMaxClick()
+    {
+        int effectiveMax = Mathf.Max(MIN_TRADE_AMOUNT, maxTradeAmount);
+        SetStockNum(effectiveMax);
+
+        if (maxTradeAmount <= 0)
+            NoticeText.text = isBuyMode
+                ? "You can't afford even 1 Stock."
+                : "You don't own any Stock.";
+    }
+
+    // 거래 수량을 [최소, 최대] 범위로 잘라서 반영하고 표시를 갱신하는 공통 처리
+    void SetStockNum(int value)
+    {
+        int effectiveMax = Mathf.Max(MIN_TRADE_AMOUNT, maxTradeAmount);
+        StockNum = Mathf.Clamp(value, MIN_TRADE_AMOUNT, effectiveMax);
         RefreshPurchaseText();
     }
 

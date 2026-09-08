@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crescent
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Crescent
-  StockBasePrice: 290
+  StockBasePrice: 1160
   StockDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4. \uB9C8\uB178\uC0AC
     \uCD5C\uB300 \uC720\uD1B5\uB9DD\uC744 \uC6B4\uC601\uD55C\uB2E4. "
   StockDetailDescription: "\uC544\uC6B0\uB810\uB9AC\uC628 \uADF8\uB8F9 \uACC4\uC5F4.
@@ -29,11 +29,10 @@ MonoBehaviour:
   personality: 0
   businesses:
   - {fileID: 11400000, guid: a0c00984e94043649f959a566fd3948e, type: 2}
-  baseRevenue: 161000
-  operatingCost: 48000
+  baseRevenue: 644000
+  operatingCost: 192000
   baseAsset: 0
   TotalShare: 10000
-  RecentIssue: []
   products:
   - productName: Diamond
     productIcon: {fileID: 21300000, guid: e90fbf3c7881f6e4d8db94e5e03e49aa, type: 3}
