@@ -289,21 +289,23 @@ public class DetailPanel : MonoBehaviour
         orderPanel.Setup(currentstock, isBuyMode, maxAmount);
     }
 
-    // 슬리피지 때문에 수량이 늘수록 단가도 오르므로, 한 주씩 늘려가며 실제 감당 가능한 최대치를 찾음
+    // 슬리피지 때문에 수량이 늘수록 단가도 오르므로, 이진 탐색으로 실제 감당 가능한 최대치를 찾음
     // 주가 하한이 1G이라 보유 골드를 넘는 수량은 나올 수 없어 루프는 반드시 끝난다
     int CalculateMaxBuyAmount()
     {
-        int gold = GameManager.Instance.currentgold;
-        orderPanel.targetStock = currentstock; // CalculateTrade가 대상 주식을 참조하므로 먼저 지정
-
-        int amount = 0;
-        while (amount < gold)
+        long gold = GameManager.Instance.currentgold;
+        orderPanel.targetStock = currentstock;
+        // 금액이 커져도 한 주씩 탐색하지 않고 최대 수량을 이진 탐색한다.
+        int low = 0;
+        int high = int.MaxValue - Portfolio.GetAmount(currentstock);
+        while (low < high)
         {
-            orderPanel.CalculateTrade(amount + 1, true, out _, out int cost);
-            if (cost > gold) break;
-            amount++;
+            int middle = (int)(((long)low + high + 1) / 2);
+            orderPanel.CalculateTrade(middle, true, out _, out long cost);
+            if (cost <= gold) low = middle;
+            else high = middle - 1;
         }
-        return amount;
+        return low;
     }
 
     // ── 표시 문구 ─────────────────────────────────────

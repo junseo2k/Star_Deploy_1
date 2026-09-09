@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Alchemia
+  saveId: e930993553781a64cbe5010a2fa79927
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Alchemia
   StockBasePrice: 680

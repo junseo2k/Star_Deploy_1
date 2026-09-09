@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: SkyMark
+  saveId: 3abe6d78fcb6dfa45af2d21f801bbaaa
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: SkyMark
   StockBasePrice: 1560
@@ -28,7 +29,7 @@ MonoBehaviour:
   IndustryTag: Coopang
   owner: 0
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: c3f42948279747b88add28acd16091bc, type: 2}
   baseRevenue: 976000

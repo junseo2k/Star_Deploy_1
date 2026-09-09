@@ -162,16 +162,16 @@ namespace Delusion.UI.Vault
         public void RecalculateSummary(bool rebuild = true)
         {
             EnsureData();
-            var evaluated = 0;
-            var costFromHoldings = 0;
+            long evaluated = 0;
+            long costFromHoldings = 0;
             if (data.holdings != null)
             {
                 foreach (var item in data.holdings)
                 {
                     if (item == null)
                         continue;
-                    evaluated += item.EvaluatedValue;
-                    costFromHoldings += Mathf.Max(0, item.quantity) * Mathf.Max(0, item.averagePrice);
+                    evaluated = MoneyMath.Add(evaluated, item.EvaluatedValue);
+                    costFromHoldings = MoneyMath.Add(costFromHoldings, (long)Mathf.Max(0, item.quantity) * Mathf.Max(0, item.averagePrice));
                 }
             }
 
@@ -181,7 +181,7 @@ namespace Delusion.UI.Vault
 
             // 총 자산 = 현금 + 주식 평가액 − 갚아야 할 대출금
             // 빌린 골드는 내 돈이 아니므로 빼야 실제로 남는 재산이 나온다
-            data.totalAssets = data.cash + evaluated - Mathf.Max(0, data.debt);
+            data.totalAssets = MoneyMath.Add(MoneyMath.Add(data.cash, -System.Math.Max(0L, data.debt)), evaluated);
 
             // 손익은 주식만 본다 — "산 값보다 지금 얼마나 올랐나" (홈 화면 상단과 같은 기준)
             data.totalProfitAmount = evaluated - data.purchaseCost;
@@ -651,7 +651,7 @@ namespace Delusion.UI.Vault
             return (value > 0f ? "+" : "-") + Mathf.Abs(value).ToString("0.0") + "%";
         }
 
-        private static string FormatSignedAmount(int value)
+        private static string FormatSignedAmount(long value)
         {
             if (value == 0)
                 return "0 G";

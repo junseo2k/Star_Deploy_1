@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Silvana
+  saveId: 9c8de02b605ea094f9a080f6ddb438fd
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Silvana
   StockBasePrice: 1240
@@ -31,7 +32,7 @@ MonoBehaviour:
   IndustryTag: Food
   owner: 1
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 8f96996d53064446bfff4a670ca56f8f, type: 2}
   baseRevenue: 1032000

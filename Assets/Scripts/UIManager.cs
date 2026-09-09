@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
     // 보유 주식 기준 손익률(%)은 상단 TotalReturnText에 계속 표시한다
     public void UpdateTotalAssetText()
     {
-        int stockValue = Portfolio.TotalValue();          // 보유 주식 현재 평가금액 합
+        long stockValue = Portfolio.TotalValue();          // 보유 주식 현재 평가금액 합
         float purchaseCost = Portfolio.TotalPurchaseCost(); // 평균 매수가 기준 원금 합
 
         TotalAssetText.text = $"<b><size=50%>현재 골드:</size> \n{GameManager.Instance.currentgold:N0} G</b>";
@@ -85,6 +85,14 @@ public class UIManager : MonoBehaviour
     public void NoticeGold(string noticetext)
     {
         NoticeText.text = noticetext;
+    }
+
+    // 즐겨찾기가 바뀌었을 때 관련 화면을 한 번에 갱신한다
+    // 별표를 누르는 곳이 두 군데(시장 탭 카드, 관심 종목 카드)라, 각자 따로 갱신하면 한쪽이 옛 상태로 남는다
+    public void RefreshFavoriteUI()
+    {
+        if (favoritePanel != null) favoritePanel.RefreshAll();
+        if (marketScreenBinder != null) marketScreenBinder.RefreshFavoriteStars();
     }
 
     // ── 화면 전환 ─────────────────────────────────────
@@ -174,8 +182,12 @@ public class UIManager : MonoBehaviour
 
     public void OnSaveLoadClick()
     {
+        // 중복 클릭으로 저장 화면이 여러 개 열리지 않도록 한다.
+        if (SceneManager.GetSceneByName("SaveLoad").isLoaded) return;
+
         PlayerPrefs.SetInt("FromMainMenu", 0);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("SaveLoad");
+        // 게임 씬을 유지해야 뉴스·차트·NPC 등 저장 파일 밖의 상태도 이어진다.
+        SceneManager.LoadScene("SaveLoad", LoadSceneMode.Additive);
     }
 }

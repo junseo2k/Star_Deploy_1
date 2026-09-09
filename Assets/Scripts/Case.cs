@@ -2,7 +2,7 @@ using UnityEngine;
 
 // 사건 정보를 담는 ScriptableObject — 인스펙터에서 각 사건 데이터를 에셋으로 생성·관리
 [CreateAssetMenu(fileName = "Case", menuName = "Scriptable Objects/Case")]
-public class Case : ScriptableObject
+public class Case : SaveIdentity
 {
     public string CaseName;        // 사건 이름
     public string CaseDescription; // 사건 발생 시 공지될 설명 텍스트

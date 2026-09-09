@@ -11,7 +11,7 @@ public class LoanPanel : MonoBehaviour
     public Transform loanPanel;              // 이 패널 루트 오브젝트
     public TextMeshProUGUI interestText; // 턴당 이자 표시
 
-    private int inputAmount = 0;   // 현재 입력된 금액
+    private long inputAmount = 0;   // 현재 입력된 금액
     private int stepAmount = 100;  // +/- 버튼 1회 클릭 시 변경 단위
 
     // 패널이 열릴 때 UI 초기화
@@ -24,7 +24,7 @@ public class LoanPanel : MonoBehaviour
     // UI 텍스트 전체 갱신
     void RefreshUI()
     {
-        int maxLoan = GameManager.Instance.MaxLoan;
+        long maxLoan = GameManager.Instance.MaxLoan;
         loanAmountText.text = $"현재 대출금: {GameManager.Instance.loanAmount} G";
         maxLoanText.text = $"대출 가능 금액: {maxLoan} G";
         inputAmountText.text = $"입력 금액: {inputAmount} G";
@@ -35,8 +35,8 @@ public class LoanPanel : MonoBehaviour
     // + 버튼 클릭 시 입력 금액 증가
     public void OnPlusClick()
     {
-        int maxLoan = GameManager.Instance.MaxLoan;
-        if (inputAmount + stepAmount > maxLoan)
+        long maxLoan = GameManager.Instance.MaxLoan;
+        if (inputAmount > maxLoan - stepAmount)
         {
             noticeText.text = "대출 한도를 초과했습니다.";
             return;
@@ -56,7 +56,7 @@ public class LoanPanel : MonoBehaviour
     }
 
     // 입력 금액을 바꾸고 텍스트·안내 문구를 함께 갱신 — +/- 버튼이 공유하는 로직
-    private void SetInputAmount(int amount)
+    private void SetInputAmount(long amount)
     {
         inputAmount = amount;
         inputAmountText.text = $"입력 금액: {inputAmount} G";

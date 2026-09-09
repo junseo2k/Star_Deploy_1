@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
   m_Name: BankEra
+  saveId: 6289422bd8aebd74bb7c6ff6801bf17e
   m_EditorClassIdentifier: Assembly-CSharp::Era
   eraName: "\uAE08\uC735\uC758 \uC2DC\uB300"
   eraDescription: "\uAE08\uC735\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"
@@ -20,4 +21,4 @@ MonoBehaviour:
   - Clinic
   boostedRate: 1
   weakenedRate: 1
-  hintNews: {fileID: 0}
+  hintNews: {fileID: 11400000, guid: 6220094aecb348a496be1e9ce2c1dc23, type: 2}

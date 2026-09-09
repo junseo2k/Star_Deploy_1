@@ -1,150 +1,278 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// GameManager의 저장/불러오기 담당 partial — JSON 파일로 게임 전체 상태를 저장하고 복원한다
 public partial class GameManager
 {
-    // ── 저장 / 불러오기 ───────────────────────────────
+    private bool savingBlocked;
+    private bool isSimulating;
+    private readonly List<Case> restoredCases = new();
+    public static string GetSavePath(int slot) => Path.Combine(Application.persistentDataPath, $"save{slot}.json");
 
-    // 선택된 슬롯 번호 기반으로 저장 경로 반환
-    string GetSavePath()
-    {
-        int slot = PlayerPrefs.GetInt("SelectedSlot", 1);
-        return Path.Combine(Application.persistentDataPath, $"save{slot}.json");
-    }
-
-    // 현재 게임 상태를 JSON 파일로 저장
     public void SaveGame()
     {
-        GameSaveData data = new()
+        if (!savingBlocked && !isSimulating) TrySaveToSlot(PlayerPrefs.GetInt("SelectedSlot", 1));
+    }
+    public void AutoSave() => SaveGame();
+
+    public bool TrySaveToSlot(int slot)
+    {
+        if (slot < 1 || isSimulating) return false;
+        try
         {
-            currentgold = currentgold,
-            currentday = currentDay,
-            smallNewsTimer = smallNewsTimer,
-            loanAmount = loanAmount,
-            eraEndDay = eraEndDay,
-            nextEraStartDay = nextEraStartDay,
-            eraHintShownDay = eraHintShownDay,
+            GameSaveStorage.Write(GetSavePath(slot), CaptureSave());
+            savingBlocked = false;
+            return true;
+        }
+        catch (Exception e) when (GameSaveStorage.IsFileError(e) || e is InvalidOperationException)
+        {
+            ShowPersistenceNotice("저장하지 못했습니다. 기존 파일은 유지됩니다. " + e.Message);
+            return false;
+        }
+    }
+
+    void ShowPersistenceNotice(string message)
+    {
+        Debug.LogWarning(message);
+        if (UIManager.instance != null && UIManager.instance.NoticeText != null)
+            UIManager.instance.NoticeText.text = message;
+    }
+
+    GameSaveData CaptureSave()
+    {
+        var data = new GameSaveData
+        {
+            version = GameSaveStorage.CurrentVersion,
+            currentgold = currentgold, currentday = currentDay, loanAmount = loanAmount,
+            smallNewsTimer = smallNewsTimer, eraEndDay = eraEndDay,
+            nextEraStartDay = nextEraStartDay, eraHintShownDay = eraHintShownDay,
             currentEraName = currentEra != null ? currentEra.eraName : "",
             pendingEraName = pendingEra != null ? pendingEra.eraName : "",
+            currentEraId = currentEra != null ? currentEra.SaveId : "",
+            pendingEraId = pendingEra != null ? pendingEra.SaveId : "",
             activeBusinesses = activeBusinesses,
-            lastBigNewsDay = lastBigNewsDay,
-            scheduledBigNewsDay = scheduledBigNewsDay,
+            lastBigNewsDay = lastBigNewsDay, scheduledBigNewsDay = scheduledBigNewsDay,
             scheduledBigNewsVibeDay = scheduledBigNewsVibeDay,
             scheduledBigNewsCaseIndex = scheduledBigNewsCaseIndex,
             scheduledForeshadowIndex = scheduledForeshadowIndex,
-            scheduledNationPair = scheduledNationPair,
-            OwnStocks = new List<StockSaveData>(),
+            scheduledNationPair = scheduledNationPair, OwnStocks = new List<StockSaveData>(),
+            notices = new List<string>(dailyNotices), quarterReport = new List<string>(quarterReportLines),
+            quarterReportOpen = UIManager.instance != null && UIManager.instance.quarterReportPanel != null
+                && UIManager.instance.quarterReportPanel.gameObject.activeSelf,
         };
-
-        // 보유 여부와 무관하게 모든 주식의 현재 상태를 저장 (가격·실적이 매턴 바뀌므로)
+        if (scheduledBigNewsCaseIndex >= 0 && scheduledBigNewsCaseIndex < BigTriggerCases.Count)
+        {
+            Case scheduled = BigTriggerCases[scheduledBigNewsCaseIndex];
+            data.scheduledCaseId = scheduled.SaveId;
+            if (scheduled.foreshadowCases != null && scheduledForeshadowIndex >= 0 && scheduledForeshadowIndex < scheduled.foreshadowCases.Length)
+                data.scheduledHintId = scheduled.foreshadowCases[scheduledForeshadowIndex]?.SaveId;
+        }
         foreach (Stock stock in tabmanager.allstock)
         {
+            if (stock == null) continue;
+            if (string.IsNullOrEmpty(stock.SaveId)) throw new InvalidOperationException("종목 저장 ID 누락: " + stock.name);
             data.OwnStocks.Add(new StockSaveData
             {
-                stockname = stock.StockName,
-                currentPrice = stock.StockCurrentPrice,
-                isFavorite = stock.isFavorite,
-                income = stock.income,
-                revenue = stock.runtimeRevenue, // 사업 성패가 누적된 런타임 매출을 저장
-                asset = stock.runtimeAsset,
-                negativeQuarters = stock.negativeQuarters,
-                isDelisted = stock.isDelisted,
-                ownamount = Portfolio.GetAmount(stock),
-                avgPurchasePrice = Portfolio.GetAvgPurchasePrice(stock),
+                stockId = stock.SaveId, stockname = stock.StockName,
+                currentPrice = stock.StockCurrentPrice, previousPrice = stock.StockPreviousPrice,
+                isFavorite = stock.isFavorite, income = stock.income, revenue = stock.runtimeRevenue,
+                asset = stock.runtimeAsset, negativeQuarters = stock.negativeQuarters,
+                isDelisted = stock.isDelisted, ownamount = Portfolio.GetAmount(stock),
+                avgPurchasePrice = Portfolio.GetAvgPurchasePrice(stock), lastQuarterIncome = stock.lastQuarterIncome,
+                lastEraModifier = lastQuarterEraModifier.TryGetValue(stock.StockName, out float m) ? m : 1f,
+                lastRevenue = lastQuarterRevenue.TryGetValue(stock.StockName, out int r) ? r : stock.runtimeRevenue,
+                priceHistory = new List<int>(stock.priceHistory), changeHistory = new List<float>(stock.changePctHistory),
+                volumeHistory = new List<float>(stock.volumeHistory),
             });
         }
-
-        File.WriteAllText(GetSavePath(), JsonUtility.ToJson(data));
+        foreach (var active in activeNewsList) data.news.Add(CaptureNews(active.caseData, active, 0));
+        foreach (var pending in pendingNewsList) data.news.Add(CaptureNews(pending.caseData, null, pending.daysLeft));
+        foreach (var npc in FindObjectsByType<NPCInvestor>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            data.npcs.Add(npc.CaptureSave());
+        return data;
     }
 
-    // JSON 파일에서 게임 데이터를 불러와 복원
-    void LoadGame()
+    public Stock FindSavedStock(string id, string oldName = null) => Array.Find(tabmanager.allstock, s => s != null &&
+        (!string.IsNullOrEmpty(id) ? s.SaveId == id : !string.IsNullOrEmpty(oldName) && s.StockName == oldName));
+
+    void LoadGame(string path = null)
     {
-        // Portfolio는 static이라 씬을 다시 로드해도 값이 남으므로, 불러오기 전에 항상 비운다
         Portfolio.Clear();
-
-        // 먼저 모든 주식을 기본값으로 세팅 — 저장 이후에 새로 추가된 주식도 0G로 시작하지 않도록
         ResetStocksToBase();
-
-        string path = GetSavePath();
-        if (!File.Exists(path))
+        activeNewsList.Clear(); pendingNewsList.Clear(); activeBusinesses.Clear();
+        dailyNotices.Clear(); quarterReportLines.Clear(); lastQuarterEraModifier.Clear(); lastQuarterRevenue.Clear();
+        currentgold = GameBalance.START_GOLD; currentDay = 1; loanAmount = 0;
+        currentEra = pendingEra = null; eraEndDay = -1;
+        nextEraStartDay = GameBalance.ERA_FIRST_START_DAY; eraHintShownDay = -1;
+        lastBigNewsDay = scheduledBigNewsDay = scheduledBigNewsVibeDay = -1;
+        scheduledBigNewsCaseIndex = scheduledForeshadowIndex = -1; smallNewsTimer = 0;
+        path ??= GetSavePath(PlayerPrefs.GetInt("SelectedSlot", 1));
+        if (!File.Exists(path) && !File.Exists(path + ".bak")) return;
+        if (!GameSaveStorage.TryRead(path, out GameSaveData data, out string message))
         {
-            currentgold = GameBalance.START_GOLD;
-            currentDay = 1;
+            savingBlocked = true; // 손상 파일을 새 게임의 자동 저장으로 덮지 않는다.
+            ShowPersistenceNotice(message);
             return;
         }
-
-        GameSaveData data = JsonUtility.FromJson<GameSaveData>(File.ReadAllText(path));
-        currentgold = data.currentgold;
-        currentDay = data.currentday;
-        lastBigNewsDay = data.lastBigNewsDay;
-        scheduledBigNewsDay = data.scheduledBigNewsDay;
-        scheduledBigNewsVibeDay = data.scheduledBigNewsVibeDay;
-        scheduledBigNewsCaseIndex = data.scheduledBigNewsCaseIndex;
-        scheduledForeshadowIndex = data.scheduledForeshadowIndex;
-        scheduledNationPair = data.scheduledNationPair ?? "";
-        smallNewsTimer = data.smallNewsTimer;
-        loanAmount = data.loanAmount;
-        eraEndDay = data.eraEndDay;
+        currentgold = data.currentgold; currentDay = data.currentday; loanAmount = data.loanAmount;
+        lastBigNewsDay = data.lastBigNewsDay; scheduledBigNewsDay = data.scheduledBigNewsDay;
+        scheduledBigNewsVibeDay = data.scheduledBigNewsVibeDay; scheduledNationPair = data.scheduledNationPair ?? "";
+        smallNewsTimer = data.smallNewsTimer; eraEndDay = data.eraEndDay;
         nextEraStartDay = data.nextEraStartDay > 0 ? data.nextEraStartDay : GameBalance.ERA_FIRST_START_DAY;
         eraHintShownDay = data.eraHintShownDay;
-        currentEra = System.Array.Find(allEras, e => e.eraName == data.currentEraName);
-        pendingEra = System.Array.Find(allEras, e => e.eraName == data.pendingEraName);
-        activeBusinesses = data.activeBusinesses ?? new List<ActiveBusiness>();
-
-        if (data.OwnStocks == null) return;
-
-        // 이름으로 주식을 찾기 위한 색인 — 저장 목록과 이중 루프를 도는 것을 피함
-        Dictionary<string, Stock> stocksByName = new();
-        foreach (Stock stock in tabmanager.allstock)
-            stocksByName[stock.StockName] = stock;
-
+        currentEra = FindSavedEra(data.currentEraId, data.currentEraName);
+        pendingEra = FindSavedEra(data.pendingEraId, data.pendingEraName);
+        RestoreSchedule(data);
         foreach (StockSaveData saved in data.OwnStocks)
         {
-            if (!stocksByName.TryGetValue(saved.stockname, out Stock stock)) continue;
-
+            Stock stock = FindSavedStock(saved.stockId, saved.stockname);
+            if (stock == null) continue;
             stock.StockCurrentPrice = saved.currentPrice;
-            stock.StockPreviousPrice = saved.currentPrice;
-            stock.isFavorite = saved.isFavorite;
-            stock.income = saved.income;
-            // 옛 세이브에는 revenue 칸이 없다. 그때는 baseIncome을 매출로 본다 (운영비가 0이던 시절의 값)
-            stock.runtimeRevenue = saved.revenue > 0 ? saved.revenue : saved.baseIncome;
-            stock.runtimeAsset = saved.asset;
-            stock.negativeQuarters = saved.negativeQuarters;
-            stock.isDelisted = saved.isDelisted;
-
-            // 상폐된 회사는 보유 주식이 있어도 복원하지 않는다 — 상폐 시점에 이미 전액 손실 처리됐다
-            if (!stock.isDelisted)
-                Portfolio.SetHolding(stock, saved.ownamount, saved.avgPurchasePrice);
+            stock.StockPreviousPrice = data.version > 0 && saved.previousPrice > 0 ? saved.previousPrice : saved.currentPrice;
+            stock.isFavorite = saved.isFavorite && !saved.isDelisted;
+            stock.income = saved.income; stock.runtimeRevenue = saved.revenue;
+            stock.runtimeAsset = saved.asset; stock.negativeQuarters = saved.negativeQuarters;
+            stock.isDelisted = saved.isDelisted; stock.lastQuarterIncome = saved.lastQuarterIncome;
+            RestoreHistory(stock.priceHistory, saved.priceHistory); RestoreHistory(stock.changePctHistory, saved.changeHistory);
+            RestoreHistory(stock.volumeHistory, saved.volumeHistory);
+            lastQuarterEraModifier[stock.StockName] = saved.lastEraModifier;
+            lastQuarterRevenue[stock.StockName] = data.version > 0 ? saved.lastRevenue : saved.revenue;
+            if (!stock.isDelisted) Portfolio.SetHolding(stock, saved.ownamount, saved.avgPurchasePrice);
         }
+        foreach (var business in data.activeBusinesses ?? new List<ActiveBusiness>())
+        {
+            Stock stock = FindSavedStock(business.stockId, business.stockName);
+            if (stock == null || stock.isDelisted) continue;
+            business.stockId = stock.SaveId; business.stockName = stock.StockName;
+            activeBusinesses.Add(business);
+        }
+        foreach (var news in data.news ?? new List<NewsSaveData>()) RestoreNews(news);
+        foreach (var npc in FindObjectsByType<NPCInvestor>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            var saved = data.npcs?.Find(n => n.id == npc.SaveId);
+            if (saved != null) npc.RestoreSave(saved, this);
+        }
+        dailyNotices.AddRange(data.notices ?? new List<string>());
+        quarterReportLines.AddRange(data.quarterReport ?? new List<string>());
+        if (UIManager.instance != null)
+        {
+            UIManager.instance.NoticeText.text = string.Join("\n", dailyNotices);
+            if (data.quarterReportOpen && UIManager.instance.quarterReportPanel != null)
+                UIManager.instance.quarterReportPanel.Show(CurrentQuarter, quarterReportLines);
+            UIManager.instance.favoritePanel?.RefreshHome();
+        }
+        if (!string.IsNullOrEmpty(message)) ShowPersistenceNotice(message);
     }
 
-    // 모든 주식의 런타임 값을 인스펙터 기준값으로 되돌린다
-    // Stock은 ScriptableObject라 에디터에서 값이 남으므로 불러오기 전에 반드시 초기화해야 한다
+    Era FindSavedEra(string id, string oldName) => Array.Find(allEras, e => e != null &&
+        (!string.IsNullOrEmpty(id) ? e.SaveId == id : !string.IsNullOrEmpty(oldName) && e.eraName == oldName));
+
+    void RestoreSchedule(GameSaveData data)
+    {
+        scheduledBigNewsCaseIndex = data.version == 0 ? data.scheduledBigNewsCaseIndex
+            : BigTriggerCases.FindIndex(c => !string.IsNullOrEmpty(data.scheduledCaseId) && c.SaveId == data.scheduledCaseId);
+        scheduledForeshadowIndex = -1;
+        if (scheduledBigNewsCaseIndex < 0 || scheduledBigNewsCaseIndex >= BigTriggerCases.Count)
+        {
+            scheduledBigNewsCaseIndex = -1; scheduledBigNewsDay = scheduledBigNewsVibeDay = -1;
+            return;
+        }
+        var hints = BigTriggerCases[scheduledBigNewsCaseIndex].foreshadowCases;
+        if (hints != null) scheduledForeshadowIndex = data.version == 0 ? data.scheduledForeshadowIndex
+            : Array.FindIndex(hints, h => h != null && !string.IsNullOrEmpty(data.scheduledHintId) && h.SaveId == data.scheduledHintId);
+    }
+
+    static void RestoreHistory<T>(List<T> target, List<T> saved)
+    {
+        target.Clear();
+        if (saved == null) return;
+        for (int i = Math.Max(0, saved.Count - GameBalance.HISTORY_LENGTH); i < saved.Count; i++) target.Add(saved[i]);
+    }
+
+    [Serializable]
+    public class NewsSaveData
+    {
+        public string caseId, title, description, displayDescription;
+        public Case.NewsType type;
+        public string[] stockIds = Array.Empty<string>();
+        public int[] min = Array.Empty<int>(), max = Array.Empty<int>();
+        public float[] decay = Array.Empty<float>();
+        public Case.IndustryRate[] industryRates;
+        public List<ChainSaveData> chains = new();
+        public List<string> nations = new();
+        public int lastingDay, remaining, elapsed, delay;
+        public bool pending;
+    }
+    [Serializable]
+    public class ChainSaveData { public string stockId; public int min, max; }
+
+    NewsSaveData CaptureNews(Case c, ActiveCase active, int delay)
+    {
+        var data = new NewsSaveData
+        {
+            caseId = c.SaveId, title = c.CaseName, description = c.CaseDescription,
+            type = c.newsType, lastingDay = c.lastingDay,
+            min = c.ChangePriceMin ?? Array.Empty<int>(), max = c.ChangePriceMax ?? Array.Empty<int>(),
+            decay = c.lowPercent ?? Array.Empty<float>(), industryRates = c.industryRates,
+            stockIds = Array.ConvertAll(c.affectedCase ?? Array.Empty<Stock>(), s => s != null ? s.SaveId : ""),
+            pending = active == null, delay = delay, remaining = active?.Rday ?? 0, elapsed = active?.currentDay ?? 0,
+            displayDescription = active?.displayDescription,
+            nations = active != null ? new List<string>(active.involvedNations) : new List<string>(),
+        };
+        foreach (var chain in c.chainEffects ?? Array.Empty<Case.ChainEffect>())
+            if (chain.stock != null) data.chains.Add(new ChainSaveData { stockId = chain.stock.SaveId, min = chain.priceMin, max = chain.priceMax });
+        return data;
+    }
+
+    void RestoreNews(NewsSaveData saved)
+    {
+        Case original = Array.Find(AllCases, c => c != null && !string.IsNullOrEmpty(saved.caseId) && c.SaveId == saved.caseId);
+        // 생성형 뉴스도 복원하도록 효과와 참조 ID를 저장한다.
+        Case c = original != null ? Instantiate(original) : ScriptableObject.CreateInstance<Case>();
+        restoredCases.Add(c);
+        c.CaseName = saved.title; c.CaseDescription = saved.description; c.newsType = saved.type;
+        c.lastingDay = saved.lastingDay; c.lowPercent = saved.decay; c.industryRates = saved.industryRates;
+        var stocks = new List<Stock>(); var mins = new List<int>(); var maxs = new List<int>();
+        for (int i = 0; i < saved.stockIds.Length; i++)
+        {
+            Stock stock = FindSavedStock(saved.stockIds[i]);
+            if (stock == null || stock.isDelisted) continue;
+            stocks.Add(stock); mins.Add(saved.min[i]); maxs.Add(saved.max[i]);
+        }
+        c.affectedCase = stocks.ToArray(); c.ChangePriceMin = mins.ToArray(); c.ChangePriceMax = maxs.ToArray();
+        var chains = new List<Case.ChainEffect>();
+        foreach (var chain in saved.chains ?? new List<ChainSaveData>())
+        {
+            if (chain == null) continue;
+            Stock stock = FindSavedStock(chain.stockId);
+            if (stock != null && !stock.isDelisted) chains.Add(new Case.ChainEffect { stock = stock, priceMin = chain.min, priceMax = chain.max });
+        }
+        c.chainEffects = chains.ToArray();
+        if (saved.pending) pendingNewsList.Add(new PendingNews { caseData = c, daysLeft = saved.delay });
+        else if (saved.remaining > 0) activeNewsList.Add(new ActiveCase
+        {
+            caseData = c, Rday = saved.remaining, currentDay = saved.elapsed,
+            displayDescription = saved.displayDescription ?? saved.description, involvedNations = saved.nations ?? new List<string>(),
+        });
+    }
+
+    void OnDestroy()
+    {
+        foreach (var c in restoredCases) if (c != null) Destroy(c);
+        if (Instance == this) Instance = null;
+    }
+
     void ResetStocksToBase()
     {
         foreach (Stock stock in tabmanager.allstock)
         {
-            stock.StockCurrentPrice = stock.StockBasePrice;
-            stock.StockPreviousPrice = stock.StockBasePrice;
-            // 사업 보너스가 쌓인 런타임 매출을 에셋 원본으로 되돌린다 (도메인 리로드 여부와 무관하게 항상 실행)
-            stock.runtimeRevenue = stock.BaselineRevenue;
-            stock.runtimeAsset = stock.BaselineAsset;
+            if (stock == null) continue;
+            stock.StockCurrentPrice = stock.StockPreviousPrice = stock.StockBasePrice;
+            stock.runtimeRevenue = stock.BaselineRevenue; stock.runtimeAsset = stock.BaselineAsset;
             stock.income = stock.runtimeRevenue - stock.operatingCost;
-            // 즐겨찾기는 세이브 대상이지만 에셋에도 남으므로 먼저 끈다
-            // 세이브가 있으면 바로 아래 LoadGame이 저장된 값으로 다시 켜준다
-            stock.isFavorite = false;
-
-            // 상폐 상태도 NonSerialized라 에디터에서 값이 남지 않지만, 도메인 리로드 없이 이어서
-            // 새 게임을 시작하는 경우를 대비해 명시적으로 초기화한다. 세이브가 있으면 LoadGame이 다시 채운다
-            stock.negativeQuarters = 0;
-            stock.isDelisted = false;
-
-            stock.changePctHistory.Clear();
-            stock.priceHistory.Clear();
-            stock.volumeHistory.Clear();
+            stock.isFavorite = stock.isDelisted = false; stock.negativeQuarters = stock.lastQuarterIncome = 0;
+            stock.changePctHistory.Clear(); stock.priceHistory.Clear(); stock.volumeHistory.Clear(); stock.runtimeIssues.Clear();
         }
     }
 }

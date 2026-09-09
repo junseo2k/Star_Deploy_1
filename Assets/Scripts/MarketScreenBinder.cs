@@ -64,6 +64,19 @@ public class MarketScreenBinder : MonoBehaviour
     [Tooltip("스크롤바 폭(px). 패키지 기본은 7이라 잡기 어렵다")]
     public float scrollbarWidth = 14f;
 
+    [Header("즐겨찾기 별표")]
+    [Tooltip("즐겨찾기 켜진 상태 스프라이트 (채워진 별). StockItem 프리팹에 쓰는 것과 같은 걸 넣으면 된다")]
+    public Sprite favoriteOnSprite;
+    [Tooltip("즐겨찾기 꺼진 상태 스프라이트 (빈 별)")]
+    public Sprite favoriteOffSprite;
+    [Tooltip("카드 왼쪽 위 모서리에서 별표까지의 거리(px). 카드 한 장은 779×165, 주식 로고는 (16,18) 자리에 118×124다")]
+    public Vector2 starTopLeft = new Vector2(16f, 20f); // 주식 로고 왼쪽 위 모서리에 배지처럼 얹는 위치
+    [Tooltip("별표 크기(px)")]
+    public Vector2 starSize = new Vector2(20f, 20f);
+
+    // 카드에 붙이는 별표 오브젝트 이름 — 이 이름으로 이미 붙어 있는지 확인한다
+    const string StarObjectName = "FavoriteStar";
+
     [Header("문제 확인용")]
     [Tooltip("시장 탭을 열 때마다 어떤 데이터가 들어갔는지 콘솔에 한 줄 찍는다. 확인이 끝나면 꺼도 된다")]
     public bool showRefreshLog = true;
@@ -125,7 +138,7 @@ public class MarketScreenBinder : MonoBehaviour
             string firstItem = companies.Count > 0
                 ? $" / 첫 종목 {companies[0].companyName} {companies[0].price}G ({companies[0].changePercent:0.0}%)"
                 : "";
-            Debug.Log($"[시장 탭] 종목 {companies.Count}개 / 시대 {eraName} / 골드 {game.currentgold}G / {game.currentDay}일차{firstItem}", this);
+            GameDiagnostics.Log($"[시장 탭] 종목 {companies.Count}개 / 시대 {eraName} / 골드 {game.currentgold}G / {game.currentDay}일차{firstItem}", this);
         }
 
         // 상태만 먼저 넣고(rebuild: false), 종목 목록을 넣으면서 한 번만 화면을 다시 그린다
@@ -138,6 +151,101 @@ public class MarketScreenBinder : MonoBehaviour
 
         // 스크롤 감도·관성·스크롤바 표시를 손봐서 목록이 자연스럽게 스크롤되게 한다
         TuneScroll();
+
+        // 카드가 새로 만들어졌으므로 별표도 다시 붙인다
+        RefreshFavoriteStars();
+    }
+
+    // ── 즐겨찾기 별표 ────────────────────────────────────
+
+    // 시장 탭 카드마다 별표 버튼을 붙이고, 지금 즐겨찾기 상태에 맞는 그림으로 맞춘다.
+    // 패키지가 카드를 코드로 만들기 때문에 프리팹을 끼워 넣을 자리가 없다 → 만들어진 카드에 버튼을 하나씩 얹는다.
+    // 패키지 소스는 건드리지 않으므로 나중에 패키지를 갈아끼워도 이 파일만 손보면 된다.
+    public void RefreshFavoriteStars()
+    {
+        FindMarketScreen();
+        if (marketScreen == null) return;
+
+        // 스프라이트를 안 넣으면 버튼은 생기는데 그림이 없어서 "눌리긴 하는데 안 보이는" 상태가 된다.
+        // 원인을 찾기 어려운 증상이라 콘솔에 대놓고 알려준다
+        if (favoriteOnSprite == null || favoriteOffSprite == null)
+        {
+            Debug.LogWarning(
+                $"MarketScreenBinder({name}): 즐겨찾기 별표 스프라이트가 비어 있어 별이 보이지 않습니다. " +
+                "Inspector의 [즐겨찾기 별표]에 Favorite On/Off Sprite를 넣어주세요.", this);
+        }
+
+        foreach (CurrentMarketCardView card in marketScreen.GetComponentsInChildren<CurrentMarketCardView>(true))
+        {
+            Stock stock = FindStockByCardName(card.name);
+            if (stock == null) continue;
+
+            Image star = GetOrCreateStar(card.transform);
+            star.sprite = stock.isFavorite ? favoriteOnSprite : favoriteOffSprite;
+
+            // 스프라이트가 비어 있으면 Unity는 흰 네모를 그린다 — 별 대신 네모가 뜨면 더 헷갈리므로 아예 숨긴다
+            star.enabled = star.sprite != null;
+
+            // 카드를 다시 그릴 때마다 리스너가 쌓이지 않도록 매번 비우고 새로 건다
+            Button button = star.GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() => ToggleFavorite(stock));
+        }
+    }
+
+    // 별표를 눌렀을 때 — 상태를 뒤집고 저장한 뒤, 별표가 보이는 화면을 전부 갱신한다
+    void ToggleFavorite(Stock stock)
+    {
+        stock.isFavorite = !stock.isFavorite;
+        GameManager.Instance.SaveGame();
+        UIManager.instance.RefreshFavoriteUI();
+    }
+
+    // 카드에 별표가 없으면 새로 만들고, 이미 있으면 그걸 그대로 쓴다
+    Image GetOrCreateStar(Transform card)
+    {
+        Transform existing = card.Find(StarObjectName);
+        if (existing != null) return existing.GetComponent<Image>();
+
+        GameObject starObject = new GameObject(StarObjectName, typeof(RectTransform), typeof(Image), typeof(Button));
+
+        // 패키지 카드는 좌상단을 기준으로 자식을 배치한다 — 같은 기준을 써야 위치 계산이 맞는다
+        RectTransform rect = (RectTransform)starObject.transform;
+        rect.SetParent(card, false);
+        rect.anchorMin = new Vector2(0f, 1f);
+        rect.anchorMax = new Vector2(0f, 1f);
+        rect.pivot = new Vector2(0f, 1f);
+        rect.anchoredPosition = new Vector2(starTopLeft.x, -starTopLeft.y);
+        rect.sizeDelta = starSize;
+
+        Image image = starObject.GetComponent<Image>();
+        image.preserveAspect = true;
+        image.raycastTarget = true; // 이게 꺼져 있으면 클릭이 카드로 새어나가 상세 창이 열린다
+
+        Button button = starObject.GetComponent<Button>();
+        button.targetGraphic = image;
+        return image;
+    }
+
+    // 카드 오브젝트 이름("Card_종목명")에서 어느 종목인지 찾는다
+    // 패키지가 카드를 만들 때 붙인 이름이라, 이 규칙이 종목을 되짚는 유일한 단서다
+    Stock FindStockByCardName(string cardName)
+    {
+        const string prefix = "Card_";
+        if (!cardName.StartsWith(prefix)) return null;
+
+        string companyName = cardName.Substring(prefix.Length);
+
+        GameManager game = GameManager.Instance;
+        if (game == null || game.tabmanager == null || game.tabmanager.allstock == null) return null;
+
+        foreach (Stock stock in game.tabmanager.allstock)
+        {
+            if (stock == null) continue;
+            // BuildCompanies에서 StockName이 비면 에셋 이름을 쓰므로 여기서도 둘 다 본다
+            if (stock.StockName == companyName || stock.name == companyName) return stock;
+        }
+        return null;
     }
 
     // 패키지가 만든 ScrollRect / Scrollbar를 게임에 맞게 조정한다.

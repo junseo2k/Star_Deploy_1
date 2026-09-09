@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: IronReform
+  saveId: 20fb4d276cabdcf43b1b211a34a2f62a
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronReform
   StockBasePrice: 140

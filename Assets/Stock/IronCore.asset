@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: IronCore
+  saveId: 02742c54f0d0adf468f1072f580b1105
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronCore
   StockBasePrice: 2320
@@ -33,7 +34,7 @@ MonoBehaviour:
   IndustryTag: Mining
   owner: 0
   companyType: 2
-  personality: 1
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 6cb72870536d4462bd305143d7bca6db, type: 2}
   baseRevenue: 2108000

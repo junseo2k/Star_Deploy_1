@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
   m_Name: MiningEra
+  saveId: a8d0cadbe120d46488d0b5c25568ee6e
   m_EditorClassIdentifier: Assembly-CSharp::Era
   eraName: "\uAD11\uC5C5\uC758 \uC2DC\uB300"
   eraDescription: "\uAD11\uBB3C\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"

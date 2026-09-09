@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ea6c6a0ac481c4eb739ebc759417ec, type: 3}
   m_Name: "\uCD95\uC81C \uC804\uC870 1"
+  saveId: 498c7180e5a6f644893b590499de1468
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\uCD95\uC81C \uC804\uC870 1"
   CaseDescription: "\uC5EC\uAE30\uC800\uAE30\uC11C \uC791\uC740 \uCD95\uC81C\uB4E4\uC774

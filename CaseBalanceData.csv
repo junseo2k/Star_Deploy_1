@@ -43,12 +43,13 @@
 ★워메이커 대패,SmallCompanyNews,2,WarMaker,-15,-8,1;0.4
 ★이부코타 품질비판,SmallCompanyNews,2,Ibukota,-10,-5,1;0.4
 ★크레센트 품질문제,SmallCompanyNews,2,Crescent,-10,-5,1;0.4
+건설의 시대 힌트,ForeshadowNews,1,-,-,-,11
 국경 전쟁 발발,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
 국경 전조 1,ForeshadowNews,3,-,-,-,
 국경 전조 1,ForeshadowNews,3,-,-,-,
 국경 전조 1,ForeshadowNews,3,-,-,-,
 국경 전조 1,ForeshadowNews,3,-,-,-,
-국경 전조 ,BigTriggerNews,3,-,-,-,
+국경 전조 ,ForeshadowNews,3,-,-,-,
 국왕 서거,BigTriggerNews,4,-,-,-,1;0.55;0.3;0.15
 그린루트 건축가은퇴,SmallCompanyNews,2,GreenRoot,-5,-2,1;0.4
 그린루트 건축대상,SmallCompanyNews,2,GreenRoot,8,15,1;0.4
@@ -73,6 +74,7 @@
 글림윙 엘프인기,SmallCompanyNews,1,GlimWing,2,5,1
 글림윙 왕실납품,SmallCompanyNews,2,GlimWing,8,15,1;0.4
 글림윙 장인이직,SmallCompanyNews,2,GlimWing,-10,-5,1;0.4
+금융의 시대 힌트,ForeshadowNews,1,-,-,-,11
 대규모 전염병 확산,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
 대륙 규모 풍년,BigTriggerNews,3,-,-,-,1;0.55;0.25
 대륙 규모 흉작,BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
@@ -118,6 +120,7 @@
 마지노 에너지성과,SmallCompanyNews,2,MaginoTech,8,15,1;0.4
 마지노 엘프영입,SmallCompanyNews,1,MaginoTech,-5,5,1
 마지노 장비리콜,SmallCompanyNews,2,MaginoTech,-10,-5,1;0.4
+물류의 시대 힌트,ForeshadowNews,1,-,-,-,11
 본파이어 건강문제,SmallCompanyNews,2,BoneFire,-10,-5,1;0.4
 본파이어 공식주류,SmallCompanyNews,2,BoneFire,5,10,1;0.4
 본파이어 블랙파이어,SmallCompanyNews,1,BoneFire,2,5,1
@@ -253,12 +256,14 @@
 이부코타 엘프초청,SmallCompanyNews,1,Ibukota,-5,5,1
 이부코타 최다관객,SmallCompanyNews,2,Ibukota,8,15,1;0.4
 이부코타 합작공연,SmallCompanyNews,2,Ibukota,5,10,1;0.4
+전쟁의 시대 힌트,ForeshadowNews,1,-,-,-,11
 종족 간 대규모 분쟁(랜덤),BigTriggerNews,5,-,-,-,1;0.55;0.3;0.15;0.05
 축제 전조 1,ForeshadowNews,3,-,-,-,
 축제 전조 1,ForeshadowNews,3,-,-,-,
 축제 전조 1,ForeshadowNews,3,-,-,-,
 축제 전조 1,ForeshadowNews,3,-,-,-,
 축제 전조 1,ForeshadowNews,3,-,-,-,
+축제의 시대 힌트,ForeshadowNews,1,-,-,-,11
 코타 대출부실,SmallCompanyNews,2,Corta,-10,-5,1;0.4
 코타 디지털뱅킹,SmallCompanyNews,1,Corta,-5,5,1
 코타 예금최고,SmallCompanyNews,1,Corta,2,5,1
@@ -284,6 +289,7 @@
 페어브리즈 알레르기,SmallCompanyNews,2,FareBreez,-15,-8,1;0.4
 페어브리즈 인력이탈,SmallCompanyNews,2,FareBreez,-10,-5,1;0.4
 페어브리즈 패션열풍,SmallCompanyNews,2,FareBreez,8,15,1;0.4
+풍년의 시대 힌트,ForeshadowNews,1,-,-,-,11
 플레임스케일 가격비판,SmallCompanyNews,2,FlameScale,-10,-5,1;0.4
 플레임스케일 분화,SmallCompanyNews,2,FlameScale,-15,-8,1;0.4
 플레임스케일 수입계약,SmallCompanyNews,2,FlameScale,5,10,1;0.4

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
   m_Name: FoodEra
+  saveId: 1a35253c7b56fdf4ebfc1915399cfe08
   m_EditorClassIdentifier: Assembly-CSharp::Era
   eraName: "\uD48D\uB144\uC758 \uC2DC\uB300"
   eraDescription: "\uD48D\uB144\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"
@@ -20,4 +21,4 @@ MonoBehaviour:
   - Construct
   boostedRate: 1
   weakenedRate: 1
-  hintNews: {fileID: 0}
+  hintNews: {fileID: 11400000, guid: f2dcdac9fc8443e79bcf52f7518228f4, type: 2}

@@ -100,8 +100,8 @@ public class VaultScreenBinder : MonoBehaviour
 
         // 자산 요약 — 총 자산과 손익은 아래 RecalculateSummary가 직접 계산한다
         data.cash = game.currentgold;
-        data.debt = Mathf.Max(0, game.loanAmount);                      // 갚아야 할 대출금 (총 자산에서 빠진다)
-        data.purchaseCost = Mathf.RoundToInt(Portfolio.TotalPurchaseCost()); // 주식을 살 때 쓴 돈 (손익률의 기준)
+        data.debt = System.Math.Max(0L, game.loanAmount);                      // 갚아야 할 대출금 (총 자산에서 빠진다)
+        data.purchaseCost = MoneyMath.Round(Portfolio.TotalPurchaseCost()); // 주식을 살 때 쓴 돈 (손익률의 기준)
         data.startingAssets = startingAssetsOverride > 0 ? startingAssetsOverride : GameBalance.START_GOLD;
 
         data.holdings = BuildHoldings();
@@ -113,7 +113,7 @@ public class VaultScreenBinder : MonoBehaviour
             string firstItem = data.holdings.Count > 0
                 ? $" / 첫 종목 {data.holdings[0].companyName} {data.holdings[0].quantity}주, 평단 {data.holdings[0].averagePrice}G, 현재가 {data.holdings[0].currentPrice}G"
                 : "";
-            Debug.Log(
+            GameDiagnostics.Log(
                 $"[자산 탭] 보유 {data.holdings.Count}종목 / 현금 {data.cash}G / 대출 {data.debt}G / 매수원금 {data.purchaseCost}G{firstItem}",
                 this);
         }

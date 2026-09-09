@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: AurelionCapital
+  saveId: 60bf84910a34b7d40974b19facac886e
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: AurelionCapital
   StockBasePrice: 1680

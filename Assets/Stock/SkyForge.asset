@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: SkyForge
+  saveId: 8ac9fd3a0e12474479ced443dfce5f5f
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: SkyForge
   StockBasePrice: 780

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: SilverForge
+  saveId: 034300c1d1bb43349a9cefa3e1f80881
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: SilverForge
   StockBasePrice: 360

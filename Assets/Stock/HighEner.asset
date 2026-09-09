@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: HighEner
+  saveId: 715013876091e5f4db4753dc39fe45a6
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: HighEner
   StockBasePrice: 920
@@ -26,7 +27,7 @@ MonoBehaviour:
   IndustryTag: Game
   owner: 1
   companyType: 1
-  personality: 1
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 70fef6a08dba4945a548215286916ab9, type: 2}
   baseRevenue: 460000

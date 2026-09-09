@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: IronHeart
+  saveId: 33d11c22f8931244e9de0ccc8f20070d
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: IronHeart
   StockBasePrice: 1920
@@ -28,7 +29,7 @@ MonoBehaviour:
   IndustryTag: Army
   owner: 0
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 8ab763a4007d4631afd5206369c56607, type: 2}
   baseRevenue: 1476000

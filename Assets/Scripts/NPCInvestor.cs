@@ -5,6 +5,14 @@ using System.Collections.Generic;
 // LSTM 모델을 사용해 주식 변동을 예측하고 자동 매매를 수행하는 NPC 투자자
 public class NPCInvestor : MonoBehaviour
 {
+    [SerializeField, HideInInspector] private string saveId;
+    public string SaveId => saveId;
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        if (string.IsNullOrEmpty(saveId)) saveId = System.Guid.NewGuid().ToString("N");
+    }
+#endif
     [Header("모델 설정")]
     public ModelAsset modelAsset;   // Unity Inference Engine에 로드할 ONNX 모델 에셋
     public string investorName;     // 디버그 로그에 표시되는 NPC 이름
@@ -16,10 +24,10 @@ public class NPCInvestor : MonoBehaviour
     public int maxBuyCount = 3;          // 하루에 매수할 종목 수 상한 — 예측이 높은 순으로 이만큼만 산다
 
     [Header("상태")]
-    public int gold = 60000; // 현재 보유 골드 (주가 4배 스케일에 맞춰 상향)
+    public long gold = 60000; // 현재 보유 골드 (주가 4배 스케일에 맞춰 상향)
 
     [Header("자산 현황")]
-    public int totalAssets; // 보유 골드 + 보유 주식 평가금액 합계 — 매일 거래 끝나고 자동 갱신 (읽기 전용, 직접 수정 X)
+    public long totalAssets; // 보유 골드 + 보유 주식 평가금액 합계 — 매일 거래 끝나고 자동 갱신 (읽기 전용, 직접 수정 X)
 
     // Inspector에서 보이도록 직렬화
     [System.Serializable]
@@ -41,8 +49,20 @@ public class NPCInvestor : MonoBehaviour
     // 모델 로드 및 추론 워커 초기화
     void Start()
     {
-        var model = ModelLoader.Load(modelAsset);
-        worker = new Worker(model, BackendType.CPU);
+        try
+        {
+            if (modelAsset == null) throw new System.InvalidOperationException("모델 에셋이 연결되지 않았습니다.");
+            var model = ModelLoader.Load(modelAsset);
+            worker = new Worker(model, BackendType.CPU);
+        }
+        catch (System.Exception e)
+        {
+            predictionDisabled = true;
+            worker?.Dispose();
+            worker = null;
+            Debug.LogWarning($"[{investorName}] 모델을 초기화하지 못해 NPC 매매를 중지합니다: {e.Message}", this);
+        }
+        UpdateTotalAssets();
     }
 
     // 특정 주식 보유량 가져오기
@@ -73,7 +93,7 @@ public class NPCInvestor : MonoBehaviour
     // GameManager.RunNpcInvestors()가 GetDailyFeatures()로 만든 값을 그대로 넘겨준다 (CSV 학습 데이터와 동일한 계산)
     public void OnDayPassed(Stock stock, StockDailyFeatures features)
     {
-        if (predictionDisabled) return; // 모델이 안 맞아서 예측을 포기한 상태 — 게임 진행은 막지 않는다
+        if (predictionDisabled || worker == null || stock == null || stock.isDelisted) return;
 
         if (!priceHistories.TryGetValue(stock, out Queue<(float price, StockDailyFeatures features)> history))
         {
@@ -143,7 +163,7 @@ public class NPCInvestor : MonoBehaviour
             float stdDev = Mathf.Exp(0.5f * logVar); // 분산 = exp(log_var), 표준편차 = 분산의 제곱근
             float confidence = Mathf.Clamp01(1f / (1f + stdDev)); // 표준편차가 클수록(불확실할수록) 0에 가까워지는 확신도
 
-            Debug.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}% (표준편차 {stdDev:F2}, 확신도 {confidence:F2})");
+            GameDiagnostics.Log($"[{investorName}] {stock.StockName} 예측: {predictedChange:F2}% (표준편차 {stdDev:F2}, 확신도 {confidence:F2})");
             dailyPredictions.Add((stock, predictedChange, confidence));
         }
         catch (System.Exception e)
@@ -177,13 +197,14 @@ public class NPCInvestor : MonoBehaviour
     // 예측이 좋아서가 아니라 인스펙터 배열 순서(사실상 알파벳순) 때문이라 완전히 무의미한 편향이었다
     public void DecideAfterAllPredictions()
     {
+        UpdateTotalAssets();
         if (dailyPredictions.Count == 0) return;
 
         float avg = 0f;
         foreach (var p in dailyPredictions) avg += p.prediction;
         avg /= dailyPredictions.Count;
 
-        Debug.Log($"[{investorName}] 오늘 예측 평균: {avg:F2}%");
+        GameDiagnostics.Log($"[{investorName}] 오늘 예측 평균: {avg:F2}%");
 
         // ① 매도 먼저 — 여기서 나온 현금이 오늘 매수 예산에 포함되도록
         foreach (var (stock, prediction, _) in dailyPredictions)
@@ -205,14 +226,14 @@ public class NPCInvestor : MonoBehaviour
         if (buyCount > 0)
         {
             // ③ 오늘 예산을 여기서 딱 한 번 확정한다 — 루프 안에서 gold가 줄어도 배분이 흔들리지 않는다
-            int todayBudget = Mathf.FloorToInt(gold * investRatio);
-            int perStock = todayBudget / buyCount;
+            long todayBudget = MoneyMath.Floor(gold * (double)Mathf.Clamp01(investRatio));
+            long perStock = todayBudget / buyCount;
 
             for (int i = 0; i < buyCount; i++)
             {
                 // 확신이 없는 날은 배정액을 그만큼 덜 쓴다 — 안 쓴 돈은 현금으로 남는다
                 // (분기말처럼 크게 흔들리는 날 무모하게 지르지 않게 하는 안전장치)
-                int budget = Mathf.FloorToInt(perStock * candidates[i].confidence);
+                long budget = MoneyMath.Floor(perStock * (double)candidates[i].confidence);
                 Buy(candidates[i].stock, budget);
             }
         }
@@ -224,39 +245,106 @@ public class NPCInvestor : MonoBehaviour
     // 보유 골드 + 보유 주식 전부를 현재가로 환산한 값을 합쳐서 totalAssets에 반영 — 인스펙터 확인용
     void UpdateTotalAssets()
     {
-        int stockValue = 0;
+        holdings.RemoveAll(h => h == null || h.stock == null || h.stock.isDelisted || h.amount <= 0);
+        long stockValue = 0;
         foreach (StockHolding h in holdings)
-            stockValue += h.amount * h.stock.StockCurrentPrice;
+            stockValue = MoneyMath.Add(stockValue, (long)h.amount * h.stock.StockCurrentPrice);
 
-        totalAssets = gold + stockValue;
+        totalAssets = MoneyMath.Add(gold, stockValue);
+    }
+
+    public void OnStockDelisted(Stock stock)
+    {
+        holdings.RemoveAll(h => h == null || h.stock == stock);
+        priceHistories.Remove(stock);
+        dailyPredictions.RemoveAll(p => p.stock == stock);
+        UpdateTotalAssets();
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public string id;
+        public long gold;
+        public List<HoldingSave> holdings = new();
+        public List<HistorySave> histories = new();
+    }
+    [System.Serializable]
+    public class HoldingSave { public string stockId; public int amount; }
+    [System.Serializable]
+    public class HistoryDay { public float price; public StockDailyFeatures features; }
+    [System.Serializable]
+    public class HistorySave { public string stockId; public List<HistoryDay> days = new(); }
+
+    public SaveData CaptureSave()
+    {
+        var data = new SaveData { id = SaveId, gold = gold };
+        foreach (var h in holdings)
+            if (h != null && h.stock != null && !h.stock.isDelisted)
+                data.holdings.Add(new HoldingSave { stockId = h.stock.SaveId, amount = h.amount });
+        foreach (var pair in priceHistories)
+        {
+            if (pair.Key == null || pair.Key.isDelisted) continue;
+            var history = new HistorySave { stockId = pair.Key.SaveId };
+            foreach (var day in pair.Value) history.days.Add(new HistoryDay { price = day.price, features = day.features });
+            data.histories.Add(history);
+        }
+        return data;
+    }
+
+    public void RestoreSave(SaveData data, GameManager game)
+    {
+        gold = data.gold;
+        holdings.Clear(); priceHistories.Clear(); dailyPredictions.Clear();
+        foreach (var h in data.holdings)
+        {
+            Stock stock = game.FindSavedStock(h.stockId);
+            if (stock != null && !stock.isDelisted) SetHolding(stock, h.amount);
+        }
+        foreach (var saved in data.histories)
+        {
+            Stock stock = game.FindSavedStock(saved.stockId);
+            if (stock == null || stock.isDelisted) continue;
+            var history = new Queue<(float price, StockDailyFeatures features)>();
+            foreach (var day in saved.days)
+            {
+                if (day == null) continue;
+                history.Enqueue((day.price, day.features));
+                if (history.Count > WINDOW_SIZE) history.Dequeue();
+            }
+            priceHistories[stock] = history;
+        }
+        UpdateTotalAssets();
     }
 
     // 배정받은 예산 안에서 최대한 매수한다
     // 예산 계산은 DecideAfterAllPredictions가 미리 해서 넘겨준다 — 여기서 gold를 보고 다시 계산하면
     // 종목을 살 때마다 예산이 줄어드는 예전 문제가 그대로 돌아온다
-    void Buy(Stock stock, int budget)
+    void Buy(Stock stock, long budget)
     {
-        int amount = budget / stock.StockCurrentPrice;
+        if (stock == null || stock.isDelisted || stock.StockCurrentPrice <= 0) return;
+        int amount = (int)System.Math.Min(int.MaxValue - GetHolding(stock), budget / stock.StockCurrentPrice);
         if (amount <= 0) return; // 예산이 1주 값도 안 되면 산다고 하지 않는다
 
-        int cost = amount * stock.StockCurrentPrice;
+        long cost = (long)amount * stock.StockCurrentPrice;
         if (cost > gold) return; // 안전장치 — 예산 계산이 어긋나도 골드가 마이너스로 가지 않게
 
         gold -= cost;
         int current = GetHolding(stock);
         SetHolding(stock, current + amount);
-        Debug.Log($"[{investorName}] {stock.StockName} {amount}주 매수 (총 {current + amount}주)");
+        GameDiagnostics.Log($"[{investorName}] {stock.StockName} {amount}주 매수 (총 {current + amount}주)");
     }
 
     // 해당 주식 보유량 전량 매도
     void Sell(Stock stock)
     {
+        if (stock == null || stock.isDelisted) return;
         int current = GetHolding(stock);
         if (current <= 0) return;
 
-        gold += current * stock.StockCurrentPrice;
+        gold = MoneyMath.Add(gold, (long)current * stock.StockCurrentPrice);
         SetHolding(stock, 0);
-        Debug.Log($"[{investorName}] {stock.StockName} {current}주 매도");
+        GameDiagnostics.Log($"[{investorName}] {stock.StockName} {current}주 매도");
     }
 
     // 오브젝트 파괴 시 추론 워커 해제

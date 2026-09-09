@@ -3,7 +3,7 @@ using UnityEngine;
 
 // 주식 정보를 담는 ScriptableObject — 인스펙터에서 각 주식 데이터를 에셋으로 생성·관리
 [CreateAssetMenu(fileName = "Stock", menuName = "Scriptable Objects/Stock")]
-public class Stock : ScriptableObject
+public class Stock : SaveIdentity
 {
     // 기업이 제공하는 서비스/상품 정보를 담는 구조체 (상세 패널 서비스 탭에 표시)
     [System.Serializable]
@@ -131,7 +131,7 @@ public class Stock : ScriptableObject
 
     // 기준 금고 — baseAsset이 비어 있으면 "몇 분기를 버티는가"로 자동 산정
     // 수입이 아니라 운영비를 기준으로 삼는 이유: 적자 회사도 음수가 끼어들지 않아 계산이 안전하다
-    public int BaselineAsset => baseAsset > 0 ? baseAsset : operatingCost * SurvivalQuarters;
+    public int BaselineAsset => baseAsset > 0 ? baseAsset : MoneyMath.Int((long)operatingCost * SurvivalQuarters);
 
     // 시가총액 = 현재가 × 발행주식수
     // int끼리 곱하면 주가가 214,748을 넘는 순간 21억을 넘겨 음수가 되므로, long으로 올린 뒤 곱한다

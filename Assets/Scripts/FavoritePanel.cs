@@ -27,14 +27,26 @@ public class FavoritePanel : MonoBehaviour
         RefreshContainer(fullContainer, int.MaxValue);
     }
 
+    // 홈과 전체 보기를 한꺼번에 갱신 — 별표를 껐을 때 두 목록이 같이 줄어들어야 하므로
+    public void RefreshAll()
+    {
+        RefreshHome();
+        RefreshFull();
+    }
+
     // 공용 갱신 로직: 즐겨찾기 주식을 순서대로 카드 인스턴스화
     void RefreshContainer(Transform container, int maxCount)
     {
         if (container == null || cardPrefab == null) return;
 
         // 기존 카드 전부 제거
+        // Destroy는 이번 프레임 끝에 처리되므로, 바로 아래에서 새 카드를 만들면 한 프레임 동안 겹쳐 보인다
+        // 먼저 꺼두면 그 깜빡임이 없어진다
         foreach (Transform child in container)
+        {
+            child.gameObject.SetActive(false);
             Destroy(child.gameObject);
+        }
 
         // 즐겨찾기된 주식만 카드로 생성
         int count = 0;

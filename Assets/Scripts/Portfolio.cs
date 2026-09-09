@@ -73,11 +73,11 @@ public static class Portfolio
     }
 
     // 보유 주식의 현재 평가금액 합계
-    public static int TotalValue()
+    public static long TotalValue()
     {
-        int total = 0;
+        long total = 0;
         foreach (KeyValuePair<Stock, Holding> pair in holdings)
-            total += pair.Key.StockCurrentPrice * pair.Value.amount;
+            total = MoneyMath.Add(total, (long)pair.Key.StockCurrentPrice * pair.Value.amount);
         return total;
     }
 

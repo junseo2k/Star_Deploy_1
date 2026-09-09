@@ -38,7 +38,7 @@ public partial class GameManager
             float rate = stock.dividendRate > 0f ? stock.dividendRate : GameBalance.DIVIDEND_RATE_DEFAULT;
             if (isBomb) rate *= GameBalance.DIVIDEND_BOMB_MULTIPLIER;
 
-            int totalDividend = Mathf.RoundToInt(stock.income * rate);
+            int totalDividend = MoneyMath.Int(stock.income * rate);
             if (totalDividend <= 0) continue;
 
             // 금고가 모자라면 있는 만큼만 준다 — 금고가 마른 회사는 배당을 못 주게 되는 것이 기획 의도
@@ -57,8 +57,8 @@ public partial class GameManager
             if (isBomb)
             {
                 // 실적 발표 쇼크(ApplyFinancialGravity)와 별개로, 배당 폭탄 자체가 즉시 호재로 작동한다
-                int bump = Mathf.Max(1, Mathf.RoundToInt(stock.StockCurrentPrice * GameBalance.DIVIDEND_BOMB_PRICE_BUMP));
-                stock.StockCurrentPrice += bump;
+                int bump = Mathf.Max(1, MoneyMath.Int(stock.StockCurrentPrice * GameBalance.DIVIDEND_BOMB_PRICE_BUMP));
+                stock.StockCurrentPrice = MoneyMath.Int((long)stock.StockCurrentPrice + bump);
                 ClampPrice(stock);
                 AddNotice($"[뜬금 이벤트 · 특별 배당] {stock.StockName}이(가) 평소의 {GameBalance.DIVIDEND_BOMB_MULTIPLIER:0}배에 달하는 배당을 터뜨렸습니다! " +
                           $"(주당 {perShare:F1} G · 주가 +{GameBalance.DIVIDEND_BOMB_PRICE_BUMP * 100f:F0}%)");
@@ -67,7 +67,7 @@ public partial class GameManager
             int owned = Portfolio.GetAmount(stock);
             if (owned <= 0) continue;
 
-            int received = Mathf.RoundToInt(perShare * owned);
+            int received = MoneyMath.Int(perShare * owned);
             if (received <= 0) continue;
 
             UpdateGold(received);
@@ -112,6 +112,8 @@ public partial class GameManager
     void DelistStock(Stock stock)
     {
         stock.isDelisted = true;
+        foreach (var npc in FindObjectsByType<NPCInvestor>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            npc.OnStockDelisted(stock);
 
         Portfolio.SetHolding(stock, 0, 0); // 보유 주식 전액 손실 — 골드 지급 없음 (기획대로)
 
@@ -157,7 +159,7 @@ public partial class GameManager
     {
         foreach (Stock stock in LiveStocks)
         {
-            stock.runtimeAsset += stock.income; // 그 분기에 번 돈이 통째로 금고에 들어간다
+            stock.runtimeAsset = MoneyMath.Int((long)stock.runtimeAsset + stock.income); // 그 분기에 번 돈이 통째로 금고에 들어간다
         }
     }
 
@@ -173,7 +175,7 @@ public partial class GameManager
             // 주가가 정수라, 차이가 작으면 반올림 결과가 0이 되어 영영 멈춘다
             // 특히 저가 종목은 첫 판정부터 0이라 실적이 주가에 전혀 반영되지 않는다
             // 차이가 남아 있으면 최소 1G는 움직이게 해서 목표까지 반드시 도달시킨다
-            int step = Mathf.RoundToInt(gap * GameBalance.QUARTER_SHOCK);
+            int step = MoneyMath.Int(gap * GameBalance.QUARTER_SHOCK);
             if (step == 0) step = gap > 0 ? 1 : -1;
 
             stock.StockCurrentPrice += step;
@@ -204,7 +206,7 @@ public partial class GameManager
 
             if (previous <= 0) continue; // 첫 분기는 비교 대상이 없다
 
-            float changePercent = (stock.income - previous) * 100f / previous;
+            float changePercent = ((float)stock.income - previous) * 100f / previous;
             if (Mathf.Abs(changePercent) < GameBalance.QUARTER_REPORT_THRESHOLD) continue; // 변화가 미미하면 공시하지 않는다
 
             string arrow = changePercent > 0 ? "▲" : "▼";
@@ -222,7 +224,7 @@ public partial class GameManager
         //   시대 몫 = 지난 매출 × (이번 배율 − 지난 배율)   ← 매출은 지난 분기 그대로 두고 배율만 바꿔봤을 때
         //   사업 몫 = (이번 매출 − 지난 매출) × 이번 배율   ← 배율은 이번 분기로 두고 매출만 바꿔봤을 때
         float eraDelta = previousRevenue * (currentModifier - previousModifier);
-        float businessDelta = (stock.runtimeRevenue - previousRevenue) * currentModifier;
+        float businessDelta = ((float)stock.runtimeRevenue - previousRevenue) * currentModifier;
 
         // 사업 쪽 문구는 ResolveBusinesses가 남겨둔 "{사업명} 성공/실패"를 그대로 쓴다
         bool hasBusiness = quarterChangeReasons.TryGetValue(stock.StockName, out string businessReason)
@@ -309,7 +311,7 @@ public partial class GameManager
         //   ① 기준 수입이 0 이하면 계산 자체가 불가능해 사업 성공이 주가에 전혀 반영되지 않는다
         //   ② 음수끼리 나누면 부호가 뒤집혀, 적자가 두 배로 커질 때 목표 주가가 두 배로 오른다
         // 뺄셈으로 바꾸면 적자가 줄어드는 것도 "개선"으로 잡혀서, 부도 위기에서 살아나는 회복이 주가에 나타난다
-        float improvement = (float)(stock.income - stock.BaselineIncome)
+        float improvement = ((float)stock.income - stock.BaselineIncome)
                             / Mathf.Max(stock.BaselineRevenue, 1);
 
         float multiplier = 1f + improvement * GameBalance.PROFIT_SENSITIVITY;
@@ -329,6 +331,6 @@ public partial class GameManager
         // 개별 종목의 주가가 아니라 시장 전체에 걸리는 공통 계수라서 순환 참조가 아니다
         float marketGrowth = Mathf.Pow(1f + GameBalance.DAILY_BIAS / 100f, currentDay);
 
-        return Mathf.RoundToInt(stock.StockBasePrice * multiplier * marketGrowth);
+        return MoneyMath.Int(stock.StockBasePrice * multiplier * marketGrowth);
     }
 }

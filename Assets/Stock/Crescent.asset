@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Crescent
+  saveId: 5760a42313da4ad4089598749d83883b
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Crescent
   StockBasePrice: 1160
@@ -26,7 +27,7 @@ MonoBehaviour:
   IndustryTag: Luxury
   owner: 0
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: a0c00984e94043649f959a566fd3948e, type: 2}
   baseRevenue: 644000

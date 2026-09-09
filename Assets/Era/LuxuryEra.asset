@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
   m_Name: LuxuryEra
+  saveId: 3bc71744cc9cba24a985dd7259241126
   m_EditorClassIdentifier: Assembly-CSharp::Era
   eraName: "\uC0AC\uCE58\uD488\uC758 \uC2DC\uB300"
   eraDescription: "\uC0AC\uCE58\uD488\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"

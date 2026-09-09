@@ -54,12 +54,12 @@ public class OrderPanel : MonoBehaviour
     // 현재 수량·금액 표시 텍스트 갱신
     public void RefreshPurchaseText()
     {
-        if (targetStock == null) return;
+        if (targetStock == null || targetStock.isDelisted || StockNum <= 0) return;
 
-        CalculateTrade(StockNum, isBuyMode, out int endPrice, out int totalAmount);
+        CalculateTrade(StockNum, isBuyMode, out int endPrice, out long totalAmount);
 
         int startPrice = targetStock.StockCurrentPrice;
-        float execPrice = (startPrice + endPrice) / 2f;
+        double execPrice = ((long)startPrice + endPrice) / 2.0;
 
         PurchaseText.text = $"수량: {StockNum}주\n" +
                             $"현재가: {startPrice} G\n" +
@@ -70,8 +70,7 @@ public class OrderPanel : MonoBehaviour
     // + 버튼 클릭 시 거래 수량 1 증가 및 수량·금액 표시 갱신
     public void OnPlusClick()
     {
-        StockNum++;
-        RefreshPurchaseText();
+        SetStockNum(StockNum == int.MaxValue ? StockNum : StockNum + 1);
     }
 
     // - 버튼 클릭 시 거래 수량 1 감소
@@ -93,7 +92,7 @@ public class OrderPanel : MonoBehaviour
     // +10 버튼 클릭 시 거래 수량 10 증가 — 최대 거래 가능 수량을 넘지 않도록 잘라준다
     public void OnPlus10Click()
     {
-        SetStockNum(StockNum + STEP_10);
+        SetStockNum((int)System.Math.Min(int.MaxValue, (long)StockNum + STEP_10));
     }
 
     // -10 버튼 클릭 시 거래 수량 10 감소 — 최소 수량(1) 아래로는 내려가지 않는다
@@ -128,12 +127,13 @@ public class OrderPanel : MonoBehaviour
     // 판매 모드: 보유 수량 부족 시 차단 → 골드 증가·보유 수량 감소
     public void OncheckClick()
     {
-        if (targetStock == null) return;
+        if (targetStock == null || targetStock.isDelisted || StockNum <= 0) return;
 
         bool traded = isBuyMode ? TryBuy() : TrySell();
         if (!traded) return;
 
         StockControl.RefreshAllOwnedText();
+        GameManager.Instance.AutoSave();
         UIManager.instance.UpdateGoldText();
         UIManager.instance.ReturnToEntire(UIManager.instance.buyPanel.gameObject);
     }
@@ -141,7 +141,7 @@ public class OrderPanel : MonoBehaviour
     // 구매 처리 — 성공 시 true, 잔액 부족으로 차단되면 false
     bool TryBuy()
     {
-        CalculateTrade(StockNum, true, out int newPrice, out int totalCost);
+        CalculateTrade(StockNum, true, out int newPrice, out long totalCost);
 
         // 잔액 부족 시 구매 차단 (미리보기와 동일한 계산식이라 표시값과 일치함)
         if (GameManager.Instance.currentgold < totalCost)
@@ -151,6 +151,7 @@ public class OrderPanel : MonoBehaviour
         }
 
         int owned = Portfolio.GetAmount(targetStock);
+        if (StockNum > int.MaxValue - owned) return false;
         float totalAvgCost = Portfolio.GetAvgPurchasePrice(targetStock) * owned + totalCost;
         int newOwned = owned + StockNum;
 
@@ -170,7 +171,7 @@ public class OrderPanel : MonoBehaviour
             return false;
         }
 
-        CalculateTrade(StockNum, false, out int newPrice, out int totalRevenue);
+        CalculateTrade(StockNum, false, out int newPrice, out long totalRevenue);
 
         GameManager.Instance.UpdateGold(totalRevenue);
         Portfolio.SetAmount(targetStock, owned - StockNum);
@@ -186,16 +187,13 @@ public class OrderPanel : MonoBehaviour
 
     // 거래 수량에 따른 체결 후 가격(endPrice)과 총 거래대금(totalAmount)을 계산
     // 수량이 많을수록 가격이 밀리는 슬리피지를 반영 — 체결가는 시작가와 종료가의 평균
-    public void CalculateTrade(int amount, bool isBuy, out int endPrice, out int totalAmount)
+    public void CalculateTrade(int amount, bool isBuy, out int endPrice, out long totalAmount)
     {
         int startPrice = targetStock.StockCurrentPrice;
-        float impactRatio = targetStock.TotalShare > 0 ? (float)amount / targetStock.TotalShare : 0f;
-
-        endPrice = isBuy
-            ? Mathf.Max(1, Mathf.RoundToInt(startPrice * (1 + impactRatio)))
-            : Mathf.Max(1, Mathf.RoundToInt(startPrice * (1 - impactRatio)));
-
-        float execPrice = (startPrice + endPrice) / 2f;
-        totalAmount = Mathf.RoundToInt(execPrice * amount);
+        double impactRatio = targetStock.TotalShare > 0 ? (double)amount / targetStock.TotalShare : 0;
+        double rawPrice = startPrice * (isBuy ? 1 + impactRatio : 1 - impactRatio);
+        endPrice = (int)System.Math.Clamp(System.Math.Round(rawPrice), 1, int.MaxValue);
+        double execPrice = ((long)startPrice + endPrice) / 2.0;
+        totalAmount = MoneyMath.Round(execPrice * System.Math.Max(0, amount));
     }
 }

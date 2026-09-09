@@ -13,8 +13,8 @@ public partial class GameManager
         {
             // 시대는 매출만 밀거나 누른다. 운영비는 시대와 무관하게 그대로 나간다
             // 그래서 운영비가 무거운 회사일수록 같은 시대 배율에도 수입이 크게 흔들린다
-            int revenue = Mathf.RoundToInt(stock.runtimeRevenue * GetEraRevenueModifier(stock));
-            stock.income = revenue - stock.operatingCost;
+            int revenue = MoneyMath.Int(stock.runtimeRevenue * GetEraRevenueModifier(stock));
+            stock.income = MoneyMath.Int((long)revenue - stock.operatingCost);
         }
     }
 
@@ -48,8 +48,8 @@ public partial class GameManager
             if (success)
             {
                 // 사업이 올리는 것은 순수입이 아니라 평소 매출이다 — 성공하면 장사 규모 자체가 커진다
-                stock.runtimeRevenue += biz.revenueBoost;
-                stock.runtimeAsset += biz.assetBoost;
+                stock.runtimeRevenue = MoneyMath.Int((long)stock.runtimeRevenue + biz.revenueBoost);
+                stock.runtimeAsset = MoneyMath.Int((long)stock.runtimeAsset + biz.assetBoost);
 
                 // 문구만 띄우면 "그래서 얼마가 달라졌는데?"를 알 수 없다 — 매출이 얼마에서 얼마로 갔는지 숫자로 보여준다
                 AddNotice($"[사업 성공] {stock.StockName} · {biz.projectName}\n" +
@@ -61,7 +61,7 @@ public partial class GameManager
             else
             {
                 // 실패: 투자금은 이미 날아갔고, 평소 매출도 소폭 내려간다
-                stock.runtimeRevenue -= biz.revenueDrop;
+                stock.runtimeRevenue = MoneyMath.Int((long)stock.runtimeRevenue - biz.revenueDrop);
 
                 AddNotice($"[사업 실패] {stock.StockName} · {biz.projectName}\n" +
                           $"    {biz.failNews}\n" +
@@ -116,7 +116,7 @@ public partial class GameManager
         foreach (BusinessProject project in stock.businesses)
         {
             if (project == null) continue;
-            int scaledCost = Mathf.RoundToInt(project.investmentCost * scale);
+            int scaledCost = MoneyMath.Int(project.investmentCost * scale);
             if (stock.runtimeAsset < scaledCost) continue;
             candidates.Add(project);
         }
@@ -152,7 +152,7 @@ public partial class GameManager
         if (Random.value >= chance) return;
 
         // 착수 후에도 운영비 몇 분기치는 금고에 남는 사업만 후보로 삼는다 — 안전 마진 없이 다 지르면 전부 부도난다
-        int safetyMargin = stock.operatingCost * GameBalance.BUSINESS_SAFETY_MARGIN_QUARTERS;
+        long safetyMargin = (long)stock.operatingCost * GameBalance.BUSINESS_SAFETY_MARGIN_QUARTERS;
         List<BusinessProject> affordable = new();
         foreach (BusinessProject project in stock.businesses)
         {
@@ -162,7 +162,7 @@ public partial class GameManager
         }
         if (affordable.Count == 0)
         {
-            Debug.Log($"[사업 보류] {stock.StockName} 안전 마진을 남기고 감당할 사업이 없음 (금고 {stock.runtimeAsset})");
+            GameDiagnostics.Log($"[사업 보류] {stock.StockName} 안전 마진을 남기고 감당할 사업이 없음 (금고 {stock.runtimeAsset})");
             return;
         }
 
@@ -173,10 +173,10 @@ public partial class GameManager
     // scale·eventLabel은 뜬금 이벤트(초대형 사업·깜짝 대형 투자) 전용 — 평소 사업은 기본값(1배, 라벨 없음)으로 호출된다
     void StartBusiness(Stock stock, BusinessProject picked, float scale = 1f, string eventLabel = null)
     {
-        int investmentCost = Mathf.RoundToInt(picked.investmentCost * scale);
-        int revenueBoost = Mathf.RoundToInt(picked.revenueBoost * scale);
-        int revenueDrop = Mathf.RoundToInt(picked.revenueDrop * scale);
-        int assetBoost = Mathf.RoundToInt(picked.assetBoost * scale);
+        int investmentCost = MoneyMath.Int(picked.investmentCost * scale);
+        int revenueBoost = MoneyMath.Int(picked.revenueBoost * scale);
+        int revenueDrop = MoneyMath.Int(picked.revenueDrop * scale);
+        int assetBoost = MoneyMath.Int(picked.assetBoost * scale);
 
         stock.runtimeAsset -= investmentCost;
 
@@ -185,6 +185,7 @@ public partial class GameManager
 
         activeBusinesses.Add(new ActiveBusiness
         {
+            stockId = stock.SaveId,
             projectName = projectName,
             stockName = stock.StockName,
             remainingQuarters = quarters,

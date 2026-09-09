@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: HighRock
+  saveId: c64c9b112e126d74bbc6c718ec02d2fe
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: HighRock
   StockBasePrice: 320

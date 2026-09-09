@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ea6c6a0ac481c4eb739ebc759417ec, type: 3}
   m_Name: "\uAD6D\uACBD \uC804\uC870"
+  saveId: f406af4d93c7f1d4ca8328ade5f8a88b
   m_EditorClassIdentifier: Assembly-CSharp::Case
   CaseName: "\uAD6D\uACBD \uC804\uC870 "
   CaseDescription: "[A\uAD6D] \uAD6D\uACBD \uCD08\uC18C\uC5D0\uC11C [B\uAD6D] \uC815\uCC30\uBCD1\uACFC
@@ -23,7 +24,7 @@ MonoBehaviour:
   isBigNews: 0
   lastingDay: 3
   lowPercent: []
-  newsType: 2
+  newsType: 3
   foreshadowCases: []
   nationPairs:
   - "\uC778\uAC04,\uC5D8\uD504"

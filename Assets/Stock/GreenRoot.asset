@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: GreenRoot
+  saveId: 7c4f091715cb6c44cbc6480ee4a34b8a
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: GreenRoot
   StockBasePrice: 420

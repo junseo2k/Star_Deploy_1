@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Ibukota
+  saveId: 04e415fad2efe69428a37230512575fe
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Ibukota
   StockBasePrice: 800

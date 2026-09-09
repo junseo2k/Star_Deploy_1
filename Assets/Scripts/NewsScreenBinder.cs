@@ -152,7 +152,7 @@ public class NewsScreenBinder : MonoBehaviour
         foreach (ActiveCase active in game.activeNewsList)
         {
             if (active.currentDay != 0) continue;
-            data.todayNews.Add(ToNewsItem(active, active.displayDescription));
+            data.todayNews.Add(ToNewsItem(game, active, active.displayDescription));
         }
 
         // 2) 어제 이전에 터져서 아직 진행 중인 이슈를 그 뒤에 이어 붙인다
@@ -160,12 +160,12 @@ public class NewsScreenBinder : MonoBehaviour
         foreach (ActiveCase active in game.activeNewsList)
         {
             if (active.currentDay == 0) continue;
-            data.todayNews.Add(ToNewsItem(active, $"{active.displayDescription} 남은 시간 : {active.Rday}"));
+            data.todayNews.Add(ToNewsItem(game, active, $"{active.displayDescription} 남은 시간 : {active.Rday}"));
         }
     }
 
     // ActiveCase 하나를 화면에 표시할 뉴스 항목으로 바꾼다
-    NewsCompanyItem ToNewsItem(ActiveCase active, string description)
+    NewsCompanyItem ToNewsItem(GameManager game, ActiveCase active, string description)
     {
         Stock target = FindMainStock(active.caseData);
         string caseName = active.caseData != null ? active.caseData.CaseName : "";
@@ -175,9 +175,50 @@ public class NewsScreenBinder : MonoBehaviour
             companyName = target != null ? target.StockName : caseName,
             headline = caseName,
             description = description,
-            changePercent = target != null ? target.ChangePercent : 0f,
+            changePercent = GetNewsChangePercent(game, active.caseData, target),
             logoOverride = FindLogo(target)
         };
+    }
+
+    // 뉴스 옆에 띄울 등락률을 정한다
+    // 소형 뉴스는 대표 종목의 등락률을 그대로 쓰면 되지만, 대형 뉴스는 대표 종목이 없어서
+    // 예전에는 무조건 0.0%로 나왔다 — 시장이 크게 흔들린 날인데도 화면만 조용해 보였다
+    // 대형 뉴스는 산업 단위로 터지므로, 이 뉴스가 실제로 건드린 산업들의 평균 등락률을 대신 보여준다
+    float GetNewsChangePercent(GameManager game, Case caseData, Stock target)
+    {
+        if (target != null) return target.ChangePercent;
+
+        if (caseData == null || caseData.industryRates == null || caseData.industryRates.Length == 0) return 0f;
+        if (game == null || game.tabmanager == null || game.tabmanager.allstock == null) return 0f;
+
+        float changeSum = 0f;
+        int affectedCount = 0;
+
+        foreach (Stock stock in game.tabmanager.allstock)
+        {
+            if (stock == null || stock.isDelisted) continue;
+            if (!IsAffectedIndustry(caseData, stock.IndustryTag)) continue;
+
+            changeSum += stock.ChangePercent;
+            affectedCount++;
+        }
+
+        return affectedCount > 0 ? changeSum / affectedCount : 0f;
+    }
+
+    // 이 대형 뉴스가 해당 산업을 실제로 건드리는지 — 변동률 네 칸이 전부 0이면 무관한 산업으로 본다
+    // 뉴스 에셋들이 산업 10개를 전부 적어두고 관계없는 산업만 0으로 비워두는 방식이라,
+    // 이걸 안 거르면 평균이 묽어져서 오락주가 20% 오른 날에도 +3% 정도로 표시된다
+    static bool IsAffectedIndustry(Case caseData, string industryTag)
+    {
+        foreach (Case.IndustryRate rate in caseData.industryRates)
+        {
+            if (rate.industryTag != industryTag) continue;
+
+            return rate.changePriceMin != 0 || rate.changePriceMax != 0
+                || rate.changePriceMinNon != 0 || rate.changePriceMaxNon != 0;
+        }
+        return false; // 목록에 아예 없는 산업
     }
 
     // 이 사건에서 대표로 보여줄 종목 하나를 고른다 (영향받는 첫 번째 종목)

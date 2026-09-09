@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f15f8b7bc444eed45a229d0be5cc2cfe, type: 3}
   m_Name: MagicEra
+  saveId: 96d22ec9cbfdfd74f99075d9c02347ae
   m_EditorClassIdentifier: Assembly-CSharp::Era
   eraName: "\uB9C8\uBC95\uC758 \uC2DC\uB300"
   eraDescription: "\uB9C8\uBC95\uC758 \uC2DC\uB300\uAC00 \uB3C4\uB798\uD588\uC2B5\uB2C8\uB2E4!"

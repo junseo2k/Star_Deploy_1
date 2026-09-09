@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: DwarfTrail
+  saveId: 35ead005a5a8d6048be5a8892cd0dde0
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: DwarfTrail
   StockBasePrice: 640

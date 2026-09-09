@@ -49,7 +49,7 @@ namespace Delusion.UI.MarketCurrent
 
         [Header("상단 상태")]
         [SerializeField] private string currentEra = "계약의 시대";
-        [SerializeField] private int currentGold = 5000;
+        [SerializeField] private long currentGold = 5000;
         [SerializeField] private int currentDay = 42;
 
         [Header("종목")]
@@ -99,7 +99,7 @@ namespace Delusion.UI.MarketCurrent
                 Rebuild();
         }
 
-        public void SetStatus(string era, int gold, int day, bool rebuild = true)
+        public void SetStatus(string era, long gold, int day, bool rebuild = true)
         {
             currentEra = era;
             currentGold = gold;

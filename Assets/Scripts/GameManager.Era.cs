@@ -47,9 +47,9 @@ public partial class GameManager
         foreach (Stock stock in LiveStocks)
         {
             if (IsBoostedByEra(stock))
-                stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 + currentEra.boostedRate / 100f));
+                stock.StockCurrentPrice = MoneyMath.Int(stock.StockCurrentPrice * (1 + currentEra.boostedRate / 100f));
             else if (IsWeakenedByEra(stock))
-                stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 - currentEra.weakenedRate / 100f));
+                stock.StockCurrentPrice = MoneyMath.Int(stock.StockCurrentPrice * (1 - currentEra.weakenedRate / 100f));
 
             ClampPrice(stock);
         }

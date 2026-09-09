@@ -90,12 +90,13 @@ public class StockControl : MonoBehaviour
     }
 
     // 별표 버튼 클릭 시 호출 — 상태 토글, 아이콘 갱신, 저장
+    // 관심 종목 목록에서 눌렀다면 이 카드 자체가 목록에서 빠지므로, 아이콘부터 바꾸고 마지막에 갱신한다
     public void ToggleFavorite()
     {
         stockinfo.isFavorite = !stockinfo.isFavorite;
         RefreshFavoriteIcon();
         GameManager.Instance.SaveGame();
-        UIManager.instance.favoritePanel.RefreshHome();
+        UIManager.instance.RefreshFavoriteUI();
     }
 
     // 현재 isFavorite 값에 맞게 별표 아이콘 스프라이트 갱신

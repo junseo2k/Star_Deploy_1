@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: EverGreen
+  saveId: 3cd511062aeee3347864a02a45d92c34
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: EverGreen
   StockBasePrice: 1360
@@ -30,7 +31,7 @@ MonoBehaviour:
   IndustryTag: Clinic
   owner: 1
   companyType: 1
-  personality: 1
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: dfe058f72a394862802431ad53b545e6, type: 2}
   baseRevenue: 756000

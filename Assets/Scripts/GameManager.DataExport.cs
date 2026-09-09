@@ -4,6 +4,7 @@ using UnityEngine;
 
 // GetDailyFeatures()가 반환하는 하루치 상태값 묶음 — CSV 저장(학습용)과 NPCInvestor의 실시간 추론(운영용)이
 // 이 구조체 하나를 공유해서 "학습 때 본 데이터"와 "실전에서 보는 데이터"가 어긋나지 않게 한다
+[System.Serializable]
 public struct StockDailyFeatures
 {
     public float priceChangePct;        // 전일 대비 가격 변동률(%)
@@ -37,6 +38,7 @@ public partial class GameManager
     // 한 윈도우에 섞여 들어간다 (실제로 그래서 학습이 망가진 적이 있다).
     // runId로 판을 갈라두면 여러 판을 안전하게 누적할 수 있다
     private string runId;
+    private bool csvUnavailable;
 
     [Header("학습 데이터 수집")]
     [Tooltip("CollectTrainingData()가 돌릴 판 수")]
@@ -58,6 +60,18 @@ public partial class GameManager
     // 하루가 끝날 때 모든 주식의 상태값을 CSV에 누적 기록 (ML 학습 데이터용)
     // 일일변동/시대변동/소형뉴스/대형뉴스/사업시스템 — 게임의 5가지 가격 변동 원인을 전부 컬럼으로 남긴다
     void SaveStockDataToCSV()
+    {
+        // 일반 배포 플레이에서는 수집하지 않지만 명시적인 학습 실행은 유지한다.
+        if (csvUnavailable || (!Application.isEditor && !Debug.isDebugBuild && !isSimulating)) return;
+        try { WriteStockDataToCSV(); }
+        catch (System.Exception e) when (GameSaveStorage.IsFileError(e))
+        {
+            csvUnavailable = true;
+            Debug.LogWarning("학습 CSV 기록을 중지합니다. 게임은 계속 진행됩니다: " + e.Message);
+        }
+    }
+
+    void WriteStockDataToCSV()
     {
         string path = Path.Combine(Application.persistentDataPath, "stock_history.csv");
 
@@ -162,8 +176,14 @@ public partial class GameManager
     // 데이터 생성용 임시 함수 — 나중에 삭제
     public void AutoSimulate(int days)
     {
-        for (int i = 0; i < days; i++)
-            OnNextDayButton();
+        bool previous = isSimulating;
+        isSimulating = true;
+        try
+        {
+            for (int i = 0; i < days; i++)
+                OnNextDayButton();
+        }
+        finally { isSimulating = previous; }
 
         Debug.Log($"{days}일 시뮬레이션 완료! CSV 확인하세요.");
     }
@@ -182,14 +202,20 @@ public partial class GameManager
     // 한 윈도우에 섞여 들어간다 (실제로 그렇게 학습했다가 방향 정확도가 0.53까지 떨어진 적이 있다)
     public void CollectTrainingData()
     {
-        for (int run = 1; run <= dataRunCount; run++)
+        bool previous = isSimulating;
+        isSimulating = true;
+        try
         {
-            ResetForNewRun();
-            for (int day = 0; day < dataRunDays; day++)
-                OnNextDayButton();
+            for (int run = 1; run <= dataRunCount; run++)
+            {
+                ResetForNewRun();
+                for (int day = 0; day < dataRunDays; day++)
+                    OnNextDayButton();
 
-            Debug.Log($"[학습 데이터] {run}/{dataRunCount}판 완료 ({dataRunDays}일)");
+                Debug.Log($"[학습 데이터] {run}/{dataRunCount}판 완료 ({dataRunDays}일)");
+            }
         }
+        finally { isSimulating = previous; }
 
         Debug.Log($"[학습 데이터] 전체 완료 — {dataRunCount}판 × {dataRunDays}일\n" +
                   $"    {Path.Combine(Application.persistentDataPath, "stock_history.csv")}\n" +

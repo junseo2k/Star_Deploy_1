@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Corta
+  saveId: d7e3b653916ca224e80ed860a4d37dfc
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Corta
   StockBasePrice: 640

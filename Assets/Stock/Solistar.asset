@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: Solistar
+  saveId: e27d0f2c67b464d45a0949781372b4d1
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: Solistar
   StockBasePrice: 1000
@@ -28,7 +29,7 @@ MonoBehaviour:
   IndustryTag: Construct
   owner: 0
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 91faa791cf9b403eb6d27b8ecd1ecfdf, type: 2}
   baseRevenue: 716000

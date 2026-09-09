@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
 
 // 세이브/로드 화면의 슬롯 선택과 각종 확인 팝업을 관리하는 클래스
 // 메인메뉴에서 진입했는지(FromMainMenu) 인게임에서 진입했는지에 따라 같은 슬롯 클릭이
@@ -40,6 +41,9 @@ public class SlotManager : MonoBehaviour
 
 
     private int selectedSlot = -1;
+    private Scene pausedGameScene;
+    private readonly List<GameObject> pausedGameRoots = new();
+    private bool isReturning;
 
     void Awake()
     {
@@ -48,8 +52,27 @@ public class SlotManager : MonoBehaviour
 
     void Start()
     {
+        PauseGameScene();
         CloseAllPopups();
         RefreshAllSlots();
+    }
+
+    // 추가로 열린 저장 화면 뒤의 게임을 멈춘다. 원래 켜져 있던 루트만 기록해
+    // 뒤로갈 때 숨겨진 UI나 비활성 오브젝트를 임의로 켜지 않는다.
+    void PauseGameScene()
+    {
+        if (FromMainMenu) return;
+
+        pausedGameScene = SceneManager.GetSceneByName("StoryMode");
+        if (!pausedGameScene.IsValid() || !pausedGameScene.isLoaded) return;
+
+        SceneManager.SetActiveScene(gameObject.scene);
+        foreach (GameObject root in pausedGameScene.GetRootGameObjects())
+        {
+            if (!root.activeSelf) continue;
+            pausedGameRoots.Add(root);
+            root.SetActive(false);
+        }
     }
 
     // 메인메뉴에서 진입했는지 여부 (아니면 인게임에서 저장하러 온 것)
@@ -135,6 +158,11 @@ public class SlotManager : MonoBehaviour
 
     public void OnLoadConfirm()
     {
+        if (!GameSaveStorage.TryRead(GameManager.GetSavePath(selectedSlot), out _, out string message))
+        {
+            loadMessageText.text = message;
+            return;
+        }
         loadPopupPanel.SetActive(false);
         ConfirmSelectedSlot();
         loadCompletePanel.SetActive(true);
@@ -156,8 +184,12 @@ public class SlotManager : MonoBehaviour
 
     public void OnOverwriteConfirm()
     {
+        if (!SaveToSelectedSlot())
+        {
+            overwriteMessageText.text = "저장에 실패했습니다. 저장 공간과 파일 접근 권한을 확인해주세요.";
+            return;
+        }
         overwritePopupPanel.SetActive(false);
-        SaveToSelectedSlot();
         overwriteCompletePanel.SetActive(true);
     }
 
@@ -176,8 +208,12 @@ public class SlotManager : MonoBehaviour
 
     public void OnSaveConfirm()
     {
+        if (!SaveToSelectedSlot())
+        {
+            saveMessageText.text = "저장에 실패했습니다. 저장 공간과 파일 접근 권한을 확인해주세요.";
+            return;
+        }
         savePopupPanel.SetActive(false);
-        SaveToSelectedSlot();
         saveCompletePanel.SetActive(true);
     }
 
@@ -195,11 +231,12 @@ public class SlotManager : MonoBehaviour
     // ── 공통 처리 ──────────────────────────────
 
     // 선택 슬롯에 현재 게임 상태를 저장하고 슬롯 목록 갱신
-    void SaveToSelectedSlot()
+    bool SaveToSelectedSlot()
     {
+        if (GameManager.Instance == null || !GameManager.Instance.TrySaveToSlot(selectedSlot)) return false;
         ConfirmSelectedSlot();
-        GameManager.Instance.SaveGame();
         RefreshAllSlots();
+        return true;
     }
 
     // 팝업 취소 — 팝업과 배경을 닫고 선택을 해제
@@ -212,6 +249,20 @@ public class SlotManager : MonoBehaviour
 
     public void OnBackClick()
     {
+        if (isReturning) return;
+        isReturning = true;
+
+        if (!FromMainMenu && pausedGameScene.IsValid() && pausedGameScene.isLoaded)
+        {
+            // 기존 씬을 다시 로드하지 않으므로 Start/LoadGame도 재실행되지 않는다.
+            SceneManager.SetActiveScene(pausedGameScene);
+            foreach (GameObject root in pausedGameRoots)
+                if (root != null) root.SetActive(true);
+
+            SceneManager.UnloadSceneAsync(gameObject.scene);
+            return;
+        }
+
         // 메인메뉴에서 왔으면 메인메뉴로, 인게임에서 왔으면 게임으로
         SceneManager.LoadScene(FromMainMenu ? "MainMenu" : "StoryMode");
     }

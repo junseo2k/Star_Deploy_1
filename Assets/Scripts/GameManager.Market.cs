@@ -9,10 +9,10 @@ public partial class GameManager
     {
         if (loanAmount <= 0) return;
 
-        int interest = TurnInterest;
-        currentgold -= interest;
+        long interest = TurnInterest;
+        UpdateGold(-interest);
         UIManager.instance.UpdateGoldText();
-        Debug.Log($"이자 {interest}G 차감. 남은 대출금: {loanAmount}G");
+        GameDiagnostics.Log($"이자 {interest}G 차감. 남은 대출금: {loanAmount}G");
     }
 
     // 매일 발생하는 무작위 가격 변동 — 변동 유형별 폭에 상승 편향을 더해 적용
@@ -26,7 +26,7 @@ public partial class GameManager
 
             float range = GetVolatilityRange(stock);
             float randomChange = Random.Range(-range, range) + GameBalance.DAILY_BIAS;
-            stock.StockCurrentPrice = Mathf.RoundToInt(stock.StockCurrentPrice * (1 + randomChange / 100f));
+            stock.StockCurrentPrice = MoneyMath.Int(stock.StockCurrentPrice * (1 + randomChange / 100f));
 
             ClampPrice(stock);
         }

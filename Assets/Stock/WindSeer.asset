@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: WindSeer
+  saveId: ff68ea81a6283424dbae3a31b3122a41
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: WindSeer
   StockBasePrice: 3400
@@ -31,7 +32,7 @@ MonoBehaviour:
   IndustryTag: Magic
   owner: 0
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 4eed28f4f2634a5682f6170e77ed9d3a, type: 2}
   baseRevenue: 1544000

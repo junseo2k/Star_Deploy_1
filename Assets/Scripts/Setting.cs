@@ -26,27 +26,10 @@ public class Setting : MonoBehaviour
         // 화면 모드 설정 및 저장
         modeindex = screenModeDropdown.value;
         PlayerPrefs.SetInt("ScreenMode", modeindex);
-        switch (modeindex) // 0, 1, 2에 따라 화면 모드 전환
-        {
-            case 0:
-                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-                Debug.Log("현재 화면 : 전체 화면");
-                break;
-            case 1:
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-                Debug.Log("현재 화면 : 전체 창 화면");
-                break;
-            case 2:
-                Screen.fullScreenMode = FullScreenMode.Windowed;
-                Debug.Log("현재 화면 : 창 모드");
-                break;
-        }
-
-        // 해상도 설정 및 저장
         int index = resolutionDropdown.value;
-        Resolution selected = resolutions[index];
-        bool fullscreen = modeindex != 2; // 창 모드가 아닐 경우 fullscreen 처리
-        Screen.SetResolution(selected.width, selected.height, fullscreen);
+        if (resolutions == null || resolutions.Count == 0) return;
+        Resolution selected = resolutions[Mathf.Clamp(index, 0, resolutions.Count - 1)];
+        Screen.SetResolution(selected.width, selected.height, GetScreenMode(modeindex));
         PlayerPrefs.SetInt("ResW", selected.width);
         PlayerPrefs.SetInt("ResH", selected.height);
 #if UNITY_EDITOR // 에디터에서만 출력 (빌드 시 제거됨)
@@ -58,6 +41,13 @@ public class Setting : MonoBehaviour
 
         PlayerPrefs.Save(); // 변경된 설정을 디스크에 저장
     }
+
+    public static FullScreenMode GetScreenMode(int index) => index switch
+    {
+        0 => FullScreenMode.ExclusiveFullScreen,
+        2 => FullScreenMode.Windowed,
+        _ => FullScreenMode.FullScreenWindow,
+    };
 
     void Start()
     {
@@ -78,19 +68,23 @@ public class Setting : MonoBehaviour
             options.Add(entry);
             last = entry;
         }
+        if (resolutions.Count == 0)
+        {
+            resolutions.Add(new Resolution { width = Mathf.Max(1, Screen.width), height = Mathf.Max(1, Screen.height) });
+            options.Add($"{Screen.width}x{Screen.height}");
+        }
         resolutionDropdown.ClearOptions(); // 기존 옵션 제거 후 새 목록 추가 (중복 방지)
         resolutionDropdown.AddOptions(options);
 
         // 저장된 화면 모드 불러와서 드롭다운에 반영
-        modeindex = PlayerPrefs.GetInt("ScreenMode", 1);
+        modeindex = Mathf.Clamp(PlayerPrefs.GetInt("ScreenMode", 1), 0, 2);
         screenModeDropdown.value = modeindex;
         screenModeDropdown.RefreshShownValue(); // 현재 value에 맞는 텍스트로 UI 갱신
 
         // 저장된 해상도 불러와서 실제 해상도와 드롭다운에 반영
         int w = PlayerPrefs.GetInt("ResW", Screen.width);
         int h = PlayerPrefs.GetInt("ResH", Screen.height);
-        bool fullscreen = modeindex != 2; // 창 모드면 false
-        Screen.SetResolution(w, h, fullscreen);
+        Screen.SetResolution(Mathf.Max(1, w), Mathf.Max(1, h), GetScreenMode(modeindex));
 
         // 저장된 해상도와 일치하는 항목을 드롭다운에서 선택 상태로 설정
         for (int i = 0; i < resolutions.Count; i++)

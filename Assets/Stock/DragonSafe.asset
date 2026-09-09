@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77fd20be817e9a541bc085410a1867a4, type: 3}
   m_Name: DragonSafe
+  saveId: a71bfdbf57481854ca5adeac2b28cdf9
   m_EditorClassIdentifier: Assembly-CSharp::Stock
   StockName: DragonSafe
   StockBasePrice: 3800
@@ -29,7 +30,7 @@ MonoBehaviour:
   IndustryTag: Bank
   owner: 3
   companyType: 0
-  personality: 0
+  personality: 2
   businesses:
   - {fileID: 11400000, guid: 15818533991c42be93d12bfb2db31a3b, type: 2}
   baseRevenue: 4752000

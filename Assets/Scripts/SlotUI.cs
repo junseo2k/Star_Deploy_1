@@ -22,10 +22,16 @@ public class SlotUI : MonoBehaviour
     // 저장 파일 유무에 따라 슬롯 UI 갱신
     public void Refresh()
     {
-        if (File.Exists(savePath))
+        if (File.Exists(savePath) || File.Exists(savePath + ".bak"))
         {
-            string json = File.ReadAllText(savePath);
-            GameManager.GameSaveData data = JsonUtility.FromJson<GameManager.GameSaveData>(json);
+            if (!GameSaveStorage.TryRead(savePath, out GameManager.GameSaveData data, out string message))
+            {
+                slotNameText.text = $"슬롯 {slotIndex} (불러오기 실패)";
+                dayText.text = message;
+                dayText.gameObject.SetActive(true);
+                goldText.gameObject.SetActive(false);
+                return;
+            }
             slotNameText.text = $"슬롯 {slotIndex}";
             dayText.text = $"날짜: {data.currentday}일";
             goldText.text = $"골드: {data.currentgold} G";
@@ -43,7 +49,7 @@ public class SlotUI : MonoBehaviour
     // 슬롯 클릭 시 저장 유무에 따라 팝업 분기
     public void OnSlotClick()
     {
-        if (File.Exists(savePath))
+        if (File.Exists(savePath) || File.Exists(savePath + ".bak"))
             SlotManager.Instance.ShowLoadPopup(slotIndex);   // 저장된 슬롯 팝업
         else
             SlotManager.Instance.ShowNewGamePopup(slotIndex); // 빈 슬롯 팝업

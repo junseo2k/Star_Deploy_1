@@ -39,7 +39,7 @@ namespace Delusion.UI.News
     {
         [Header("상단 상태")]
         public string currentEra = "마법의 시대";
-        public int currentGold = 5000;
+        public long currentGold = 5000;
         public int currentDay = 42;
 
         [Header("시대")]

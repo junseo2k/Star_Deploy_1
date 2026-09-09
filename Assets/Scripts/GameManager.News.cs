@@ -142,11 +142,11 @@ public partial class GameManager
             int minRate = isInvolved ? matchedRate.changePriceMin : matchedRate.changePriceMinNon;
             int maxRate = isInvolved ? matchedRate.changePriceMax : matchedRate.changePriceMaxNon;
 
-            stock.StockCurrentPrice = Mathf.RoundToInt(
+            stock.StockCurrentPrice = MoneyMath.Int(
                 stock.StockCurrentPrice * (1 + Random.Range(minRate, maxRate + 1) / 100f * rate));
             ClampPrice(stock);
 
-            Debug.Log($"[{active.caseData.CaseName}] {stock.StockName} | " +
+            GameDiagnostics.Log($"[{active.caseData.CaseName}] {stock.StockName} | " +
                 $"산업군: {stock.IndustryTag} | 당사국: {isInvolved} | " +
                 $"변동 전: {stock.StockPreviousPrice} | 변동 후: {stock.StockCurrentPrice}");
         }
@@ -169,12 +169,12 @@ public partial class GameManager
                 }
                 if (affected.isDelisted) continue; // 상폐된 회사는 뉴스 효과를 받지 않는다
 
-                affected.StockCurrentPrice = Mathf.RoundToInt(
+                affected.StockCurrentPrice = MoneyMath.Int(
                     affected.StockCurrentPrice *
                     (1 + Random.Range(data.ChangePriceMin[i], data.ChangePriceMax[i] + 1) / 100f * rate));
                 ClampPrice(affected);
 
-                Debug.Log($"[{data.CaseName}] {affected.StockName} | " +
+                GameDiagnostics.Log($"[{data.CaseName}] {affected.StockName} | " +
                     $"변동 전: {affected.StockPreviousPrice} | 감쇠율: {rate} | 변동 후: {affected.StockCurrentPrice}");
 
                 RefreshPriceTexts(allStockControls, affected);
@@ -188,7 +188,7 @@ public partial class GameManager
         {
             if (effect.stock == null || effect.stock.isDelisted) continue;
 
-            effect.stock.StockCurrentPrice = Mathf.RoundToInt(
+            effect.stock.StockCurrentPrice = MoneyMath.Int(
                 effect.stock.StockCurrentPrice *
                 (1 + Random.Range((float)effect.priceMin, effect.priceMax) / 100f * rate));
             ClampPrice(effect.stock);
@@ -245,7 +245,7 @@ public partial class GameManager
     // 케이스를 활성 뉴스로 등록 — 국가 쌍을 플레이스홀더에 치환하고 관련 국가 목록을 초기화
     public void AddActiveNews(Case casedata, string forcedNationPair = null, bool isRumorConfirmed = false)
     {
-        Debug.Log($"뉴스 추가: {casedata.CaseName}");
+        GameDiagnostics.Log($"뉴스 추가: {casedata.CaseName}");
 
         ActiveCase newActive = new()
         {

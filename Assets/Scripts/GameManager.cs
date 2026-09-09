@@ -16,9 +16,9 @@ public partial class GameManager : MonoBehaviour
     public static GameManager Instance; // 어디서든 GameManager.Instance로 접근하기 위한 싱글톤 인스턴스
 
     [Header("기본 상태")]
-    public int currentgold;  // 현재 보유 골드
+    public long currentgold;  // 현재 보유 골드
     public int currentDay;   // 현재 게임 날짜
-    public int loanAmount;   // 현재 대출금
+    public long loanAmount;   // 현재 대출금
     public int lowGoldStreak; // 골드가 기준치 이하인 연속 턴 수 (기준 도달 시 게임 오버)
 
     [Header("참조")]
@@ -83,6 +83,7 @@ public partial class GameManager : MonoBehaviour
     [System.Serializable]
     public class ActiveBusiness
     {
+        public string stockId;
         public string projectName;  // 사업 이름 (저장/식별용)
         public string stockName;       // 대상 회사 이름 (저장용)
         public int remainingQuarters;  // 남은 분기 수 — 분기 마감일마다 하나씩 줄어든다
@@ -101,6 +102,14 @@ public partial class GameManager : MonoBehaviour
     [System.Serializable]
     public class StockSaveData
     {
+        public string stockId;
+        public int previousPrice;
+        public int lastQuarterIncome;
+        public float lastEraModifier = 1f;
+        public int lastRevenue;
+        public List<int> priceHistory = new();
+        public List<float> changeHistory = new();
+        public List<float> volumeHistory = new();
         public string stockname;       // 주식 이름 (식별 키)
         public int currentPrice;       // 저장 시점의 주식 가격
         public int ownamount;          // 보유 수량
@@ -118,7 +127,17 @@ public partial class GameManager : MonoBehaviour
     [System.Serializable]
     public class GameSaveData
     {
-        public int currentgold;
+        public int version;
+        public string currentEraId;
+        public string pendingEraId;
+        public string scheduledCaseId;
+        public string scheduledHintId;
+        public List<NewsSaveData> news = new();
+        public List<NPCInvestor.SaveData> npcs = new();
+        public List<string> notices = new();
+        public List<string> quarterReport = new();
+        public bool quarterReportOpen;
+        public long currentgold;
         public int currentday;
         public List<StockSaveData> OwnStocks;
         public int currentPrice;
@@ -129,7 +148,7 @@ public partial class GameManager : MonoBehaviour
         public int scheduledForeshadowIndex;
         public string scheduledNationPair;
         public int smallNewsTimer;
-        public int loanAmount;
+        public long loanAmount;
         public int eraEndDay;
         public int nextEraStartDay;
         public int eraHintShownDay;
@@ -149,8 +168,8 @@ public partial class GameManager : MonoBehaviour
     // 저장 데이터 로드 → UI 갱신 → AllCases를 타입별로 분류 → 대형 뉴스 스케줄 설정
     void Start()
     {
-        LoadGame();
         ClassifyCases();
+        LoadGame();
 
         UIManager.instance.UpdateDayText();
         UIManager.instance.UpdateGoldText();
@@ -185,23 +204,23 @@ public partial class GameManager : MonoBehaviour
     // ── 골드 / 대출 ───────────────────────────────────
 
     // 주식 구매/판매 시 골드 증감 처리 (구매 시 음수, 판매 시 양수 전달)
-    public void UpdateGold(int amount)
+    public void UpdateGold(long amount)
     {
-        currentgold += amount;
+        currentgold = MoneyMath.Add(currentgold, amount);
     }
 
     // 현재 대출 한도 — 보유 골드의 50%
-    public int MaxLoan => currentgold / GameBalance.LOAN_MAX_RATIO_DIVISOR;
+    public long MaxLoan => System.Math.Max(0L, currentgold / GameBalance.LOAN_MAX_RATIO_DIVISOR);
 
     // 이번 턴에 부과될 대출 이자
-    public int TurnInterest => Mathf.CeilToInt(loanAmount * GameBalance.LOAN_INTEREST_RATE);
+    public long TurnInterest => MoneyMath.Ceiling(loanAmount * (double)GameBalance.LOAN_INTEREST_RATE);
 
     // 대출 실행 — 자산의 50%까지만 가능
-    public bool TakeLoan(int amount)
+    public bool TakeLoan(long amount)
     {
-        if (amount > MaxLoan)
+        if (amount <= 0 || amount > MaxLoan || amount > long.MaxValue - loanAmount || currentgold > long.MaxValue - amount)
         {
-            Debug.Log("대출 한도 초과");
+            GameDiagnostics.Log("대출 한도 초과");
             return false;
         }
         loanAmount += amount;
@@ -212,11 +231,11 @@ public partial class GameManager : MonoBehaviour
     }
 
     // 상환 — 보유 골드보다 많이 상환 불가
-    public bool RepayLoan(int amount)
+    public bool RepayLoan(long amount)
     {
-        if (amount > currentgold)
+        if (amount <= 0 || amount > currentgold)
         {
-            Debug.Log("골드 부족");
+            GameDiagnostics.Log("골드 부족");
             return false;
         }
         if (amount > loanAmount) amount = loanAmount; // 대출금 초과 상환 방지
@@ -274,6 +293,7 @@ public partial class GameManager : MonoBehaviour
         SaveStockDataToCSV();
         UIManager.instance.UpdateTotalAssetText();
         UIManager.instance.favoritePanel.RefreshHome();
+        AutoSave();
     }
 
     // 분기 마감 — 이 게임의 핵심 이벤트
@@ -321,7 +341,7 @@ public partial class GameManager : MonoBehaviour
 
         dailyNotices.Add(message);
         UIManager.instance.NoticeText.text = string.Join("\n", dailyNotices);
-        Debug.Log($"[알림 {dailyNotices.Count}개] {string.Join(" | ", dailyNotices)}");
+        GameDiagnostics.Log($"[알림 {dailyNotices.Count}개] {string.Join(" | ", dailyNotices)}");
     }
 
     // 게임 오버 조건 검사 — 지금은 비활성화 상태다 (요청에 따라 임시로 꺼둠)
