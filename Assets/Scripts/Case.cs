@@ -1,6 +1,7 @@
 using UnityEngine;
 
-// 사건 정보를 담는 ScriptableObject — 인스펙터에서 각 사건 데이터를 에셋으로 생성·관리
+// SaveIdentity를 통해 ScriptableObject를 상속하며, 저장용 SaveId를 함께 제공한다.
+// 인스펙터에서 각 사건 데이터를 에셋으로 생성·관리한다.
 [CreateAssetMenu(fileName = "Case", menuName = "Scriptable Objects/Case")]
 public class Case : SaveIdentity
 {
