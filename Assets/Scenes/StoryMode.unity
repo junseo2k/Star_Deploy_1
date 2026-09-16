@@ -3904,6 +3904,10 @@ MonoBehaviour:
   favoriteOffSprite: {fileID: 1964345376900833377, guid: 29c1811bd2cb4534a9fdda5e4ffb9d5d, type: 3}
   starTopLeft: {x: 16, y: 20}
   starSize: {x: 20, y: 20}
+  showInvestableGold: 1
+  investableGoldTopRight: {x: 65, y: 158}
+  investableGoldSize: {x: 420, y: 70}
+  investableGoldFontSize: 30
   showRefreshLog: 1
 --- !u!1 &172209304
 GameObject:
@@ -13708,8 +13712,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -407, y: 350}
-  m_SizeDelta: {x: 160, y: 55}
+  m_AnchoredPosition: {x: -243.5, y: 350}
+  m_SizeDelta: {x: 487, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &560239931
 MonoBehaviour:

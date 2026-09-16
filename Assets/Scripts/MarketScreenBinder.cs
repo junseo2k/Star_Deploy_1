@@ -74,8 +74,21 @@ public class MarketScreenBinder : MonoBehaviour
     [Tooltip("별표 크기(px)")]
     public Vector2 starSize = new Vector2(20f, 20f);
 
+    [Header("주식에 쓸 수 있는 골드 (시장 탭 오른쪽 위)")]
+    [Tooltip("지금 주식을 사는 데 쓸 수 있는 골드를 시장 탭 오른쪽 위에 따로 보여준다")]
+    public bool showInvestableGold = true;
+    [Tooltip("화면 오른쪽 위 모서리에서 글자 칸까지의 거리(px). 필터 칩 줄이 위에서 165px 자리라 같은 줄에 맞춰뒀다")]
+    public Vector2 investableGoldTopRight = new Vector2(65f, 158f);
+    [Tooltip("글자 칸 크기(px)")]
+    public Vector2 investableGoldSize = new Vector2(420f, 70f);
+    [Tooltip("금액 글자 크기(px). 위의 설명 줄은 이 크기의 60%로 나온다")]
+    public float investableGoldFontSize = 30f;
+
     // 카드에 붙이는 별표 오브젝트 이름 — 이 이름으로 이미 붙어 있는지 확인한다
     const string StarObjectName = "FavoriteStar";
+
+    // 시장 화면에 얹는 "쓸 수 있는 골드" 오브젝트 이름 — 이 이름으로 이미 만들어뒀는지 확인한다
+    const string InvestableGoldObjectName = "InvestableGoldText";
 
     [Header("문제 확인용")]
     [Tooltip("시장 탭을 열 때마다 어떤 데이터가 들어갔는지 콘솔에 한 줄 찍는다. 확인이 끝나면 꺼도 된다")]
@@ -154,6 +167,75 @@ public class MarketScreenBinder : MonoBehaviour
 
         // 카드가 새로 만들어졌으므로 별표도 다시 붙인다
         RefreshFavoriteStars();
+
+        // 화면을 새로 그리면 배경이 다시 깔리므로, 골드 표시도 이때 다시 맨 앞으로 올려준다
+        RefreshInvestableGold();
+    }
+
+    // ── 주식에 쓸 수 있는 골드 ────────────────────────────
+
+    // 시장 탭 오른쪽 위에 "지금 주식 사는 데 쓸 수 있는 골드"를 보여준다.
+    // 메인 화면은 주식 평가금액까지 더한 '총 골드'를 보여주기 때문에,
+    // 종목 목록에서는 실제로 매수에 쓸 수 있는 현금이 얼마인지 따로 알려줘야 헷갈리지 않는다.
+    public void RefreshInvestableGold()
+    {
+        FindMarketScreen();
+        if (marketScreen == null) return;
+
+        GameManager game = GameManager.Instance;
+        if (game == null) return;
+
+        TMP_Text label = GetOrCreateInvestableGoldText();
+        if (label == null) return;
+
+        label.gameObject.SetActive(showInvestableGold);
+        if (!showInvestableGold) return;
+
+        label.text = $"<size=60%>주식에 쓸 수 있는 골드</size>\n<b>{UIFormat.Gold(game.currentgold)}</b>";
+
+        // 시장 화면을 다시 그릴 때마다 새 배경이 뒤에 깔린다 — 항상 맨 앞으로 올려 가려지지 않게 한다
+        label.transform.SetAsLastSibling();
+    }
+
+    // 글자 칸이 아직 없으면 패키지가 만든 "시장" 제목을 복제해서 만든다.
+    // 복제하면 폰트·색을 그대로 물려받아서, 폰트 에셋을 인스펙터에 따로 넣지 않아도 화면과 잘 어울린다.
+    TMP_Text GetOrCreateInvestableGoldText()
+    {
+        Transform existing = marketScreen.transform.Find(InvestableGoldObjectName);
+        if (existing != null) return existing.GetComponent<TMP_Text>();
+
+        TMP_Text source = FindTitleText();
+        if (source == null) return null; // 아직 시장 화면이 안 그려졌으면 다음 Refresh 때 만든다
+
+        TMP_Text label = Instantiate(source, marketScreen.transform);
+        label.name = InvestableGoldObjectName;
+        label.fontSize = investableGoldFontSize;
+        label.alignment = TextAlignmentOptions.TopRight;
+        label.fontStyle = FontStyles.Normal;             // 설명 줄은 보통 굵기, 금액만 <b>로 굵게 보이도록
+        label.overflowMode = TextOverflowModes.Overflow; // 글자가 칸보다 커도 잘리지 않게
+        label.raycastTarget = false;                     // 클릭이 이 글자에 막히지 않게
+
+        // 패키지 UI는 화면 왼쪽 위 기준으로 배치하지만, 이 글자는 오른쪽 위에 붙여야 하므로 기준점을 오른쪽 위로 바꾼다
+        RectTransform rect = (RectTransform)label.transform;
+        rect.anchorMin = new Vector2(1f, 1f);
+        rect.anchorMax = new Vector2(1f, 1f);
+        rect.pivot = new Vector2(1f, 1f);
+        rect.anchoredPosition = new Vector2(-investableGoldTopRight.x, -investableGoldTopRight.y);
+        rect.sizeDelta = investableGoldSize;
+        return label;
+    }
+
+    // 복제할 원본으로 쓸 "시장" 제목 텍스트를 찾는다. 못 찾으면 화면 안의 다른 TMP 텍스트라도 쓴다
+    TMP_Text FindTitleText()
+    {
+        TMP_Text fallback = null;
+        foreach (TMP_Text text in marketScreen.GetComponentsInChildren<TMP_Text>(true))
+        {
+            if (text.name == InvestableGoldObjectName) continue; // 자기 자신을 복제하지 않게
+            if (text.name == "Title") return text;
+            if (fallback == null) fallback = text;
+        }
+        return fallback;
     }
 
     // ── 즐겨찾기 별표 ────────────────────────────────────

@@ -330,7 +330,7 @@ public partial class GameManager : MonoBehaviour
     }
 
     // 알림 메시지를 오늘 목록에 추가하고, 지금까지 쌓인 메시지를 줄바꿈으로 이어서 NoticeText에 표시
-    private void AddNotice(string message)
+    public void AddNotice(string message)
     {
         // 분기 결산 중이면 메인 알림창을 건드리지 않고 실적 발표 팝업 쪽으로 모은다
         if (isSettlingQuarter)

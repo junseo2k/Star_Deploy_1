@@ -44,7 +44,11 @@ public class UIManager : MonoBehaviour
     public void UpdateGoldText()
     {
         Ownedgold.text = $"<b>현재 골드 : \n<size=150%>{GameManager.Instance.currentgold}</size></b>";
-        UpdateTotalAssetText(); // 골드가 바뀌면 총 자산도 함께 갱신
+        UpdateTotalAssetText(); // 골드가 바뀌면 메인 화면의 총 골드도 함께 갱신
+
+        // 시장 탭을 보는 중에 골드가 바뀌면(매수·매도) 그 화면의 "주식에 쓸 수 있는 골드"도 같이 맞춘다
+        if (marketScreenBinder != null && StockPanel != null && StockPanel.gameObject.activeSelf)
+            marketScreenBinder.RefreshInvestableGold();
     }
 
     public void UpdateDayText()
@@ -60,15 +64,19 @@ public class UIManager : MonoBehaviour
         EraText.text = $"<b>현재 시대 : \n<size=130%>{eraName}</size></b>";
     }
 
-    // 메인 화면 가운데 UI — 예전에는 총 자산을 보여줬지만, 지금은 현재 보유 골드를 크게 보여준다
-    // (총 자산·손익 요약은 자산 탭에서 확인한다)
+    // 메인 화면 가운데 UI — 보유 골드와 보유 주식 평가금액을 합친 "총 골드"를 크게 보여준다
+    // (주식을 사면 골드가 주식으로 모습만 바뀌는 것이라, 총 골드가 지금 내 재산 전체다)
     // 보유 주식 기준 손익률(%)은 상단 TotalReturnText에 계속 표시한다
     public void UpdateTotalAssetText()
     {
         long stockValue = Portfolio.TotalValue();          // 보유 주식 현재 평가금액 합
         float purchaseCost = Portfolio.TotalPurchaseCost(); // 평균 매수가 기준 원금 합
+        long totalGold = MoneyMath.Add(GameManager.Instance.currentgold, stockValue); // 총 골드 = 남은 골드 + 주식 평가금액
 
-        TotalAssetText.text = $"<b><size=50%>현재 골드:</size> \n{GameManager.Instance.currentgold:N0} G</b>";
+        // 1줄: 총 골드(크게) / 2줄: 그 안에서 현금과 주식이 각각 얼마인지 작게 (주식이 없으면 "주식 0 G"로 나온다)
+        TotalAssetText.text =
+            $"<b><size=50%>총 골드:</size> \n{totalGold:N0} G</b>" +
+            $"\n<size=40%>현금 {GameManager.Instance.currentgold:N0} G · 주식 {stockValue:N0} G</size>";
 
         // 손익률 = (현재 평가 - 매수 원금) / 매수 원금 × 100 — 매수한 주식이 없으면 0% 처리
         if (purchaseCost > 0f)
