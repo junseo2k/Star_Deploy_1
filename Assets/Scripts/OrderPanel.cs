@@ -132,7 +132,6 @@ public class OrderPanel : MonoBehaviour
         bool traded = isBuyMode ? TryBuy() : TrySell();
         if (!traded) return;
 
-        StockControl.RefreshAllOwnedText();
         GameManager.Instance.AutoSave();
         UIManager.instance.UpdateGoldText();
         UIManager.instance.ReturnToEntire(UIManager.instance.buyPanel.gameObject);

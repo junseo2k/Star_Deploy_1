@@ -29,7 +29,6 @@ public class UIManager : MonoBehaviour
     public FavoritePanel favoritePanel;
     public QuarterReportPanel quarterReportPanel; // 분기 실적 발표 팝업 (화면 전환이 아니라 위에 덮어씀)
     public SidebarTabManager sidebarTabManager;
-    [SerializeField] private NewsPanel newsPanelScript;
     [SerializeField] private NewsScreenBinder newsScreenBinder; // 새 뉴스 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
     [SerializeField] private VaultScreenBinder vaultScreenBinder; // 새 자산 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
     [SerializeField] private MarketScreenBinder marketScreenBinder; // 새 시장(종목) 탭 화면에 게임 데이터를 넣어주는 연결 스크립트
@@ -161,7 +160,6 @@ public class UIManager : MonoBehaviour
     public void OpenNewsPanel()
     {
         OpenScreen(newspanel);
-        newsPanelScript.BigNewsClick();
 
         // 새 뉴스 탭 화면을 지금 게임 상태로 다시 그린다 (연결 안 돼 있으면 그냥 넘어간다)
         if (newsScreenBinder != null)

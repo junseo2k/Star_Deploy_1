@@ -7,14 +7,6 @@ using UnityEngine;
 // (뉴스 탭의 NewsScreenBinder와 같은 구조)
 public class VaultScreenBinder : MonoBehaviour
 {
-    // 종목별 로고 교체 — 비워두면 그 종목의 StockIcon을 그대로 쓴다
-    [System.Serializable]
-    public class LogoOverride
-    {
-        public string stockName;    // Stock.StockName과 같은 값
-        public Sprite logo;
-    }
-
     [Header("연결")]
     [Tooltip("자산 탭 화면 컴포넌트. 비워두면 씬에서 자동으로 찾는다")]
     public DelusionVaultScreen vaultScreen;
@@ -31,9 +23,6 @@ public class VaultScreenBinder : MonoBehaviour
     public float majorShareholderPercent = 5f;
     [Tooltip("이 비율 이상이면 '최대주주' 배지를 단다")]
     public float largestShareholderPercent = 10f;
-
-    [Header("로고 교체 (비워두면 종목의 StockIcon 사용)")]
-    public List<LogoOverride> logoOverrides = new List<LogoOverride>();
 
     [Header("문제 확인용")]
     [Tooltip("자산 탭을 열 때마다 어떤 데이터가 들어갔는지 콘솔에 한 줄 찍는다. 확인이 끝나면 꺼도 된다")]
@@ -189,18 +178,8 @@ public class VaultScreenBinder : MonoBehaviour
 
     // ── 로고 ────────────────────────────────────────────
 
-    // 교체 목록에 등록된 로고가 있으면 그걸 쓰고, 없으면 종목의 StockIcon을 쓴다
-    Sprite FindLogo(Stock stock)
-    {
-        if (stock == null) return null;
-
-        foreach (LogoOverride entry in logoOverrides)
-        {
-            if (entry.logo != null && entry.stockName == stock.StockName)
-                return entry.logo;
-        }
-        return stock.StockIcon;
-    }
+    // 종목에 등록된 아이콘을 그대로 쓴다 (Stock은 ScriptableObject라 != null 로 비교해야 한다)
+    static Sprite FindLogo(Stock stock) => stock != null ? stock.StockIcon : null;
 
     // ── 종목 클릭 ────────────────────────────────────────
 

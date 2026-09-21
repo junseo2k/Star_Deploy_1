@@ -130,12 +130,6 @@ public partial class GameManager
         if (UIManager.instance.detailpanel != null)
             UIManager.instance.detailpanel.CloseIfShowing(stock);
 
-        // 이미 생성된 주식 목록 슬롯이 있으면 숨긴다 (탭을 아직 안 열었다면 TabManager.CreateStock이
-        // 애초에 생성하지 않는다)
-        foreach (StockControl sc in StockControl.FindAll())
-            if (sc.stockinfo == stock)
-                sc.gameObject.SetActive(false);
-
         UIManager.instance.favoritePanel.RefreshHome();
 
         AddNotice($"[상장폐지] {stock.StockName}이(가) 상장폐지되었습니다.");

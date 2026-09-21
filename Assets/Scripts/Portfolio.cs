@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 플레이어의 보유 주식 상태를 한곳에서 관리하는 런타임 저장소
-// 같은 주식이 종족 탭과 산업 탭에 동시에 표시되면 StockControl 인스턴스가 2개 생기므로,
+// 같은 주식이 여러 화면(시장 목록·관심 종목·자산 탭)에 동시에 나올 수 있으므로,
 // 보유 수량을 UI 컴포넌트가 아니라 이곳에 두어 수량이 갈라지거나 총 자산에 중복 합산되는 것을 막는다
 public static class Portfolio
 {

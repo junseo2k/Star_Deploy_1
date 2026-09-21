@@ -14,14 +14,6 @@ public class NewsScreenBinder : MonoBehaviour
         public string displayName;  // 화면에 나올 이름 (예: 광업)
     }
 
-    // 종목별 로고 교체 — 비워두면 그 종목의 StockIcon을 그대로 쓴다
-    [System.Serializable]
-    public class LogoOverride
-    {
-        public string stockName;    // Stock.StockName과 같은 값
-        public Sprite logo;
-    }
-
     [Header("연결")]
     public DelusionNewsScreen newsScreen;   // 뉴스 탭 화면 컴포넌트
 
@@ -43,9 +35,6 @@ public class NewsScreenBinder : MonoBehaviour
         new IndustryLabel { industryTag = "Luxury",    displayName = "소비재" },
         new IndustryLabel { industryTag = "Game",      displayName = "오락" },
     };
-
-    [Header("로고 교체 (비워두면 종목의 StockIcon 사용)")]
-    public List<LogoOverride> logoOverrides = new List<LogoOverride>();
 
     [Header("표시 개수")]
     public int moverCount = 3;   // 급상승/급하락에 각각 몇 개까지 표시할지
@@ -291,18 +280,8 @@ public class NewsScreenBinder : MonoBehaviour
 
     // ── 로고 ────────────────────────────────────────────
 
-    // 교체 목록에 등록된 로고가 있으면 그걸 쓰고, 없으면 종목의 StockIcon을 쓴다
-    Sprite FindLogo(Stock stock)
-    {
-        if (stock == null) return null;
-
-        foreach (LogoOverride entry in logoOverrides)
-        {
-            if (entry.logo != null && entry.stockName == stock.StockName)
-                return entry.logo;
-        }
-        return stock.StockIcon;
-    }
+    // 종목에 등록된 아이콘을 그대로 쓴다 (Stock은 ScriptableObject라 != null 로 비교해야 한다)
+    static Sprite FindLogo(Stock stock) => stock != null ? stock.StockIcon : null;
 
     // ── 종목 클릭 ────────────────────────────────────────
 

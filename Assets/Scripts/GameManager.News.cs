@@ -92,8 +92,6 @@ public partial class GameManager
     // 활성 뉴스의 가격 효과를 모두 적용하고, 오늘 새로 발생한 뉴스는 공지에 올린다
     void ApplyActiveNewsEffects()
     {
-        StockControl[] allStockControls = StockControl.FindAll();
-
         foreach (ActiveCase active in activeNewsList)
         {
             // 경과 일수에 따른 감쇠율 — 배열 범위를 넘어가면 효과 없음
@@ -108,13 +106,7 @@ public partial class GameManager
             if (isBigNews)
                 ApplyBigNewsEffect(active, rate);
             else
-                ApplySmallNewsEffect(active, rate, allStockControls);
-
-            if (active.caseData.newsType == Case.NewsType.BigTriggerNews)
-            {
-                foreach (StockControl sc in allStockControls)
-                    sc.UpdatePriceText();
-            }
+                ApplySmallNewsEffect(active, rate);
 
             if (active.currentDay == 0)
                 AddNotice(active.displayDescription);
@@ -153,7 +145,7 @@ public partial class GameManager
     }
 
     // 소형 뉴스 효과 — 지정된 주식에 주 효과를, 2일차에 연쇄 효과를 적용
-    void ApplySmallNewsEffect(ActiveCase active, float rate, StockControl[] allStockControls)
+    void ApplySmallNewsEffect(ActiveCase active, float rate)
     {
         Case data = active.caseData;
 
@@ -176,8 +168,6 @@ public partial class GameManager
 
                 GameDiagnostics.Log($"[{data.CaseName}] {affected.StockName} | " +
                     $"변동 전: {affected.StockPreviousPrice} | 감쇠율: {rate} | 변동 후: {affected.StockCurrentPrice}");
-
-                RefreshPriceTexts(allStockControls, affected);
             }
         }
 
@@ -192,18 +182,6 @@ public partial class GameManager
                 effect.stock.StockCurrentPrice *
                 (1 + Random.Range((float)effect.priceMin, effect.priceMax) / 100f * rate));
             ClampPrice(effect.stock);
-
-            RefreshPriceTexts(allStockControls, effect.stock);
-        }
-    }
-
-    // 해당 주식을 표시 중인 모든 StockControl의 가격 텍스트 갱신
-    static void RefreshPriceTexts(StockControl[] allStockControls, Stock stock)
-    {
-        foreach (StockControl sc in allStockControls)
-        {
-            if (sc.stockinfo == stock)
-                sc.UpdatePriceText();
         }
     }
 
