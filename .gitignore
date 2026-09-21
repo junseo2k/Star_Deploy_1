@@ -17,3 +17,7 @@ UserSettings/
 .DS_Store
 Thumbs.db
 "Build.zip" 
+
+# Obsidian — 창 위치·최근 파일 등 개인 작업 상태 (열 때마다 바뀌어서 diff가 지저분해짐)
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json

@@ -1,0 +1,40 @@
+filters:
+  and:
+    - file.hasTag("handoffs")
+    - file.ext == "md"
+formulas:
+  age_days: (now() - file.mtime).days.round(0)
+properties:
+  status:
+    displayName: Status
+  date:
+    displayName: Started
+  end:
+    displayName: Ended
+  formula.age_days:
+    displayName: Days Ago
+  file.mtime:
+    displayName: Updated
+views:
+  - type: table
+    name: By Status
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - date
+      - end
+      - status
+      - formula.age_days
+      - file.mtime
+  - type: table
+    name: Recent
+    order:
+      - file.name
+      - date
+      - end
+      - status
+      - formula.age_days
+      - file.mtime
+    limit: 30
